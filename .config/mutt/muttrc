@@ -1,0 +1,80 @@
+# vim: filetype=neomuttrc
+source /home/tony/.config/mutt/accounts/tonylenguyen@fastmail.com.muttrc
+
+# Macros
+macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
+macro index S "<vfolder-from-query>"
+
+# Settings
+set send_charset = "us-ascii:utf-8"
+set mailcap_path = "/home/tony/.config/mutt/mailcap"
+set mime_type_query_command = "file --mime-type -b %s"
+set index_format = "%4C %Z %{%b %d} %-20.20F %s"
+set sort = reverse-date
+set pager_index_lines = 5
+set delete = yes
+set wait_key = no
+set mark_old = no
+auto_view text/html text/calendar application/ics
+alternative_order text/html text/plain text/enriched text/*
+
+# Navigation
+bind index,pager g noop
+bind index gg first-entry
+bind index G last-entry
+bind pager gg top
+bind pager G bottom
+
+bind index h noop
+bind pager,attach h exit
+
+bind index j next-entry
+bind pager j next-line
+
+bind index k previous-entry
+bind pager k previous-line
+
+bind index l display-message
+bind pager l view-attachments
+bind attach l view-mailcap
+
+bind index d delete-message
+bind index D undelete-message
+
+# Sidebar format
+set sidebar_visible = yes
+set sidebar_folder_indent = yes
+set sidebar_width = 20
+set sidebar_format = '%D %?N?%N/? %?S?%S?'
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+
+# Sidebar navigation
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager \Cb sidebar-toggle-visible
+
+# Inbox highlighting
+color index white default '.*'
+color index_author magenta default '.*'
+color index_number white default
+color index_subject white default '.*'
+
+color index brightwhite default "~N"
+color index_author brightmagenta default "~N"
+color index_subject brightgreen default "~N"
+
+color indicator blue default
+color status yellow default
+color normal white default
+color sidebar_highlight red default
+color sidebar_divider black default
+
+# Regex highlighting
+color header white default ".*"
+color header brightmagenta default "^From"
+color header brightmagenta default "^(CC|BCC)"
+color header brightblue default "^Subject"
+color body brightgreen default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+"

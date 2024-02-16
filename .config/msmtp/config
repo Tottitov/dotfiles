@@ -1,0 +1,11 @@
+account fastmail
+host smtp.fastmail.com
+port 465
+from tonylenguyen@fastmail.com
+user tonylenguyen@fastmail.com
+passwordeval "pass show neomutt/personal/fastmail"
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile /home/tony/.cache/msmtp/msmtp.log
+tls_starttls off

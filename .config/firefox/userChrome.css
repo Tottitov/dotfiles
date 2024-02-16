@@ -1,0 +1,57 @@
+/* Override dark theme */
+@media (prefers-color-scheme: dark) { :root { --accent-color: #141617 } }
+
+/* No round corners */
+* { border-radius: 0 !important }
+
+/* No bottom border outline */
+#navigator-toolbox { border-bottom: none !important }
+
+/* Sets the tabbar color */
+#titlebar {
+	background: var(--accent-color) !important;
+	box-shadow: none !important;
+}
+
+/* Sets the toolbar color */
+toolbar#nav-bar {
+	background: var(--accent-color) !important;
+	box-shadow: none !important;
+}
+
+/* Sets the URL bar color */
+#urlbar { background: var(--accent-color) !important }
+#urlbar-background {
+    background: var(--accent-color) !important;
+    border: none !important;
+}
+
+/* Remove "padding" left and right from tabs */
+.titlebar-spacer { display: none !important }
+
+/* Remove gaps from unpinned/pinned tabs */
+.tabbrowser-tab:not([pinned]) { margin-inline-start: 0px !important }
+
+/* Single bar layout */
+#navigator-toolbox { display: flex; flex-direction: row; flex-wrap: wrap }
+#nav-bar { order: 1 }
+#titlebar { order: 2; flex-grow: 1 }
+
+/* Hide title bar navagation, tabs drop down, and url bar icons */
+#identity-box > :not(#urlbar-go-button),
+#tracking-protection-icon-container,
+#page-action-buttons > :not(#urlbar-zoom-button),
+#alltabs-button,
+.titlebar-buttonbox-container { display: none !important }
+
+/* Hide extensions button */
+#unified-extensions-button,
+#unified-extensions-button > .toolbarbutton-icon {
+	width: 0px !important;
+	padding: 0px !important;
+}
+
+/* Hide the hamburger menu */
+#PanelUI-menu-button { padding: 0px !important }
+#PanelUI-menu-button .toolbarbutton-icon { width: 0px !important }
+#PanelUI-menu-button .toolbarbutton-badge-stack { padding: 0px !important }

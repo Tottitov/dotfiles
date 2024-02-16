@@ -1,0 +1,22 @@
+directory: ~/media/music/
+threaded: yes
+
+plugins:
+  - scrub
+  - embedart
+
+import:
+  write: yes
+  copy: no
+  move: yes
+  autotag: yes
+  exclude: art
+
+paths:
+  default: $albumartist/$album/$track $title
+
+scrub:
+  auto: yes
+
+embedart:
+  auto: no

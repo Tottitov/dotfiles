@@ -1,0 +1,26 @@
+[global]
+    follow = keyboard
+	width = 350
+	alignment = left
+	vertical_alignment = center
+    offset = 6x6
+	padding = 15
+	frame_width = 0
+	highlight = "#EEEEEE"
+    font = Terminus 14
+	stack_duplicates = true
+	hide_duplicate_count = true
+	icon_path = /usr/share/icons/Arc/status/128/
+    icon_position = off
+	sort = yes
+    idle_threshold = 120
+
+[urgency_normal]
+    foreground = "#EEEEEE"
+    background = "#000000"
+    timeout = 10
+
+[urgency_critical]
+    foreground = "#000000"
+    background = "#FB4934"
+    timeout = 15

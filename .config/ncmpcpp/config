@@ -1,0 +1,35 @@
+[mpd]
+mpd_music_dir = "~/media/music"
+mpd_host = "127.0.0.1"
+mpd_port = "6600"
+
+[visualizer]
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "visualizer"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"
+
+[current]
+current_item_prefix = "$(red)$b"
+current_item_suffix = "$/r$(end)$/b"
+current_item_inactive_column_prefix = "$(default)"
+current_item_inactive_column_suffix = "$/r$(end)"
+
+[statusbar]
+progressbar_look = "─╼ "
+progressbar_color = "green"
+
+[global]
+colors_enabled = "yes"
+main_window_color = "default"
+centered_cursor = "yes"
+external_editor = "vim"
+startup_screen = "media_library"
+show_duplicate_tags = "no"
+display_volume_level = "no"
+use_console_editor = "yes"
+lyrics_directory = "~/.config/ncmpcpp/lyrics"
+media_library_primary_tag = "album_artist"
+media_library_albums_split_by_date = "no"
+execute_on_song_change="mpdstatus"

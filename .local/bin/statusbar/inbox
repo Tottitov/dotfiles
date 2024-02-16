@@ -1,0 +1,5 @@
+#!/bin/sh
+
+unread="$(find ~/.local/share/mail/*/INBOX/new -type f | wc -l)"
+
+[ "$unread" -gt 0 ] && echo "EMAIL ${unread}" || exit 0

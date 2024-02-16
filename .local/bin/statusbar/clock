@@ -1,0 +1,3 @@
+#!/bin/sh
+
+date +"%a %-I:%M" | awk '{print toupper($0)}'

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+sc() {
+	script=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
+	[ -f ~/.local/bin/"${script}" ] && $EDITOR ~/.local/bin/"${script}"
+}
+
+cf() {
+    config=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
+    [ -f ~/.config/"${config}" ] && $EDITOR ~/.config/"${config}"
+}
+
+cn() { [ -n "$(pacman -Qtdq)" ] && sudo pacman -Rns "$(pacman -Qtdq)"; }
+
+alias \
+    vim="nvim" \
+    ls="ls -ahN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    torr="transmission-remote" \
+    stow="stow --dotfiles" \
+    upgrade="sudo pacman -Syyu" \
+    rip="whipper cd rip" \
+    tag="beet import -i media/music/" \
+    scanaf="scanimage --source 'ADF' -b --format=png" \
+    scanfb="scanimage --format=png --output-file scan.png -p"
+
+alias \
+    dot="cd ~/.local/share/dotfiles" \

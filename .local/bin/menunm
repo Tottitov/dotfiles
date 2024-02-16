@@ -1,0 +1,41 @@
+#!/bin/sh
+
+checkPassword() {
+	if nmcli dev wifi con "$2" password "$1"; then
+        notify-send -r 5 "Password Passed" "$2 connected"
+    else
+		notify-send -r 5 -u critical "Incorrect password for $2"
+        nmcli con delete "$2"
+    fi
+}
+
+connect() {
+	if ! nmcli -g name con show | grep -q "$1" && [ "$security" != "--" ]; then
+    	password=$(echo | tofi \
+            --hide-input true \
+            --require-match false \
+            --prompt-text "Password for $1: "
+        ) || exit 1
+        
+        checkPassword "$password" "$1"
+    else
+		nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
+	fi >/dev/null 2>&1
+}
+
+connection=$(nmcli -g name con show --active | grep -v "lo")
+if [ "$connection" != "LAN" ]; then
+	network=$(nmcli -g active,ssid,security,signal dev wifi | tofi \
+        --prompt-text "Which Network? "
+    ) || exit 1
+
+	active=$(echo "$network" | cut -d ':' -f 1)
+	ssid=$(echo "$network" | cut -d ':' -f 2)
+	security=$(echo "$network" | cut -d ':' -f 3)
+
+	([ "$active" = "yes" ] &&
+	nmcli con down id "$ssid" >/dev/null 2>&1 &&
+	notify-send -r 5 "$ssid disconnected") || connect "$ssid"
+else
+	notify-send -r 5 "$connection connected"
+fi

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+answer=$(echo "$1" | bc -l)
+
+action=$(printf "Copy\nClear" | tofi \
+    --require-match false \
+    --prompt-text "= $answer"
+) || exit 1
+
+case $action in
+	"Clear") $0 ;;
+	"Copy") echo "$answer" | wl-copy ;;
+	*) $0 "$answer $action" ;;
+esac

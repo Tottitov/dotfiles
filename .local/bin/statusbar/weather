@@ -1,0 +1,7 @@
+#!/bin/sh
+
+forecast=$(curl -fs "https://wttr.in/?format=%C,%t") || exit 1
+
+weather=$(echo "$forecast" | tr ',' ' ' | tr '[:lower:]' '[:upper:]')
+
+echo "$weather" > "${XDG_DATA_HOME}/weather" && pkill -RTMIN+2 waybar

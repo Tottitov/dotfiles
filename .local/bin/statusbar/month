@@ -1,0 +1,8 @@
+#!/bin/sh
+
+today=$(date '+%-d')
+month=$(cal | head -n1)
+calendar=$(cal | tail -n7 | \
+sed -z "s|$today|<b><span color=\"red\">$today</span></b>|1")
+
+notify-send "$month" "$calendar"

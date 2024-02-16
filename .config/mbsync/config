@@ -1,0 +1,27 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User tonylenguyen@fastmail.com
+PassCmd "pass neomutt/personal/fastmail"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+Path ~/.local/share/mail/tonylenguyen@fastmail.com/
+Inbox ~/.local/share/mail/tonylenguyen@fastmail.com/INBOX
+Subfolders Verbatim
+
+Channel fastmail
+Far :fastmail-remote:
+Near :fastmail-local:
+Patterns *
+CopyArrivalDate yes
+Expunge Both
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no

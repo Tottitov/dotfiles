@@ -1,0 +1,3 @@
+#!/bin/sh
+
+notify-send "Upcoming Events" "$(when | cut -c 12-)"

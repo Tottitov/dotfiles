@@ -1,0 +1,44 @@
+{
+	"height": 26,
+	"modules-left": [
+		"river/tags"
+	],
+    "modules-center": [],
+    "modules-right": [
+		"custom/record",
+		"custom/weather",
+        "custom/inbox",
+		"battery",
+		"custom/clock",
+		"tray"
+	],
+	"custom/clock": {
+		"exec": "clock",
+		"on-click": "month",
+        "on-click-right": "schedule",
+		"interval": 60
+	},
+	"battery": {
+		"bat": "BAT0",
+		"adapter": "AC",
+		"states": {
+			"critical": 50
+		},
+		"format": "BAT {capacity}%",
+		"format-charging": "BAT +{capacity}%",
+		"interval": 15
+	},
+	"custom/inbox": {
+		"exec": "inbox",
+		"on-click": "$TERMINAL neomutt",
+		"signal": 4
+	},
+	"custom/weather": {
+		"exec": "cat $XDG_DATA_HOME/weather",
+		"signal": 2
+	},
+	"custom/record": {
+		"exec": "record",
+		"signal": 3
+	} 
+}

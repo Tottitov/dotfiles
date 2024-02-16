@@ -1,0 +1,29 @@
+#!/bin/sh
+
+notify() {
+    volume=$(pamixer --get-volume --set-limit 150)
+
+    if [ "$(pamixer --get-mute)" != "true" ]; then
+        notify-send \
+            -r 5 \
+            -t 2000 \
+            -h int:value:"${volume}" \
+            "VOLUME ${volume}%"
+    else
+        notify-send \
+            -r 5 \
+            -t 2000 \
+            -u critical \
+            -h int:value:"0" \
+            "MUTE ${volume}%"
+    fi
+}
+
+case "$1" in
+	high) pamixer --allow-boost -i 5 --set-limit 150 ;;
+	higher) pamixer --allow-boost -i 10 --set-limit 150 ;;
+	low) pamixer --allow-boost -d 5 ;;
+	lower) pamixer --allow-boost -d 10 ;;
+    mute) pamixer -t ;;
+    mic) pamixer --default-source -t ;;
+esac; [ "$1" != "mic" ] && notify

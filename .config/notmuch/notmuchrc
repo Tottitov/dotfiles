@@ -1,0 +1,15 @@
+[database]
+path=/home/tony/.local/share/mail/tonylenguyen@fastmail.com/
+
+[user]
+name=Tony Nguyen
+primary_email=tonylenguyen@fastmail.com
+
+[new]
+ignore=.mbsyncstate;.uidvalidity
+
+[search]
+exclude_tags=trash
+
+[maildir]
+synchronize_flags=true

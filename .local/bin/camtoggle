@@ -1,0 +1,9 @@
+#!/bin/sh
+
+camera=$(find /dev/video[02468] | tail -n 1)
+
+if [ -e "$camera" ]; then
+    pkill -f "$camera" || ffplay -fast "$camera" >/dev/null 2>&1
+else
+    notify-send "No camera detected"
+fi

@@ -1,0 +1,9 @@
+set clean-database-on-startup true
+set initial-unread-first-sorting true
+set scrolloff 8
+
+set color-list-feed-unread-fg bold
+set color-list-section-unread-fg bold
+set color-list-item-important-fg bold
+
+bind m exec setsid -f mpv --no-terminal "%l"

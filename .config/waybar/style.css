@@ -1,0 +1,41 @@
+* {
+	font-family: Terminus;
+	font-size: 14px;
+	border: none;
+	opacity: 1;
+	min-height: 0;
+}
+
+window#waybar {
+	color: #BDAE93;
+    background: #000000;
+}
+
+#tags button {
+	padding: 3px;
+	color: #BDAE93;
+	border-radius: 0px;
+}
+
+#tags button.occupied {
+	font-weight: bold;
+}
+
+#tags button.focused {
+    color: #D3869B;
+}
+
+#tags button.urgent {
+    color: #FB4934;
+}
+
+#battery,
+#custom-clock,
+#custom-inbox,
+#custom-weather,
+#custom-record {
+	padding: 0px 8px;
+}
+
+#custom-record { color: #FB4934 }
+#battery.critical { color: #FB4934 }

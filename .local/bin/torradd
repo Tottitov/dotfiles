@@ -1,0 +1,5 @@
+#!/bin/sh
+
+(transmission-remote -a "$@" >/dev/null &&
+notify-send "Torrent successfully added") ||
+notify-send "Torrent failed to add"

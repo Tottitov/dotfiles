@@ -1,0 +1,3 @@
+#!/bin/sh
+
+transmission-remote -tall --remove-and-delete
