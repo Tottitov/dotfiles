@@ -37,10 +37,8 @@ riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
-riverctl map -repeat normal Super+Alt H \
-    send-layout-cmd rivertile "main-ratio -0.01"
-riverctl map -repeat normal Super+Alt L \
-    send-layout-cmd rivertile "main-ratio +0.01"
+riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
+riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
 
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super BTN_RIGHT resize-view
@@ -73,10 +71,8 @@ riverctl map normal Super+Shift	C spawn camtoggle
 
 riverctl map normal Super+Alt L spawn waylock
 
-riverctl map normal Super X \
-    spawn "prompt 'Reboot Computer?' 'sudo reboot'"
-riverctl map normal Super+Shift X \
-    spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
+riverctl map normal Super X spawn "prompt 'Reboot Computer?' 'sudo reboot'"
+riverctl map normal Super+Shift X spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
 
 riverctl map normal Super Comma	spawn "mpc -q prev; mpdstatus"
 riverctl map normal Super+Shift	Comma spawn "mpc -q seek -10%"
@@ -84,6 +80,8 @@ riverctl map normal Super+Alt Comma	spawn "mpc -q seek 0%"
 
 riverctl map normal Super Period spawn "mpc -q next; mpdstatus"
 riverctl map normal Super+Shift	Period spawn "mpc -q seek +10%"
+
+riverctl map normal Super Space spawn "pkill -SIGUSR1 waybar"
 
 for mode in normal locked; do
     riverctl map -repeat $mode Super Equal spawn "volume high"
@@ -94,12 +92,11 @@ for mode in normal locked; do
     riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
     riverctl map $mode None XF86AudioMute spawn "volume mute"
     riverctl map $mode None XF86AudioMicMute spawn "volume mic"
-    riverctl map normal Super P spawn "mpc -q toggle; mpdstatus"
-    riverctl map normal Super+Alt P	spawn "mpc -q clear; mpdstatus"
+    riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
+    riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
+    riverctl map $mode Super P spawn "mpc -q toggle; mpdstatus"
+    riverctl map $mode Super+Alt P	spawn "mpc -q clear; mpdstatus"
 done
-
-riverctl map normal None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
-riverctl map normal None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
 
 riverctl map normal None XF86DISPLAY spawn ""
 riverctl map normal None XF86WLAN spawn airplane
@@ -113,8 +110,6 @@ riverctl map normal Shift Print spawn "grimpick fullscreenc"
 riverctl map normal Shift+Control Print spawn grimpick
 riverctl map normal Super Print spawn menurecord
 riverctl map normal Super+Shift	Print spawn "menurecord kill"
-
-riverctl map normal Super Space spawn "pkill -SIGUSR1 waybar"
 
 for tag in $(seq 1 9); do
     tagmask=$(( 1 << tag - 1 ))
