@@ -3,9 +3,9 @@ threaded: yes
 
 plugins:
   - scrub
-  - embedart
 
 import:
+  run: yes
   write: yes
   copy: no
   move: yes
@@ -17,6 +17,3 @@ paths:
 
 scrub:
   auto: yes
-
-embedart:
-  auto: no
