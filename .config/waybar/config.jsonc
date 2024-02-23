@@ -6,8 +6,8 @@
     "modules-center": [],
     "modules-right": [
 		"custom/record",
-		"custom/weather",
         "custom/inbox",
+		"custom/weather",
 		"battery",
 		"custom/clock",
 		"tray"
