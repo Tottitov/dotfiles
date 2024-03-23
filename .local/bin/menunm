@@ -16,26 +16,24 @@ connect() {
             --require-match false \
             --prompt-text "Password for $1: "
         ) || exit 1
-        
+
         checkPassword "$password" "$1"
     else
 		nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
 	fi >/dev/null 2>&1
 }
 
-connection=$(nmcli -g name con show --active | grep -v "lo")
-if [ "$connection" != "LAN" ]; then
-	network=$(nmcli -g active,ssid,security,signal dev wifi | tofi \
-        --prompt-text "Which Network? "
-    ) || exit 1
+[ "$(nmcli radio wifi)" != "enabled" ] &&
+notify-send -r 5 -u critical "WiFi is disabled" && exit 0
 
-	active=$(echo "$network" | cut -d ':' -f 1)
-	ssid=$(echo "$network" | cut -d ':' -f 2)
-	security=$(echo "$network" | cut -d ':' -f 3)
+network=$(nmcli -g active,ssid,security,signal dev wifi | tofi \
+    --prompt-text "Which Network? "
+) || exit 1
 
-	([ "$active" = "yes" ] &&
-	nmcli con down id "$ssid" >/dev/null 2>&1 &&
-	notify-send -r 5 "$ssid disconnected") || connect "$ssid"
-else
-	notify-send -r 5 "$connection connected"
-fi
+active=$(echo "$network" | cut -d ':' -f 1)
+ssid=$(echo "$network" | cut -d ':' -f 2)
+security=$(echo "$network" | cut -d ':' -f 3)
+
+([ "$active" = "yes" ] &&
+nmcli con down id "$ssid" >/dev/null 2>&1 &&
+notify-send -r 5 "$ssid disconnected") || connect "$ssid"

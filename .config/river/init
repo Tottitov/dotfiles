@@ -1,7 +1,7 @@
 #!/bin/sh
 
 riverctl border-width 2
-riverctl background-color 0x141617
+riverctl background-color 0x301934
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x282828
 riverctl border-color-urgent 0xFABD2F
@@ -16,9 +16,6 @@ riverctl input pointer-1739-0-Synaptics_TM3053-006 tap enabled
 riverctl input pointer-1739-0-Synaptics_TM3053-006 click-method clickfinger
 riverctl input pointer-1739-0-Synaptics_TM3053-006 accel-profile adaptive
 riverctl input pointer-2-10-TPPS/2_IBM_TrackPoint pointer-accel 0.2
-
-riverctl map normal Super+Shift	Return zoom
-riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null"
 
 riverctl map normal Super Q	close
 riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
@@ -44,9 +41,10 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 
 riverctl map normal Super Return spawn "$TERMINAL"
+riverctl map normal Super+Shift	Return zoom
 
 riverctl map normal Super R spawn "$TERMINAL lf"
-riverctl map normal Super+Shift R spawn "$TERMINAL htop"
+riverctl map normal Super+Shift R spawn menupass
 
 riverctl map normal Super D spawn "tofi-drun --drun-launch=true"
 riverctl map normal Super+Shift	D spawn menubm
@@ -60,28 +58,26 @@ riverctl map normal Super+Shift	E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL tremc"
 
-riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
-riverctl map normal Super+Shift	M spawn "volume mute"
-
 riverctl map normal Super N spawn "$TERMINAL $EDITOR -c 'VimwikiIndex'"
 riverctl map normal Super+Shift	N spawn "$TERMINAL newsraft"
 
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift	C spawn camtoggle
 
-riverctl map normal Super+Alt L spawn waylock
+riverctl map normal Super I spawn "$TERMINAL htop"
+riverctl map normal Super+Shift I spawn lock
 
-riverctl map normal Super X spawn "prompt 'Reboot Computer?' 'sudo reboot'"
-riverctl map normal Super+Shift X spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
-
-riverctl map normal Super Comma	spawn "mpc -q prev; mpdstatus"
-riverctl map normal Super+Shift	Comma spawn "mpc -q seek -10%"
-riverctl map normal Super+Alt Comma	spawn "mpc -q seek 0%"
-
-riverctl map normal Super Period spawn "mpc -q next; mpdstatus"
-riverctl map normal Super+Shift	Period spawn "mpc -q seek +10%"
+riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 
 riverctl map normal Super Space spawn "pkill -SIGUSR1 waybar"
+
+riverctl map normal Super Backspace spawn \
+    "prompt 'Reboot Computer?' 'sudo reboot'"
+riverctl map normal Super+Shift Backspace spawn \
+    "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
+
+riverctl map normal Super+Alt R spawn \
+    "$XDG_CONFIG_HOME/river/init >/dev/null && notify-send River Reloaded"
 
 for mode in normal locked; do
     riverctl map -repeat $mode Super Equal spawn "volume high"
@@ -91,11 +87,18 @@ for mode in normal locked; do
     riverctl map -repeat $mode None	XF86AudioRaiseVolume spawn "volume high"
     riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
     riverctl map $mode None XF86AudioMute spawn "volume mute"
+    riverctl map $mode Super+Shift M spawn "volume mute"
     riverctl map $mode None XF86AudioMicMute spawn "volume mic"
+    riverctl map $mode Super+Alt M spawn "volume mic"
     riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
     riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
     riverctl map $mode Super P spawn "mpc -q toggle; mpdstatus"
-    riverctl map $mode Super+Alt P	spawn "mpc -q clear; mpdstatus"
+    riverctl map $mode Super+Alt P spawn "mpc -q clear; mpdstatus"
+    riverctl map $mode Super Comma spawn "mpc -q prev; mpdstatus"
+    riverctl map $mode Super+Shift Comma spawn "mpc -q seek -10%"
+    riverctl map $mode Super Period spawn "mpc -q next; mpdstatus"
+    riverctl map $mode Super+Shift Period spawn "mpc -q seek +10%"
+    riverctl map $mode Super+Alt Comma	spawn "mpc -q seek 0%"
 done
 
 riverctl map normal None XF86DISPLAY spawn ""
@@ -127,13 +130,13 @@ nonscratchtag=$(( (1 << 32 - 1) ^ scratchtag ))
 riverctl spawn-tagmask "$nonscratchtag"
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
-wallpaper="$HOME/media/pictures/wallpapers/forest.png"
 
-executes="kanshi wbg rivertile waybar pipewire dunst mpd"
+executes="kanshi rivertile foot waybar pipewire dunst mpd"
 for execute in $executes; do
+    pgrep -x "$execute" && continue
     case $execute in
-        "wbg") pgrep -x "$execute" || "$execute" "$wallpaper" & ;;
+        "foot") "$execute" --server & ;;
         "rivertile") "$execute" -view-padding 5 -outer-padding 5 & ;;
-        *) pgrep -x "$execute" || "$execute" & ;;
+        *) "$execute" & ;;
     esac
 done >/dev/null 2>&1

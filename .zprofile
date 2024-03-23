@@ -5,7 +5,7 @@ export PATH="$PATH:$(find ~/.local/bin -type d -printf %p:)"
 
 # Program variables
 export EDITOR="nvim"
-export TERMINAL="foot"
+export TERMINAL="footclient"
 export BROWSER="firefox"
 
 # XDG directories
@@ -41,5 +41,5 @@ export MOZ_ENABLE_WAYLAND=1
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
 # Start river window manager in tty
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -q river && 
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
 exec dbus-launch --exit-with-session river >/dev/null 2>&1

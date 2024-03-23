@@ -3,6 +3,7 @@ threaded: yes
 
 plugins:
   - scrub
+  - embedart
 
 import:
   run: yes
@@ -11,6 +12,7 @@ import:
   move: yes
   autotag: yes
   exclude: art
+  languages: en
 
 paths:
   default: $albumartist/$album/$track $title

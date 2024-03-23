@@ -66,10 +66,10 @@ color index brightwhite default "~N"
 color index_author brightmagenta default "~N"
 color index_subject brightgreen default "~N"
 
-color indicator blue default
+color indicator brightblue default
 color status yellow default
 color normal white default
-color sidebar_highlight red default
+color sidebar_highlight brightred default
 color sidebar_divider black default
 
 # Regex highlighting

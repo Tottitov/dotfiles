@@ -7,14 +7,12 @@ notify() {
         notify-send \
             -r 5 \
             -t 2000 \
-            -h int:value:"${volume}" \
             "VOLUME ${volume}%"
     else
         notify-send \
             -r 5 \
             -t 2000 \
             -u critical \
-            -h int:value:"0" \
             "MUTE ${volume}%"
     fi
 }

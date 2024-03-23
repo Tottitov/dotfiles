@@ -1,32 +1,59 @@
+@define-color window #282828;
+@define-color module #000000;
+@define-color focus #FFFFFF;
+@define-color unfocus #BDAE93;
+@define-color urgent #FB4934;
+
 * {
-	font-family: Terminus;
+	font-family: monospace;
 	font-size: 14px;
-	border: none;
-	opacity: 1;
-	min-height: 0;
+	min-height: 0px;
 }
 
 window#waybar {
-	color: #BDAE93;
-    background: #000000;
+	color: @focus;
+    background: @window;
+}
+
+#window {
+    background: @window;
+    padding-left: 10px;
 }
 
 #tags button {
-	padding: 3px;
-	color: #BDAE93;
+	padding: 0px 2px;
+	color: @unfocus;
 	border-radius: 0px;
 }
 
 #tags button.occupied {
+    color: @focus;
 	font-weight: bold;
 }
 
 #tags button.focused {
-    color: #D3869B;
+    color: @focus;
+    background: @window;
 }
 
 #tags button.urgent {
-    color: #FB4934;
+    color: @urgent;
+}
+
+#custom-record {
+    color: @urgent;
+}
+
+#battery.critical {
+    color: @urgent;
+}
+
+.modules-left {
+  background-color: @module;
+}
+
+.modules-right {
+  background-color: @module;
 }
 
 #battery,
@@ -34,8 +61,5 @@ window#waybar {
 #custom-inbox,
 #custom-weather,
 #custom-record {
-	padding: 0px 8px;
+    padding: 0px 10px;
 }
-
-#custom-record { color: #FB4934 }
-#battery.critical { color: #FB4934 }

@@ -1,6 +1,14 @@
-branch() {
+function branch() {
 	local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
 	[ -n "$branch" ] && echo " %{%F{yellow}%}($branch)%{%f%}"
+}
+
+function precmd {
+    print -Pn "\e]0;%n@%m %~\a"
+}
+
+function preexec {
+    print -Pn "\e]0;%n@%m %~\a"
 }
 
 autoload -U colors && colors

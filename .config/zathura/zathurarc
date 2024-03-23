@@ -1,0 +1,9 @@
+set guioptions none
+set selection-clipboard clipboard
+
+map p toggle_page_mode
+map P print
+map r reload
+map R rotate
+map i recolor
+map s toggle_statusbar
