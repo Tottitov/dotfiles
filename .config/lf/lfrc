@@ -10,10 +10,10 @@ set ignorecase
 
 cmd open &{{
     case $(file -Lb --mime-type -- "$f") in
-        application/pdf|application/epub) zathura "$f" ;;
-        audio/*) mpv --no-terminal $fx ;;
-        video/*) mpv --no-terminal "$f" ;;
-        image/*) imv $fx ;;
+        application/pdf|application/epub) zathura "$fx" ;;
+        audio/*) mpv --no-terminal "$fx" ;;
+        video/*) mpv --no-terminal "$fx" ;;
+        image/*) imv "$fx" ;;
         *) lf -remote "send $id \$$EDITOR \$fx" ;;
     esac
 }}

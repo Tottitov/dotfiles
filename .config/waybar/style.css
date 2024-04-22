@@ -1,7 +1,7 @@
-@define-color window #282828;
-@define-color module #000000;
-@define-color focus #FFFFFF;
-@define-color unfocus #BDAE93;
+@define-color focused #483248;
+@define-color background #000000;
+@define-color occupied #FFFFFF;
+@define-color unfocused #BDAE93;
 @define-color urgent #FB4934;
 
 * {
@@ -11,29 +11,24 @@
 }
 
 window#waybar {
-	color: @focus;
-    background: @window;
-}
-
-#window {
-    background: @window;
-    padding-left: 10px;
+	color: @occupied;
+    background: @background;
 }
 
 #tags button {
 	padding: 0px 2px;
-	color: @unfocus;
+	color: @unfocused;
 	border-radius: 0px;
 }
 
 #tags button.occupied {
-    color: @focus;
+    color: @occupied;
 	font-weight: bold;
 }
 
 #tags button.focused {
-    color: @focus;
-    background: @window;
+    color: @occupied;
+    background: @focused;
 }
 
 #tags button.urgent {
@@ -48,15 +43,8 @@ window#waybar {
     color: @urgent;
 }
 
-.modules-left {
-  background-color: @module;
-}
-
-.modules-right {
-  background-color: @module;
-}
-
 #battery,
+#window,
 #custom-clock,
 #custom-inbox,
 #custom-weather,

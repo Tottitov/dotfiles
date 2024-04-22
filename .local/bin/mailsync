@@ -10,8 +10,8 @@ accounts="${XDG_DATA_HOME}/mail"
 for account in "$accounts"/*; do
 	new=$(find "$account"/INBOX/new/* \
 	-type f -newer "$lastrun" 2>/dev/null | wc -l)
-	[ "$new" -gt 0 ] && { 
-        notify-send "$new email/s in $(basename "$account")";
+	[ "$new" -gt 0 ] && {
+        notify-send -r 5 "$new email/s in $(basename "$account")";
         pkill -RTMIN+4 waybar;
     }
 done; notmuch new --quiet; touch "$lastrun"

@@ -10,7 +10,7 @@ checkPassword() {
 }
 
 connect() {
-	if ! nmcli -g name con show | grep -q "$1" && [ "$security" != "--" ]; then
+	if ! nmcli -g name con show | grep -q "$1" && [ -n "$security" ]; then
     	password=$(echo | tofi \
             --hide-input true \
             --require-match false \
@@ -23,7 +23,7 @@ connect() {
 	fi >/dev/null 2>&1
 }
 
-[ "$(nmcli radio wifi)" != "enabled" ] &&
+[ "$(nmcli radio wifi)" = "disabled" ] &&
 notify-send -r 5 -u critical "WiFi is disabled" && exit 0
 
 network=$(nmcli -g active,ssid,security,signal dev wifi | tofi \

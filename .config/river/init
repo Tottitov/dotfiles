@@ -1,21 +1,27 @@
 #!/bin/sh
 
 riverctl border-width 2
-riverctl background-color 0x301934
+riverctl background-color 0x483248
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x282828
 riverctl border-color-urgent 0xFABD2F
 riverctl default-layout rivertile
-riverctl attach-mode bottom
+riverctl default-attach-mode bottom
 
 riverctl hide-cursor timeout 5000
-riverctl focus-follows-cursor always
+riverctl focus-follows-cursor disabled
 riverctl hide-cursor when-typing enabled
 riverctl set-repeat 50 300
-riverctl input pointer-1739-0-Synaptics_TM3053-006 tap enabled
-riverctl input pointer-1739-0-Synaptics_TM3053-006 click-method clickfinger
-riverctl input pointer-1739-0-Synaptics_TM3053-006 accel-profile adaptive
-riverctl input pointer-2-10-TPPS/2_IBM_TrackPoint pointer-accel 0.2
+
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" events enabled
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" scroll-factor 1.5
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
+riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" events enabled
+
+riverctl rule-add -app-id "firefox" ssd
 
 riverctl map normal Super Q	close
 riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
@@ -40,6 +46,8 @@ riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 
+riverctl map normal Super+Alt X spawn lock
+
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super+Shift	Return zoom
 
@@ -52,7 +60,7 @@ riverctl map normal Super+Shift	D spawn menubm
 riverctl map normal Super W spawn "$BROWSER"
 riverctl map normal Super+Shift W spawn menunm
 
-riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
+riverctl map normal Super E spawn "$TERMINAL neomutt & events; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift	E spawn menuemoji
 
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
@@ -64,40 +72,41 @@ riverctl map normal Super+Shift	N spawn "$TERMINAL newsraft"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift	C spawn camtoggle
 
-riverctl map normal Super I spawn "$TERMINAL htop"
-riverctl map normal Super+Shift I spawn lock
-
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 
 riverctl map normal Super Space spawn "pkill -SIGUSR1 waybar"
 
-riverctl map normal Super Backspace spawn \
-    "prompt 'Reboot Computer?' 'sudo reboot'"
-riverctl map normal Super+Shift Backspace spawn \
-    "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
+riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboot'"
+riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
 
-riverctl map normal Super+Alt R spawn \
-    "$XDG_CONFIG_HOME/river/init >/dev/null && notify-send River Reloaded"
+riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null && notify-send River Reloaded"
 
 for mode in normal locked; do
     riverctl map -repeat $mode Super Equal spawn "volume high"
     riverctl map -repeat $mode Super Minus spawn "volume low"
     riverctl map $mode Super+Shift Equal spawn "volume higher"
     riverctl map $mode Super+Shift Minus spawn "volume lower"
+
+    riverctl map $mode Super+Shift M spawn "volume mute"
+    riverctl map $mode Super+Alt M spawn "volume mic"
+
     riverctl map -repeat $mode None	XF86AudioRaiseVolume spawn "volume high"
     riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
     riverctl map $mode None XF86AudioMute spawn "volume mute"
-    riverctl map $mode Super+Shift M spawn "volume mute"
     riverctl map $mode None XF86AudioMicMute spawn "volume mic"
-    riverctl map $mode Super+Alt M spawn "volume mic"
+
     riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
     riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
+
     riverctl map $mode Super P spawn "mpc -q toggle; mpdstatus"
     riverctl map $mode Super+Alt P spawn "mpc -q clear; mpdstatus"
+
     riverctl map $mode Super Comma spawn "mpc -q prev; mpdstatus"
-    riverctl map $mode Super+Shift Comma spawn "mpc -q seek -10%"
     riverctl map $mode Super Period spawn "mpc -q next; mpdstatus"
+
+    riverctl map $mode Super+Shift Comma spawn "mpc -q seek -10%"
     riverctl map $mode Super+Shift Period spawn "mpc -q seek +10%"
+
     riverctl map $mode Super+Alt Comma	spawn "mpc -q seek 0%"
 done
 
@@ -110,25 +119,31 @@ riverctl map normal None XF86Explorer spawn "menucalc"
 
 riverctl map normal None Print spawn "grimpick screenshotc"
 riverctl map normal Shift Print spawn "grimpick fullscreenc"
-riverctl map normal Shift+Control Print spawn grimpick
-riverctl map normal Super Print spawn menurecord
-riverctl map normal Super+Shift	Print spawn "menurecord kill"
+riverctl map normal Alt Print spawn grimpick
 
-for tag in $(seq 1 9); do
-    tagmask=$(( 1 << tag - 1 ))
-	riverctl map normal Super "$tag" set-focused-tags "$tagmask"
-    riverctl map normal Super+Shift "$tag" set-view-tags "$tagmask"
-    riverctl map normal Alt "$tag" toggle-view-tags "$tagmask"
-	riverctl map normal Super+Alt "$tag" toggle-focused-tags "$tagmask"
+riverctl map normal Super Print spawn menurecord
+riverctl map normal Super+Shift	Print spawn menurecord kill
+
+# Scratch Tags
+scratchTag=$((1 << 20))
+riverctl map normal Super 0 toggle-focused-tags $scratchTag
+riverctl map normal Super+Shift 0 set-view-tags $scratchTag
+riverctl spawn-tagmask "$(((1 << 32 - 1) ^ scratchTag))"
+
+# Sticky Tags
+stickyTag=$((1 << 30))
+riverctl map normal Super S toggle-view-tags $stickyTag
+riverctl spawn-tagmask $(((1 << 32 - 1) ^ stickyTag))
+
+# Normal Tags
+for i in $(seq 1 9); do
+    tags=$((1 << (i - 1)))
+    riverctl map normal Super "$i" set-focused-tags $((stickyTag + tags))
+    riverctl map normal Super+Shift "$i" set-view-tags $tags
+	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-scratchtag=$(( 1 << 10 ))
-riverctl map normal Super 0 toggle-focused-tags "$scratchtag"
-riverctl map normal Super+Shift 0 set-view-tags "$scratchtag"
-
-nonscratchtag=$(( (1 << 32 - 1) ^ scratchtag ))
-riverctl spawn-tagmask "$nonscratchtag"
-
+# Launcher
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 executes="kanshi rivertile foot waybar pipewire dunst mpd"

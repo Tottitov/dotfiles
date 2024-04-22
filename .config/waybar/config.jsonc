@@ -13,7 +13,7 @@
 		"tray"
 	],
     "river/window": {
-        "max-length": 100
+        "max-length": 120
     },
 	"custom/clock": {
 		"exec": "clock",

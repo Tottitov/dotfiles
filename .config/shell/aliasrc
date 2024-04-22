@@ -10,11 +10,13 @@ cf() {
     [ -f ~/.config/"${config}" ] && $EDITOR ~/.config/"${config}"
 }
 
-cn() { [ -n "$(pacman -Qtdq)" ] && sudo pacman -Rns "$(pacman -Qtdq)"; }
+cn() {
+    [ -n "$(pacman -Qtdq)" ] && sudo pacman -Rns "$(pacman -Qtdq)"
+}
 
 alias \
     vim="nvim" \
-    ls="ls -lahN --color=auto --group-directories-first" \
+    ls="ls -ahN --color=auto --group-directories-first" \
     grep="grep --color=auto" \
     torr="transmission-remote" \
     upgrade="sudo pacman -Syyu" \
