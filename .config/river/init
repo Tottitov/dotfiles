@@ -17,7 +17,7 @@ riverctl input "pointer-1739-0-Synaptics_TM3053-006" events enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" scroll-factor 1.5
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" scroll-factor 0.5
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
 riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" events enabled
 
@@ -107,7 +107,7 @@ for mode in normal locked; do
     riverctl map $mode Super+Shift Comma spawn "mpc -q seek -10%"
     riverctl map $mode Super+Shift Period spawn "mpc -q seek +10%"
 
-    riverctl map $mode Super+Alt Comma	spawn "mpc -q seek 0%"
+    riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
 done
 
 riverctl map normal None XF86DISPLAY spawn ""
@@ -128,14 +128,13 @@ riverctl map normal Super+Shift	Print spawn menurecord kill
 scratchTag=$((1 << 20))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
-riverctl spawn-tagmask "$(((1 << 32 - 1) ^ scratchTag))"
+riverctl spawn-tagmask $(( ((1 << 32) - 1) ^ scratchTag ))
 
 # Sticky Tags
-stickyTag=$((1 << 31))
+stickyTag=$((1 << 10))
 riverctl map normal Super S toggle-view-tags $stickyTag
-riverctl spawn-tagmask $(((1 << 32 - 1) ^ stickyTag))
+riverctl spawn-tagmask $(( ((1 << 32) - 1) ^ stickyTag ))
 
-# Normal Tags
 for i in $(seq 1 9); do
     tags=$((1 << (i - 1)))
     riverctl map normal Super "$i" set-focused-tags $((stickyTag + tags))
@@ -143,7 +142,6 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-# Launcher
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 executes="kanshi rivertile foot waybar pipewire dunst mpd"
