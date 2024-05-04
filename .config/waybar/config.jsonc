@@ -27,8 +27,8 @@
 		"states": {
 			"critical": 50
 		},
-		"format": "BAT {capacity}%",
-		"format-charging": "BAT +{capacity}%",
+		"format": "Bat {capacity}%",
+		"format-charging": "Bat +{capacity}%",
 		"interval": 15
 	},
 	"custom/inbox": {

@@ -2,4 +2,4 @@
 
 unread="$(find ~/.local/share/mail/*/INBOX/new -type f | wc -l)"
 
-[ "$unread" -gt 0 ] && echo "BOX ${unread}"
+[ "$unread" -gt 0 ] && echo "Box ${unread}"
