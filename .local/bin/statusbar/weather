@@ -1,6 +1,6 @@
 #!/bin/sh
 
-forecast=$(curl -fs "https://wttr.in/?format=%C,%t") || exit 1
+forecast=$(curl -fs --max-time 15 "https://wttr.in/?format=%C,%t") || exit 1
 
 weather=$(echo "$forecast" | sed 's/[,\ ]\+/ /g')
 

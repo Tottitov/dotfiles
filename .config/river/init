@@ -45,8 +45,8 @@ riverctl map normal Control+Shift L snap right
 riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
 riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
 
-riverctl map-pointer normal Super BTN_LEFT move-view
-riverctl map-pointer normal Super BTN_RIGHT resize-view
+riverctl map-pointer normal Shift BTN_LEFT move-view
+riverctl map-pointer normal Shift BTN_RIGHT resize-view
 
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super+Shift	Return zoom

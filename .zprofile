@@ -27,10 +27,8 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 # Other settings
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export SANE_DEFAULT_DEVICE="airscan:e0:HP DeskJet 4100 series [D9F43B]"
 export SUDO_ASKPASS="$HOME/.local/bin/menupasswd"
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
-export LIBSEAT_BACKEND="logind"
 export GTK_THEME="Arc-Gruvbox"
 export XDG_SESSION_TYPE="wayland"
 export QT_QPA_PLATFORM="wayland"
@@ -42,4 +40,4 @@ export MOZ_ENABLE_WAYLAND=1
 
 # Start river window manager in tty
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-exec dbus-launch --exit-with-session river -no-xwayland >/dev/null 2>&1
+exec dbus-launch --exit-with-session river >/dev/null 2>&1
