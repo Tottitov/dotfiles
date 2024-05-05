@@ -13,29 +13,21 @@ riverctl focus-follows-cursor disabled
 riverctl hide-cursor when-typing enabled
 riverctl set-repeat 50 300
 
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" scroll-factor 1.0
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
-
-riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" scroll-factor 1.5
-riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" disable-while-typing enabled
-
-riverctl rule-add -app-id "firefox" ssd
-riverctl rule-add -app-id "org.pwmt.zathura" ssd
-
 riverctl map normal Super Q	close
 riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
 
 riverctl map normal Super F	toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
 
-riverctl map normal Super H	focus-view previous
-riverctl map normal Super L	focus-view next
+riverctl map normal Super H	focus-view left
+riverctl map normal Super J focus-view down
+riverctl map normal Super K focus-view up
+riverctl map normal Super L	focus-view right
 
-riverctl map normal Super+Shift H swap previous
-riverctl map normal Super+Shift L swap next
+riverctl map normal Super+Shift H swap left
+riverctl map normal Super+Shift J swap down
+riverctl map normal Super+Shift K swap up
+riverctl map normal Super+Shift L swap right
 
 riverctl map normal Control+Shift H snap left
 riverctl map normal Control+Shift J snap down
@@ -79,6 +71,19 @@ riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboo
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
 
 riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null && notify-send River Reloaded"
+
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" scroll-factor 1.0
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
+
+riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" scroll-factor 1.5
+riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" disable-while-typing enabled
+
+riverctl rule-add -app-id "firefox" ssd
+riverctl rule-add -app-id "org.pwmt.zathura" ssd
+riverctl rule-add -app-id "spek" ssd
 
 for mode in normal locked; do
     riverctl map -repeat $mode Super Equal spawn "volume high"
