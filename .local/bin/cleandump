@@ -1,7 +1,0 @@
-#!/bin/sh
-
-trashcan="${XDG_DATA_HOME}/vifm/Trash"
-
-cd "$trashcan" || exit 1
-
-find . -mindepth 1 -maxdepth 1 -exec rm -rf {} \;

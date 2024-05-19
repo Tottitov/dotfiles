@@ -4,6 +4,7 @@ threaded: yes
 plugins:
   - scrub
   - embedart
+  - mbsync
 
 import:
   run: yes
@@ -11,7 +12,6 @@ import:
   copy: no
   move: yes
   autotag: yes
-  exclude: art
   languages: en
 
 paths:

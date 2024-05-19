@@ -1,15 +1,14 @@
 #!/bin/sh
 
 riverctl border-width 2
-riverctl background-color 0x483248
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x282828
 riverctl border-color-urgent 0xFABD2F
-riverctl default-layout rivertile
+riverctl default-layout rivercarro
 riverctl default-attach-mode bottom
 
 riverctl hide-cursor timeout 5000
-riverctl focus-follows-cursor disabled
+riverctl focus-follows-cursor normal
 riverctl hide-cursor when-typing enabled
 riverctl set-repeat 50 300
 
@@ -34,8 +33,14 @@ riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
-riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
-riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
+riverctl map -repeat normal Super+Alt H send-layout-cmd rivercarro "main-ratio -0.02"
+riverctl map -repeat normal Super+Alt L send-layout-cmd rivercarro "main-ratio +0.02"
+
+riverctl map normal Super+Control H send-layout-cmd rivercarro "main-count -1"
+riverctl map normal Super+Control L send-layout-cmd rivercarro "main-count +1"
+
+riverctl map normal Super+Alt J send-layout-cmd rivercarro "gaps 40"
+riverctl map normal Super+Alt K send-layout-cmd rivercarro "gaps 10"
 
 riverctl map-pointer normal Shift BTN_LEFT move-view
 riverctl map-pointer normal Shift BTN_RIGHT resize-view
@@ -70,32 +75,30 @@ riverctl map normal Super+Shift	C spawn camtoggle
 riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboot'"
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
 
-riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null && notify-send River Reloaded"
+riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null"
 
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" scroll-factor 1.0
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
-
-riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" scroll-factor 1.5
-riverctl input "pointer-2-10-TPPS/2_IBM_TrackPoint" disable-while-typing enabled
+riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-trackpointing
 
 riverctl rule-add -app-id "firefox" ssd
 riverctl rule-add -app-id "org.pwmt.zathura" ssd
 riverctl rule-add -app-id "spek" ssd
+riverctl rule-add -app-id "imv" ssd
 
 for mode in normal locked; do
-    riverctl map -repeat $mode Super Equal spawn "volume high"
-    riverctl map -repeat $mode Super Minus spawn "volume low"
+    riverctl map $mode Super Equal spawn "volume high"
+    riverctl map $mode Super Minus spawn "volume low"
     riverctl map $mode Super+Shift Equal spawn "volume higher"
     riverctl map $mode Super+Shift Minus spawn "volume lower"
 
     riverctl map $mode Super+Shift M spawn "volume mute"
     riverctl map $mode Super+Alt M spawn "volume mic"
 
-    riverctl map -repeat $mode None	XF86AudioRaiseVolume spawn "volume high"
-    riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
+    riverctl map $mode None	XF86AudioRaiseVolume spawn "volume high"
+    riverctl map $mode None XF86AudioLowerVolume spawn "volume low"
     riverctl map $mode None XF86AudioMute spawn "volume mute"
     riverctl map $mode None XF86AudioMicMute spawn "volume mic"
 
@@ -108,8 +111,8 @@ for mode in normal locked; do
     riverctl map $mode Super Comma spawn "mpc -q prev; mpdstatus"
     riverctl map $mode Super Period spawn "mpc -q next; mpdstatus"
 
-    riverctl map $mode Super+Shift Comma spawn "mpc -q seek -10%"
-    riverctl map $mode Super+Shift Period spawn "mpc -q seek +10%"
+    riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
+    riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
 
     riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
 done
@@ -128,31 +131,31 @@ riverctl map normal Alt Print spawn grimpick
 riverctl map normal Super Print spawn menurecord
 riverctl map normal Super+Shift	Print spawn menurecord kill
 
-scratchTag=$((1 << 20))
+scratchTag=$(( 1 << 20 ))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
 riverctl spawn-tagmask $(( ((1 << 32) - 1) ^ scratchTag ))
 
-stickyTag=$((1 << 10))
+stickyTag=$(( 1 << 10 ))
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $(( ((1 << 32) - 1) ^ stickyTag ))
 
 for i in $(seq 1 9); do
-    tags=$((1 << (i - 1)))
-    riverctl map normal Super "$i" set-focused-tags $((stickyTag + tags))
+    tags=$(( 1 << (i - 1) ))
+    riverctl map normal Super "$i" set-focused-tags $(( stickyTag + tags ))
     riverctl map normal Super+Shift "$i" set-view-tags $tags
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="kanshi wbg rivertile foot waybar pipewire dunst mpd"
+executes="waybar kanshi wbg rivercarro foot pipewire dunst mpd"
 for execute in $executes; do
     pgrep -x "$execute" && continue
     case $execute in
         "foot") "$execute" --server & ;;
         "wbg") "$execute" "${XDG_DATA_HOME}/bg" & ;;
-        "rivertile") "$execute" -view-padding 5 -outer-padding 5 & ;;
+        "rivercarro") "$execute" -inner-gaps 10 -outer-gaps 10 -no-smart-gaps & ;;
         *) "$execute" & ;;
     esac
 done >/dev/null 2>&1

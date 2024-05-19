@@ -5,6 +5,8 @@ outline-width = 0
 border-width = 0
 result-spacing = 14
 num-results = 8
+hide-cursor = true
+text-cursor = true
 
 padding-top = 30%
 padding-left = 35%

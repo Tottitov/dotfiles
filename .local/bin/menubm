@@ -1,18 +1,12 @@
 #!/bin/sh
 
-prompt() { tofi \
-    --prompt-text "$1"
-}
+prompt() { tofi --prompt-text "$1"; }
 
-input() { tofi \
-    --require-match false \
-    --prompt-text "$1"
-}
+input() { tofi --require-match false --prompt-text "$1"; }
 
 delete() {
     deletion=$(cut -d ' ' -f 2 "$bookmarks" | prompt "Which Delete? ")
-
-    if [ -n "$deletion" ]; then 
+    if [ -n "$deletion" ]; then
         sed -i "/\b$deletion\b/d" "$bookmarks"
         notify-send -u critical "$name bookmark deleted"
     fi
@@ -28,21 +22,18 @@ add() {
 }
 
 bookmarks="${XDG_DATA_HOME}/bookmarks"
-
 tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
-tag=$(printf "Actions\n%s" "$tags" | prompt "Which Tag? ") || exit 1
 
+tag=$(printf "Actions\n%s" "$tags" | prompt "Which Tag? ") || exit 1
 if [ "$tag" = "Actions" ]; then
     edit=$(printf "Add\nDelete\nOpen" | input "Which Option? ") || exit 1
-
 	case $edit in
         "Add" ) add ;;
         "Delete" ) delete ;;
         "Open") riverctl spawn "$TERMINAL -e $EDITOR $bookmarks" ;;
     esac
 else
-	bookmark=$(grep -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | \
+	bookmark=$(ugrep -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | \
     prompt "Which Bookmark? ") || exit 1
-
-	$BROWSER "$(grep -w "$bookmark" "$bookmarks" | cut -d ' ' -f 1)"
+	$BROWSER "$(ugrep -w "$bookmark" "$bookmarks" | cut -d ' ' -f 1)"
 fi

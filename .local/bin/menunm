@@ -10,7 +10,7 @@ checkPassword() {
 }
 
 connect() {
-	if ! nmcli -g name con show | grep -q "$1" && [ -n "$security" ]; then
+	if ! nmcli -g name con show | ugrep -q "$1" && [ -n "$security" ]; then
     	password=$(echo | tofi \
             --hide-input true \
             --require-match false \

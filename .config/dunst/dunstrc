@@ -22,6 +22,6 @@
 
 [urgency_critical]
     foreground = "#FFFFFF"
-    background = "8B00000"
+    background = "#B00000"
     highlight = "#FFFFFF"
     timeout = 15
