@@ -8,9 +8,10 @@ riverctl default-layout rivercarro
 riverctl default-attach-mode bottom
 
 riverctl hide-cursor timeout 5000
-riverctl focus-follows-cursor normal
 riverctl hide-cursor when-typing enabled
-riverctl set-repeat 50 300
+riverctl focus-follows-cursor normal
+riverctl set-repeat 80 300
+riverctl rule-add ssd
 
 riverctl map normal Super Q	close
 riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
@@ -18,10 +19,10 @@ riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
 riverctl map normal Super F	toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
 
-riverctl map normal Super H	focus-view left
-riverctl map normal Super J focus-view down
-riverctl map normal Super K focus-view up
-riverctl map normal Super L	focus-view right
+riverctl map normal Super H	focus-view -skip-floating left
+riverctl map normal Super J focus-view -skip-floating down
+riverctl map normal Super K focus-view -skip-floating up
+riverctl map normal Super L	focus-view -skip-floating right
 
 riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
@@ -82,11 +83,6 @@ riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-trackpointing
-
-riverctl rule-add -app-id "firefox" ssd
-riverctl rule-add -app-id "org.pwmt.zathura" ssd
-riverctl rule-add -app-id "spek" ssd
-riverctl rule-add -app-id "imv" ssd
 
 for mode in normal locked; do
     riverctl map $mode Super Equal spawn "volume high"
