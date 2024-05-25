@@ -4,7 +4,7 @@ riverctl border-width 2
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x282828
 riverctl border-color-urgent 0xFABD2F
-riverctl default-layout rivercarro
+riverctl default-layout rivertile
 riverctl default-attach-mode bottom
 
 riverctl hide-cursor timeout 5000
@@ -34,14 +34,10 @@ riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
-riverctl map -repeat normal Super+Alt H send-layout-cmd rivercarro "main-ratio -0.02"
-riverctl map -repeat normal Super+Alt L send-layout-cmd rivercarro "main-ratio +0.02"
-
-riverctl map normal Super+Control H send-layout-cmd rivercarro "main-count -1"
-riverctl map normal Super+Control L send-layout-cmd rivercarro "main-count +1"
-
-riverctl map normal Super+Alt J send-layout-cmd rivercarro "gaps 40"
-riverctl map normal Super+Alt K send-layout-cmd rivercarro "gaps 10"
+riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.02"
+riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.02"
+riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count -1"
+riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count +1"
 
 riverctl map-pointer normal Shift BTN_LEFT move-view
 riverctl map-pointer normal Shift BTN_RIGHT resize-view
@@ -146,20 +142,15 @@ done
 
 dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="waybar kanshi wbg rivercarro swayidle foot pipewire dunst mpd"
+executes="waybar kanshi wbg rivertile swayidle foot pipewire dunst mpd"
 for execute in $executes; do
     pgrep -x "$execute" && continue
     case $execute in
         "foot") "$execute" --server & ;;
         "wbg") "$execute" "${XDG_DATA_HOME}/bg" & ;;
-        "rivercarro") "$execute" \
-            -inner-gaps 10 \
-            -outer-gaps 10 \
-            -no-smart-gaps & ;;
         "swayidle") "$execute" -w \
             timeout 300 "lock" \
-            timeout 600 "wlopm --off '*'" \
-            resume "wlopm --on '*'" & ;;
+            timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" & ;;
         *) "$execute" & ;;
     esac
 done >/dev/null 2>&1

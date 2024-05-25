@@ -1,6 +1,6 @@
 #!/bin/sh
 
-screenshot() { 
+screenshot() {
     grim -g "$(slurp -d)" "pic-selected-$(date '+%y%m%d-%H%M-%S').png"
     notify-send "Screenshot saved"
 }
@@ -10,13 +10,13 @@ fullscreen() {
     notify-send "Fullscreen saved"
 }
 
-screenshotc() { 
+screenshotc() {
     grim -g "$(slurp -d)" - | wl-copy
     notify-send "Screenshot copied"
 }
 
-fullscreenc() { 
-    grim - | wl-copy 
+fullscreenc() {
+    grim - | wl-copy
     notify-send "Fullscreen copied"
 }
 
