@@ -111,14 +111,15 @@ for mode in normal locked; do
     riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
 
     riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
+
+    riverctl map $mode None XF86Tools spawn "mpc -q prev; mpdstatus"
+    riverctl map $mode None XF86Search spawn "mpc -q next; mpdstatus"
+    riverctl map $mode None XF86LaunchA spawn "mpc -q toggle; mpdstatus"
+    riverctl map $mode None XF86Explorer spawn "mpc -q clear; mpdstatus"
 done
 
-riverctl map normal None XF86DISPLAY spawn ""
+riverctl map normal None XF86DISPLAY spawn "grimpick screenshot"
 riverctl map normal None XF86WLAN spawn airplane
-riverctl map normal None XF86Tools spawn "$TERMINAL lf ~/.config"
-riverctl map normal None XF86Search spawn "tofi-drun --drun-launch=true"
-riverctl map normal None XF86LaunchA spawn eject
-riverctl map normal None XF86Explorer spawn "menucalc"
 
 riverctl map normal None Print spawn "grimpick screenshotc"
 riverctl map normal Shift Print spawn "grimpick fullscreenc"
@@ -145,13 +146,20 @@ done
 
 dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="waybar kanshi wbg rivercarro foot pipewire dunst mpd"
+executes="waybar kanshi wbg rivercarro swayidle foot pipewire dunst mpd"
 for execute in $executes; do
     pgrep -x "$execute" && continue
     case $execute in
         "foot") "$execute" --server & ;;
         "wbg") "$execute" "${XDG_DATA_HOME}/bg" & ;;
-        "rivercarro") "$execute" -inner-gaps 10 -outer-gaps 10 -no-smart-gaps & ;;
+        "rivercarro") "$execute" \
+            -inner-gaps 10 \
+            -outer-gaps 10 \
+            -no-smart-gaps & ;;
+        "swayidle") "$execute" -w \
+            timeout 300 "lock" \
+            timeout 600 "wlopm --off '*'" \
+            resume "wlopm --on '*'" & ;;
         *) "$execute" & ;;
     esac
 done >/dev/null 2>&1
