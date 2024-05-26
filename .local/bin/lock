@@ -1,0 +1,6 @@
+#!/bin/sh
+
+waylock \
+    -fork-on-lock \
+    -input-color 0x000080 \
+    -fail-color 0x8B0000

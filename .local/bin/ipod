@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sudo rsync \
+    -vhr \
+    --ignore-existing \
+    --progress \
+    --delete \
+    ~/media/music/ /media/ipod/Music/
