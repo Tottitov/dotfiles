@@ -3,7 +3,7 @@
 	width = (0, 350)
 	alignment = left
 	vertical_alignment = center
-    offset = 10x10
+    offset = 12x12
 	padding = 15
 	frame_width = 0
     frame_color = "#FFFFFF"
