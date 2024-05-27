@@ -39,9 +39,6 @@ riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0
 riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count -1"
 riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count +1"
 
-riverctl map-pointer normal Shift BTN_LEFT move-view
-riverctl map-pointer normal Shift BTN_RIGHT resize-view
-
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super+Shift	Return zoom
 
@@ -73,6 +70,10 @@ riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboo
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
 
 riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null"
+
+riverctl map-pointer normal Shift BTN_LEFT move-view
+riverctl map-pointer normal Shift BTN_RIGHT resize-view
+riverctl map-switch normal lid close spawn lock
 
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
