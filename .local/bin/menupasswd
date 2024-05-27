@@ -1,6 +1,0 @@
-#!/bin/sh
-
-tofi \
-    --hide-input true \
-    --require-match false \
-    --prompt-text "$1" <&- && echo
