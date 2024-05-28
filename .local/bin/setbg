@@ -1,0 +1,11 @@
+#!/bin/sh
+
+wallpaper="${XDG_DATA_HOME}/bg"
+buffer=$(readlink -f "$1")
+
+case "$(file --mime-type -b "$buffer")" in
+	image/* ) ln -sf "$buffer" "$wallpaper" ;;
+	*) exit 1 ;;
+esac; pgrep -x "wbg" && killall "wbg"
+
+setsid -f wbg "$wallpaper" >/dev/null 2>&1 &
