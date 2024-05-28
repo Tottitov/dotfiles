@@ -12,9 +12,6 @@
 		"battery",
 		"tray"
 	],
-    "river/window": {
-        "max-length": 50
-    },
 	"custom/clock": {
 		"exec": "clock",
 		"on-click": "month",
@@ -29,7 +26,7 @@
 		},
 		"format": "{capacity}% {icon}",
 		"format-charging": "+{capacity}% {icon}",
-        "format-icons": ["","","","",""],
+        "format-icons": [" "," "," "," "," "],
 		"interval": 15
 	},
     "custom/signal": {
