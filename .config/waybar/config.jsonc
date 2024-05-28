@@ -30,8 +30,8 @@
 		"interval": 15
 	},
     "custom/signal": {
-        "exec": "cat $XDG_DATA_HOME/signal",
-        "signal": 6
+        "exec": "signal",
+        "interval": 5
     },
 	"custom/inbox": {
 		"exec": "inbox",
