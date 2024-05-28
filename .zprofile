@@ -39,4 +39,4 @@ export MOZ_ENABLE_WAYLAND=1
 
 # Start river window manager in tty
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-exec dbus-launch --exit-with-session river >/dev/null 2>&1
+exec dbus-launch --exit-with-session river -no-xwayland >/dev/null 2>&1

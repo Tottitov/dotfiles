@@ -1,15 +1,15 @@
 {
 	"modules-left": [
 		"river/tags",
-        "river/window"
+        "custom/clock"
 	],
     "modules-center": [],
     "modules-right": [
 		"custom/record",
-        "custom/weather",
         "custom/inbox",
+        "custom/weather",
+        "custom/signal",
 		"battery",
-		"custom/clock",
 		"tray"
 	],
     "river/window": {
@@ -27,10 +27,15 @@
 		"states": {
 			"critical": 50
 		},
-		"format": "Bat {capacity}%",
-		"format-charging": "Bat +{capacity}%",
+		"format": "{capacity}% {icon}",
+		"format-charging": "+{capacity}% {icon}",
+        "format-icons": ["","","","",""],
 		"interval": 15
 	},
+    "custom/signal": {
+        "exec": "cat $XDG_DATA_HOME/signal",
+        "signal": 6
+    },
 	"custom/inbox": {
 		"exec": "inbox",
 		"on-click": "$TERMINAL neomutt",

@@ -43,12 +43,12 @@ window#waybar {
     color: @urgent;
 }
 
-#battery,
-#window,
 #tray,
-#custom-clock,
-#custom-inbox,
+#battery,
 #custom-weather,
-#custom-record {
+#custom-signal,
+#custom-inbox,
+#custom-record,
+#custom-clock {
     padding: 0px 10px;
 }

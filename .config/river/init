@@ -116,7 +116,7 @@ for mode in normal locked; do
 done
 
 riverctl map normal None XF86DISPLAY spawn "grimpick screenshot"
-riverctl map normal None XF86WLAN spawn airplane
+riverctl map normal None XF86WLAN spawn "airplane; signal"
 
 riverctl map normal None Print spawn "grimpick screenshotc"
 riverctl map normal Shift Print spawn "grimpick fullscreenc"
