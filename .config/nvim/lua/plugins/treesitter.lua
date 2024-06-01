@@ -8,6 +8,8 @@ return {
             ensure_installed = {
                 "javascript",
                 "typescript",
+                "html",
+                "css",
                 "c",
                 "lua",
                 "bash"

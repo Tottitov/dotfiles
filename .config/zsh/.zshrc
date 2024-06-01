@@ -15,7 +15,7 @@ compinit
 _comp_options+=(globdots)
 
 HISTFILE="${XDG_CACHE_HOME}/zsh/history"
-HISTSIZE=10000
+HISTSIZE=5000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory

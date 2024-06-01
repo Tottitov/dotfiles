@@ -36,8 +36,8 @@ riverctl map normal Control+Shift L snap right
 
 riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.02"
 riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.02"
-riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count -1"
-riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super+Shift	Return zoom
@@ -145,9 +145,9 @@ dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTO
 
 executes="waybar kanshi swaybg rivertile swayidle foot pipewire dunst mpd"
 for execute in $executes; do
-    pgrep -x "$execute" && continue
+    pgrep -fx "$execute" && continue
     case $execute in
-        "foot") "$execute" --server & ;;
+        "foot") "$execute" -s & ;;
         "swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
         "swayidle") "$execute" -w \
             timeout 300 "lock" \

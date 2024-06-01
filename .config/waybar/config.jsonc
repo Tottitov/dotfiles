@@ -31,7 +31,7 @@
 	},
     "custom/signal": {
         "exec": "signal",
-        "interval": 5
+        "interval": 10
     },
 	"custom/inbox": {
 		"exec": "inbox",

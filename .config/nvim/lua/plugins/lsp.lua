@@ -15,6 +15,7 @@ return {
                 'marksman',
                 'tsserver',
                 'lua_ls',
+                'emmet_ls'
             },
         })
 
