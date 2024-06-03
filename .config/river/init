@@ -2,7 +2,7 @@
 
 riverctl border-width 2
 riverctl border-color-focused 0xBDAE93
-riverctl border-color-unfocused 0x282828
+riverctl border-color-unfocused 0x665C54
 riverctl border-color-urgent 0xFABD2F
 riverctl default-layout rivertile
 riverctl default-attach-mode bottom
@@ -71,9 +71,18 @@ riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'su
 
 riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null"
 
+riverctl map normal None Print spawn "grimpick screenshotc"
+riverctl map normal Shift Print spawn "grimpick fullscreenc"
+riverctl map normal Alt Print spawn grimpick
+
+riverctl map normal Super Print spawn menurecord
+riverctl map normal Super+Shift	Print spawn menurecord kill
+
+riverctl map normal None XF86DISPLAY spawn "grimpick screenshot"
+riverctl map normal None XF86WLAN spawn airplane
+
 riverctl map-pointer normal Shift BTN_LEFT move-view
 riverctl map-pointer normal Shift BTN_RIGHT resize-view
-riverctl map-switch normal lid close spawn lock
 
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
@@ -115,16 +124,6 @@ for mode in normal locked; do
     riverctl map $mode None XF86Explorer spawn "mpc -q clear; mpdstatus"
 done
 
-riverctl map normal None XF86DISPLAY spawn "grimpick screenshot"
-riverctl map normal None XF86WLAN spawn airplane
-
-riverctl map normal None Print spawn "grimpick screenshotc"
-riverctl map normal Shift Print spawn "grimpick fullscreenc"
-riverctl map normal Alt Print spawn grimpick
-
-riverctl map normal Super Print spawn menurecord
-riverctl map normal Super+Shift	Print spawn menurecord kill
-
 scratchTag=$(( 1 << 20 ))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
@@ -151,7 +150,8 @@ for execute in $executes; do
         "swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
         "swayidle") "$execute" -w \
             timeout 300 "lock" \
-            timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" & ;;
+            timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" \
+            before-sleep "lock" & ;;
         *) "$execute" & ;;
     esac
 done >/dev/null 2>&1

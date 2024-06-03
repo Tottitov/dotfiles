@@ -1,5 +1,6 @@
 set clean-database-on-startup true
 set initial-unread-first-sorting true
+set items-count-limit 25
 set scrolloff 8
 
 set color-list-feed-unread-fg bold
