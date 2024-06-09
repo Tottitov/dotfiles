@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if nmcli gen status | grep -qw "connected"; then
+if nmcli gen status | ugrep -qw "connected"; then
     nmcli radio wifi off
     notify-send -r 2 -u critical "Airplane mode enabled"
 else

@@ -1,36 +1,47 @@
 return {
-    'williamboman/mason.nvim',
-    event = 'BufReadPre',
-    build = ':MasonUpdate',
-    dependencies = {
-        'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig',
+    {
+        'williamboman/mason.nvim',
+        lazy = false,
+        config = function()
+            require('mason').setup()
+        end
     },
-
-    config = function()
-        require('mason').setup()
-        require('mason-lspconfig').setup({
-            ensure_installed = {
-                'bashls',
-                'marksman',
-                'tsserver',
-                'lua_ls',
-                'emmet_ls'
-            },
-        })
-
-        require('mason-lspconfig').setup_handlers {
-            function (server_name)
-                require('lspconfig')[server_name].setup {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { 'vim' }
-                            }
-                        }
-                    }
+    {
+        "williamboman/mason-lspconfig.nvim",
+        lazy = false,
+        opts = {
+            auto_install = true,
+        },
+        config = function()
+            require('mason-lspconfig').setup({
+                ensure_installed = {
+                    'bashls',
+                    'html',
+                    'marksman',
+                    'tsserver',
+                    'lua_ls',
                 }
-            end
-        }
-    end
+            })
+        end
+    },
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        config = function()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local lspconfig = require("lspconfig")
+            lspconfig.bashls.setup({
+                capabilities = capabilities
+            })
+            lspconfig.tsserver.setup({
+                capabilities = capabilities
+            })
+            lspconfig.html.setup({
+                capabilities = capabilities
+            })
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities
+            })
+        end,
+    },
 }

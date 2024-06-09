@@ -35,5 +35,5 @@ if [ "$tag" = "Actions" ]; then
 else
 	bookmark=$(ugrep -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | \
     prompt "Which Bookmark? ") || exit 1
-	$BROWSER "$(ugrep -w "$bookmark" "$bookmarks" | cut -d ' ' -f 1)"
+	$BROWSER "$(ugrep -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
 fi

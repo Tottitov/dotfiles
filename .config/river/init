@@ -142,11 +142,12 @@ done
 
 dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="waybar kanshi swaybg rivertile swayidle foot pipewire dunst mpd"
+executes="rivertile waybar kanshi wlsunset swaybg swayidle foot pipewire dunst mpd"
 for execute in $executes; do
     pgrep -fx "$execute" && continue
     case $execute in
         "foot") "$execute" -s & ;;
+        "wlsunset") "$execute" -S 06:30 -s 19:00 & ;;
         "swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
         "swayidle") "$execute" -w \
             timeout 300 "lock" \
