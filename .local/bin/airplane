@@ -2,8 +2,8 @@
 
 if nmcli gen status | ugrep -qw "connected"; then
     nmcli radio wifi off
-    notify-send -r 2 -u critical "Airplane mode enabled"
+    notify-send -r 2 -u critical "WiFi disabled"
 else
     nmcli radio wifi on
-    notify-send -r 2 -u critical "Airplane mode disabled"
+    notify-send -r 2 -u critical "WiFi enabled"
 fi
