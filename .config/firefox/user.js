@@ -5,9 +5,6 @@ user_pref("browser.urlbar.suggest.topsites", false);
 // Do not suggest web history in the URL bar:
 user_pref("browser.urlbar.suggest.history", false);
 
-// Do not prefil forms:
-user_pref("signon.prefillForms", false);
-
 // Do not autocomplete in the URL bar:
 user_pref("browser.urlbar.autoFill", false);
 
@@ -32,9 +29,6 @@ user_pref("privacy.clearOnShutdown.cookies", false);
 
 // Enable custom userChrome.css:
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-
-// This could otherwise cause some issues on bank logins and other annoying sites:
-user_pref("network.http.referer.XOriginPolicy", 0);
 
 // Disable Firefox sync and its menu entries
 user_pref("identity.fxaccounts.enabled", false);
@@ -68,3 +62,6 @@ user_pref("media.webm.enabled", false);
 
 // Enable compact mode
 user_pref("browser.compactmode.show", true);
+
+// Disable geolocation
+user_pref("geo.enabled", false);

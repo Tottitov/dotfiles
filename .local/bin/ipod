@@ -5,4 +5,4 @@ sudo rsync \
     --ignore-existing \
     --progress \
     --delete \
-    ~/media/music/ /media/ipod/Music/
+    ~/media/music/ /mnt/Music/

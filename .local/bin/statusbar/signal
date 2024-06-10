@@ -1,8 +1,6 @@
 #!/bin/sh
 
-ethernet() {
-    nmcli -g type,state dev | ugrep -q "ethernet:connected" && echo "󰌘"
-}
+nmcli -g type,state dev | ugrep -q "net:con" && { echo "󰌘"; exit 0; }
 
 signal=$(nmcli -g in-use,signal dev wifi | ugrep '^\*' | cut -d: -f2)
 case $signal in
@@ -11,5 +9,5 @@ case $signal in
     4[1-9]|5[0-9]|60) echo "󰤢" ;;
     6[1-9]|7[0-9]|80) echo "󰤥" ;;
     8[1-9]|9[0-9]|100) echo "󰤨" ;;
-    *) ethernet || echo "!󰤯" ;;
+    *) echo "!󰤯" ;;
 esac

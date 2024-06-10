@@ -1,12 +1,16 @@
-function branch() {
-	local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-	[ -n "$branch" ] && echo " %{%F{yellow}%}($branch)%{%f%}"
-}
+#function branch() {
+#	local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+#	[ -n "$branch" ] && echo " %{%F{yellow}%}($branch)%{%f%}"
+#}
 
-autoload -U colors && colors
-setopt PROMPT_SUBST
-PS1="%B%{$fg[white]%}[%{$fg[magenta]%}%n%{$fg[magenta]%}@%{$fg[magenta]%}%M \
-%{$fg[red]%}%~\$(branch)%{$fg[white]%}]%{$reset_color%}$%b "
+#autoload -U colors && colors
+#setopt PROMPT_SUBST
+#PS1="%B%{$fg[white]%}[%{$fg[magenta]%}%n%{$fg[magenta]%}@%{$fg[magenta]%}%M \
+#%{$fg[red]%}%~\$(branch)%{$fg[white]%}]%{$reset_color%}$%b "
+
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME}/ohmyposh/zen.toml)"
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -29,6 +33,3 @@ bindkey -v '^?' backward-delete-char
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"

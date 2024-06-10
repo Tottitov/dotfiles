@@ -1,10 +1,8 @@
 profile docked {
 	output "Acer Technologies SB220Q 0x82001DF5"
 	output eDP-1 disable
-    exec airplane
 }
 
 profile undocked {
 	output eDP-1 enable
-    exec airplane
 }
