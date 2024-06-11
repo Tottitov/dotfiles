@@ -1,13 +1,13 @@
 #!/bin/sh
 
-prompt() { tofi \
-    --prompt-text "$1"
+prompt() {
+	tofi --prompt-text "$1"
 }
 
 checkcamera() {
-    camera=$(find /dev/video[02468] | tail -n 1)
-    [ -n "$camera" ] && return "$camera" ||
-    notify-send "No camera detected" && askrecording
+	camera=$(find /dev/video[02468] | tail -n 1)
+	[ -n "$camera" ] && return "$camera" ||
+		notify-send "No camera detected" && askrecording
 }
 
 killrecording() {
@@ -17,58 +17,61 @@ killrecording() {
 	pkill -RTMIN+3 waybar
 }
 
-video() { wf-recorder \
-	-a \
-	-C aac \
-	-c libx264rgb \
-	-f "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
-	echo $! > /tmp/recordingpid
+video() {
+	wf-recorder \
+		-a \
+		-C aac \
+		-c libx264rgb \
+		-f "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+	echo $! >/tmp/recordingpid
 	pkill -RTMIN+3 waybar
 }
 
-snippet() { wf-recorder \
-	-g "$(slurp)" \
-	-c libx264rgb \
-	-f "$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
+snippet() {
+	wf-recorder \
+		-g "$(slurp)" \
+		-c libx264rgb \
+		-f "$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
+	echo $! >/tmp/recordingpid
 	pkill -RTMIN+3 waybar
 }
 
-webcam() { ffmpeg \
-	-f v4l2 \
-    -i "$1" \
-	-video_size 640x480 \
-	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! > /tmp/recordingpid
-	pkill -RTMIN+3 waybar
-}
-
-audio() { \
+webcam() {
 	ffmpeg \
-	-f alsa -i default \
-	-c:a flac \
-	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
-	echo $! > /tmp/recordingpid
+		-f v4l2 \
+		-i "$1" \
+		-video_size 640x480 \
+		"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
+	echo $! >/tmp/recordingpid
 	pkill -RTMIN+3 waybar
 }
 
-askrecording() { \
-	choice=$(printf "video\n\naudio\nsnippet\nwebcam" | \
-    prompt "Which recording? ")
+audio() {
+	ffmpeg \
+		-f alsa -i default \
+		-c:a flac \
+		"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
+	echo $! >/tmp/recordingpid
+	pkill -RTMIN+3 waybar
+}
+
+askrecording() {
+	choice=$(printf "video\n\naudio\nsnippet\nwebcam" |
+		prompt "Which recording? ")
 	case "$choice" in
-		video) video ;;
-		audio) audio ;;
-		snippet) snippet ;;
-        webcam) [ -n "$(checkcamera)" ] && webcam "$(checkcamera)" ;;
-		*) exit 1 ;;
+	video) video ;;
+	audio) audio ;;
+	snippet) snippet ;;
+	webcam) [ -n "$(checkcamera)" ] && webcam "$(checkcamera)" ;;
+	*) exit 1 ;;
 	esac
 }
 
-asktoend() { \
-	response=$(printf "No\\nYes" | \
-	prompt "Recording still active. End recording? ")
+asktoend() {
+	response=$(printf "No\\nYes" |
+		prompt "Recording still active. End recording? ")
 	[ "$response" = "Yes" ] && killrecording || exit 0
 }
 
 [ "$1" = "kill" ] && killrecording ||
-([ -f /tmp/recordingpid ] && asktoend) || askrecording
+	([ -f /tmp/recordingpid ] && asktoend) || askrecording

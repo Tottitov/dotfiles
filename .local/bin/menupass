@@ -1,12 +1,13 @@
 #!/bin/sh
 
-passwords=$(find "$PASSWORD_STORE_DIR" \
-    -name "*.*.gpg" \
-    -printf "%f\n" | sed 's/\.gpg$//'
+passwords=$(
+	find "$PASSWORD_STORE_DIR" \
+		-name "*.*.gpg" \
+		-printf "%f\n" | sed 's/\.gpg$//'
 )
 
-password=$(echo "$passwords" | sort | tofi \
-    --prompt-text "Which password? "
+password=$(
+	echo "$passwords" | sort | tofi --prompt-text "Which password? "
 ) || exit 1
 
 pass -c "$password" >/dev/null 2>&1

@@ -1,38 +1,38 @@
 #!/bin/sh
 
 screenshot() {
-    grim -g "$(slurp -d)" "pic-selected-$(date '+%y%m%d-%H%M-%S').png"
-    notify-send "Screenshot saved"
+	grim -g "$(slurp -d)" "pic-selected-$(date '+%y%m%d-%H%M-%S').png"
+	notify-send "Screenshot saved"
 }
 
 fullscreen() {
-    grim "pic-full-$(date '+%y%m%d-%H%M-%S').png"
-    notify-send "Fullscreen saved"
+	grim "pic-full-$(date '+%y%m%d-%H%M-%S').png"
+	notify-send "Fullscreen saved"
 }
 
 screenshotc() {
-    grim -g "$(slurp -d)" - | wl-copy
-    notify-send "Screenshot copied"
+	grim -g "$(slurp -d)" - | wl-copy
+	notify-send "Screenshot copied"
 }
 
 fullscreenc() {
-    grim - | wl-copy
-    notify-send "Fullscreen copied"
+	grim - | wl-copy
+	notify-send "Fullscreen copied"
 }
 
 askscreenshot() {
-	choice=$(printf "screenshotc\nfullscreenc\nscreenshot\nfullscreen" | \
-	tofi --prompt-text "Screenshot which area? ")
+	choice=$(printf "screenshotc\nfullscreenc\nscreenshot\nfullscreen" |
+		tofi --prompt-text "Screenshot which area? ")
 	case $choice in
-		"screenshot") screenshot ;;
-        "fullscreen") fullscreen ;;
-		"screenshotc") screenshotc ;;
-		"fullscreenc") fullscreenc ;;
+	"screenshot") screenshot ;;
+	"fullscreen") fullscreen ;;
+	"screenshotc") screenshotc ;;
+	"fullscreenc") fullscreenc ;;
 	esac
 }
 
 case "$1" in
-    "screenshotc") screenshotc ;;
-	"fullscreenc") fullscreenc ;;
-	*) askscreenshot ;;
+"screenshotc") screenshotc ;;
+"fullscreenc") fullscreenc ;;
+*) askscreenshot ;;
 esac

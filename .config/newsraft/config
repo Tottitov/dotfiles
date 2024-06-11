@@ -1,10 +1,12 @@
 set clean-database-on-startup true
-set initial-unread-first-sorting true
-set items-count-limit 25
+set menu-item-sorting unread-desc
+set status-placeholder
 set scrolloff 8
 
-set color-list-feed-unread-fg bold
-set color-list-section-unread-fg bold
-set color-list-item-important-fg bold
+set color-status yellow bold
+set color-list-feed-unread magenta bold
+set color-list-section-unread magenta bold
+set color-list-item-unread magenta bold
+set color-list-item-important red bold
 
 bind m exec setsid -f mpv --no-terminal "%l"

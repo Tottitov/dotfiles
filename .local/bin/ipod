@@ -1,8 +1,8 @@
 #!/bin/sh
 
 sudo rsync \
-    -vhr \
-    --ignore-existing \
-    --progress \
-    --delete \
-    ~/media/music/ /mnt/Music/
+	-vhr \
+	--ignore-existing \
+	--progress \
+	--delete \
+	~/media/music/ /mnt/Music/
