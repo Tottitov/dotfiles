@@ -1,6 +1,6 @@
 #!/bin/sh
 
-checkPassword() {
+checkpassword() {
     if nmcli dev wifi con "$2" password "$1"; then
         notify-send -r 5 "Password Passed" "$2 connected"
     else
@@ -17,7 +17,7 @@ connect() {
                 --require-match false \
                 --prompt-text "Password for $1: "
         ) || exit 1
-        checkPassword "$password" "$1"
+        checkpassword "$password" "$1"
     else
         nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
     fi >/dev/null 2>&1

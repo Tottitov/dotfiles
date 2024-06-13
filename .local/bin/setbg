@@ -9,4 +9,4 @@ image/*) ln -sf "$buffer" "$wallpaper" ;;
 esac
 
 pgrep -x "swaybg" && killall "swaybg"
-swaybg -m stretch -i "$wallpaper" >/dev/null 2>&1 &
+setsid -f swaybg -m stretch -i "$wallpaper" >/dev/null 2>&1 &

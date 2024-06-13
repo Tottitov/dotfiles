@@ -43,7 +43,7 @@ riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super+Shift Return zoom
 
 riverctl map normal Super R spawn "$TERMINAL lf"
-riverctl map normal Super+Shift R spawn menupass
+riverctl map normal Super+Shift R spawn menubt
 
 riverctl map normal Super D spawn "tofi-drun --drun-launch=true"
 riverctl map normal Super+Shift D spawn menubm
@@ -65,6 +65,9 @@ riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
+
+riverctl map normal Super I spawn "$TERMINAL htop"
+riverctl map normal Super+Shift I spawn menubt
 
 riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboot'"
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"

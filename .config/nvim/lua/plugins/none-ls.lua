@@ -14,6 +14,8 @@ return {
 				require("none-ls.diagnostics.eslint_d"),
 			},
 		})
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+		vim.keymap.set("n", "<leader>gf", function()
+			vim.lsp.buf.format({ timeout_ms = 20000 })
+		end, {})
 	end,
 }

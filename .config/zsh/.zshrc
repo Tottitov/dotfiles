@@ -1,11 +1,7 @@
-eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME}/ohmyposh/zen.toml)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(fzf --zsh)"
-
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+compinit -C
 _comp_options+=(globdots)
 
 HISTFILE="${XDG_CACHE_HOME}/zsh/history"
@@ -23,3 +19,7 @@ bindkey -v '^?' backward-delete-char
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME}/ohmyposh/zen.toml)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(fzf --zsh)"

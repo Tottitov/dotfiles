@@ -1,0 +1,25 @@
+#!/bin/sh
+
+toggle() {
+	notify-send -r 5 "Attempting to $1 $device"
+
+	(bluetoothctl "$1" "$mac" >/dev/null 2>&1 &&
+		notify-send -r 5 "Successfully ${1}ed $device") ||
+		notify-send -r 5 -u critical "Failed to $1 $device"
+}
+
+devices=$(bluetoothctl devices)
+
+total=$(echo "$devices" | wc -l)
+if [ "$total" -eq 1 ]; then
+	device=$(echo "$devices" | cut -d ' ' -f 3)
+	mac=$(echo "$devices" | cut -d ' ' -f 2)
+else
+	device=$(
+		echo "$devices" | cut -d ' ' -f 3 | tofi --prompt "Which Bluetooth? "
+	) || exit 1
+	mac=$(echo "$devices" | ugrep "$device" | cut -d ' ' -f 2)
+fi
+
+(bluetoothctl devices Connected | ugrep "$device" &&
+    toggle disconnect) || toggle connect
