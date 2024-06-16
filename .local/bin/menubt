@@ -1,12 +1,19 @@
 #!/bin/sh
 
+power() {
+    choice=$(printf "No\nYes" | tofi --prompt "Turn on bluetooth? ") || exit 1
+    [ "$choice" = "Yes" ] && bluetooth power on || exit 0
+}
+
 toggle() {
-	notify-send -r 5 "Attempting to $1 $device"
+	notify-send -r 5 "$device" "Attempting to $1"
 
 	(bluetoothctl "$1" "$mac" >/dev/null 2>&1 &&
-		notify-send -r 5 "Successfully ${1}ed $device") ||
-		notify-send -r 5 -u critical "Failed to $1 $device"
+		notify-send -r 5 "$device" "Successfully ${1}ed") ||
+		notify-send -r 5 -u critical "$device" "Failed to $1"
 }
+
+[ "$(bluetoothctl show | ugrep "Powered" | cut -c 11-)" = "no" ] && power
 
 devices=$(bluetoothctl devices)
 
@@ -16,10 +23,10 @@ if [ "$total" -eq 1 ]; then
 	mac=$(echo "$devices" | cut -d ' ' -f 2)
 else
 	device=$(
-		echo "$devices" | cut -d ' ' -f 3 | tofi --prompt "Which Bluetooth? "
+		echo "$devices" | cut -c 26- | tofi --prompt "Which Bluetooth? "
 	) || exit 1
-	mac=$(echo "$devices" | ugrep "$device" | cut -d ' ' -f 2)
+	mac=$(echo "$devices" | ugrep "${device}$" | cut -d ' ' -f 2)
 fi
 
-(bluetoothctl devices Connected | ugrep "$device" &&
+(bluetoothctl devices Connected | ugrep "$mac" &&
     toggle disconnect) || toggle connect
