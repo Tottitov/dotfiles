@@ -27,5 +27,6 @@ endtime=$(interval "$times" "End Time") || exit 1
     "$starttime $startmer" \
     "$enddate" \
     "$endtime $endmer" \
-    "$event" && vdirsyncer sync >/dev/null 2>&1) ||
-    notify-send -u critical "Failed to add event"
+    "$event" && vdirsyncer sync >/dev/null 2>&1 &&
+    notify-send "$event" "Published successfully") ||
+    notify-send -u critical "$event" "Publish unsuccessful"

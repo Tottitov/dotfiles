@@ -66,7 +66,7 @@ riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 
-riverctl map normal Super I spawn "$TERMINAL htop"
+riverctl map normal Super I spawn events
 riverctl map normal Super+Shift I spawn menubt
 
 riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboot'"
