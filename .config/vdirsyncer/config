@@ -1,0 +1,18 @@
+[general]
+status_path = "~/.config/vdirsyncer/status/"
+
+[pair fastmail]
+a = "fastmail_local"
+b = "fastmail_remote"
+collections = ["from a", "from b"]
+
+[storage fastmail_local]
+type = "filesystem"
+path = "~/.local/share/calendars/"
+fileext = ".ics"
+
+[storage fastmail_remote]
+type = "caldav"
+url = "https://caldav.fastmail.com/"
+username = "tonylenguyen@fastmail.com"
+password.fetch = ["command", "pass", "vdirsyncer"]

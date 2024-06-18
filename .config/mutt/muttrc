@@ -5,18 +5,35 @@ source /home/tony/.config/mutt/accounts/tonylenguyen@fastmail.com.muttrc
 macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
 macro index S "<vfolder-from-query>"
 
-# Settings
-set send_charset = "us-ascii:utf-8"
-set mailcap_path = "/home/tony/.config/mutt/mailcap"
-set mime_type_query_command = "file --mime-type -b %s"
+# Main options
+set send_charset = "utf-8:iso-8859-1:us-ascii"
 set index_format = "%4C %Z %{%b %d} %-20.20F %s"
-set sort = reverse-date
+set status_format = "[ Folder: %f ] [ %m messages%?n? (%n new)? ]"
+set mailcap_path = "/home/tony/.config/mutt/mailcap"
+set sort_aux = reverse-last-date-received
+set sort = threads
 set pager_index_lines = 5
-set delete = yes
-set wait_key = no
-set mark_old = no
+set delete                              # enable delete without confirmation
+set tilde                               # Show ~ on empty lines or end of a message
+unset markers                           # Hide \ for newlines
+unset help                              # hide help bar on top of index
+unset mime_forward                      # forward attachments as part of the body
+unset wait_key                          # skip proceed and go to index
+unset mark_old                          # read/new only no old
+unset sig_dashes                        # no dashes before signature
+unset confirmappend                     # no need for confirmation
+
 auto_view text/html text/calendar application/ics
 alternative_order text/html text/plain text/enriched text/*
+
+# Forward/Reply options
+set forward_format = "Fwd: %s"          # format subject when forwarding
+set attribution = "On %d, %n wrote:"    # format of quoting header
+set fcc_attach                          # save attachments w/ body
+set forward_decode                      # decode when forwarding
+set forward_quote                       # include message in forwards
+set reverse_name                        # reply as whomever it was to
+set reply_to                            # reply to Reply to: field
 
 # Navigation
 bind index,pager g noop

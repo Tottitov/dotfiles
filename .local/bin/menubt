@@ -6,8 +6,6 @@ power() {
 }
 
 toggle() {
-	notify-send -r 5 "$device" "Attempting to $1"
-
 	(bluetoothctl "$1" "$mac" >/dev/null 2>&1 &&
 		notify-send -r 5 "$device" "Successfully ${1}ed") ||
 		notify-send -r 5 -u critical "$device" "Failed to $1"

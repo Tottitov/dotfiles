@@ -1,4 +1,5 @@
 set guioptions none
+set database sqlite
 set selection-clipboard clipboard
 
 map p toggle_page_mode
