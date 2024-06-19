@@ -4,7 +4,8 @@ interval() { echo "$1" | tofi --prompt "${2}: "; }
 
 dates=""
 for i in $(seq 0 30); do
-	dates="$dates\n$(date -d "+$i days" +'%m/%d/%Y %a')"
+	current="$(date -d "+$i days" +'%m/%d/%Y %a')"
+    dates="$dates\n$current +$i"
 done
 
 times=""
