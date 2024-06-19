@@ -4,19 +4,23 @@ interval() { echo "$1" | tofi --prompt "${2}: "; }
 
 dates=""
 for i in $(seq 0 30); do
-	current="$(date -d "+$i days" +'%m/%d/%Y %a')"
+    current="$(date -d "+$i days" +'%m/%d/%Y %a')"
     dates="$dates\n$current +$i"
 done
 
 times=""
 for hour in $(seq 1 12); do
-	for minute in 00 15 30 45; do
-		times="$times\n${hour}:${minute} AM"
+    for minute in 00 15 30 45; do
+        times="$times\n${hour}:${minute} AM"
         times="$times\n${hour}:${minute} PM"
-	done
+    done
 done
 
-event=$(echo "" | tofi --require-match=false --prompt "Event: ") || exit 1
+event=$(
+    echo "" | tofi \
+        --require-match false \
+        --prompt "Calendar Event: "
+) || exit 1
 
 startdate=$(interval "$dates" "Start Date") || exit 1
 enddate=$(interval "$dates" "End Date") || exit 1
