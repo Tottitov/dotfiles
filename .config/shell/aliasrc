@@ -14,9 +14,9 @@ alias \
     vim="nvim" \
     ls="ls -ahN --color=auto --group-directories-first" \
     grep="grep --color=auto" \
-    agenda="khal calendar today 7d" \
-    upgrade="sudo pacman -Syu" \
+    ca="khal calendar today 7d" \
+    ug="sudo pacman -Syu" \
     rip="whipper cd rip" \
     tag="beet import -i ~/media/music/" \
-    scanaf="scanimage --source 'ADF' -b --format=png" \
-    scanfb="scanimage --format=png --output-file scan.png -p"
+    sf="scanimage --source 'ADF' -b --format=png" \
+    sb="scanimage --format=png --output-file scan.png -p"

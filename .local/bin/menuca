@@ -4,29 +4,31 @@ interval() { echo "$1" | tofi --prompt "${2}: "; }
 
 dates=""
 for i in $(seq 0 30); do
-    dates="$dates\n$(date -d "+$i days" +'%m/%d/%Y')"
+	dates="$dates\n$(date -d "+$i days" +'%m/%d/%Y %a')"
 done
 
 times=""
 for hour in $(seq 1 12); do
-    for minute in 00 15 30 45; do
-        times="$times\n${hour}:${minute}"
-    done
+	for minute in 00 15 30 45; do
+		times="$times\n${hour}:${minute} AM"
+        times="$times\n${hour}:${minute} PM"
+	done
 done
 
 event=$(echo "" | tofi --require-match=false --prompt "Event: ") || exit 1
+
 startdate=$(interval "$dates" "Start Date") || exit 1
 enddate=$(interval "$dates" "End Date") || exit 1
-startmer=$(printf "AM\nPM" | tofi --prompt "Start Meridiem: ") || exit 1
-endmer=$(printf "AM\nPM" | tofi --prompt "End Meridiem: ") || exit 1
-starttime=$(interval "$times" "Start Time") || exit 1
-endtime=$(interval "$times" "End Time") || exit 1
+startdate=$(echo "$startdate" | cut -d ' ' -f 1)
+enddate=$(echo "$enddate" | cut -d ' ' -f 1)
 
-(khal new \
-    "$startdate" \
-    "$starttime $startmer" \
-    "$enddate" \
-    "$endtime $endmer" \
-    "$event" && vdirsyncer sync >/dev/null 2>&1 &&
+starttime=$(interval "$times" "Start Time")
+endtime=$(interval "$times" "End Time")
+
+[ -z "$starttime" ] && [ -z "$endtime" ] &&
+    args="$startdate $enddate $event" ||
+    args="$startdate $starttime $enddate $endtime $event"
+
+(khal new "$args" && vdirsyncer sync >/dev/null 2>&1 &&
     notify-send "$event" "Published successfully") ||
     notify-send -u critical "$event" "Publish unsuccessful"

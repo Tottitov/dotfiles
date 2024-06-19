@@ -24,3 +24,7 @@ color = light magenta
 [[birthdays]]
 path = ~/.local/share/calendars/5ad018e8-cb90-40fd-a8cc-7d235a543e38/
 color = yellow
+
+[[holidays]]
+path = ~/.local/share/calendars/0859a2cf-c6f8-4884-8679-88881ae7de14/
+color = dark red
