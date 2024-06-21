@@ -1,0 +1,18 @@
+format = """
+${directory}${git_branch}${git_status}
+${character}"""
+
+add_newline = false
+
+[character]
+success_symbol = "[:](bold green)"
+error_symbol = "[:](red)"
+
+[git_branch]
+symbol = ''
+style = 'bold yellow'
+
+[git_status]
+format = '[$modified]($style)'
+modified = '*'
+style = 'bold yellow'
