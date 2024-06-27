@@ -20,7 +20,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 bindkey -v '^?' backward-delete-char
-precmd() { precmd() { echo } }
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"

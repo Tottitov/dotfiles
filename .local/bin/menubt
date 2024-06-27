@@ -22,7 +22,7 @@ if [ "$total" -eq 1 ]; then
 	mac=$(echo "$devices" | cut -d ' ' -f 2)
 else
 	device=$(
-		echo "$devices" | cut -c 26- | tofi --prompt "Which Bluetooth? "
+		echo "$devices" | cut -c 26- | tofi --prompt "Bluetooth: "
 	) || exit 1
 	mac=$(echo "$devices" | ugrep "${device}$" | cut -d ' ' -f 2)
 fi

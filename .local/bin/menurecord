@@ -57,7 +57,7 @@ audio() {
 
 askrecording() {
 	choice=$(printf "video\n\naudio\nsnippet\nwebcam" |
-		prompt "Which recording? ")
+		prompt "Recording: ")
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;

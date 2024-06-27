@@ -28,7 +28,7 @@ connect() {
 
 network=$(
     nmcli -g active,ssid,security,signal dev wifi |
-        tofi --prompt-text "Which Network? "
+        tofi --prompt-text "Network: "
 ) || exit 1
 
 active=$(echo "$network" | cut -d ':' -f 1)

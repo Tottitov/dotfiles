@@ -1,12 +1,11 @@
-text/plain; $EDITOR %s ;
-text/html; setsid -f $BROWSER %s ; nametemplate=%s.html
+text/plain; $EDITOR %s
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; setsid -f $BROWSER %s; nametemplate=%s.html
 
-text/calendar; khal import -a personal %s;
+text/calendar; khal import -a personal %s
 
-image/*; setsid -f imv %s ;
-video/*; setsid -f mpv --really-quiet %s ;
-audio/*; setsid -f mpv --really-quiet %s ;
+image/*; setsid -f imv %s
+video/*; setsid -f mpv --really-quiet %s
+audio/*; setsid -f mpv --really-quiet %s
 
-application/pdf; setsid -f zathura %s >/dev/null 2>&1 ;
-application/x-subrip; $EDITOR %s >/dev/null 2>&1 ;
+application/pdf; setsid -f zathura %s pdf >/dev/null 2>&1

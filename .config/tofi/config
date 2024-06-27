@@ -9,7 +9,7 @@ hide-cursor = true
 text-cursor = true
 
 padding-top = 30%
-padding-left = 35%
+padding-left = 40%
 
 font = monospace
 

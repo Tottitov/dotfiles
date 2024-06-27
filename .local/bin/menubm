@@ -5,7 +5,7 @@ prompt() { tofi --prompt-text "$1"; }
 input() { tofi --require-match false --prompt-text "$1"; }
 
 delete() {
-	deletion=$(cut -d ' ' -f 2 "$bookmarks" | prompt "Which Delete? ")
+	deletion=$(cut -d ' ' -f 2 "$bookmarks" | prompt "Delete: ")
 	if [ -n "$deletion" ]; then
 		sed -i "/\b$deletion\b/d" "$bookmarks"
 		notify-send -u critical "$name bookmark deleted"
@@ -13,9 +13,9 @@ delete() {
 }
 
 add() {
-	url=$(echo "" | input "Url? ") || exit 1
-	name=$(echo "" | input "Bookmark Name? ") || exit 1
-	tag=$(echo "$tags" | prompt "Which Tag? ") || exit 1
+	url=$(echo "" | input "Url: ") || exit 1
+	name=$(echo "" | input "Name: ") || exit 1
+	tag=$(echo "$tags" | prompt "Tag: ") || exit 1
 	echo "$url $name $tag" >>"$bookmarks"
 	notify-send "$name bookmark added"
 }
@@ -23,10 +23,10 @@ add() {
 bookmarks="${XDG_DATA_HOME}/bookmarks"
 tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
 
-tag=$(printf "Actions\n%s" "$tags" | prompt "Which Tag? ") || exit 1
+tag=$(printf "Actions\n%s" "$tags" | prompt "Tag: ") || exit 1
 
 if [ "$tag" = "Actions" ]; then
-	edit=$(printf "Add\nDelete\nOpen" | input "Which Option? ") || exit 1
+	edit=$(printf "Add\nDelete\nOpen" | input "Option: ") || exit 1
 	case $edit in
 	"Add") add ;;
 	"Delete") delete ;;
@@ -35,7 +35,7 @@ if [ "$tag" = "Actions" ]; then
 else
 	bookmark=$(
 		ugrep -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort |
-			prompt "Which Bookmark? "
+			prompt "Bookmark: "
 	) || exit 1
 	$BROWSER "$(ugrep -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
 fi

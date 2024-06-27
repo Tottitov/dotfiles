@@ -34,8 +34,8 @@ riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
-riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.02"
-riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.02"
+riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
+riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
 riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
 riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 

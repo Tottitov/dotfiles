@@ -3,19 +3,19 @@ source /home/tony/.config/mutt/accounts/tonylenguyen@fastmail.com.muttrc
 
 # Macros
 macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
-macro index S "<vfolder-from-query>"
+macro index F "<vfolder-from-query>"
 
 # Main options
 set send_charset = "utf-8:iso-8859-1:us-ascii"
-set index_format = "%4C %Z %{%b %d} %-20.20F %s"
+set index_format = "%4Z %{%h %d} %-35.35F %-30.100s"
 set status_format = "[ Folder: %f ] [ %m messages%?n? (%n new)? ]"
 set mailcap_path = "/home/tony/.config/mutt/mailcap"
 set sort_aux = reverse-last-date-received
 set sort = threads
 set pager_index_lines = 5
 set delete                              # enable delete without confirmation
-set tilde                               # Show ~ on empty lines or end of a message
-unset markers                           # Hide \ for newlines
+set tilde                               # show ~ on empty lines or end of a message
+unset markers                           # hide \ for newlines
 unset help                              # hide help bar on top of index
 unset mime_forward                      # forward attachments as part of the body
 unset wait_key                          # skip proceed and go to index
@@ -59,7 +59,7 @@ bind index d delete-message
 bind index D undelete-message
 
 # Sidebar format
-set sidebar_visible = yes
+set sidebar_visible = no
 set sidebar_folder_indent = yes
 set sidebar_width = 20
 set sidebar_format = '%D %?N?%N/? %?S?%S?'
@@ -74,14 +74,14 @@ bind index,pager \Co sidebar-open
 bind index,pager \Cb sidebar-toggle-visible
 
 # Inbox highlighting
-color index white default '.*'
+color index green default '.*'
 color index_author magenta default '.*'
 color index_number white default
 color index_subject white default '.*'
 
-color index brightwhite default "~N"
+color index brightgreen default "~N"
 color index_author brightmagenta default "~N"
-color index_subject brightgreen default "~N"
+color index_subject brightwhite default "~N"
 
 color indicator brightblue default
 color status yellow default

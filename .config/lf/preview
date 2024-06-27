@@ -4,5 +4,5 @@ case "$(file -Lb --mime-type -- "$1")" in
     image/*)
         chafa -f sixel -s "$2x$3" --animate off --polite on "$1" ;;
     text/x-shellscript)
-        bat --color always --theme gruvbox-dark --style plain "$1" ;;
+        bat --color always --theme tokyonight_night --style plain "$1" ;;
 esac

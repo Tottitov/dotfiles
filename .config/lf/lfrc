@@ -10,7 +10,7 @@ set ignorecase
 
 cmd open &{{
     case $(file -Lb --mime-type -- "$f") in
-        application/*) zathura "$fx" ;;
+        application/pdf) zathura "$fx" ;;
         audio/*) mpv --no-terminal "$fx" ;;
         video/*) mpv --no-terminal "$fx" ;;
         image/*) imv "$fx" ;;

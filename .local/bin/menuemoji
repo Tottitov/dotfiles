@@ -1,7 +1,7 @@
 #!/bin/sh
 
 emoji=$(
-	cat <"${XDG_DATA_HOME}/unicode" | tofi --prompt-text "Which Emoji? "
+	cat <"${XDG_DATA_HOME}/unicode" | tofi --prompt-text "Emoji: "
 ) || exit 1
 
 echo "$emoji" | cut -d ' ' -f 1 | tr -d '\n' | wl-copy

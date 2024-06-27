@@ -27,7 +27,7 @@
 		"format": "{capacity}% {icon}",
 		"format-charging": "+{capacity}% {icon}",
         "format-icons": [" "," "," "," "," "],
-		"interval": 15
+		"interval": 2
 	},
     "custom/signal": {
         "exec": "signal",
