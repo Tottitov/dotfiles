@@ -28,7 +28,7 @@ style = 'bold yellow'
 
 [git_status]
 modified = '*'
-format = '[$modified$ahead_behind]($style)'
+format = '[${modified}${ahead_behind}]($style)'
 style = 'bold yellow'
 
 [cmd_duration]
