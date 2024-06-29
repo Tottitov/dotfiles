@@ -13,9 +13,6 @@ riverctl focus-follows-cursor normal
 riverctl set-repeat 80 300
 riverctl rule-add ssd
 
-gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
-gsettings set "org.gnome.desktop.interface" gtk-theme "Orchis-Dark-Compact"
-
 riverctl map normal Super Q close
 riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
 
