@@ -2,7 +2,7 @@
 
 sc() {
 	script=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
-	[ -n "$script" ] && $EDITOR "${XDG_CONFIG_HOME}/${script}"
+	[ -n "$script" ] && $EDITOR "${HOME}/.local/bin/${script}"
 }
 
 cf() {
