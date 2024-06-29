@@ -12,7 +12,6 @@ cf() {
 
 alias \
     vim="nvim" \
-    clear="precmd() { precmd() { echo } } && clear" \
     ls="ls -lahN --color=auto --group-directories-first" \
     grep="grep --color=auto" \
     ca="khal calendar today 7d" \

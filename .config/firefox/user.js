@@ -33,9 +33,6 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Disable Firefox sync and its menu entries
 user_pref("identity.fxaccounts.enabled", false);
 
-// Fix the issue where right mouse button instantly clicks
-user_pref("ui.context_menus.after_mouseup", true);
-
 // Show blank page on startup
 user_pref("browser.startup.page", 0);
 user_pref("browser.startup.homepage", "about:blank");
@@ -46,10 +43,6 @@ user_pref("svg.context-properties.content.enabled", true);
 
 // disable about:home
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
-
-// Shorten Tab width
-user_pref("browser.tabs.tabMinWidth", 60);
-user_pref("browser.tabs.tabClipWidth", 86);
 
 // Hide tab search arrow
 user_pref("browser.tabs.tabmanager.enabled", false);

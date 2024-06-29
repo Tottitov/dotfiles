@@ -18,7 +18,7 @@ error_symbol = '[➜](bold red)'
 vicmd_symbol = '[➜](white)'
 
 [directory]
-truncation_length = 4
+truncation_length = 6
 truncate_to_repo = false
 style = 'bold blue'
 

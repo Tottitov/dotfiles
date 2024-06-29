@@ -13,8 +13,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-precmd() { precmd() { echo } }
-
 HISTFILE="${XDG_CACHE_HOME}/zsh/history"
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
