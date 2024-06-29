@@ -1,6 +1,6 @@
 #!/bin/sh
 
-nmcli -g type,state dev | ugrep -q "net:con" && echo "󰌘" && exit 0
+nmcli -g type,state dev | ugrep -q "net:con" && exit 1
 
 signal=$(nmcli -g in-use,signal dev wifi | ugrep '^\*' | cut -d: -f2)
 case $signal in

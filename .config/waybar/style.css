@@ -1,8 +1,8 @@
 @define-color focused #483248;
-@define-color background #000000;
+@define-color background #1a1b26;
 @define-color occupied #FFFFFF;
-@define-color unfocused #D5C4A1;
-@define-color urgent #FB4934;
+@define-color unfocused #c0caf5;
+@define-color urgent #db4b4b;
 
 * {
 	font-family: monospace;

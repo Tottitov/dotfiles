@@ -13,6 +13,9 @@ riverctl focus-follows-cursor normal
 riverctl set-repeat 80 300
 riverctl rule-add ssd
 
+gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Orchis-Dark-Compact"
+
 riverctl map normal Super Q close
 riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
 
@@ -74,14 +77,14 @@ riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'su
 
 riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null"
 
-riverctl map normal None Print spawn "grimpick screenshotc"
-riverctl map normal Shift Print spawn "grimpick fullscreenc"
-riverctl map normal Alt Print spawn grimpick
+riverctl map normal None Print spawn "menusc copyshot"
+riverctl map normal Shift Print spawn "menusc copyscreen"
+riverctl map normal Alt Print spawn menusc
 
 riverctl map normal Super Print spawn menurecord
 riverctl map normal Super+Shift Print spawn menurecord kill
 
-riverctl map normal None XF86DISPLAY spawn "grimpick screenshot"
+riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86WLAN spawn airplane
 
 riverctl map-pointer normal Shift BTN_LEFT move-view

@@ -2,17 +2,18 @@
 
 sc() {
 	script=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
-	[ -f ~/.local/bin/"${script}" ] && $EDITOR ~/.local/bin/"${script}"
+	[ -n "$script" ] && $EDITOR "${XDG_CONFIG_HOME}/${script}"
 }
 
 cf() {
     config=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
-    [ -f ~/.config/"${config}" ] && $EDITOR ~/.config/"${config}"
+    [ -n "$config" ] && $EDITOR "${XDG_CONFIG_HOME}/${config}"
 }
 
 alias \
     vim="nvim" \
-    ls="ls -ahN --color=auto --group-directories-first" \
+    clear="precmd() { precmd() { echo } } && clear" \
+    ls="ls -lahN --color=auto --group-directories-first" \
     grep="grep --color=auto" \
     ca="khal calendar today 7d" \
     up="sudo pacman -Syu" \

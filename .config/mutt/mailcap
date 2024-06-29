@@ -8,4 +8,4 @@ image/*; setsid -f imv %s
 video/*; setsid -f mpv --really-quiet %s
 audio/*; setsid -f mpv --really-quiet %s
 
-application/pdf; setsid -f zathura %s pdf >/dev/null 2>&1
+application/pdf; setsid -f zathura %s >/dev/null 2>&1

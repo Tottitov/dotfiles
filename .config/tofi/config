@@ -13,10 +13,10 @@ padding-left = 40%
 
 font = monospace
 
-text-color = #EBDBB2
-input-color = #FB4934
-selection-color = #FB4934
-background-color = #000A
+text-color = #c0caf5
+input-color = #db4b4b
+selection-color = #db4b4b
+background-color = #000C
 
 hidden-character = *
 matching-algorithm = fuzzy

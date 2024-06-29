@@ -1,13 +1,15 @@
-/* No (default) titlebar on wayland */
-headerbar.titlebar.default-decoration {
-	background: transparent;
-	padding: 0;
-	margin: -100px;
-	border: 0;
-	min-height: 0;
-	font-size: 0;
+headerbar.default-decoration {
+    margin-bottom: 50px;
+    margin-top: -100px;
+    border-radius: 0;
+}
+
+.titlebar,
+window {
+	border-radius: 0;
 	box-shadow: none;
 }
 
-/* No window shadows */
-window.csd,window.csd decoration { box-shadow: none }
+window.csd,window.csd decoration { box-shadow: none; }
+
+window.csd icon { border-radius: 0; }
