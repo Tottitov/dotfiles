@@ -18,6 +18,8 @@ error_symbol = '[➜](bold red)'
 vicmd_symbol = '[➜](white)'
 
 [directory]
+read_only = '󰌾'
+format = '[$path]($style) [$read_only]($read_only_style)'
 truncation_length = 6
 truncate_to_repo = false
 style = 'bold blue'

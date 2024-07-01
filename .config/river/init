@@ -19,10 +19,10 @@ riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
 
-riverctl map normal Super H focus-view -skip-floating left
-riverctl map normal Super J focus-view -skip-floating down
-riverctl map normal Super K focus-view -skip-floating up
-riverctl map normal Super L focus-view -skip-floating right
+riverctl map normal Super H focus-view left
+riverctl map normal Super J focus-view down
+riverctl map normal Super K focus-view up
+riverctl map normal Super L focus-view right
 
 riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
@@ -72,9 +72,9 @@ riverctl map normal Super+Shift I spawn menubt
 riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboot'"
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
 
-riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init >/dev/null"
+riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River'"
 
-riverctl map normal None Print spawn "menusc copyshot"
+riverctl map normal None Print spawn "menusc editshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
 riverctl map normal Alt Print spawn menusc
 
@@ -142,6 +142,9 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Shift "$i" set-view-tags $tags
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
+
+gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Dark"
+gsettings set "org.gnome.desktop.interface" icon-theme "Arc"
 
 dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 

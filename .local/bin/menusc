@@ -12,7 +12,7 @@ savescreen() {
 
 copyshot() {
 	grim -g "$(slurp -d)" - | wl-copy
-    notify-send "Screenshot copied"
+	notify-send "Screenshot copied"
 }
 
 copyscreen() {
@@ -20,17 +20,34 @@ copyscreen() {
 	notify-send "Fullscreen copied"
 }
 
-askscreenshot() {
-	choice=$(printf \
-        "saveshot\nsavescreen\neditshot\ncopyshot\ncopyscreen" |
-		tofi --prompt-text "Screenshot: "
-    ) || exit 1
+editshot() {
+	grim -g "$(slurp -d)" - | swappy -f -
+	notify-send "Screenshot copied"
+}
 
-	case $choice in
+editscreen() {
+	grim - | swappy -f -
+	notify-send "Fullscreen copied"
+}
+
+askscreenshot() {
+	type=$(
+		printf "save\ncopy\nedit" |
+			tofi --prompt-text "Type: "
+	) || exit 1
+
+	screenshot=$(
+		printf "shot\nscreen" |
+			tofi --prompt-text "Screenshot: "
+	) || exit 1
+
+	case ${type}${screenshot} in
 	"saveshot") saveshot ;;
 	"savescreen") savescreen ;;
 	"copyshot") copyshot ;;
-    "copyscreen") copyscreen ;;
+	"copyscreen") copyscreen ;;
+	"editshot") editshot ;;
+	"editscreen") editscreen ;;
 	esac
 }
 

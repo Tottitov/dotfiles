@@ -6,3 +6,8 @@ profile docked {
 profile undocked {
 	output eDP-1 enable scale 1
 }
+
+profile hdmi {
+    output HDMI-A-1 mode 1920x1080@100Hz scale 1
+    output eDP-1 disable
+}

@@ -27,7 +27,7 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 # Other settings
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
-export GTK_THEME="Arc-Gruvbox"
+export GTK_THEME="Arc-Dark"
 export XDG_SESSION_TYPE="wayland"
 export QT_QPA_PLATFORM="wayland"
 export SDL_VIDEODRIVER="wayland"
