@@ -1,6 +1,14 @@
 text/plain; $EDITOR %s
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+
 text/html; setsid -f $BROWSER %s; nametemplate=%s.html
+text/html; html2text -d \
+--body-width 80 \
+--single-line-break \
+--unicode-snob \
+--ignore-links \
+--ignore-tables \
+--ignore-emphasis \
+--ignore-images %s; copiousoutput;
 
 text/calendar; khal import -a personal %s
 

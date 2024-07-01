@@ -1,4 +1,3 @@
-# vim: filetype=neomuttrc
 source /home/tony/.config/mutt/accounts/tonylenguyen@fastmail.com.muttrc
 
 # Macros
@@ -9,12 +8,13 @@ macro index F "<vfolder-from-query>"
 set send_charset = "utf-8:iso-8859-1:us-ascii"
 set index_format = "%4Z %{%h %d} %-35.35F %-30.100s"
 set status_format = "[ Folder: %f ] [ %m messages%?n? (%n new)? ]"
+set display_filter = "sed -e '/\\[--.* --\\]/d'"
 set mailcap_path = "/home/tony/.config/mutt/mailcap"
 set sort_aux = reverse-last-date-received
 set sort = threads
 set pager_index_lines = 5
 set delete                              # enable delete without confirmation
-set tilde                               # show ~ on empty lines or end of a message
+unset tilde                             # hide ~ on empty lines or end of a message
 unset markers                           # hide \ for newlines
 unset help                              # hide help bar on top of index
 unset mime_forward                      # forward attachments as part of the body
@@ -23,6 +23,7 @@ unset mark_old                          # read/new only no old
 unset sig_dashes                        # no dashes before signature
 unset confirmappend                     # no need for confirmation
 
+set implicit_autoview = yes
 auto_view text/html text/calendar application/ics
 alternative_order text/html text/plain text/enriched text/*
 

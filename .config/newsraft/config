@@ -3,4 +3,4 @@ set menu-item-sorting unread-desc
 set status-placeholder
 set scrolloff 8
 
-bind m exec setsid -f mpv --no-terminal "%l"
+bind m exec setsid -f mpv --no-terminal "%l" &

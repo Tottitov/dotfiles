@@ -10,7 +10,7 @@ riverctl default-attach-mode bottom
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl focus-follows-cursor normal
-riverctl set-repeat 80 300
+riverctl set-repeat 20 500
 riverctl rule-add ssd
 
 riverctl map normal Super Q close
@@ -74,7 +74,7 @@ riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'su
 
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River'"
 
-riverctl map normal None Print spawn "menusc editshot"
+riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
 riverctl map normal Alt Print spawn menusc
 
@@ -94,16 +94,16 @@ riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enable
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-trackpointing
 
 for mode in normal locked; do
-	riverctl map $mode Super Equal spawn "volume high"
-	riverctl map $mode Super Minus spawn "volume low"
+	riverctl map -repeat $mode Super Equal spawn "volume high"
+	riverctl map -repeat $mode Super Minus spawn "volume low"
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 
 	riverctl map $mode Super+Shift M spawn "volume mute"
 	riverctl map $mode Super+Alt M spawn "volume mic"
 
-	riverctl map $mode None XF86AudioRaiseVolume spawn "volume high"
-	riverctl map $mode None XF86AudioLowerVolume spawn "volume low"
+	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
+	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
 	riverctl map $mode None XF86AudioMicMute spawn "volume mic"
 
