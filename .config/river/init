@@ -10,7 +10,7 @@ riverctl default-attach-mode bottom
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl focus-follows-cursor normal
-riverctl set-repeat 20 500
+riverctl set-repeat 30 500
 riverctl rule-add ssd
 
 riverctl map normal Super Q close

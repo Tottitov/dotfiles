@@ -22,12 +22,12 @@ copyscreen() {
 
 editshot() {
 	grim -g "$(slurp -d)" - | swappy -f -
-	notify-send "Screenshot copied"
+	notify-send "Screenshot edited"
 }
 
 editscreen() {
 	grim - | swappy -f -
-	notify-send "Fullscreen copied"
+	notify-send "Fullscreen edited"
 }
 
 askscreenshot() {

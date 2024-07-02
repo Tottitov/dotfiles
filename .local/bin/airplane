@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if nmcli gen status | ugrep -qw "connected"; then
-    nmcli radio wifi off
-    notify-send -r 2 -u critical "WiFi disabled"
+	nmcli radio wifi off
+	notify-send -r 2 -u critical "WiFi disabled"
 else
-    nmcli radio wifi on
-    notify-send -r 2 -u critical "WiFi enabled"
+	nmcli radio wifi on
+	notify-send -r 2 -u critical "WiFi enabled"
 fi

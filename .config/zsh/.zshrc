@@ -2,6 +2,11 @@ source "${XDG_CONFIG_HOME}/shell/aliasrc"
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+autoload -U promptinit; promptinit
+PURE_PROMPT_SYMBOL=''
+PURE_PROMPT_VICMD_SYMBOL=''
+prompt pure
+
 autoload -Uz compinit && compinit -C
 zstyle ':completion:*' menu select
 zmodload zsh/complist
@@ -24,6 +29,5 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
