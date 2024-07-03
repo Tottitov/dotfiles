@@ -16,9 +16,6 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"bashls",
-					"html",
-					"marksman",
-					"tsserver",
 					"lua_ls",
 				},
 			})
@@ -33,15 +30,27 @@ return {
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.tsserver.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
+
+			vim.lsp.handlers["textDocument/publishDiagnostics"] =
+				vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+					virtual_text = true,
+					signs = true,
+					update_in_insert = false,
+					underline = true,
+				})
+
+			local toggle_diagnostics = function()
+				diagnostics_active = not diagnostics_active
+				if diagnostics_active then
+					vim.diagnostic.show()
+				else
+					vim.diagnostic.hide()
+				end
+			end
+			vim.keymap.set("n", "<leader>d", toggle_diagnostics)
 		end,
 	},
 	{
