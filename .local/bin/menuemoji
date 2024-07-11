@@ -1,6 +1,8 @@
 #!/bin/sh
 
-emoji=$(cat <"${XDG_DATA_HOME}/unicode" | fuzzel -dip "Emoji: ") || exit 1
+emoji=$(
+    cat <"${XDG_DATA_HOME}/unicode" | fuzzel -di -w 20 p "Emoji: "
+) || exit 1
 
 echo "$emoji" | cut -d ' ' -f 1 | tr -d '\n' | wl-copy
 notify-send "Emoji copied to clipboard" "$emoji"

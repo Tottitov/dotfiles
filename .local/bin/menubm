@@ -1,6 +1,6 @@
 #!/bin/sh
 
-menu() { fuzzel -dip "$1"; }
+menu() { fuzzel -di -w 20 -p "$1"; }
 
 delete() {
 	deletion=$(cut -d ' ' -f 2 "$bookmarks" | menu "Delete: ")
@@ -21,10 +21,13 @@ add() {
 bookmarks="${XDG_DATA_HOME}/bookmarks"
 
 tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
-tag=$(printf "Actions\n%s" "$tags" | fuzzel -di -l 10 -p "Tag: ") || exit 1
+tag=$(
+	printf "Actions\n%s" "$tags" | fuzzel -di -l 10 -w 15 -p "Tag: "
+) || exit 1
+
 if [ "$tag" = "Actions" ]; then
 	edit=$(
-		printf "Add\nDelete\nOpen" | fuzzel -di -l 3 -p "Option: "
+		printf "Add\nDelete\nOpen" | fuzzel -di -l 3 -w 15 -p "Option: "
 	) || exit 1
 
 	case $edit in
