@@ -22,10 +22,11 @@
 		"bat": "BAT0",
 		"adapter": "AC",
 		"states": {
-			"critical": 50
+			"warning": 50,
+            "critical": 25
 		},
 		"format": "{capacity}% {icon}",
-		"format-charging": "+{capacity}% {icon}",
+		"format-charging": "+{capacity}% 󰚥",
         "format-icons": [" "," "," "," "," "],
 		"interval": 2
 	},

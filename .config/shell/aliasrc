@@ -12,8 +12,8 @@ cf() {
 
 alias \
     vim="nvim" \
-    ls="ls -lahN --color=auto --group-directories-first" \
-    grep="grep --color=auto" \
+    ls="eza -la --color=auto --group-directories-first" \
+    grep="ugrep --color=auto" \
     ca="khal calendar today 7d" \
     up="sudo pacman -Syu" \
     rip="whipper cd rip" \

@@ -7,6 +7,13 @@ PURE_PROMPT_SYMBOL=''
 PURE_PROMPT_VICMD_SYMBOL=''
 prompt pure
 
+pureClearScreen() {
+	zle -I
+	print -n '\e[2J\e[4;0H'
+	zle .redisplay
+}
+zle -N clear-screen pureClearScreen
+
 autoload -Uz compinit && compinit -C
 zstyle ':completion:*' menu select
 zmodload zsh/complist

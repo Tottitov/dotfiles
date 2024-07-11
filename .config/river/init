@@ -153,7 +153,7 @@ for execute in $executes; do
 	pgrep -fx "$execute" && continue
 	case $execute in
 	"foot") "$execute" -s & ;;
-	"wlsunset") "$execute" -S 06:30 -s 19:00 & ;;
+	"wlsunset") "$execute" -S 06:30 -s 21:00 & ;;
 	"swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
 	"swayidle") "$execute" -w \
 		timeout 300 "lock" \

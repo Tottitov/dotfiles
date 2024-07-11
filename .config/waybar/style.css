@@ -2,6 +2,7 @@
 @define-color background #1a1b26;
 @define-color occupied #FFFFFF;
 @define-color unfocused #c0caf5;
+@define-color warning #ff9e64;
 @define-color urgent #db4b4b;
 
 * {
@@ -37,6 +38,10 @@ window#waybar {
 
 #custom-record {
     color: @urgent;
+}
+
+#battery.warning {
+    color: @warning;
 }
 
 #battery.critical {

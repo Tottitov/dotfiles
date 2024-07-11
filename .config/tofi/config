@@ -1,22 +1,32 @@
-prompt-text = "> "
-width = 100%
-height = 100%
-outline-width = 0
-border-width = 0
-result-spacing = 14
-num-results = 8
-hide-cursor = true
-text-cursor = true
-
-padding-top = 30%
-padding-left = 40%
+anchor = top
 
 font = monospace
+font-size = 12
+
+text-cursor = true
+
+prompt-text = 
+result-spacing = 15
+min-input-width = 120
+
+width = 100%
+height = 22
+horizontal = true
+
+outline-width = 0
+border-width = 0
+
+padding-top = 0
+padding-left = 5
+padding-right = 0
+padding-bottom = 0
+prompt-padding = 8
 
 text-color = #c0caf5
-input-color = #db4b4b
-selection-color = #db4b4b
-background-color = #000C
+input-color = #c0caf5
+prompt-color = #bb9af7
+selection-color = #bb9af7
+background-color = #1a1b26
 
 hidden-character = *
 matching-algorithm = fuzzy
