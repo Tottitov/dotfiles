@@ -1,11 +1,9 @@
 #!/bin/sh
 
-prompt() { tofi --prompt-text "$1"; }
-
-input() { tofi --require-match false --prompt-text "$1"; }
+menu() { fuzzel -dip "$1"; }
 
 delete() {
-	deletion=$(cut -d ' ' -f 2 "$bookmarks" | prompt "Delete: ")
+	deletion=$(cut -d ' ' -f 2 "$bookmarks" | menu "Delete: ")
 	if [ -n "$deletion" ]; then
 		sed -i "/\b$deletion\b/d" "$bookmarks"
 		notify-send -u critical "$name bookmark deleted"
@@ -13,20 +11,22 @@ delete() {
 }
 
 add() {
-	url=$(echo "" | input "Url: ") || exit 1
-	name=$(echo "" | input "Name: ") || exit 1
-	tag=$(echo "$tags" | prompt "Tag: ") || exit 1
+	url=$(echo "" | menu "Url: ") || exit 1
+	name=$(echo "" | menu "Name: ") || exit 1
+	tag=$(echo "$tags" | menu "Tag: ") || exit 1
 	echo "$url $name $tag" >>"$bookmarks"
 	notify-send "$name bookmark added"
 }
 
 bookmarks="${XDG_DATA_HOME}/bookmarks"
+
 tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
-
-tag=$(printf "Actions\n%s" "$tags" | prompt "Tag: ") || exit 1
-
+tag=$(printf "Actions\n%s" "$tags" | fuzzel -di -l 10 -p "Tag: ") || exit 1
 if [ "$tag" = "Actions" ]; then
-	edit=$(printf "Add\nDelete\nOpen" | input "Option: ") || exit 1
+	edit=$(
+		printf "Add\nDelete\nOpen" | fuzzel -di -l 3 -p "Option: "
+	) || exit 1
+
 	case $edit in
 	"Add") add ;;
 	"Delete") delete ;;
@@ -34,8 +34,9 @@ if [ "$tag" = "Actions" ]; then
 	esac
 else
 	bookmark=$(
-		ugrep -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort |
-			prompt "Bookmark: "
+		ugrep -w \
+			"$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | menu "Bookmark: "
 	) || exit 1
+
 	$BROWSER "$(ugrep -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
 fi

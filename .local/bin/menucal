@@ -1,6 +1,6 @@
 #!/bin/sh
 
-interval() { echo "$1" | tofi --prompt "${2}: "; }
+menu() { fuzzel -dip "$1"; }
 
 dates=""
 for i in $(seq 0 30); do
@@ -17,19 +17,15 @@ for hour in $(seq 1 12); do
     done
 done
 
-event=$(
-    echo "" | tofi \
-        --require-match false \
-        --prompt "Calendar Event: "
-) || exit 1
+event=$(fuzzel -dil 0 -w 100 -p "Calendar Event: ") || exit 1
 
-startdate=$(interval "$dates" "Start Date") || exit 1
-enddate=$(interval "$dates" "End Date") || exit 1
+startdate=$(menu "$dates" "Start Date") || exit 1
+enddate=$(menu "$dates" "End Date") || exit 1
 startdate=$(echo "$startdate" | cut -d ' ' -f 1)
 enddate=$(echo "$enddate" | cut -d ' ' -f 1)
 
-starttime=$(interval "$times" "Start Time")
-endtime=$(interval "$times" "End Time")
+starttime=$(menu "$times" "Start Time")
+endtime=$(menu "$times" "End Time")
 
 [ -z "$starttime" ] && [ -z "$endtime" ] &&
     args="$startdate $enddate $event" ||

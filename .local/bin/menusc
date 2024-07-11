@@ -33,12 +33,12 @@ editscreen() {
 askscreenshot() {
 	type=$(
 		printf "save\ncopy\nedit" |
-			tofi --prompt-text "Type: "
+			fuzzel -di -l 3 -p "Screenshot Action: "
 	) || exit 1
 
 	screenshot=$(
 		printf "shot\nscreen" |
-			tofi --prompt-text "Screenshot: "
+			fuzzel -di -l 2 -p "Screenshot: "
 	) || exit 1
 
 	case ${type}${screenshot} in

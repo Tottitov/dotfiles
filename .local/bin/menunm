@@ -27,14 +27,8 @@ connect() {
     notify-send -r 5 -u critical "WiFi is disabled" && exit 0
 
 networks=$(nmcli -g active,ssid,security,signal dev wifi)
-[ -n "$networks" ] && {
-    network=$(
-        echo "$networks" | tofi \
-            --horizontal false \
-            --height 25% \
-            --prompt-text "Network: "
-    ) || exit 1
-}
+[ -n "$networks" ] &&
+    network=$(echo "$networks" | fuzzel -di -w 50 -p "Network: ") || exit 1
 
 active=$(echo "$network" | cut -d ':' -f 1)
 ssid=$(echo "$network" | cut -d ':' -f 2)

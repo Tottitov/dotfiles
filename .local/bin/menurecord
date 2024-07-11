@@ -1,9 +1,5 @@
 #!/bin/sh
 
-prompt() {
-	tofi --prompt-text "$1"
-}
-
 checkcamera() {
 	camera=$(find /dev/video[02468] | tail -n 1)
 	[ -n "$camera" ] && return "$camera" ||
@@ -56,8 +52,8 @@ audio() {
 }
 
 askrecording() {
-	choice=$(printf "video\n\naudio\nsnippet\nwebcam" |
-		prompt "Recording: ")
+	choice=$(printf "video\naudio\nsnippet\nwebcam" |
+		fuzzel -di -l 4 -p "Recording: ")
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;
@@ -69,7 +65,7 @@ askrecording() {
 
 asktoend() {
 	response=$(printf "No\\nYes" |
-		prompt "Recording still active. End recording? ")
+		fuzzel -di -l 2 -p "Recording still active. End recording? ")
 	[ "$response" = "Yes" ] && killrecording || exit 0
 }
 
