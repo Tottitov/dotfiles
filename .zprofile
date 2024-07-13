@@ -26,6 +26,8 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 # Other settings
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
 export GTK_THEME="Arc-Dark"
 export XDG_SESSION_TYPE="wayland"

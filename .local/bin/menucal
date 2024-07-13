@@ -2,16 +2,16 @@
 
 menu() { fuzzel -dip "$1"; }
 
-dates=""
-for i in $(seq 0 30); do
+dates="$(date +'%m/%d/%Y %a')"
+for i in $(seq 1 30); do
     current="$(date -d "+${i} days" +'%m/%d/%Y %a')"
-    [ "$i" -eq 0 ] && dates="${dates}\n${current}" ||
-        dates="${dates}\n${current} (+${i})"
+    dates="${dates}\n${current} (+${i})"
 done
 
-times=""
+times="1:00 AM\n1:00 PM"
 for hour in $(seq 1 12); do
     for minute in 00 15 30 45; do
+        [ "$hour" -eq 1 ] && [ "$minute" -eq 00 ] && continue
         times="${times}\n${hour}:${minute} AM"
         times="${times}\n${hour}:${minute} PM"
     done
@@ -19,13 +19,13 @@ done
 
 event=$(fuzzel -dil 0 -w 100 -p "Calendar Event: ") || exit 1
 
-startdate=$(menu "$dates" "Start Date") || exit 1
-enddate=$(menu "$dates" "End Date") || exit 1
+startdate=$(echo "$dates" | menu "Start Date: ") || exit 1
+enddate=$(echo "$dates" | menu "End Date: ") || exit 1
 startdate=$(echo "$startdate" | cut -d ' ' -f 1)
 enddate=$(echo "$enddate" | cut -d ' ' -f 1)
 
-starttime=$(menu "$times" "Start Time")
-endtime=$(menu "$times" "End Time")
+starttime=$(echo "$times" | menu "Start Time: ")
+endtime=$(echo "$times" | menu "End Time: ")
 
 [ -z "$starttime" ] && [ -z "$endtime" ] &&
     args="$startdate $enddate $event" ||

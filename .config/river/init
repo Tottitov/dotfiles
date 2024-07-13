@@ -14,7 +14,7 @@ riverctl set-repeat 30 500
 riverctl rule-add ssd
 
 riverctl map normal Super Q close
-riverctl map normal Super+Alt Q spawn "prompt 'Leave river?' 'riverctl exit'"
+riverctl map normal Super+Alt Q spawn "prompt 'Quit: ' 'riverctl exit'"
 
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
@@ -45,8 +45,8 @@ riverctl map normal Super+Shift Return zoom
 riverctl map normal Super R spawn "$TERMINAL lf"
 riverctl map normal Super+Shift R spawn menupass
 
-riverctl map normal Super D spawn fuzzel
-riverctl map normal Super+Shift D spawn menubm
+riverctl map normal Super D spawn menubm
+riverctl map normal Super+Shift D spawn fuzzel
 
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super+Alt X spawn lock
@@ -69,8 +69,8 @@ riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super I spawn menucal
 riverctl map normal Super+Shift I spawn menubt
 
-riverctl map normal Super Backspace spawn "prompt 'Reboot Computer?' 'sudo reboot'"
-riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown Computer?' 'sudo shutdown -h now'"
+riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
+riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutdown -h now'"
 
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River'"
 

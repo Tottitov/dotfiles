@@ -1,3 +1,3 @@
 #!/bin/sh
 
-[ "$(printf "No\\nYes" | tofi --prompt-text "$1 ")" = "Yes" ] && $2
+[ "$(printf "No\\nYes" | fuzzel -di -l 2 -p "$1")" = "Yes" ] && $2
