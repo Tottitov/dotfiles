@@ -49,7 +49,7 @@ riverctl map normal Super D spawn menubm
 riverctl map normal Super+Shift D spawn fuzzel
 
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
-riverctl map normal Super+Alt X spawn lock
+riverctl map normal Super+Shift M spawn "$TERMINAL htop"
 
 riverctl map normal Super W spawn "$BROWSER"
 riverctl map normal Super+Shift W spawn menunm
@@ -84,6 +84,8 @@ riverctl map normal Super+Shift Print spawn menurecord kill
 riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86WLAN spawn airplane
 
+riverctl map normal Super+Alt X spawn lock
+
 riverctl map-pointer normal Shift BTN_LEFT move-view
 riverctl map-pointer normal Shift BTN_RIGHT resize-view
 
@@ -94,37 +96,37 @@ riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enable
 riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-trackpointing
 
 for mode in normal locked; do
-	riverctl map -repeat $mode Super Equal spawn "volume high"
-	riverctl map -repeat $mode Super Minus spawn "volume low"
-	riverctl map $mode Super+Shift Equal spawn "volume higher"
-	riverctl map $mode Super+Shift Minus spawn "volume lower"
+  riverctl map -repeat $mode Super Equal spawn "volume high"
+  riverctl map -repeat $mode Super Minus spawn "volume low"
+  riverctl map $mode Super+Shift Equal spawn "volume higher"
+  riverctl map $mode Super+Shift Minus spawn "volume lower"
 
-	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map $mode Super+Alt M spawn "volume mic"
+  riverctl map $mode Super+Shift M spawn "volume mute"
+  riverctl map $mode Super+Alt M spawn "volume mic"
 
-	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
-	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
-	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map $mode None XF86AudioMicMute spawn "volume mic"
+  riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
+  riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
+  riverctl map $mode None XF86AudioMute spawn "volume mute"
+  riverctl map $mode None XF86AudioMicMute spawn "volume mic"
 
-	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
-	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
+  riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
+  riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
 
-	riverctl map $mode Super P spawn "mpc -q toggle; mpdstatus"
-	riverctl map $mode Super+Alt P spawn "mpc -q clear; mpdstatus"
+  riverctl map $mode Super P spawn "mpc -q toggle; mpdstatus"
+  riverctl map $mode Super+Alt P spawn "mpc -q clear; mpdstatus"
 
-	riverctl map $mode Super Comma spawn "mpc -q prev; mpdstatus"
-	riverctl map $mode Super Period spawn "mpc -q next; mpdstatus"
+  riverctl map $mode Super Comma spawn "mpc -q prev; mpdstatus"
+  riverctl map $mode Super Period spawn "mpc -q next; mpdstatus"
 
-	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
-	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
+  riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
+  riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
 
-	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
+  riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
 
-	riverctl map $mode None XF86Tools spawn "mpc -q prev; mpdstatus"
-	riverctl map $mode None XF86Search spawn "mpc -q next; mpdstatus"
-	riverctl map $mode None XF86LaunchA spawn "mpc -q toggle; mpdstatus"
-	riverctl map $mode None XF86Explorer spawn "mpc -q clear; mpdstatus"
+  riverctl map $mode None XF86Tools spawn "mpc -q prev; mpdstatus"
+  riverctl map $mode None XF86Search spawn "mpc -q next; mpdstatus"
+  riverctl map $mode None XF86LaunchA spawn "mpc -q toggle; mpdstatus"
+  riverctl map $mode None XF86Explorer spawn "mpc -q clear; mpdstatus"
 done
 
 scratchTag=$((1 << 20))
@@ -137,10 +139,10 @@ riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ stickyTag))
 
 for i in $(seq 1 9); do
-	tags=$((1 << (i - 1)))
-	riverctl map normal Super "$i" set-focused-tags $((stickyTag + tags))
-	riverctl map normal Super+Shift "$i" set-view-tags $tags
-	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
+  tags=$((1 << (i - 1)))
+  riverctl map normal Super "$i" set-focused-tags $((stickyTag + tags))
+  riverctl map normal Super+Shift "$i" set-view-tags $tags
+  riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
 gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Dark"
@@ -150,15 +152,15 @@ dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTO
 
 executes="rivertile waybar kanshi wlsunset swaybg swayidle foot pipewire dunst mpd"
 for execute in $executes; do
-	pgrep -fx "$execute" && continue
-	case $execute in
-	"foot") "$execute" -s & ;;
-	"wlsunset") "$execute" -S 06:30 -s 21:00 & ;;
-	"swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
-	"swayidle") "$execute" -w \
-		timeout 300 "lock" \
-		timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" \
-		before-sleep "lock" & ;;
-	*) "$execute" & ;;
-	esac
+  pgrep -fx "$execute" && continue
+  case $execute in
+  "foot") "$execute" -s & ;;
+  "wlsunset") "$execute" -S 06:30 -s 21:00 & ;;
+  "swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
+  "swayidle") "$execute" -w \
+    timeout 300 "lock" \
+    timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" \
+    before-sleep "lock" & ;;
+  *) "$execute" & ;;
+  esac
 done >/dev/null 2>&1

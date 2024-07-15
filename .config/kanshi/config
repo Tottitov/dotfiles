@@ -1,10 +1,10 @@
 profile docked {
-	output "Acer Technologies SB220Q 0x82001DF5" scale 1
-	output eDP-1 disable
+    output "Acer Technologies SB220Q 0x82001DF5" scale 1
+    output eDP-1 disable
 }
 
 profile undocked {
-	output eDP-1 enable scale 1
+    output eDP-1 enable scale 1
 }
 
 profile hdmi {

@@ -1,27 +1,30 @@
 [global]
-    follow = keyboard
-	width = (0, 350)
-	alignment = left
-	vertical_alignment = center
-    offset = 12x12
-	padding = 15
-	frame_width = 0
-    frame_color = "#FFFFFF"
-    font = monospace 14
-	stack_duplicates = true
-	hide_duplicate_count = true
-	icon_path = /usr/share/icons/Arc/status/128/
-    icon_position = off
-	sort = yes
+  follow = keyboard
+  width = (0, 350)
+  alignment = left
+  vertical_alignment = center
+  offset = 12x12
+  padding = 15
+  frame_width = 0
+  frame_color = "#FFFFFF"
+  font = monospace 14
+  stack_duplicates = true
+  hide_duplicate_count = true
+  icon_path = /usr/share/icons/Arc/status/128/
+  icon_position = off
+  sort = yes
+
+[urgency_low]
+  background = "#16161e"
+  foreground = "#c0caf5"
+  frame_color = "#c0caf5"
 
 [urgency_normal]
-    foreground = "#FFFFFF"
-    background = "#000080"
-    highlight = "#FFFFFF"
-    timeout = 10
+  background = "#1a1b26"
+  foreground = "#c0caf5"
+  frame_color = "#c0caf5"
 
 [urgency_critical]
-    foreground = "#FFFFFF"
-    background = "#B00000"
-    highlight = "#FFFFFF"
-    timeout = 15
+  background = "#292e42"
+  foreground = "#db4b4b"
+  frame_color = "#db4b4b"

@@ -14,6 +14,7 @@ alias \
     vim="nvim" \
     ls="eza -la --color=auto --group-directories-first" \
     grep="ugrep --color=auto" \
+    stow="stow --dotfiles --adopt -vt ~ ." \
     ca="khal calendar today 30d" \
     up="sudo pacman -Syu" \
     rip="whipper cd rip" \

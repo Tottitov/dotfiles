@@ -1,15 +1,16 @@
 {
 	"modules-left": [
 		"river/tags",
-        "custom/clock"
+    "custom/record"
 	],
-    "modules-center": [],
-    "modules-right": [
-		"custom/record",
-        "custom/inbox",
-        "custom/weather",
-        "custom/signal",
+  "modules-center": [],
+  "modules-right": [
+    "custom/inbox",
+    "custom/weather",
+    "custom/signal",
 		"battery",
+    "custom/clock",
+    "bluetooth",
 		"tray"
 	],
 	"custom/clock": {
@@ -23,17 +24,21 @@
 		"adapter": "AC",
 		"states": {
 			"warning": 50,
-            "critical": 25
+      "critical": 25
 		},
 		"format": "{capacity}% {icon}",
-		"format-charging": "+{capacity}% 󰚥",
-        "format-icons": [" "," "," "," "," "],
+		"format-charging": "+{capacity}% 󰂄",
+    "format-icons": ["󰂎","󰁻","󰁾","󰂀","󰁹"],
 		"interval": 2
 	},
-    "custom/signal": {
-        "exec": "signal",
-        "interval": 15
-    },
+  "bluetooth": {
+    "format": "",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+  },
+  "custom/signal": {
+    "exec": "signal",
+    "interval": 15
+  },
 	"custom/inbox": {
 		"exec": "inbox",
 		"on-click": "$TERMINAL neomutt",

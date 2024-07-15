@@ -1,11 +1,11 @@
 #!/bin/sh
 
 forecast=$(
-	curl -fs --max-time 15 "https://wttr.in/?format=%C,%t"
+  curl -fs --max-time 15 "https://wttr.in/?format=%C,%t"
 ) || exit 1
 
 echo "$forecast" | ugrep -q "Unknown" && exit 1
 
-weather=$(echo "$forecast" | sed 's/[,\ ]\+/ /g')
+weather=$(echo "$forecast" | tr "," " ")
 
 echo "$weather" >"${XDG_DATA_HOME}/weather" && pkill -RTMIN+2 waybar

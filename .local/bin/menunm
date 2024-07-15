@@ -1,39 +1,34 @@
 #!/bin/sh
 
 checkpassword() {
-    if nmcli dev wifi con "$2" password "$1"; then
-        notify-send -r 5 "Password Passed" "$2 connected"
-    else
-        notify-send -r 5 -u critical "Incorrect password for $2"
-        nmcli con delete "$2"
-    fi
+  if nmcli dev wifi con "$2" password "$1"; then
+    notify-send -r 5 "Password Passed" "$2 connected"
+  else
+    notify-send -r 5 -u critical "Incorrect password for $2"
+    nmcli con delete "$2"
+  fi
 }
 
 connect() {
-    if ! nmcli -g name con show | ugrep -q "$1" && [ -n "$security" ]; then
-        password=$(
-            echo | tofi \
-                --hide-input true \
-                --require-match false \
-                --prompt-text "Password for $1: "
-        ) || exit 1
-        checkpassword "$password" "$1"
-    else
-        nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
-    fi >/dev/null 2>&1
+  if ! nmcli -g name con show | ugrep -q "$1" && [ -n "$security" ]; then
+    password=$(fuzzel -di -w 50 -l 0 --password -p "Password: ") || exit 1
+    checkpassword "$password" "$1"
+  else
+    nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
+  fi >/dev/null 2>&1
 }
 
 [ "$(nmcli radio wifi)" = "disabled" ] &&
-    notify-send -r 5 -u critical "WiFi is disabled" && exit 0
+  notify-send -r 5 -u critical "WiFi is disabled" && exit 0
 
 networks=$(nmcli -g active,ssid,security,signal dev wifi)
 [ -n "$networks" ] &&
-    network=$(echo "$networks" | fuzzel -di -w 50 -p "Network: ") || exit 1
+  network=$(echo "$networks" | fuzzel -di -w 50 -p "Network: ") || exit 1
 
 active=$(echo "$network" | cut -d ':' -f 1)
 ssid=$(echo "$network" | cut -d ':' -f 2)
 security=$(echo "$network" | cut -d ':' -f 3)
 
 ([ "$active" = "yes" ] &&
-    nmcli con down id "$ssid" >/dev/null 2>&1 &&
-    notify-send -r 5 "$ssid disconnected") || connect "$ssid"
+  nmcli con down id "$ssid" >/dev/null 2>&1 &&
+  notify-send -r 5 "$ssid disconnected") || connect "$ssid"
