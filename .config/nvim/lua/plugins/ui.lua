@@ -10,6 +10,9 @@ return {
         section_separators = { left = "", right = "" },
       },
       sections = {
+        lualine_b = {
+          { "branch", icon = "" },
+        },
         lualine_y = {
           { "progress", padding = { left = 1, right = 1 } },
         },

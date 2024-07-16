@@ -5,12 +5,12 @@
 	],
   "modules-center": [],
   "modules-right": [
+    "bluetooth",
     "custom/inbox",
     "custom/weather",
     "custom/signal",
 		"battery",
     "custom/clock",
-    "bluetooth",
 		"tray"
 	],
 	"custom/clock": {
@@ -33,7 +33,7 @@
 	},
   "bluetooth": {
     "format": "",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "format-connected-battery": "{device_battery_percentage}%  {device_alias}",
   },
   "custom/signal": {
     "exec": "signal",

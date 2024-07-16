@@ -49,7 +49,7 @@ riverctl map normal Super D spawn menubm
 riverctl map normal Super+Shift D spawn fuzzel
 
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
-riverctl map normal Super+Shift M spawn "$TERMINAL htop"
+riverctl map normal Super+Alt X spawn lock
 
 riverctl map normal Super W spawn "$BROWSER"
 riverctl map normal Super+Shift W spawn menunm
@@ -83,8 +83,6 @@ riverctl map normal Super+Shift Print spawn menurecord kill
 
 riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86WLAN spawn airplane
-
-riverctl map normal Super+Alt X spawn lock
 
 riverctl map-pointer normal Shift BTN_LEFT move-view
 riverctl map-pointer normal Shift BTN_RIGHT resize-view
