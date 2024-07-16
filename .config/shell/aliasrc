@@ -1,23 +1,29 @@
 #!/bin/sh
 
+nt() {
+  notes=$(find ~/documents/notes -mindepth 2 \
+    -path "${HOME}/documents/notes/.git/*" -prune -o \
+    -path "${HOME}/documents/notes/pics/*" -prune -o -printf '%P\n' | fzf)
+  [ -n "$notes" ] && $EDITOR "${HOME}/documents/notes/${notes}"
+}
+
 sc() {
-	script=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
-	[ -n "$script" ] && $EDITOR "${HOME}/.local/bin/${script}"
+  scripts=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
+  [ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
 }
 
 cf() {
-    config=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
-    [ -n "$config" ] && $EDITOR "${XDG_CONFIG_HOME}/${config}"
+  configs=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
+  [ -n "$configs" ] && $EDITOR "${XDG_CONFIG_HOME}/${configs}"
 }
 
 alias \
-    vim="nvim" \
-    ls="eza -la --color=auto --group-directories-first" \
-    grep="ugrep --color=auto" \
-    stow="stow --dotfiles --adopt -vt ~ ." \
-    ca="khal calendar today 30d" \
-    up="sudo pacman -Syu" \
-    rip="whipper cd rip" \
-    tag="beet import -i ~/media/music/" \
-    sf="scanimage --source 'ADF' -b --format=png" \
-    sb="scanimage --format=png --output-file scan.png -p"
+  vim="nvim" \
+  ls="eza -la --color=auto --group-directories-first" \
+  grep="ugrep --color=auto" \
+  ca="khal calendar today 30d" \
+  up="sudo pacman -Syu" \
+  rip="whipper cd rip" \
+  tag="beet import -i ~/media/music/" \
+  sf="scanimage --source 'ADF' -b --format=png" \
+  sb="scanimage --format=png --output-file scan.png -p"

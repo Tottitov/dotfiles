@@ -1,45 +1,45 @@
 #!/bin/sh
 
-menu() { fuzzel -di -w 20 -p "$1"; }
+input() { fuzzel -di -l 10 -w 20 -p "$1"; }
 
 delete() {
-	deletion=$(cut -d ' ' -f 2 "$bookmarks" | menu "Delete: ")
-	if [ -n "$deletion" ]; then
-		sed -i "/\b$deletion\b/d" "$bookmarks"
-		notify-send -u critical "$name bookmark deleted"
-	fi
+  deletion=$(cut -d ' ' -f 2 "$bookmarks" | input "Delete: ")
+  if [ -n "$deletion" ]; then
+    sed -i "/\b$deletion\b/d" "$bookmarks"
+    notify-send -u critical "$name bookmark deleted"
+  fi
 }
 
 add() {
-	url=$(echo "" | menu "Url: ") || exit 1
-	name=$(echo "" | menu "Name: ") || exit 1
-	tag=$(echo "$tags" | menu "Tag: ") || exit 1
-	echo "$url $name $tag" >>"$bookmarks"
-	notify-send "$name bookmark added"
+  url=$(echo "" | input "Url: ") || exit 1
+  name=$(echo "" | input "Name: ") || exit 1
+  tag=$(echo "$tags" | input "Tag: ") || exit 1
+  echo "$url $name $tag" >>"$bookmarks"
+  notify-send "$name bookmark added"
 }
 
 bookmarks="${XDG_DATA_HOME}/bookmarks"
 
 tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
 tag=$(
-	printf "Actions\n%s" "$tags" | fuzzel -di -l 10 -w 15 -p "Tag: "
+  printf "Actions\n%s" "$tags" | input "Tag: "
 ) || exit 1
 
 if [ "$tag" = "Actions" ]; then
-	edit=$(
-		printf "Add\nDelete\nOpen" | fuzzel -di -l 3 -w 15 -p "Option: "
-	) || exit 1
+  edit=$(
+    printf "Add\nDelete\nOpen" | input "Option: "
+  ) || exit 1
 
-	case $edit in
-	"Add") add ;;
-	"Delete") delete ;;
-	"Open") riverctl spawn "$TERMINAL -e $EDITOR $bookmarks" ;;
-	esac
+  case $edit in
+  "Add") add ;;
+  "Delete") delete ;;
+  "Open") riverctl spawn "$TERMINAL -e $EDITOR $bookmarks" ;;
+  esac
 else
-	bookmark=$(
-		ugrep -w \
-			"$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | menu "Bookmark: "
-	) || exit 1
+  bookmark=$(
+    ugrep -w \
+      "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | input "Bookmark: "
+  ) || exit 1
 
-	$BROWSER "$(ugrep -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
+  $BROWSER "$(ugrep -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
 fi
