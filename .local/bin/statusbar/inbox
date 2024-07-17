@@ -4,8 +4,6 @@ unread="$(find ~/.local/share/mail/*/INBOX/new -type f | wc -l)"
 
 [ "$unread" -eq 0 ] && exit 0
 
-if pgrep -x "mbsync" >/dev/null; then
-  echo "󰧫  ${unread}"
-else
-  echo "󰪱  ${unread}"
-fi
+pgrep -x "mbsync" >/dev/null && status="󰧫 " || status="󰪱 "
+
+echo "${status} ${unread} new email/s"

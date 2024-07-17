@@ -3,7 +3,7 @@
 camera=$(find /dev/video[02468] | tail -n 1)
 
 if [ -e "$camera" ]; then
-	pkill -f "$camera" || ffplay -fast "$camera" >/dev/null 2>&1
+  pkill -f "$camera" || mpv --quiet --profile=low-latency --untimed "$camera"
 else
-	notify-send "No camera detected"
+  notify-send "No camera detected"
 fi

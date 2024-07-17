@@ -1,5 +1,8 @@
 {
-  "modules-left": ["river/tags", "custom/record"],
+  "modules-left": [
+    "river/tags",
+    "custom/record"
+  ],
   "modules-center": [],
   "modules-right": [
     "bluetooth",
@@ -8,45 +11,51 @@
     "custom/signal",
     "battery",
     "custom/clock",
-    "tray",
+    "tray"
   ],
   "custom/clock": {
     "exec": "clock",
     "on-click": "month",
     "on-click-right": "schedule",
-    "interval": 60,
+    "interval": 60
   },
   "battery": {
     "bat": "BAT0",
     "adapter": "AC",
     "states": {
       "warning": 50,
-      "critical": 25,
+      "critical": 25
     },
     "format": "{capacity}% {icon}",
     "format-charging": "{capacity}% 󰂄",
-    "format-icons": ["󰂎", "󰁻", "󰁾", "󰂀", "󰁹"],
-    "interval": 2,
+    "format-icons": [
+      "󰂎",
+      "󰁻",
+      "󰁾",
+      "󰂀",
+      "󰁹"
+    ],
+    "interval": 2
   },
   "bluetooth": {
     "format": "",
-    "format-connected-battery": "{device_battery_percentage}%  {device_alias}",
+    "format-connected-battery": "{device_battery_percentage}%  {device_alias}"
   },
   "custom/signal": {
     "exec": "signal",
-    "interval": 15,
+    "interval": 15
   },
   "custom/inbox": {
     "exec": "inbox",
     "on-click": "$TERMINAL neomutt",
-    "signal": 4,
+    "signal": 4
   },
   "custom/weather": {
     "exec": "cat $XDG_DATA_HOME/weather",
-    "signal": 2,
+    "signal": 2
   },
   "custom/record": {
     "exec": "record",
-    "signal": 3,
-  },
+    "signal": 3
+  }
 }

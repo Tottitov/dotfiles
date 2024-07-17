@@ -1,11 +1,30 @@
 #!/bin/sh
 
+city=$(
+  curl -fs --max-time 10 "ipinfo.io/city"
+) || exit 1
+
 forecast=$(
-  curl -fs --max-time 15 "https://wttr.in/?format=%C,%t"
+  curl -fs --max-time 15 "https://wttr.in/${city}?format=%C,%t"
 ) || exit 1
 
 echo "$forecast" | ugrep -q "Unknown" && exit 1
 
-weather=$(echo "$forecast" | tr "," " ")
+weather=$(echo "$forecast" | cut -d ',' -f1 | sed 's/ *$//')
+case "$weather" in
+"Clear") icon=" " ;;
+"Sunny") icon=" " ;;
+"Partly cloudy" | "Cloudy") icon=" " ;;
+"Overcast") icon=" " ;;
+"Light rain" | "Showers" | "Drizzle") icon=" " ;;
+"Heavy rain" | "Rain") icon=" " ;;
+"Thunder"*) icon=" " ;;
+"Snow"*) icon=" " ;;
+"Mist" | "Fog" | "Haze") icon=" " ;;
+*) icon=" " ;;
+esac
 
-echo "$weather" >"${XDG_DATA_HOME}/weather" && pkill -RTMIN+2 waybar
+temperature=$(echo "$forecast" | rev | cut -d',' -f1 | rev | sed 's/^+//')
+
+echo "${icon} ${weather} ${temperature}" >"${XDG_DATA_HOME}/weather"
+pkill -RTMIN+2 waybar
