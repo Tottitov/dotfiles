@@ -1,12 +1,5 @@
 #!/bin/sh
 
-nt() {
-  notes=$(find ~/documents/notes -mindepth 2 \
-    -path "${HOME}/documents/notes/.git/*" -prune -o \
-    -path "${HOME}/documents/notes/pics/*" -prune -o -printf '%P\n' | fzf)
-  [ -n "$notes" ] && $EDITOR "${HOME}/documents/notes/${notes}"
-}
-
 sc() {
   scripts=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
   [ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
@@ -21,7 +14,7 @@ alias \
   vim="nvim" \
   ls="eza -la --color=auto --group-directories-first" \
   grep="ugrep --color=auto" \
-  ca="khal calendar today 30d" \
+  vw="khal calendar today 30d" \
   up="sudo pacman -Syu" \
   rip="whipper cd rip" \
   tag="beet import -i ~/media/music/" \

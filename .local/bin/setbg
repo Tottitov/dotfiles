@@ -3,12 +3,12 @@
 wallpaper="${XDG_DATA_HOME}/bg"
 
 [ -n "$1" ] && {
-    buffer=$(readlink -f "$1")
-    case "$(file --mime-type -b "$buffer")" in
-    image/*) ln -sf "$buffer" "$wallpaper" ;;
-    *) exit 1 ;;
-    esac
+  buffer=$(readlink -f "$1")
+  case "$(file --mime-type -b "$buffer")" in
+  image/*) ln -sf "$buffer" "$wallpaper" ;;
+  *) exit 1 ;;
+  esac
 }
 
-pgrep -x "swaybg" && killall "swaybg"
+pidof -q "swaybg" && killall "swaybg"
 setsid -f swaybg -m stretch -i "$wallpaper" >/dev/null 2>&1 &

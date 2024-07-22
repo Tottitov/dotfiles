@@ -1,7 +1,7 @@
 #!/bin/sh
 
 city=$(
-  curl -fs --max-time 10 "ipinfo.io/city"
+  curl -fs --max-time 15 "ipinfo.io/city"
 ) || exit 1
 
 forecast=$(
@@ -10,21 +10,21 @@ forecast=$(
 
 echo "$forecast" | ugrep -q "Unknown" && exit 1
 
+temperature=$(echo "$forecast" | awk -F ',' '{print $NF}' | sed 's/^+//')
 weather=$(echo "$forecast" | cut -d ',' -f1 | sed 's/ *$//')
+
 case "$weather" in
 "Clear") icon=" " ;;
 "Sunny") icon=" " ;;
 "Partly cloudy" | "Cloudy") icon=" " ;;
 "Overcast") icon=" " ;;
-"Light rain" | "Showers" | "Drizzle") icon=" " ;;
-"Heavy rain" | "Rain") icon=" " ;;
+"Light rain" | "Drizzle" | "Patchy rain"*) icon=" " ;;
+"Heavy rain" | "Rain" | "Showers") icon=" " ;;
 "Thunder"*) icon=" " ;;
 "Snow"*) icon=" " ;;
 "Mist" | "Fog" | "Haze") icon=" " ;;
 *) icon=" " ;;
 esac
-
-temperature=$(echo "$forecast" | rev | cut -d',' -f1 | rev | sed 's/^+//')
 
 echo "${icon} ${weather} ${temperature}" >"${XDG_DATA_HOME}/weather"
 pkill -RTMIN+2 waybar

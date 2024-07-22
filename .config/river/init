@@ -60,13 +60,13 @@ riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL tremc"
 
-riverctl map normal Super N spawn "$TERMINAL $EDITOR '$HOME/documents/notes/index.rmd'"
+riverctl map normal Super N spawn "$TERMINAL $EDITOR '$HOME/documents/notes/'"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 
-riverctl map normal Super I spawn menucal
+riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
 
 riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
@@ -143,14 +143,14 @@ for i in $(seq 1 9); do
   riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Dark"
-gsettings set "org.gnome.desktop.interface" icon-theme "Arc"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Adwaita-Dark"
+gsettings set "org.gnome.desktop.interface" icon-theme "Adwaita"
 
 dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 executes="rivertile waybar kanshi wlsunset swaybg swayidle foot pipewire dunst mpd"
 for execute in $executes; do
-  pgrep -fx "$execute" && continue
+  pidof -q "$execute" && continue
   case $execute in
   "foot") "$execute" -s & ;;
   "wlsunset") "$execute" -S 06:30 -s 21:00 & ;;

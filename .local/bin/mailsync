@@ -1,10 +1,10 @@
 #!/bin/sh
 
-pgrep -x "mbsync" >/dev/null && exit 0
+pidof -q "mbsync" && exit 0
 
 mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" &
 
-while pgrep -x "mbsync" >/dev/null; do
+while pidof -q "mbsync"; do
   pkill -RTMIN+4 waybar && sleep 1
 done
 
