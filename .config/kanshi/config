@@ -8,7 +8,6 @@ profile docked {
 profile undocked {
     output eDP-1 enable scale 1
     exec nmcli radio wifi on
-    exec nmcli dev disconnect eth0
 }
 
 profile hdmi {

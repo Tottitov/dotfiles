@@ -7,25 +7,25 @@
 @define-color bluetooth #2ac3de;
 
 * {
-	font-family: monospace;
-	font-size: 14px;
-	min-height: 0px;
+  font-family: monospace;
+  font-size: 15px;
+  min-height: 0px;
 }
 
 window#waybar {
-	color: @occupied;
+  color: @occupied;
   background: @background;
 }
 
 #tags button {
-	padding: 0px 2px;
-	color: @unfocused;
-	border-radius: 0px;
+  padding: 0px 5px;
+  color: @unfocused;
+  border-radius: 0px;
 }
 
 #tags button.occupied {
   color: @occupied;
-	font-weight: bold;
+  font-weight: bold;
 }
 
 #tags button.focused {
@@ -61,5 +61,5 @@ window#waybar {
 #custom-inbox,
 #custom-record,
 #custom-clock {
-  padding: 0px 10px;
+  padding: 0px 8px;
 }

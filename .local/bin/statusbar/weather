@@ -10,21 +10,8 @@ forecast=$(
 
 echo "$forecast" | ugrep -q "Unknown" && exit 1
 
-temperature=$(echo "$forecast" | awk -F ',' '{print $NF}' | sed 's/^+//')
 weather=$(echo "$forecast" | cut -d ',' -f1 | sed 's/ *$//')
+temperature=$(echo "$forecast" | awk -F ',' '{print $NF}' | sed 's/^+//')
 
-case "$weather" in
-"Clear") icon=" " ;;
-"Sunny") icon=" " ;;
-"Partly cloudy" | "Cloudy") icon=" " ;;
-"Overcast") icon=" " ;;
-"Light rain" | "Drizzle" | "Patchy rain"*) icon=" " ;;
-"Heavy rain" | "Rain" | "Showers") icon=" " ;;
-"Thunder"*) icon=" " ;;
-"Snow"*) icon=" " ;;
-"Mist" | "Fog" | "Haze") icon=" " ;;
-*) icon=" " ;;
-esac
-
-echo "${icon} ${weather} ${temperature}" >"${XDG_DATA_HOME}/weather"
+echo "$temperature $weather" >"${XDG_DATA_HOME}/weather"
 pkill -RTMIN+2 waybar
