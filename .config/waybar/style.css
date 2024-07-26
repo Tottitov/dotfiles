@@ -2,13 +2,12 @@
 @define-color background #000000;
 @define-color occupied #FFFFFF;
 @define-color unfocused #c0caf5;
-@define-color warning #ff9e64;
 @define-color urgent #db4b4b;
 @define-color bluetooth #2ac3de;
 
 * {
   font-family: monospace;
-  font-size: 15px;
+  font-size: 16px;
   min-height: 0px;
 }
 
@@ -18,9 +17,15 @@ window#waybar {
 }
 
 #tags button {
-  padding: 0px 5px;
+  padding: 0px 3px;
   color: @unfocused;
   border-radius: 0px;
+}
+
+#tags button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  background: inherit;
 }
 
 #tags button.occupied {
@@ -41,18 +46,7 @@ window#waybar {
   color: @urgent;
 }
 
-#battery.warning {
-  color: @warning;
-}
-
-#battery.critical {
-  color: @urgent;
-}
-
-#bluetooth.connected {
-  color: @bluetooth;
-}
-
+#mpd,
 #tray,
 #bluetooth,
 #battery,

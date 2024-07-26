@@ -45,8 +45,8 @@ riverctl map normal Super+Shift Return zoom
 riverctl map normal Super R spawn "$TERMINAL lf"
 riverctl map normal Super+Shift R spawn menupass
 
-riverctl map normal Super D spawn menubm
-riverctl map normal Super+Shift D spawn fuzzel
+riverctl map normal Super D spawn fuzzel
+riverctl map normal Super+Shift D spawn menubm
 
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super+Alt X spawn lock
@@ -72,7 +72,7 @@ riverctl map normal Super+Shift I spawn menubt
 riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutdown -h now'"
 
-riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River'"
+riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
 riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
@@ -110,21 +110,21 @@ for mode in normal locked; do
   riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
   riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
 
-  riverctl map $mode Super P spawn "mpc -q toggle; mpdstatus"
-  riverctl map $mode Super+Alt P spawn "mpc -q clear; mpdstatus"
+  riverctl map $mode Super P spawn "mpc -q toggle"
+  riverctl map $mode Super+Alt P spawn "mpc -q stop && mpc -q clear"
 
-  riverctl map $mode Super Comma spawn "mpc -q prev; mpdstatus"
-  riverctl map $mode Super Period spawn "mpc -q next; mpdstatus"
+  riverctl map $mode Super Comma spawn "mpc -q prev"
+  riverctl map $mode Super Period spawn "mpc -q next"
 
   riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
   riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
 
   riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
 
-  riverctl map $mode None XF86Tools spawn "mpc -q prev; mpdstatus"
-  riverctl map $mode None XF86Search spawn "mpc -q next; mpdstatus"
-  riverctl map $mode None XF86LaunchA spawn "mpc -q toggle; mpdstatus"
-  riverctl map $mode None XF86Explorer spawn "mpc -q clear; mpdstatus"
+  riverctl map $mode None XF86Tools spawn "mpc -q prev"
+  riverctl map $mode None XF86Search spawn "mpc -q next"
+  riverctl map $mode None XF86LaunchA spawn "mpc -q toggle"
+  riverctl map $mode None XF86Explorer spawn "mpc -q stop && mpc -q clear"
 done
 
 scratchTag=$((1 << 20))
@@ -143,8 +143,7 @@ for i in $(seq 1 9); do
   riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-gsettings set "org.gnome.desktop.interface" gtk-theme "Adwaita-Dark"
-gsettings set "org.gnome.desktop.interface" icon-theme "Adwaita"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Darker"
 
 dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 

@@ -1,9 +1,12 @@
 {
+  "height": 25,
   "modules-left": [
     "river/tags",
     "custom/record"
   ],
-  "modules-center": [],
+  "modules-center": [
+    "mpd"
+  ],
   "modules-right": [
     "bluetooth",
     "custom/inbox",
@@ -27,19 +30,28 @@
       "critical": 25
     },
     "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󰂄",
+    "format-charging": "{capacity}% <span color=\"#9ece6a\">󰂄</span>",
     "format-icons": [
-      "󰂎",
-      "󰁻",
-      "󰁾",
-      "󰂀",
-      "󰁹"
+      "<span color=\"#f7768e\">󰂎</span>",
+      "<span color=\"#f7768e\">󰁻</span>",
+      "<span color=\"#e0af68\">󰁾</span>",
+      "<span color=\"#9ece6a\">󰂀</span>",
+      "<span color=\"#9ece6a\">󰁹</span>"
     ],
     "interval": 2
   },
   "bluetooth": {
     "format": "",
-    "format-connected-battery": "{device_battery_percentage}%  {device_alias}"
+    "format-connected-battery": "{device_battery_percentage}% <span color=\"#2ac3de\"></span"
+  },
+  "mpd": {
+    "format": "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+    "format-stopped": "",
+    "interval": 10,
+    "state-icons": {
+      "paused": "<span color=\"#ff9e64\"></span>",
+      "playing": "<span color=\"#ff9e64\"></span>"
+    }
   },
   "custom/signal": {
     "exec": "signal",

@@ -2,7 +2,6 @@ profile docked {
     output "Acer Technologies SB220Q 0x82001DF5" scale 1
     output eDP-1 disable
     exec nmcli radio wifi off
-    exec nmcli dev connect eth0
 }
 
 profile undocked {
