@@ -23,18 +23,19 @@ export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-# Other settings
+# Setting variables
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
 export GTK_THEME="Arc-Dark"
+export SDL_VIDEODRIVER="wayland"
 export XDG_SESSION_TYPE="wayland"
 export MOZ_ENABLE_WAYLAND=1
 
-# Create zsh cache dir if not there
+# Create zsh cache dir if it does not exist
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
-# Start river window manager in tty
+# Start river window manager in tty1
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
 exec dbus-launch --exit-with-session river -no-xwayland >/dev/null 2>&1

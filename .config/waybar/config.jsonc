@@ -2,15 +2,14 @@
   "height": 25,
   "modules-left": [
     "river/tags",
-    "custom/record"
-  ],
-  "modules-center": [
     "mpd"
   ],
+  "modules-center": [],
   "modules-right": [
-    "bluetooth",
+    "custom/record",
     "custom/inbox",
     "custom/weather",
+    "bluetooth",
     "custom/signal",
     "battery",
     "custom/clock",
@@ -42,7 +41,7 @@
   },
   "bluetooth": {
     "format": "",
-    "format-connected-battery": "{device_battery_percentage}% <span color=\"#2ac3de\"></span"
+    "format-connected-battery": "{device_battery_percentage}% <span color=\"#2ac3de\"></span>"
   },
   "mpd": {
     "format": "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
