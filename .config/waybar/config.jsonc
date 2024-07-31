@@ -1,9 +1,6 @@
 {
   "height": 25,
-  "modules-left": [
-    "river/tags",
-    "mpd"
-  ],
+  "modules-left": ["river/tags", "mpd"],
   "modules-center": [],
   "modules-right": [
     "custom/record",

@@ -1,0 +1,23 @@
+theme = "tokyonight"
+
+[editor]
+line-number = "relative"
+mouse = false
+true-color = true
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+right = ["diagnostics", "file-type", "position"]
+
+[editor.lsp]
+auto-signature-help = false
+display-messages = true
+
+[editor.indent-guides]
+render = true

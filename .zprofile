@@ -4,7 +4,7 @@
 export PATH="$PATH:$(find ~/.local/bin -type d -printf %p:)"
 
 # Program variables
-export EDITOR="nvim"
+export EDITOR="helix"
 export TERMINAL="footclient"
 export BROWSER="firefox"
 
