@@ -1,20 +1,11 @@
 [[language]]
-name = "typescript"
-language-servers = [ "vscode-eslint-language-server" ]
-
-[[language]]
 name = "bash"
 formatter = { command = "shfmt" }
 auto-format = true
 
 [[language]]
 name = "lua"
-formatter = { command = "stylua", args = [ "-" ] }
-auto-format = true
-
-[[language]]
-name = "toml"
-formatter = { command = "taplo", args = ["format", "-"] }
+formatter = { command = "stylua", args = ["-"] }
 auto-format = true
 
 [[language]]
@@ -45,6 +36,7 @@ auto-format = true
 
 [[language]]
 name = "typescript"
+language-servers = ["vscode-eslint-language-server"]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
