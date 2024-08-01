@@ -1,17 +1,17 @@
 #!/bin/sh
 
 city=$(
-  curl -fs --max-time 15 "ipinfo.io/city"
+	curl -fs --max-time 15 "ipinfo.io/city"
 ) || exit 1
 
 forecast=$(
-  curl -fs --max-time 15 "https://v2.wttr.in/${city}?format=%c:%t"
+	curl -fs --max-time 15 "https://v2.wttr.in/${city}?format=%C:%t"
 ) || exit 1
 
 echo "$forecast" | ugrep -q "Unknown" && exit 1
 
-weather=$(echo "$forecast" | cut -d ':' -f1 | tr -d ' ')
+weather=$(echo "$forecast" | cut -d ':' -f1 | xargs)
 temperature=$(echo "$forecast" | awk -F ':' '{print $NF}')
 
-echo "$temperature $weather" >"${XDG_DATA_HOME}/weather"
+echo "$temperature <span color=\"#bb9af7\">${weather}</span>" >"${XDG_DATA_HOME}/weather"
 pkill -RTMIN+2 waybar

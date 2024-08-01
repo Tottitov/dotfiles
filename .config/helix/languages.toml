@@ -1,5 +1,6 @@
 [[language]]
 name = "bash"
+shebangs = ["sh"]
 formatter = { command = "shfmt" }
 auto-format = true
 

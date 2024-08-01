@@ -1,6 +1,0 @@
-calendar = ~/.config/when/calendar
-calendar_today_style = fgred,bold
-editor = nvim
-neighboring_months = 0
-header = 0
-past = 0

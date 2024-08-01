@@ -1,22 +1,30 @@
 #!/bin/sh
 
 sc() {
-  scripts=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
-  [ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
+	scripts=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
+	[ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
 }
 
 cf() {
-  configs=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
-  [ -n "$configs" ] && $EDITOR "${XDG_CONFIG_HOME}/${configs}"
+	configs=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
+	[ -n "$configs" ] && $EDITOR "${XDG_CONFIG_HOME}/${configs}"
 }
 
 alias \
-  hx="helix" \
-  ls="eza -la --color=auto --group-directories-first" \
-  grep="ugrep --color=auto" \
-  vw="khal calendar today 30d" \
-  up="sudo pacman -Syu" \
-  rip="whipper cd rip" \
-  tag="beet import -i ~/media/music/" \
-  sf="scanimage --source 'ADF' -b --format=png" \
-  sb="scanimage --format=png --output-file scan.png -p"
+	vim="helix" \
+	ls="eza -la --color=auto --group-directories-first" \
+	grep="ugrep --color=auto" \
+	ts="tmux switch -t" \
+	ta="tmux attach -t" \
+	tn="tmux new" \
+	tkss="tmux kill-session -t" \
+	tksv="tmux kill-server" \
+	tls="tmux list-sessions" \
+	ga="git add" \
+	gc="git commit" \
+	vw="khal calendar today 30d" \
+	up="sudo pacman -Syu" \
+	rip="whipper cd rip" \
+	tag="beet import -i ~/media/music/" \
+	sf="scanimage --source 'ADF' -b --format=png" \
+	sb="scanimage --format=png --output-file scan.png -p"
