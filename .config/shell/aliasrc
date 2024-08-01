@@ -22,6 +22,7 @@ alias \
 	tls="tmux list-sessions" \
 	ga="git add" \
 	gc="git commit" \
+	gp="git push" \
 	vw="khal calendar today 30d" \
 	up="sudo pacman -Syu" \
 	rip="whipper cd rip" \
