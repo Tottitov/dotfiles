@@ -1,4 +1,5 @@
 theme = "tokyonight"
+
 [editor]
 line-number = "relative"
 true-color = true

@@ -1,18 +1,15 @@
-source "${XDG_CONFIG_HOME}/shell/aliasrc"
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 PURE_PROMPT_SYMBOL=''
 PURE_PROMPT_VICMD_SYMBOL=''
 prompt pure
 
-pureClearScreen() {
+clear() {
 	zle -I
 	print -n '\e[2J\e[4;0H'
 	zle .redisplay
 }
-zle -N clear-screen pureClearScreen
+zle -N clear-screen clear
 
 autoload -Uz compinit && compinit -C
 zstyle ':completion:*' menu select
@@ -38,3 +35,7 @@ setopt hist_find_no_dups
 
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
+
+source "${XDG_CONFIG_HOME}/shell/aliasrc"
+source "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
