@@ -1,8 +1,9 @@
-@define-color focused #483248;
-@define-color background #000000;
-@define-color occupied #FFFFFF;
+@define-color background #1a1b26;
+@define-color foreground #a9b1d6;
+@define-color focused #bb9af7;
 @define-color unfocused #c0caf5;
-@define-color urgent #db4b4b;
+@define-color occupied #565f89;
+@define-color urgent #f7768e;
 @define-color bluetooth #2ac3de;
 
 * {
@@ -12,7 +13,7 @@
 }
 
 window#waybar {
-  color: @occupied;
+  color: @foreground;
   background: @background;
 }
 
@@ -34,8 +35,7 @@ window#waybar {
 }
 
 #tags button.focused {
-  color: @occupied;
-  background: @focused;
+  color: @focused;
 }
 
 #tags button.urgent {
@@ -46,10 +46,10 @@ window#waybar {
   color: @urgent;
 }
 
-#mpd,
 #tray,
 #bluetooth,
 #battery,
+#custom-mpd,
 #custom-weather,
 #custom-signal,
 #custom-inbox,

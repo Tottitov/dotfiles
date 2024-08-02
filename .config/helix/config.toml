@@ -6,7 +6,6 @@ true-color = true
 bufferline = "multiple"
 statusline.left = ["mode", "file-name", "read-only-indicator"]
 statusline.right = ["version-control", "spacer", "diagnostics", "file-type", "position"]
-file-picker.max-depth = 4
 cursor-shape.insert = "bar"
 indent-guides.render = true
 

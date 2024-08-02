@@ -1,6 +1,6 @@
 {
   "height": 25,
-  "modules-left": ["river/tags", "mpd"],
+  "modules-left": ["river/tags", "custom/mpd"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
@@ -40,16 +40,6 @@
     "format": "",
     "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}%"
   },
-  "mpd": {
-    "format": "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
-    "format-stopped": "",
-    "format-disconnected": "",
-    "interval": 10,
-    "state-icons": {
-      "paused": "<span color=\"#ff9e64\"></span>",
-      "playing": "<span color=\"#ff9e64\"></span>"
-    }
-  },
   "custom/signal": {
     "exec": "signal",
     "interval": 15
@@ -58,6 +48,11 @@
     "exec": "inbox",
     "on-click": "$TERMINAL neomutt",
     "signal": 4
+  },
+  "custom/mpd": {
+    "exec": "player",
+    "exec-if": "mpc current",
+    "interval": 1
   },
   "custom/weather": {
     "exec": "cat $XDG_DATA_HOME/weather",
