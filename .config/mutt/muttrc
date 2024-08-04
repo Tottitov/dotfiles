@@ -11,30 +11,30 @@ set status_format = "[ Folder: %f ] [ %m messages%?n? (%n new)? ]"
 set display_filter = "sed -e '/\\[--.* --\\]/d'"
 set mailcap_path = "/home/tony/.config/mutt/mailcap"
 set sort_aux = reverse-last-date-received
-set sort = threads
-set pager_index_lines = 5
-set delete                              # enable delete without confirmation
+set sort = threads                      # group relayed emails together
+set pager_index_lines = 5               # set inbox view max when viewing mail
 unset tilde                             # hide ~ on empty lines or end of a message
 unset markers                           # hide \ for newlines
 unset help                              # hide help bar on top of index
 unset mime_forward                      # forward attachments as part of the body
-unset wait_key                          # skip proceed and go to index
+set delete                              # skip confirm when deleting message
+unset confirmappend                     # skip confirm when appending message
+unset wait_key                          # skip confirm and go to index
 unset mark_old                          # read/new only no old
 unset sig_dashes                        # no dashes before signature
-unset confirmappend                     # no need for confirmation
 
 set implicit_autoview = yes
 auto_view text/html text/calendar application/ics
 alternative_order text/html text/plain text/enriched text/*
 
 # Forward/Reply options
-set forward_format = "Fwd: %s"          # format subject when forwarding
-set attribution = "On %d, %n wrote:"    # format of quoting header
+set forward_format = "Fwd: %s"          # format of subject when forwarding
+set attribution = "On %d, %n wrote:"    # format of the quoted message header when replying
 set fcc_attach                          # save attachments w/ body
-set forward_decode                      # decode when forwarding
-set forward_quote                       # include message in forwards
-set reverse_name                        # reply as whomever it was to
-set reply_to                            # reply to Reply to: field
+set forward_decode                      # decodes MIME parts when forwarding a message
+set forward_quote                       # includes the original message in the forwarded message
+set reverse_name                        # sends the reply from to original sender
+set reply_to                            # replies go to the address specified in the "Reply-To"
 
 # Navigation
 bind index,pager g noop
@@ -47,9 +47,8 @@ bind index h noop
 bind pager,attach h exit
 
 bind index j next-entry
-bind pager j next-line
-
 bind index k previous-entry
+bind pager j next-line
 bind pager k previous-line
 
 bind index l display-message

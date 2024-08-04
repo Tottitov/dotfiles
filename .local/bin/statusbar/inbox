@@ -2,11 +2,7 @@
 
 unread="$(find ~/.local/share/mail/*/INBOX/new -type f | wc -l)"
 
-[ "$unread" -eq 0 ] && exit 0
+[ "$unread" -eq 0 ] && exit 1
 
-sync="<span color =\"#f7768e\">󰗡</span>"
-done="<span color =\"#9ece6a\">󰗠</span>"
-
-pgrep -x "mbsync" >/dev/null && status=$sync || status=$done
-
-echo "$status $unread"
+pgrep -x "mbsync" >/dev/null && color="#f7768e" || color="#9ece6a"
+echo "<span color =\"${color}\"></span> $unread"
