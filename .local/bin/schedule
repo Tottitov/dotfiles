@@ -1,3 +1,5 @@
 #!/bin/sh
 
-notify-send "Upcoming Events" "$(when | cut -c 12-)"
+events=$(khal list today 30d) || exit 1
+
+notify-send "Upcoming Events" "\n$events"

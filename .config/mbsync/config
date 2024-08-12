@@ -4,7 +4,7 @@ Port 993
 User tonylenguyen@fastmail.com
 PassCmd "pass neomutt/personal/fastmail"
 AuthMechs LOGIN
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore fastmail-remote
@@ -18,8 +18,7 @@ Subfolders Verbatim
 Channel fastmail
 Far :fastmail-remote:
 Near :fastmail-local:
-Patterns *
-CopyArrivalDate yes
+Patterns * INBOX* !"Spam" !"Snoozed" !"Archive"
 Expunge Both
 Create Both
 SyncState *

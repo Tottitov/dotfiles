@@ -51,8 +51,7 @@
   },
   "custom/mpd": {
     "exec": "player",
-    "exec-if": "mpc current",
-    "interval": 1
+    "signal": 1
   },
   "custom/weather": {
     "exec": "cat $XDG_DATA_HOME/weather",

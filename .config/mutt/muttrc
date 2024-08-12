@@ -2,7 +2,7 @@ source /home/tony/.config/mutt/accounts/tonylenguyen@fastmail.com.muttrc
 
 # Macros
 macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
-macro index F "<vfolder-from-query>"
+macro index \Cf "<vfolder-from-query>"
 
 # Main options
 set send_charset = "utf-8:iso-8859-1:us-ascii"

@@ -1,23 +1,27 @@
 #!/bin/sh
 
+riverctl default-layout rivertile
+riverctl default-attach-mode bottom
+
 riverctl border-width 2
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x665C54
 riverctl border-color-urgent 0xFABD2F
-riverctl default-layout rivertile
-riverctl default-attach-mode bottom
+riverctl rule-add ssd
 
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl focus-follows-cursor normal
 riverctl set-repeat 30 500
-riverctl rule-add ssd
 
 riverctl map normal Super Q close
 riverctl map normal Super+Alt Q spawn "prompt 'Quit: ' 'riverctl exit'"
 
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
+
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
 
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
@@ -60,7 +64,7 @@ riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL tremc"
 
-riverctl map normal Super N spawn "$TERMINAL $EDITOR '$HOME/notes/'"
+riverctl map normal Super N spawn "$TERMINAL $EDITOR ${HOME}/notes/"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 
 riverctl map normal Super C spawn menucalc
@@ -76,22 +80,20 @@ riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null 
 
 riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
-riverctl map normal Alt Print spawn menusc
+riverctl map normal Control+Shift Print spawn menusc
 
 riverctl map normal Super Print spawn menurecord
-riverctl map normal Super+Shift Print spawn menurecord kill
+riverctl map normal Super+Shift Print spawn "menurecord kill"
 
 riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86WLAN spawn airplane
 
-riverctl map-pointer normal Shift BTN_LEFT move-view
-riverctl map-pointer normal Shift BTN_RIGHT resize-view
-
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" tap enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" accel-profile adaptive
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" natural-scroll enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-typing enabled
-riverctl input "pointer-1739-0-Synaptics_TM3053-006" disable-while-trackpointing
+touchpad="pointer-1739-0-Synaptics_TM3053-006"
+riverctl input "$touchpad" tap enabled
+riverctl input "$touchpad" accel-profile adaptive
+riverctl input "$touchpad" natural-scroll enabled
+riverctl input "$touchpad" disable-while-typing enabled
+riverctl input "$touchpad" disable-while-trackpointing enabled
 
 for mode in normal locked; do
 	riverctl map -repeat $mode Super Equal spawn "volume high"
@@ -110,21 +112,21 @@ for mode in normal locked; do
 	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
 	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
 
-	riverctl map $mode Super P spawn "mpc -q toggle"
-	riverctl map $mode Super+Alt P spawn "mpc -q stop && mpc -q clear"
+	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
+	riverctl map $mode Super+Alt P spawn "mpc -q clear & pkill -RTMIN+1 waybar"
 
-	riverctl map $mode Super Comma spawn "mpc -q prev"
-	riverctl map $mode Super Period spawn "mpc -q next"
+	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
+	riverctl map $mode Super Period spawn "mpc -q next & pkill -RTMIN+1 waybar"
 
-	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
-	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
+	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5% & pkill -RTMIN+1 waybar"
+	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5% & pkill -RTMIN+1 waybar"
 
-	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
+	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0% & pkill -RTMIN+1 waybar"
 
-	riverctl map $mode None XF86Tools spawn "mpc -q prev"
-	riverctl map $mode None XF86Search spawn "mpc -q next"
-	riverctl map $mode None XF86LaunchA spawn "mpc -q toggle"
-	riverctl map $mode None XF86Explorer spawn "mpc -q stop && mpc -q clear"
+	riverctl map $mode None XF86Tools spawn ""
+	riverctl map $mode None XF86Search spawn fuzzel
+	riverctl map $mode None XF86LaunchA spawn eject
+	riverctl map $mode None XF86Explorer spawn ""
 done
 
 scratchTag=$((1 << 20))
@@ -145,18 +147,23 @@ done
 
 gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Darker"
 
-dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+dbus-update-activation-environment \
+	SEATD_SOCK \
+	WAYLAND_DISPLAY \
+	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset swaybg swayidle foot pipewire dunst mpd"
+executes="rivertile waybar kanshi wlsunset 
+swaybg swayidle foot pipewire dunst mpd"
+
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") "$execute" -s & ;;
-	"wlsunset") "$execute" -S 06:30 -s 21:00 & ;;
+	"wlsunset") "$execute" -S 07:00 -s 21:00 & ;;
 	"swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
 	"swayidle") "$execute" -w \
-		timeout 300 "lock" \
-		timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" \
+		timeout 600 "lock" \
+		timeout 1200 "wlopm --off '*'" resume "wlopm --on '*'" \
 		before-sleep "lock" & ;;
 	*) "$execute" & ;;
 	esac

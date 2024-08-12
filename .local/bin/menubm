@@ -1,6 +1,6 @@
 #!/bin/sh
 
-menu() { fuzzel -di -l 5 -w 20 -p "$1"; }
+menu() { fuzzel -l 5 -w 20 -dip "$1"; }
 
 bookmarks="${XDG_DATA_HOME}/bookmarks"
 

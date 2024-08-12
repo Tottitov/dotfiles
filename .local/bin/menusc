@@ -38,7 +38,7 @@ askscreenshot() {
 
 	screenshot=$(
 		printf "shot\nscreen" |
-			fuzzel -di -l 2 -p "Screenshot: "
+			fuzzel -l 2 -dip "Screenshot: "
 	) || exit 1
 
 	case ${type}${screenshot} in

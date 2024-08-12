@@ -11,7 +11,7 @@ checkpassword() {
 
 connect() {
 	if ! nmcli -g name con show | ugrep -q "$1" && [ -n "$security" ]; then
-		password=$(fuzzel -di -w 50 -l 0 --password -p "Password: ") || exit 1
+		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 1
 		checkpassword "$password" "$1"
 	else
 		nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"

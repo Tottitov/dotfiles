@@ -19,6 +19,7 @@ current_item_inactive_column_suffix = "$/r$(end)"
 [statusbar]
 progressbar_look = "─╼ "
 progressbar_color = "green"
+statusbar_visibility = "no"
 
 [global]
 colors_enabled = "yes"
@@ -32,3 +33,4 @@ use_console_editor = "yes"
 lyrics_directory = "~/.config/ncmpcpp/lyrics"
 media_library_primary_tag = "album_artist"
 media_library_albums_split_by_date = "no"
+execute_on_song_change="pkill -RTMIN+1 waybar"

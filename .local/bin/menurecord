@@ -53,7 +53,7 @@ audio() {
 
 askrecording() {
 	choice=$(printf "video\naudio\nsnippet\nwebcam" |
-		fuzzel -di -l 4 -p "Recording: ")
+		fuzzel -l 4 -dip "Recording: ")
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;
@@ -65,7 +65,7 @@ askrecording() {
 
 asktoend() {
 	response=$(printf "No\\nYes" |
-		fuzzel -di -l 2 -p "Recording still active. End recording? ")
+		fuzzel -l 2 -dip "Recording still active. End recording? ")
 	[ "$response" = "Yes" ] && killrecording || exit 0
 }
 

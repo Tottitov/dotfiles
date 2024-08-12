@@ -2,7 +2,7 @@
 
 answer=$(echo "scale=2; $1" | bc -l)
 
-action=$(printf "Copy\nClear" | fuzzel -di -l 2 -p "$answer") || exit 1
+action=$(printf "Copy\nClear" | fuzzel -l 2 -dip "$answer") || exit 1
 
 case $action in
 "Clear") $0 ;;
