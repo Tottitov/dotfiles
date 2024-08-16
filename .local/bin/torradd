@@ -1,6 +1,6 @@
 #!/bin/sh
 
 (transmission-remote \
-	-n "tottitov:$(pass transmission)" \
+	-n "tottitov:$(pass localhost:9091)" \
 	-a "$@" >/dev/null && notify-send "Torrent successfully added") ||
 	notify-send "Torrent failed to add"

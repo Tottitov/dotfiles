@@ -96,8 +96,8 @@ riverctl focus-follows-cursor normal
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
-riverctl rule-add ssd -app-id firefox
-riverctl rule-add float -title 'Firefox — Sharing Indicator'
+riverctl rule-add -app-id firefox ssd
+riverctl rule-add -title 'Firefox — Sharing Indicator' float
 
 riverctl border-width 2
 riverctl border-color-focused 0xBDAE93
@@ -125,10 +125,7 @@ done
 
 gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Darker"
 
-dbus-update-activation-environment \
-	SEATD_SOCK \
-	WAYLAND_DISPLAY \
-	XDG_CURRENT_DESKTOP=river
+dbus-update-activation-environment SEATD_SOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 executes="rivertile waybar kanshi wlsunset swaybg 
 swayidle foot pipewire dunst mpd transmission-daemon"

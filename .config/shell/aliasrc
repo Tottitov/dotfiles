@@ -24,7 +24,7 @@ alias \
 	ga="git add" \
 	gc="git commit" \
 	gp="git push" \
-	vw="khal calendar today 30d" \
+	ca="khal calendar today 30d" \
 	up="sudo pacman -Syu" \
 	rip="whipper cd rip" \
 	tag="beet import -i ~/media/music/" \
