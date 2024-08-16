@@ -1,42 +1,28 @@
 #!/bin/sh
 
-riverctl default-layout rivertile
-riverctl default-attach-mode bottom
-
-riverctl border-width 2
-riverctl border-color-focused 0xBDAE93
-riverctl border-color-unfocused 0x665C54
-riverctl border-color-urgent 0xFABD2F
-riverctl rule-add ssd
-
-riverctl hide-cursor timeout 5000
-riverctl hide-cursor when-typing enabled
-riverctl focus-follows-cursor normal
-riverctl set-repeat 30 500
-
 riverctl map normal Super Q close
-riverctl map normal Super+Alt Q spawn "prompt 'Quit: ' 'riverctl exit'"
-
+riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
-
-riverctl map-pointer normal Super BTN_LEFT move-view
-riverctl map-pointer normal Super BTN_RIGHT resize-view
 
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
 riverctl map normal Super K focus-view up
 riverctl map normal Super L focus-view right
-
 riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
 riverctl map normal Super+Shift K swap up
 riverctl map normal Super+Shift L swap right
-
 riverctl map normal Control+Shift H snap left
 riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
+
+riverctl map normal Super+Shift Q spawn "prompt 'Quit: ' 'riverctl exit'"
+riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
+riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutdown -h now'"
+riverctl map normal Super+Alt Backspace spawn lock
+riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
 riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
 riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
@@ -44,90 +30,82 @@ riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
 riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 
 riverctl map normal Super Return spawn "$TERMINAL"
-riverctl map normal Super+Shift Return zoom
-
 riverctl map normal Super R spawn "$TERMINAL lf"
 riverctl map normal Super+Shift R spawn menupass
-
 riverctl map normal Super D spawn fuzzel
 riverctl map normal Super+Shift D spawn menubm
-
-riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
-riverctl map normal Super+Alt X spawn lock
-
 riverctl map normal Super W spawn "$BROWSER"
 riverctl map normal Super+Shift W spawn menunm
-
 riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift E spawn menuemoji
-
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
-riverctl map normal Super+Shift A spawn "$TERMINAL tremc"
-
+riverctl map normal Super+Shift A spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super N spawn "$TERMINAL $EDITOR ${HOME}/notes/"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
-
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
-
 riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
-
-riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
-riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutdown -h now'"
-
-riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
 riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
 riverctl map normal Control+Shift Print spawn menusc
-
 riverctl map normal Super Print spawn menurecord
 riverctl map normal Super+Shift Print spawn "menurecord kill"
 
 riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86WLAN spawn airplane
-
-touchpad="pointer-1739-0-Synaptics_TM3053-006"
-riverctl input "$touchpad" tap enabled
-riverctl input "$touchpad" accel-profile adaptive
-riverctl input "$touchpad" natural-scroll enabled
-riverctl input "$touchpad" disable-while-typing enabled
-riverctl input "$touchpad" disable-while-trackpointing enabled
+riverctl map normal None XF86Tools spawn ""
+riverctl map normal None XF86Search spawn fuzzel
+riverctl map normal None XF86LaunchA spawn eject
+riverctl map normal None XF86Explorer spawn ""
 
 for mode in normal locked; do
 	riverctl map -repeat $mode Super Equal spawn "volume high"
 	riverctl map -repeat $mode Super Minus spawn "volume low"
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
-
 	riverctl map $mode Super+Shift M spawn "volume mute"
 	riverctl map $mode Super+Alt M spawn "volume mic"
-
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
 	riverctl map $mode None XF86AudioMicMute spawn "volume mic"
-
 	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
 	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
-
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Alt P spawn "mpc -q clear & pkill -RTMIN+1 waybar"
-
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Period spawn "mpc -q next & pkill -RTMIN+1 waybar"
-
 	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5% & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5% & pkill -RTMIN+1 waybar"
-
 	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0% & pkill -RTMIN+1 waybar"
-
-	riverctl map $mode None XF86Tools spawn ""
-	riverctl map $mode None XF86Search spawn fuzzel
-	riverctl map $mode None XF86LaunchA spawn eject
-	riverctl map $mode None XF86Explorer spawn ""
 done
+
+riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
+riverctl set-repeat 50 200
+
+touchpad="pointer-1739-0-Synaptics_TM3053-006"
+riverctl input "$touchpad" tap enabled
+riverctl input "$touchpad" natural-scroll enabled
+riverctl input "$touchpad" disable-while-typing enabled
+riverctl input "$touchpad" disable-while-trackpointing enabled
+riverctl hide-cursor timeout 5000
+riverctl hide-cursor when-typing enabled
+riverctl focus-follows-cursor normal
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
+
+riverctl rule-add ssd -app-id firefox
+riverctl rule-add float -title 'Firefox — Sharing Indicator'
+
+riverctl border-width 2
+riverctl border-color-focused 0xBDAE93
+riverctl border-color-unfocused 0x665C54
+riverctl border-color-urgent 0xFABD2F
+
+riverctl default-layout rivertile
+riverctl default-attach-mode bottom
 
 scratchTag=$((1 << 20))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
@@ -152,8 +130,8 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset 
-swaybg swayidle foot pipewire dunst mpd"
+executes="rivertile waybar kanshi wlsunset swaybg 
+swayidle foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue

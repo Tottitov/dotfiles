@@ -1,20 +1,21 @@
 set previewer ~/.config/lf/preview
 
 set shell dash
-set scrolloff 8
+set scrolloff 5
 set period 1
 set sixel
 set drawbox
 set hidden
 set ignorecase
 
-cmd open &{{
-    case $(file -Lb --mime-type -- "$f") in
-        application/pdf) zathura "$fx" ;;
-        audio/*) mpv --no-terminal "$fx" ;;
-        video/*) mpv --no-terminal "$fx" ;;
-        image/*) imv "$fx" ;;
-        *) lf -remote "send $id \$$EDITOR \$fx" ;;
+cmd open ${{
+    case $(file -Lb --mime-type "$f") in
+    text/*|application/json) $EDITOR "$f" ;;
+    application/pdf) setsid -f zathura "$f" ;;
+    audio/*) mpv --no-terminal "$f" ;;
+    video/*) mpv --no-terminal "$f" ;;
+    image/*) setsid -f imv "$f" ;;
+    *) xdg-open "$f" ;;
     esac
 }}
 
