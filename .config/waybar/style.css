@@ -1,8 +1,8 @@
 @define-color background #1a1b26;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
-@define-color unfocused #c0caf5;
-@define-color occupied #565f89;
+@define-color occupied #c0caf5;
+@define-color empty #565f89;
 @define-color urgent #f7768e;
 @define-color bluetooth #2ac3de;
 
@@ -19,7 +19,7 @@ window#waybar {
 
 #tags button {
   padding: 0px 3px;
-  color: @unfocused;
+  color: @empty;
   border-radius: 0px;
 }
 

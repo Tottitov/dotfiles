@@ -6,6 +6,9 @@ user_pref("gfx.canvas.accelerated.cache-items", 4096);
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);
 
+/** VAPPI ***/
+user_pref("media.ffmpeg.vaapi", true);
+
 /** DISK CACHE ***/
 user_pref("browser.cache.jsbc_compression_level", 3);
 
@@ -44,11 +47,11 @@ user_pref("dom.security.sanitizer.enabled", true);
 user_pref("browser.contentblocking.category", "strict");
 user_pref(
   "urlclassifier.trackingSkipURLs",
-  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"
+  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com",
 );
 user_pref(
   "urlclassifier.features.socialtracking.skipURLs",
-  "*.instagram.com, *.twitter.com, *.twimg.com"
+  "*.instagram.com, *.twitter.com, *.twimg.com",
 );
 user_pref("network.cookie.sameSite.noneRequiresSecure", true);
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
@@ -166,11 +169,11 @@ user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false
+  false,
 );
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false
+  false,
 );
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.tabs.tabmanager.enabled", false);

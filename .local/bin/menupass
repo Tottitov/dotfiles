@@ -10,5 +10,6 @@ password=$(
 	echo "$passwords" | sort | fuzzel -dip "Password: "
 ) || exit 1
 
-pass -c "$password" >/dev/null 2>&1
-notify-send "Copied $password to clipboard. Will clear in 45 seconds..."
+(pass -c "$password" >/dev/null 2>&1 &&
+	notify-send "Pass" "Copied $password to clipboard. Will clear in 45 seconds") ||
+	notify-send -u critical "Pass" "Unable to retrieve password"

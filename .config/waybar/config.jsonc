@@ -26,7 +26,7 @@
       "critical": 25
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "{capacity}% <span color=\"#9ece6a\">󰂄</span>",
+    "format-charging": "<span color=\"#9ece6a\">󰂄</span> {capacity}%",
     "format-icons": [
       "<span color=\"#f7768e\">󰂎</span>",
       "<span color=\"#f7768e\">󰁻</span>",
@@ -34,7 +34,7 @@
       "<span color=\"#9ece6a\">󰂀</span>",
       "<span color=\"#9ece6a\">󰁹</span>"
     ],
-    "interval": 2
+    "interval": 5
   },
   "bluetooth": {
     "format": "",
