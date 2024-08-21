@@ -19,7 +19,7 @@
     "interval": 60
   },
   "battery": {
-    "bat": "BAT0",
+    "bat": "BAT1",
     "adapter": "AC",
     "states": {
       "warning": 50,

@@ -4,7 +4,7 @@ profile docked {
 }
 
 profile undocked {
-    output eDP-1 enable scale 1
+    output eDP-1 enable scale 2 adaptive_sync on
 }
 
 profile hdmi {

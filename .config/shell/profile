@@ -1,12 +1,12 @@
 #!/bin/zsh
 
 # Adds scripts to $PATH
-export PATH="$PATH:$(find ~/.local/bin -type d -printf %p:)"
+export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
 
 # Program variables
 export EDITOR="helix"
 export TERMINAL="footclient"
-export BROWSER="firefox-developer-edition"
+export BROWSER="firefox"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"
