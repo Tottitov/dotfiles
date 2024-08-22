@@ -24,10 +24,8 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 # Setting variables
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-export GTK_THEME="Arc-Dark"
 export SDL_VIDEODRIVER="wayland"
 export XDG_SESSION_TYPE="wayland"
 export MOZ_ENABLE_WAYLAND=1

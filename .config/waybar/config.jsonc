@@ -1,5 +1,5 @@
 {
-  "height": 25,
+  "height":30,
   "modules-left": ["river/tags", "custom/mpd"],
   "modules-center": [],
   "modules-right": [

@@ -15,6 +15,7 @@
 window#waybar {
   color: @foreground;
   background: @background;
+  padding-left: 10px;
 }
 
 #tags button {

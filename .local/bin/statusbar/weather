@@ -1,11 +1,7 @@
 #!/bin/sh
 
-city=$(
-	curl -fs --max-time 15 "ipinfo.io/city"
-) || exit 1
-
 forecast=$(
-	curl -fs --max-time 15 "https://v2.wttr.in/${city}?format=%C:%t"
+	curl -fs --max-time 15 "https://v2.wttr.in/?format=%C:%t"
 ) || exit 1
 
 echo "$forecast" | ugrep -q "Unknown" && exit 1

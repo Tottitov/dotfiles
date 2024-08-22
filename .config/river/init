@@ -54,11 +54,7 @@ riverctl map normal Super Print spawn menurecord
 riverctl map normal Super+Shift Print spawn "menurecord kill"
 
 riverctl map normal None XF86DISPLAY spawn menusc
-riverctl map normal None XF86WLAN spawn airplane
-riverctl map normal None XF86Tools spawn ""
-riverctl map normal None XF86Search spawn fuzzel
-riverctl map normal None XF86LaunchA spawn eject
-riverctl map normal None XF86Explorer spawn ""
+riverctl map normal None XF86RFKill spawn airplane
 
 for mode in normal locked; do
 	riverctl map -repeat $mode Super Equal spawn "volume high"
@@ -70,13 +66,15 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map $mode None XF86AudioMicMute spawn "volume mic"
+	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
+	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
+	riverctl map $mode None XF86AudioNext spawn "mpc -q next & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
 	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super+Alt P spawn "mpc -q clear & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Period spawn "mpc -q next & pkill -RTMIN+1 waybar"
+	riverctl map $mode Super+Alt P spawn "mpc -q clear & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5% & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5% & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0% & pkill -RTMIN+1 waybar"
@@ -85,7 +83,7 @@ done
 riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
 riverctl set-repeat 50 200
 
-touchpad="pointer-1739-0-Synaptics_TM3053-006"
+touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
 riverctl input "$touchpad" tap enabled
 riverctl input "$touchpad" natural-scroll enabled
 riverctl input "$touchpad" disable-while-typing enabled

@@ -1,12 +1,12 @@
 #!/bin/sh
 
 sc() {
-	scripts=$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)
+	scripts=$(find ~/.local/bin/ -type f -printf '%f\n' | fzf)
 	[ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
 }
 
 cf() {
-	configs=$(find ~/.config -mindepth 2 -printf '%P\n' | fzf)
+	configs=$(find ~/.config -type l -printf '%f\n' | fzf)
 	[ -n "$configs" ] && $EDITOR "${XDG_CONFIG_HOME}/${configs}"
 }
 

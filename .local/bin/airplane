@@ -1,9 +1,7 @@
 #!/bin/sh
 
-if nmcli gen status | ugrep -qw "connected"; then
-	nmcli radio wifi off
-	notify-send -r 2 -u critical "WiFi disabled"
-else
-	nmcli radio wifi on
-	notify-send -r 2 -u critical "WiFi enabled"
-fi
+status=$(rfkill -n -o SOFT | head -n 1)
+
+[ "$status" = "blocked" ] &&
+	notify-send -r 2 "Airplane mode" "Enabled" ||
+	notify-send -r 2 "Airplane mode" "Disabled"

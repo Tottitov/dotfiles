@@ -1,13 +1,3 @@
-profile docked {
-    output "Acer Technologies SB220Q 0x82001DF5" scale 1
-    output eDP-1 disable
-}
-
 profile undocked {
-    output eDP-1 enable scale 2 adaptive_sync on
-}
-
-profile hdmi {
-    output HDMI-A-1 mode 1920x1080@100Hz scale 1
-    output eDP-1 disable
+    output eDP-1 enable scale 1.5 adaptive_sync on
 }
