@@ -1,5 +1,4 @@
 {
-  "height":30,
   "modules-left": ["river/tags", "custom/mpd"],
   "modules-center": [],
   "modules-right": [
@@ -38,7 +37,9 @@
   },
   "bluetooth": {
     "format": "",
-    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}%"
+    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_alias} {device_battery_percentage}%",
+    "format-device-preference": ["Nothing", "HHKB", "Pebble"],
+    "tooltip-format": "{controller_alias}: {num_connections} connected"
   },
   "custom/signal": {
     "exec": "signal",

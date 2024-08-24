@@ -23,7 +23,7 @@ connect() {
 
 networks=$(nmcli -g active,ssid,security,signal dev wifi)
 [ -n "$networks" ] &&
-	network=$(echo "$networks" | fuzzel -di -w 50 -p "Network: ") || exit 1
+	network=$(echo "$networks" | fuzzel -w 40 -dip "Network: ") || exit 1
 
 active=$(echo "$network" | cut -d ':' -f 1)
 ssid=$(echo "$network" | cut -d ':' -f 2)

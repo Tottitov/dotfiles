@@ -4,7 +4,6 @@ riverctl map normal Super Q close
 riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
-
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
 riverctl map normal Super K focus-view up
@@ -21,7 +20,7 @@ riverctl map normal Control+Shift L snap right
 riverctl map normal Super+Shift Q spawn "prompt 'Quit: ' 'riverctl exit'"
 riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
 riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutdown -h now'"
-riverctl map normal Super+Alt Backspace spawn lock
+riverctl map normal Super+Alt Backspace spawn "prompt 'Lock: ' 'lock'"
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
 riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
@@ -62,7 +61,6 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map $mode Super+Alt M spawn "volume mic"
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
@@ -85,6 +83,7 @@ riverctl set-repeat 50 200
 
 touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
 riverctl input "$touchpad" tap enabled
+riverctl input "$touchpad" drag disabled
 riverctl input "$touchpad" natural-scroll enabled
 riverctl input "$touchpad" disable-while-typing enabled
 riverctl input "$touchpad" disable-while-trackpointing enabled
@@ -96,13 +95,14 @@ riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
 riverctl rule-add -app-id "imv" ssd
 riverctl rule-add -app-id "imv" float
+riverctl rule-add -app-id "org.pwmt.zathura" ssd
 riverctl rule-add -app-id "firefox" ssd
 riverctl rule-add -title "Firefox — Sharing Indicator" float
 
 riverctl border-width 2
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x665C54
-riverctl border-color-urgent 0xFABD2F
+riverctl border-color-urgent 0xF7768E
 
 riverctl default-layout rivertile
 riverctl default-attach-mode bottom

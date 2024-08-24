@@ -7,7 +7,7 @@ passwords=$(
 )
 
 password=$(
-	echo "$passwords" | sort | fuzzel -dip "Password: "
+	echo "$passwords" | sort | fuzzel -w 30 -dip "Password: "
 ) || exit 1
 
 (pass -c "$password" >/dev/null 2>&1 &&

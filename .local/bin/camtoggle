@@ -5,8 +5,10 @@ camera=$(find /dev/video[02468] | tail -n 1)
 if [ -e "$camera" ]; then
 	pkill -f "$camera" ||
 		mpv \
+			--cache=no \
 			--really-quiet \
-			--profile=low-latency \
+			--demuxer-lavf-format=video4linux2 \
+			--demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg \
 			"av://v4l2:${camera}" &
 else
 	notify-send "No webcam detected"

@@ -8,18 +8,17 @@
 
 * {
   font-family: monospace;
-  font-size: 16px;
+  font-size: 12pt;
   min-height: 0px;
 }
 
 window#waybar {
   color: @foreground;
   background: @background;
-  padding-left: 10px;
 }
 
 #tags button {
-  padding: 0px 3px;
+  padding: 0px 1px;
   color: @empty;
   border-radius: 0px;
 }
