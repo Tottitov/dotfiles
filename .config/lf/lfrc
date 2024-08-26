@@ -19,8 +19,6 @@ cmd open ${{
     esac
 }}
 
-cmd setbg "$1"
-
 map u clear
 map <enter> shell
 map <c-s> set hidden!

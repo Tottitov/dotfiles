@@ -54,6 +54,7 @@ riverctl map normal Super+Shift Print spawn "menurecord kill"
 
 riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86RFKill spawn airplane
+riverctl map normal None XF86AudioMedia spawn "$TERMINAL -D ${XDG_DATA_HOME}/dotfiles"
 
 for mode in normal locked; do
 	riverctl map -repeat $mode Super Equal spawn "volume high"
@@ -84,9 +85,11 @@ riverctl set-repeat 50 200
 touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
 riverctl input "$touchpad" tap enabled
 riverctl input "$touchpad" drag disabled
+riverctl input "$touchpad" pointer-accel 0.30
+riverctl input "$touchpad" scroll-factor 1.5
+riverctl input "$touchpad" accel-profile adaptive
 riverctl input "$touchpad" natural-scroll enabled
 riverctl input "$touchpad" disable-while-typing enabled
-riverctl input "$touchpad" disable-while-trackpointing enabled
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl focus-follows-cursor normal
@@ -123,22 +126,21 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Darker"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Dark"
 
 dbus-update-activation-environment \
 	SEATD_SOCK \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset swaybg 
-swayidle foot pipewire dunst mpd transmission-daemon"
+executes="rivertile waybar kanshi wlsunset swayidle 
+foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") "$execute" -s & ;;
-	"wlsunset") "$execute" -S 07:00 -s 21:00 & ;;
-	"swaybg") "$execute" -m stretch -i "${XDG_DATA_HOME}/bg" & ;;
+	"wlsunset") "$execute" -s 21:00 -S 07:00 & ;;
 	"swayidle") "$execute" -w \
 		timeout 600 "lock" \
 		timeout 1200 "wlopm --off '*'" resume "wlopm --on '*'" \

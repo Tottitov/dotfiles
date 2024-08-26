@@ -1,5 +1,6 @@
 #!/bin/sh
 
 waylock -fork-on-lock \
-	-ignore-empty-password \
-	-input-color 0x000080 -fail-color 0x8B0000 >/dev/null 2>&1
+	-input-color 0xBB9AF7 \
+	-fail-color 0xF7768E \
+	>/dev/null 2>&1

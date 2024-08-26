@@ -5,15 +5,9 @@ sc() {
 	[ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
 }
 
-cf() {
-	configs=$(find ~/.config -type l -printf '%f\n' | fzf)
-	[ -n "$configs" ] && $EDITOR "${XDG_CONFIG_HOME}/${configs}"
-}
-
 alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
-	lsw="lswt" \
 	grep="ugrep --color=auto" \
 	ts="tmux switch -t" \
 	ta="tmux attach -t" \
@@ -21,12 +15,12 @@ alias \
 	tkss="tmux kill-session -t" \
 	tksv="tmux kill-server" \
 	tls="tmux list-sessions" \
+	gs="git status" \
 	ga="git add" \
 	gc="git commit" \
 	gp="git push" \
 	ca="khal calendar today 30d" \
 	up="sudo pacman -Syu" \
-	rip="whipper cd rip" \
 	tag="beet import -i ~/media/music/" \
 	sf="scanimage --source 'ADF' -b --format=png" \
 	sb="scanimage --format=png --output-file scan.png -p"
