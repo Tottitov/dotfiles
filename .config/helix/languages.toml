@@ -1,6 +1,6 @@
 [[language]]
 name = "bash"
-shebangs = ["sh"]
+injection-regex = "(shell|bash|zsh|sh)"
 formatter = { command = "shfmt" }
 auto-format = true
 
@@ -37,7 +37,6 @@ auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = ["vscode-eslint-language-server"]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 

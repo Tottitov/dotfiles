@@ -1,6 +1,5 @@
 set clean-database-on-startup true
 set menu-item-sorting unread-desc
-set mark-item-read-on-hover true
 set status-placeholder
 set scrolloff 8
 

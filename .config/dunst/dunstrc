@@ -3,11 +3,11 @@
   width = (0, 350)
   alignment = left
   vertical_alignment = center
-  offset = 12x12
+  offset = 4x4
   padding = 15
   frame_width = 2
   frame_color = "#FFFFFF"
-  font = monospace 14
+  font = monospace 12
   stack_duplicates = true
   hide_duplicate_count = true
   icon_path = /usr/share/icons/Arc/status/128/

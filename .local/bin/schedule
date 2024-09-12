@@ -1,5 +1,0 @@
-#!/bin/sh
-
-events=$(khal list today 30d) || exit 1
-
-notify-send "Upcoming Events" "\n$events"

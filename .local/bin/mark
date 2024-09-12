@@ -4,57 +4,57 @@
 
 khal calendar today 30d && printf "\n"
 
-event=$(gum input --placeholder "Enter an event")
+event=$(gum input --placeholder "Enter an event") || exit 1
 
 chooseDate() {
-  months="Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+	months="Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
 
-  currentDay=$(date +%d)
-  currentMonth=$(date +%m)
-  currentYear=$(date +%Y)
-  currentMonthIndex=$((currentMonth - 1))
+	currentDay=$(date +%d)
+	currentMonth=$(date +%m)
+	currentYear=$(date +%Y)
+	currentMonthIndex=$((currentMonth - 1))
 
-  reorderedMonths=""
-  i=0
-  for month in $months; do
-    if [ $i -ge $currentMonthIndex ]; then
-      reorderedMonths="$reorderedMonths $month"
-    fi
-    i=$((i + 1))
-  done
+	reorderedMonths=""
+	i=0
+	for month in $months; do
+		if [ $i -ge $currentMonthIndex ]; then
+			reorderedMonths="$reorderedMonths $month"
+		fi
+		i=$((i + 1))
+	done
 
-  i=0
-  for month in $months; do
-    if [ $i -lt $currentMonthIndex ]; then
-      reorderedMonths="$reorderedMonths $month"
-    fi
-    i=$((i + 1))
-  done
+	i=0
+	for month in $months; do
+		if [ $i -lt $currentMonthIndex ]; then
+			reorderedMonths="$reorderedMonths $month"
+		fi
+		i=$((i + 1))
+	done
 
-  chosenMonth=$(gum choose --header "Select $1 month" $reorderedMonths)
-  chosenMonth=$(date -d "$chosenMonth 1" +'%m')
+	chosenMonth=$(gum choose --header "Select $1 month" $reorderedMonths)
+	chosenMonth=$(date -d "$chosenMonth 1" +'%m')
 
-  case $chosenMonth in
-  02)
-    [ $((currentYear % 4)) -eq 0 ] && {
-      [ $((currentYear % 100)) -ne 0 ] || [ $((currentYear % 400)) -eq 0 ]
-    } && max=29 || max=28
-    ;;
-  01 | 03 | 05 | 07 | 08 | 10 | 12) max=31 ;;
-  04 | 06 | 09 | 11) max=30 ;;
-  esac
+	case $chosenMonth in
+	02)
+		[ $((currentYear % 4)) -eq 0 ] && {
+			[ $((currentYear % 100)) -ne 0 ] || [ $((currentYear % 400)) -eq 0 ]
+		} && max=29 || max=28
+		;;
+	01 | 03 | 05 | 07 | 08 | 10 | 12) max=31 ;;
+	04 | 06 | 09 | 11) max=30 ;;
+	esac
 
-  reorderedDays=""
-  for day in $(seq $currentDay $max); do
-    reorderedDays="$reorderedDays $day"
-  done
+	reorderedDays=""
+	for day in $(seq $currentDay $max); do
+		reorderedDays="$reorderedDays $day"
+	done
 
-  for day in $(seq 1 $((currentDay - 1))); do
-    reorderedDays="$reorderedDays $day"
-  done
+	for day in $(seq 1 $((currentDay - 1))); do
+		reorderedDays="$reorderedDays $day"
+	done
 
-  chosenDay=$(gum choose --header "Select $1 day" $reorderedDays)
-  echo "${chosenMonth}/${chosenDay}/${currentYear}"
+	chosenDay=$(gum choose --header "Select $1 day" $reorderedDays)
+	echo "${chosenMonth}/${chosenDay}/${currentYear}"
 }
 
 startDate=$(chooseDate "start") || exit 1
@@ -63,7 +63,7 @@ startTime=$(gum input --placeholder "Input start time, ex: 10:00 AM")
 endTime=$(gum input --placeholder "Input end time, ex: 01:30 PM")
 
 [ -z "$startTime" ] && [ -z "$endTime" ] &&
-  args="$startDate $endDate $event" ||
-  args="$startDate $startTime $endDate $endTime $event"
+	args="$startDate $endDate $event" ||
+	args="$startDate $startTime $endDate $endTime $event"
 
 khal new "$args" && vdirsyncer sync >/dev/null 2>&1 && echo "Event imported"

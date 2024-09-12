@@ -1,5 +1,5 @@
 {
-  "height": 21,
+  "height": 25,
   "modules-left": ["river/tags", "custom/mpd"],
   "modules-center": [],
   "modules-right": [
@@ -15,12 +15,11 @@
   "custom/clock": {
     "exec": "date +'%I:%M'",
     "on-click": "month",
-    "on-click-right": "schedule",
     "interval": 60
   },
   "battery": {
     "bat": "BAT1",
-    "adapter": "AC",
+    "adapter": "ACAD",
     "states": {
       "warning": 50,
       "critical": 25
@@ -38,7 +37,7 @@
   },
   "bluetooth": {
     "format": "",
-    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_alias} {device_battery_percentage}%",
+    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}% {device_alias}",
     "format-device-preference": ["Nothing", "HHKB", "Pebble"],
     "tooltip-format": "{controller_alias}: {num_connections} connected"
   },

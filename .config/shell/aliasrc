@@ -19,8 +19,8 @@ alias \
 	ga="git add" \
 	gc="git commit" \
 	gp="git push" \
-	ca="khal calendar today 30d" \
-	up="sudo pacman -Syu" \
+	kh="khal calendar today 30d" \
+	up="yay -Syu" \
 	tag="beet import -i ~/media/music/" \
 	sf="scanimage --source 'ADF' -b --format=png" \
 	sb="scanimage --format=png --output-file scan.png -p"

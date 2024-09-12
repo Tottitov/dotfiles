@@ -38,7 +38,7 @@ riverctl map normal Super+Shift W spawn menunm
 riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
-riverctl map normal Super+Shift A spawn "$TERMINAL ncmpcpp"
+riverctl map normal Super+Shift A spawn "$TERMINAL -a 'ncmpcpp' ncmpcpp & notify-send 'Ncmpcpp' 'Opened in scratchpad'"
 riverctl map normal Super N spawn "$TERMINAL $EDITOR ${HOME}/notes/"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 riverctl map normal Super C spawn menucalc
@@ -83,30 +83,26 @@ riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
 riverctl set-repeat 50 200
 
 touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
-riverctl input "$touchpad" tap enabled
-riverctl input "$touchpad" drag disabled
-riverctl input "$touchpad" pointer-accel 0.30
-riverctl input "$touchpad" scroll-factor 1.5
-riverctl input "$touchpad" accel-profile adaptive
-riverctl input "$touchpad" natural-scroll enabled
-riverctl input "$touchpad" disable-while-typing enabled
+riverctl input $touchpad tap enabled
+riverctl input $touchpad drag disabled
+riverctl input $touchpad pointer-accel 0.30
+riverctl input $touchpad scroll-factor 1.5
+riverctl input $touchpad accel-profile adaptive
+riverctl input $touchpad natural-scroll enabled
+riverctl input $touchpad disable-while-typing enabled
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl focus-follows-cursor normal
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
-riverctl rule-add -app-id "imv" ssd
-riverctl rule-add -app-id "imv" float
-riverctl rule-add -app-id "org.pwmt.zathura" ssd
-riverctl rule-add -app-id "firefox" ssd
-riverctl rule-add -title "Firefox — Sharing Indicator" float
-
 riverctl border-width 2
 riverctl border-color-focused 0xBDAE93
 riverctl border-color-unfocused 0x665C54
 riverctl border-color-urgent 0xF7768E
 
+riverctl rule-add ssd
+riverctl background-color 0x24283B
 riverctl default-layout rivertile
 riverctl default-attach-mode bottom
 
@@ -114,10 +110,12 @@ scratchTag=$((1 << 20))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ scratchTag))
+riverctl rule-add -app-id "ncmpcpp" tags $scratchTag
 
 stickyTag=$((1 << 10))
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ stickyTag))
+riverctl rule-add -title "Picture-in-Picture" tags $stickyTag
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))
@@ -141,10 +139,10 @@ for execute in $executes; do
 	case $execute in
 	"foot") "$execute" -s & ;;
 	"wlsunset") "$execute" -s 21:00 -S 07:00 & ;;
+	"rivertile") "$execute" -view-padding 2 -outer-padding 2 & ;;
 	"swayidle") "$execute" -w \
-		timeout 600 "lock" \
-		timeout 1200 "wlopm --off '*'" resume "wlopm --on '*'" \
-		before-sleep "lock" & ;;
+		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
+		resume "wlopm --on '*'" before-sleep "lock" & ;;
 	*) "$execute" & ;;
 	esac
 done >/dev/null 2>&1

@@ -14,8 +14,7 @@ killrecording() {
 }
 
 video() {
-	wf-recorder \
-		-a \
+	wf-recorder -a \
 		-C aac \
 		-c libx264rgb \
 		-f "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
@@ -65,7 +64,7 @@ askrecording() {
 
 asktoend() {
 	response=$(printf "No\\nYes" |
-		fuzzel -l 2 -dip "Recording still active. End recording? ")
+		fuzzel -l 2 -dip "End recording? ")
 	[ "$response" = "Yes" ] && killrecording || exit 0
 }
 
