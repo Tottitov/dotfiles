@@ -37,8 +37,9 @@
   },
   "bluetooth": {
     "format": "",
-    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}% {device_alias}",
-    "format-device-preference": ["Nothing", "HHKB", "Pebble"],
+    "format-connected": "<span color=\"#2ac3de\"></span> {device_alias}",
+    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}% - {device_alias}",
+    "format-device-preference": ["Nothing Ear", "Google Home"],
     "tooltip-format": "{controller_alias}: {num_connections} connected"
   },
   "custom/signal": {

@@ -23,11 +23,6 @@ riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutd
 riverctl map normal Super+Alt Backspace spawn "prompt 'Lock: ' 'lock'"
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
-riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
-riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
-riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
-riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
-
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super R spawn "$TERMINAL lf"
 riverctl map normal Super+Shift R spawn menupass
@@ -96,17 +91,17 @@ riverctl focus-follows-cursor normal
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
-riverctl border-width 2
-riverctl border-color-focused 0xBDAE93
-riverctl border-color-unfocused 0x665C54
-riverctl border-color-urgent 0xF7768E
-
 riverctl rule-add ssd
-riverctl background-color 0x24283B
-riverctl default-layout rivertile
+riverctl background-color "0x00B7D8"
+riverctl default-layout wideriver
 riverctl default-attach-mode bottom
 
-scratchTag=$((1 << 20))
+riverctl map -repeat normal Super+Alt H send-layout-cmd wideriver "--ratio -0.01"
+riverctl map -repeat normal Super+Alt L send-layout-cmd wideriver "--ratio +0.01"
+riverctl map normal Super+Alt J send-layout-cmd wideriver "--count +1"
+riverctl map normal Super+Alt K send-layout-cmd wideriver "--count -1"
+
+scratchTag=$((1 << 11))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ scratchTag))
@@ -115,6 +110,7 @@ riverctl rule-add -app-id "ncmpcpp" tags $scratchTag
 stickyTag=$((1 << 10))
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ stickyTag))
+riverctl rule-add -app-id "mpv" tags $stickyTag
 riverctl rule-add -title "Picture-in-Picture" tags $stickyTag
 
 for i in $(seq 1 9); do
@@ -131,18 +127,27 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset swayidle 
+executes="wideriver waybar kanshi wlsunset swayidle 
 foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
-	"foot") "$execute" -s & ;;
-	"wlsunset") "$execute" -s 21:00 -S 07:00 & ;;
-	"rivertile") "$execute" -view-padding 2 -outer-padding 2 & ;;
-	"swayidle") "$execute" -w \
+	"foot") $execute -s & ;;
+	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
+	"swaybg") $execute -m fit -i "${XDG_DATA_HOME}/bg" >/dev/null & ;;
+	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
-	*) "$execute" & ;;
+	"wideriver") $execute \
+		--stack even \
+		--ratio-master 0.6 \
+		--smart-gaps \
+		--inner-gaps 6 \
+		--outer-gaps 6 \
+		--border-width 3 \
+		--border-color-focused "0x9ECE6A" \
+		--border-color-unfocused "0x665C54" & ;;
+	*) $execute & ;;
 	esac
 done >/dev/null 2>&1

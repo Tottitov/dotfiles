@@ -5,7 +5,7 @@
   vertical_alignment = center
   offset = 4x4
   padding = 15
-  frame_width = 2
+  frame_width = 3
   frame_color = "#FFFFFF"
   font = monospace 12
   stack_duplicates = true

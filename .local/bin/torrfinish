@@ -1,4 +1,9 @@
 #!/bin/sh
 
-transmission-remote -l | \
-awk '$2 == "100%"{ system("transmission-remote -t " $1 " --remove") }'
+credential="tottitov:$(pass localhost:9091)"
+
+transmission-remote -n "$credential" -l |
+	awk '$2 == "100%" { print $1 }' |
+	while read -r torrent; do
+		transmission-remote -n "$credential" -t "$torrent" --remove
+	done
