@@ -19,11 +19,8 @@ cmd open ${{
     esac
 }}
 
-cmd wallpaper "$1"
-
 map u clear
 map <enter> shell
-map <c-s> set hidden!
 map <c-d> delete
 map gc cd ~/.config
 map sc cd ~/.local/bin
@@ -32,4 +29,3 @@ map gl cd ~/downloads
 map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gv cd ~/media/videos
-map b $wallpaper $f

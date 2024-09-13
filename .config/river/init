@@ -135,7 +135,6 @@ for execute in $executes; do
 	case $execute in
 	"foot") $execute -s & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
-	"swaybg") $execute -m fit -i "${XDG_DATA_HOME}/bg" >/dev/null & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
