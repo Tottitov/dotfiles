@@ -3,28 +3,24 @@
   width = (0, 350)
   alignment = left
   vertical_alignment = center
-  offset = 4x4
+  offset = 6x6
   padding = 15
   frame_width = 3
-  frame_color = "#FFFFFF"
+  frame_color = "#bdae93"
   font = monospace 12
   stack_duplicates = true
   hide_duplicate_count = true
-  icon_path = /usr/share/icons/Arc/status/128/
   icon_position = off
   sort = yes
 
 [urgency_low]
   background = "#1a1b26"
   foreground = "#c0caf5"
-  frame_color = "#bdae93"
 
 [urgency_normal]
   background = "#1a1b26"
   foreground = "#c0caf5"
-  frame_color = "#bdae93"
 
 [urgency_critical]
   background = "#1a1b26"
   foreground = "#db4b4b"
-  frame_color = "#bdae93"

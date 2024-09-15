@@ -12,8 +12,8 @@ cmd open ${{
     case $(file -Lb --mime-type "$f") in
     text/*|application/json) $EDITOR "$f" ;;
     application/pdf) setsid -f zathura "$f" ;;
-    audio/*) setsid -f mpv --really-quiet "$f" ;;
-    video/*) setsid -f mpv --really-quiet "$f" ;;
+    audio/*) setsid -f mpv --no-terminal "$f" ;;
+    video/*) setsid -f mpv --no-terminal "$f" ;;
     image/*) setsid -f imv "$f" ;;
     *) xdg-open "$f" ;;
     esac

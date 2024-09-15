@@ -4,7 +4,7 @@ export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
 
 export EDITOR="helix"
 export TERMINAL="footclient"
-export BROWSER="firefox"
+export BROWSER="zen-browser"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -24,7 +24,6 @@ export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export SDL_VIDEODRIVER="wayland"
 export XDG_SESSION_TYPE="wayland"
-export MOZ_ENABLE_WAYLAND=1
 
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 

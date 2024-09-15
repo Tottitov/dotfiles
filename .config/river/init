@@ -17,10 +17,10 @@ riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
-riverctl map normal Super+Shift Q spawn "prompt 'Quit: ' 'riverctl exit'"
-riverctl map normal Super Backspace spawn "prompt 'Reboot: ' 'sudo reboot'"
-riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown: ' 'sudo shutdown -h now'"
-riverctl map normal Super+Alt Backspace spawn "prompt 'Lock: ' 'lock'"
+riverctl map normal Super+Shift Q spawn "prompt 'Quit River? ' 'riverctl exit'"
+riverctl map normal Super Backspace spawn "prompt 'Reboot? ' 'sudo reboot'"
+riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown? ' 'sudo shutdown -h now'"
+riverctl map normal Super+Alt Backspace spawn "prompt 'Lock? ' 'lock'"
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
 riverctl map normal Super Return spawn "$TERMINAL"
@@ -92,14 +92,16 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
 riverctl rule-add ssd
-riverctl background-color "0x00B7D8"
-riverctl default-layout wideriver
+riverctl background-color "0x1A1B26"
+riverctl border-color-focused "0xBDAE93"
+riverctl border-color-unfocused "0x665C54"
+riverctl default-layout rivertile
 riverctl default-attach-mode bottom
 
-riverctl map -repeat normal Super+Alt H send-layout-cmd wideriver "--ratio -0.01"
-riverctl map -repeat normal Super+Alt L send-layout-cmd wideriver "--ratio +0.01"
-riverctl map normal Super+Alt J send-layout-cmd wideriver "--count +1"
-riverctl map normal Super+Alt K send-layout-cmd wideriver "--count -1"
+riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
+riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
+riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 
 scratchTag=$((1 << 11))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
@@ -127,7 +129,7 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="wideriver waybar kanshi wlsunset swayidle 
+executes="rivertile waybar kanshi wlsunset swayidle 
 foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
@@ -135,18 +137,10 @@ for execute in $executes; do
 	case $execute in
 	"foot") $execute -s & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
+	"rivertile") $execute -view-padding 3 -outer-padding 3 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
-	"wideriver") $execute \
-		--stack even \
-		--ratio-master 0.6 \
-		--smart-gaps \
-		--inner-gaps 6 \
-		--outer-gaps 6 \
-		--border-width 3 \
-		--border-color-focused "0x9ECE6A" \
-		--border-color-unfocused "0x665C54" & ;;
 	*) $execute & ;;
 	esac
 done >/dev/null 2>&1

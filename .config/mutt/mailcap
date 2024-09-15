@@ -14,7 +14,7 @@ text/html; html2text -s \
 text/calendar; khal import -a personal %s
 
 image/*; setsid -f imv %s
-video/*; setsid -f mpv --really-quiet %s
-audio/*; setsid -f mpv --really-quiet %s
+video/*; setsid -f mpv --no-terminal %s
+audio/*; setsid -f mpv --no-terminal %s
 
 application/pdf; setsid -f zathura %s >/dev/null 2>&1

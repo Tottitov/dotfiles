@@ -1,67 +1,38 @@
-/* Override dark theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --accent-color: #1a1b26;
-  }
-}
-
-/* No round corners */
+/* No round corners and shodows */
 * {
   border-radius: 0 !important;
+  --zen-colors-primary: #bb9af7 !important;
+  --zen-colors-secondary: #414868 !important;
+  --zen-colors-tertiary: #1a1b26 !important;
+  --zen-colors-border: #9d7cd8 !important;
+  --zen-primary-color: #bb9af7 !important;
+  --zen-dialog-background: #1a1b26 !important;
 }
 
-/* No bottom border outline */
-#navigator-toolbox {
-  border-bottom: none !important;
+/* Hide workspace border */
+#zen-workspaces-button {
+  border-width: 0 !important;
 }
 
-/* Sets the tabbar color */
-#titlebar {
-  background: var(--accent-color) !important;
-  box-shadow: none !important;
-}
-
-/* Sets the toolbar color */
-toolbar#nav-bar {
-  background: var(--accent-color) !important;
-  box-shadow: none !important;
-}
-
-/* Sets the URL bar color */
-#urlbar {
-  background: var(--accent-color) !important;
-}
-#urlbar-background {
-  background: var(--accent-color) !important;
-  border: none !important;
-}
-
-/* Remove "padding" left and right from tabs */
-.titlebar-spacer {
+/* Hide forward button */
+#back-button,
+#forward-button {
   display: none !important;
 }
 
-/* Remove gaps from unpinned/pinned tabs */
-.tabbrowser-tab:not([pinned]) {
-  margin-inline-start: 0px !important;
+/* Hide the extensions menu but allow popups */
+#unified-extensions-button,
+#unified-extensions-button > .toolbarbutton-icon {
+  width: 0px !important;
+  padding: 0px !important;
 }
 
-/* Single bar layout */
-#navigator-toolbox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-#nav-bar {
-  order: 1;
-}
-#titlebar {
-  order: 2;
-  flex-grow: 1;
+/* Hide the hamburger menu */
+#PanelUI-menu-button {
+  display: none !important;
 }
 
 /* Hide title bar navagation, tabs drop down, and url bar icons */
-#identity-box > :not(#urlbar-go-button),
 #tracking-protection-icon-container,
 #page-action-buttons > :not(#urlbar-zoom-button),
 #alltabs-button,
@@ -69,12 +40,23 @@ toolbar#nav-bar {
   display: none !important;
 }
 
-/* Hide extensions button */
-#unified-extensions-button {
+/* Hide new tab sidebar button */
+#vertical-tabs-newtab-button {
   display: none !important;
 }
 
-/* Hide the hamburger menu */
-#PanelUI-menu-button {
+/* Add minimal sidebar spacing */
+#zen-sidebar-icons-wrapper {
+  padding-top: 0px !important;
+}
+
+/* Hide all sidebar icons */
+#zen-sidebar-icons-wrapper {
   display: none !important;
+}
+
+/* Fix sidebar width */
+#TabsToolbar-customization-target {
+  height: 100%;
+  min-width: var(--zen-sidebar-action-button-width);
 }
