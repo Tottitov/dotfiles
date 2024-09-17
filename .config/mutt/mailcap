@@ -11,8 +11,6 @@ text/html; html2text -s \
 --unicode-snob \
 --single-line-break %s %{charset}; copiousoutput
 
-text/calendar; khal import -a personal %s
-
 image/*; setsid -f imv %s
 video/*; setsid -f mpv --no-terminal %s
 audio/*; setsid -f mpv --no-terminal %s

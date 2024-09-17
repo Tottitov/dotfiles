@@ -23,11 +23,11 @@ if [ "$(nmcli radio wifi)" = "disabled" ]; then
 	exit 1
 fi
 
-status=$(nmcli -g DEVICE,TYPE,STATE dev status | grep "^.*:wifi:")
+status=$(nmcli -g DEVICE,TYPE,STATE dev status | ugrep "^.*:wifi:")
 device=$(echo "$status" | cut -d ':' -f 1)
 state=$(echo "$status" | cut -d ':' -f 3)
 
-if [ "$state" = "unavailable" ] || [ "$state" = "disconnected" ]; then
+if [ "$state" = "unavailable" ]; then
 	notify-send -r 5 -u critical "$device is in state: $state"
 	exit 1
 fi

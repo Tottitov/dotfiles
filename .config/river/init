@@ -98,11 +98,6 @@ riverctl border-color-unfocused "0x665C54"
 riverctl default-layout rivertile
 riverctl default-attach-mode bottom
 
-riverctl map -repeat normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.01"
-riverctl map -repeat normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.01"
-riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
-riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
-
 scratchTag=$((1 << 11))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
