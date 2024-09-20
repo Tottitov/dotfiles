@@ -4,13 +4,16 @@
 
 khal calendar today 30d && printf "\n"
 
-event=$(gum input --placeholder "Enter an event") || exit 1
+leapYear() {
+	[ $((currentYear % 4)) -ne 0 ] && exit 0
+	[ $((currentYear % 100)) -ne 0 ] || [ $((currentYear % 400)) -eq 0 ] && max=29 || max=28
+}
 
 chooseDate() {
 	months="Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
 
 	currentDay=$(date +%d)
-	currentMonth=$(date +%m)
+	currentMonth=$(date +%-m)
 	currentYear=$(date +%Y)
 	currentMonthIndex=$((currentMonth - 1))
 
@@ -35,11 +38,7 @@ chooseDate() {
 	chosenMonth=$(date -d "$chosenMonth 1" +'%m')
 
 	case $chosenMonth in
-	02)
-		[ $((currentYear % 4)) -eq 0 ] && {
-			[ $((currentYear % 100)) -ne 0 ] || [ $((currentYear % 400)) -eq 0 ]
-		} && max=29 || max=28
-		;;
+	02) leapYear ;;
 	01 | 03 | 05 | 07 | 08 | 10 | 12) max=31 ;;
 	04 | 06 | 09 | 11) max=30 ;;
 	esac
@@ -57,6 +56,7 @@ chooseDate() {
 	echo "${chosenMonth}/${chosenDay}/${currentYear}"
 }
 
+event=$(gum input --placeholder "Enter an event") || exit 1
 startDate=$(chooseDate "start") || exit 1
 endDate=$(chooseDate "end") || exit 1
 startTime=$(gum input --placeholder "Input start time, ex: 10:00 AM")

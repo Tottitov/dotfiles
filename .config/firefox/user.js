@@ -47,11 +47,11 @@ user_pref("dom.security.sanitizer.enabled", true);
 user_pref("browser.contentblocking.category", "strict");
 user_pref(
   "urlclassifier.trackingSkipURLs",
-  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"
+  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com",
 );
 user_pref(
   "urlclassifier.features.socialtracking.skipURLs",
-  "*.instagram.com, *.twitter.com, *.twimg.com"
+  "*.instagram.com, *.twitter.com, *.twimg.com",
 );
 user_pref("network.cookie.sameSite.noneRequiresSecure", true);
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
@@ -168,11 +168,11 @@ user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false
+  false,
 );
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false
+  false,
 );
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
@@ -190,7 +190,7 @@ user_pref("layout.css.prefers-color-scheme.content-override", 2);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 user_pref(
   "browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled",
-  true
+  true,
 );
 
 /** COOKIE BANNER HANDLING ***/
@@ -226,3 +226,6 @@ user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("browser.menu.showViewImageInfo", true);
 user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
+
+/** ADD-ONS **/
+user_pref("xpinstall.signatures.required", false);

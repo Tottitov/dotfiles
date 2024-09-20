@@ -1,76 +1,71 @@
-/* Single line */
+/* Force UI into a single line */
 #navigator-toolbox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  border-bottom: 0 !important;
 }
 #nav-bar {
-  order: 1;
-  width: 500px;
+  order: 1 !important;
+  background-color: transparent !important;
 }
 #titlebar {
-  order: 2;
-  flex-grow: 1;
+  order: 2 !important;
+  flex-grow: 1 !important;
+  background-color: transparent !important;
 }
 #PersonalToolbar {
-  order: 3;
-  width: 100%;
-}
-#toolbar-menubar {
-  display: none;
+  order: 3 !important;
+  width: 100% !important;
 }
 
-/* No round corners */
+/* No round corners or shadows */
 * {
   border-radius: 0 !important;
-}
-
-/* Sets the UI color */
-#titlebar,
-#urlbar,
-toolbar#nav-bar {
-  background: var(--accent-color) !important;
+  text-shadow: none !important;
   box-shadow: none !important;
-  border: none !important;
 }
 
-/* Remove "padding" left and right from tabs */
-.titlebar-spacer {
+/* Hide tabs and expand URL bar when focused, otherwise just show tabs */
+#main-window:not([customizing]) #navigator-toolbox:focus-within #TabsToolbar,
+#main-window:not([customizing]) #navigator-toolbox:focus-within #back-button {
+  visibility: collapse !important;
+}
+#main-window:not([customizing]) #urlbar-container {
+  width: 0 !important;
+  margin: 0 !important;
+}
+#main-window:not([customizing]) #navigator-toolbox:focus-within #nav-bar {
+  width: 100% !important;
+  flex-grow: 1 !important;
+  padding-left: 5px !important;
+}
+
+/* Remove tab gaps/margins/close on tabs */
+.tabbrowser-tab:not([pinned]):not([selected]) .tab-close-button {
   display: none !important;
 }
-
-/* Remove gaps from unpinned/pinned tabs */
-.tabbrowser-tab:not([pinned]) {
-  margin-inline-start: 0px !important;
+.tabbrowser-tab {
+  margin-inline-start: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.tab-background {
+  margin: 0 !important;
 }
 
-/* Hide title bar navagation, tabs drop down, and url bar icons */
+/* Remove extra buttons */
+.urlbarView,
+.urlbar-go-button,
+.titlebar-buttonbox-container,
+#urlbar-background,
+#toolbar-menubar,
+#identity-icon-label,
 #tracking-protection-icon-container,
 #page-action-buttons > :not(#urlbar-zoom-button),
+#unified-extensions-button > .toolbarbutton-icon,
 #alltabs-button,
-.titlebar-buttonbox-container {
-  display: none !important;
-}
-
-/* Hide bottom border outline */
-#navigator-toolbox {
-  border-bottom: none !important;
-}
-
-/* Hide the extensions menu but allow popups */
-#unified-extensions-button,
-#unified-extensions-button > .toolbarbutton-icon {
-  width: 0px !important;
-  padding: 0px !important;
-  margin-left: auto !important;
-}
-
-/* Hide forward button */
-#forward-button {
-  display: none !important;
-}
-
-/* Hide the hamburger menu */
+#forward-button,
 #PanelUI-menu-button {
   display: none !important;
 }
