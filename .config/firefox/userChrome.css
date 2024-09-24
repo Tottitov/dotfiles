@@ -8,7 +8,8 @@
   order: 1 !important;
   background-color: transparent !important;
 }
-#titlebar {
+#titlebar,
+#TabsToolbar {
   order: 2 !important;
   flex-grow: 1 !important;
   background-color: transparent !important;
@@ -21,6 +22,10 @@
   border-radius: 0 !important;
   text-shadow: none !important;
   box-shadow: none !important;
+}
+#main-window:not([customizing]) #navigator-toolbox #TabsToolbar,
+#main-window:not([customizing]) #nav-bar #back-button {
+  visibility: visible !important;
 }
 #main-window:not([customizing]) #navigator-toolbox:focus-within #TabsToolbar,
 #main-window:not([customizing]) #nav-bar:focus-within #back-button {

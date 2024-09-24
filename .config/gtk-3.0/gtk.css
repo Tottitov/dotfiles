@@ -1,19 +1,14 @@
 headerbar.default-decoration {
-    margin-bottom: 50px;
-    margin-top: -100px;
+  margin-top: -100px;
+  margin-bottom: 50px;
 }
 
-.titlebar,
-.titlebar .background,
-decoration,
-window,
-window.background {
-    border-radius: 0;
+* {
+  border-radius: 0;
+  text-shadow: none;
+  box-shadow: none;
 }
 
-button:focus,
-button:hover,
-button:active,
-button:checked { background-color: #1a1b26; }
-
-window.csd,window.csd decoration { box-shadow: none; }
+button:checked {
+  background-color: #665c54;
+}

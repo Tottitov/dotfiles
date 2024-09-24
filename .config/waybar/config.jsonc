@@ -20,6 +20,7 @@
   "battery": {
     "bat": "BAT1",
     "adapter": "ACAD",
+    "design-capacity": true,
     "states": {
       "warning": 50,
       "critical": 25
@@ -33,7 +34,7 @@
       "<span color=\"#9ece6a\">󰂀</span>",
       "<span color=\"#9ece6a\">󰁹</span>"
     ],
-    "interval": 5
+    "interval": 30
   },
   "bluetooth": {
     "format": "",

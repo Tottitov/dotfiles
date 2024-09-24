@@ -93,8 +93,9 @@ riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
 riverctl rule-add ssd
 riverctl background-color "0x1A1B26"
-riverctl border-color-focused "0xBDAE93"
+riverctl border-color-focused "0x6C6E75"
 riverctl border-color-unfocused "0x665C54"
+riverctl border-width 2
 riverctl default-layout rivertile
 riverctl default-attach-mode bottom
 
@@ -117,7 +118,8 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-gsettings set "org.gnome.desktop.interface" gtk-theme "Arc-Dark"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Orchis-Dark-Compact"
+gsettings set "org.gnome.desktop.interface" icon-theme "Tela-circle-ubuntu-dark"
 
 dbus-update-activation-environment \
 	SEATD_SOCK \

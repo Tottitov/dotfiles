@@ -18,15 +18,16 @@ window#waybar {
 }
 
 #tags button {
-  padding: 0px 0px;
+  padding: 0px;
+  min-width: 24px;
   color: @empty;
   border-radius: 0px;
 }
 
 #tags button:hover {
-  box-shadow: inherit;
-  text-shadow: inherit;
-  background: inherit;
+  box-shadow: none;
+  text-shadow: none;
+  background: transparent;
 }
 
 #tags button.occupied {

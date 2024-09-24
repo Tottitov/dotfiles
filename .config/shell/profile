@@ -18,8 +18,10 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
+export GTK_CSD=0
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export SDL_VIDEODRIVER="wayland"
@@ -27,5 +29,5 @@ export XDG_SESSION_TYPE="wayland"
 
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
+[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
 	exec dbus-launch --exit-with-session river -no-xwayland >/dev/null 2>&1
