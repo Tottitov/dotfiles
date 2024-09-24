@@ -1,3 +1,8 @@
 profile undocked {
     output eDP-1 enable scale 1.5 adaptive_sync on
 }
+
+profile docked {
+    output DP-4 enable
+    output eDP-1 disable
+}

@@ -119,7 +119,7 @@ for i in $(seq 1 9); do
 done
 
 gsettings set "org.gnome.desktop.interface" gtk-theme "Orchis-Dark-Compact"
-gsettings set "org.gnome.desktop.interface" icon-theme "Tela-circle-ubuntu-dark"
+gsettings set "org.gnome.desktop.interface" icon-theme "Tela-circle-grey-dark"
 
 dbus-update-activation-environment \
 	SEATD_SOCK \

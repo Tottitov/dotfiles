@@ -1,3 +1,4 @@
+/* Make interface on a single bar */
 #navigator-toolbox {
   display: flex !important;
   flex-direction: row !important;
@@ -18,11 +19,15 @@
   order: 3 !important;
   width: 100% !important;
 }
+
+/* Remove all shadows and round corners */
 * {
   border-radius: 0 !important;
   text-shadow: none !important;
   box-shadow: none !important;
 }
+
+/* Auto hide tab bar */
 #main-window:not([customizing]) #navigator-toolbox #TabsToolbar,
 #main-window:not([customizing]) #nav-bar #back-button {
   visibility: visible !important;
@@ -31,27 +36,35 @@
 #main-window:not([customizing]) #nav-bar:focus-within #back-button {
   visibility: collapse !important;
 }
+
+/* Auto hide URL bar */
 #main-window:not([customizing]) #nav-bar #urlbar-container {
   width: 0 !important;
   margin: 0 !important;
 }
 #main-window:not([customizing]) #nav-bar:focus-within {
   width: 100% !important;
-  flex-grow: 1 !important;
   padding: 0 5px !important;
+}
+
+/* Remove gaps/close/margin in all tabs */
+.tabbrowser-tab {
+  padding: 0 !important;
+}
+.tabbrowser-tab:not([pinned]) {
+  margin-inline-start: 0 !important;
 }
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-close-button {
   display: none !important;
 }
-.tabbrowser-tab {
-  margin-inline-start: 0 !important;
-  padding: 0 !important;
-}
 .tab-background {
   margin: 0 !important;
 }
+
+/* Remove all these elements */
 .urlbarView,
 .titlebar-buttonbox-container,
+.urlbar-go-button,
 #urlbar-background,
 #toolbar-menubar,
 #identity-icon-label,
