@@ -4,7 +4,7 @@ forecast=$(
 	curl -fs --max-time 15 "https://v2.wttr.in/?format=%C:%t"
 ) || exit 1
 
-echo "$forecast" | ugrep -q "Unknown" && exit 1
+echo "$forecast" | rg -q "Unknown" && exit 1
 
 weather=$(echo "$forecast" | cut -d ':' -f1 | xargs)
 temperature=$(echo "$forecast" | awk -F ':' '{print $NF}')

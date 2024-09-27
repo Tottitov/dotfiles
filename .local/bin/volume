@@ -1,14 +1,14 @@
 #!/bin/sh
 
 case "$1" in
-high) pamixer --allow-boost -i 5 --set-limit 150 ;;
-higher) pamixer --allow-boost -i 10 --set-limit 150 ;;
-low) pamixer --allow-boost -d 5 ;;
-lower) pamixer --allow-boost -d 10 ;;
+high) pamixer -i 5 ;;
+higher) pamixer -i 10 ;;
+low) pamixer -d 5 ;;
+lower) pamixer -d 10 ;;
 mute) pamixer -t ;;
 esac
 
-volume=$(pamixer --get-volume --set-limit 150)
+volume=$(pamixer --get-volume)
 
 if [ "$(pamixer --get-mute)" != "true" ]; then
 	notify-send \

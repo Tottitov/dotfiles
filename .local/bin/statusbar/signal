@@ -1,8 +1,8 @@
 #!/bin/sh
 
-nmcli -g type,state dev | ugrep -q "net:con" && exit 1
+nmcli -g type,state dev | rg -q "net:con" && exit 1
 
-signal=$(nmcli -g in-use,signal dev wifi | ugrep '^\*' | cut -d: -f2)
+signal=$(nmcli -g in-use,signal dev wifi | rg '^\*' | cut -d: -f2)
 case $signal in
 [1-9] | 1[0-9] | 20) icon=󰤯 ;;
 2[1-9] | 3[0-9] | 40) icon=󰤟 ;;

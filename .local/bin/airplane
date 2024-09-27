@@ -2,6 +2,6 @@
 
 status=$(rfkill -n -o SOFT | head -n 1)
 
-[ "$status" = "blocked" ] &&
-	notify-send -r 2 "Airplane mode" "Enabled" ||
+([ "$status" = "blocked" ] &&
+	notify-send -r 2 "Airplane mode" "Enabled") ||
 	notify-send -r 2 "Airplane mode" "Disabled"

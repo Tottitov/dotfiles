@@ -10,7 +10,7 @@ checkpassword() {
 }
 
 connect() {
-	if ! nmcli -g name con show | ugrep -q "$1" && [ -n "$security" ]; then
+	if ! nmcli -g name con show | rg -q "$1" && [ -n "$security" ]; then
 		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 1
 		checkpassword "$password" "$1"
 	else
@@ -23,7 +23,7 @@ if [ "$(nmcli radio wifi)" = "disabled" ]; then
 	exit 1
 fi
 
-status=$(nmcli -g DEVICE,TYPE,STATE dev status | ugrep "^.*:wifi:")
+status=$(nmcli -g DEVICE,TYPE,STATE dev status | rg "^.*:wifi:")
 device=$(echo "$status" | cut -d ':' -f 1)
 state=$(echo "$status" | cut -d ':' -f 3)
 

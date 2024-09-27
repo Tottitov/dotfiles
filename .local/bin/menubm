@@ -8,6 +8,6 @@ tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
 tag=$(echo "$tags" | menu "Tag: ") || exit 1
 
 bookmark=$(
-	ugrep -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | menu "Bookmark: "
+	rg -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | menu "Bookmark: "
 ) || exit 1
-$BROWSER "$(ugrep -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
+$BROWSER "$(rg -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"

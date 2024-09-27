@@ -7,7 +7,7 @@ toggle() {
 		notify-send -r 5 -u critical "$device" "Failed to $1"
 }
 
-power=$(bluetoothctl show | ugrep "Powered" | cut -c 11-)
+power=$(bluetoothctl show | rg "Powered" | cut -c 11-)
 [ "$power" = "no" ] && {
 	notify-send -r 5 "Bluetooth is not powered on"
 	exit 1
@@ -20,11 +20,11 @@ if [ "$count" -gt 1 ]; then
 	device=$(
 		echo "$devices" | cut -c 26- | fuzzel -dip "Bluetooth: "
 	) || exit 1
-	mac=$(echo "$devices" | ugrep "${device}$" | cut -d ' ' -f 2)
+	mac=$(echo "$devices" | rg "${device}$" | cut -d ' ' -f 2)
 else
 	device=$(echo "$devices" | cut -d ' ' -f 3)
 	mac=$(echo "$devices" | cut -d ' ' -f 2)
 fi
 
-(bluetoothctl devices Connected | ugrep "$mac" &&
+(bluetoothctl devices Connected | rg "$mac" &&
 	toggle disconnect) || toggle connect

@@ -36,15 +36,13 @@ user_pref("network.predictor.enabled", false);
 user_pref("network.predictor.enable-prefetch", false);
 
 /** EXPERIMENTAL ***/
-user_pref("layout.css.grid-template-masonry-value.enabled", true);
 user_pref("dom.enable_web_task_scheduling", true);
-user_pref("dom.security.sanitizer.enabled", true);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
  ****************************************************************************/
 /** TRACKING PROTECTION ***/
-user_pref("browser.contentblocking.category", "strict");
+user_pref("browser.contentblocking.category", "standard");
 user_pref(
   "urlclassifier.trackingSkipURLs",
   "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"
@@ -103,17 +101,15 @@ user_pref("editor.truncate_user_pastes", false);
 /** MIXED CONTENT + CROSS-SITE ***/
 user_pref("security.mixed_content.block_display_content", true);
 user_pref("pdfjs.enableScripting", false);
-user_pref("extensions.postDownloadThirdPartyPrompt", false);
+
+/** EXTENSIONS ***/
+user_pref("extensions.enabledScopes", 5);
 
 /** HEADERS / REFERERS ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 /** CONTAINERS ***/
 user_pref("privacy.userContext.ui.enabled", true);
-
-/** WEBRTC ***/
-user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-user_pref("media.peerconnection.ice.default_address_only", true);
 
 /** SAFE BROWSING ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
@@ -207,9 +203,11 @@ user_pref("full-screen-api.warning.timeout", 0);
 user_pref("browser.urlbar.suggest.calculator", true);
 user_pref("browser.urlbar.unitConversion.enabled", true);
 user_pref("browser.urlbar.trending.featureGate", false);
+user_pref("dom.text_fragments.enabled", true);
 
 /** NEW TAB PAGE ***/
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
+user_pref("browser.newtabpage.activity-stream.showWeather", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 
 /** POCKET ***/
@@ -226,6 +224,3 @@ user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("browser.menu.showViewImageInfo", true);
 user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
-
-/** ADD-ONS **/
-user_pref("xpinstall.signatures.required", false);

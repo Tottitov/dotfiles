@@ -8,7 +8,6 @@ sc() {
 alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
-	grep="ugrep --color=auto" \
 	ts="tmux switch -t" \
 	ta="tmux attach -t" \
 	tn="tmux new" \

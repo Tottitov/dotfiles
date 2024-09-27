@@ -1,23 +1,19 @@
 /* Make interface on a single bar */
 #navigator-toolbox {
   display: flex !important;
+  height: 8mm !important;
   flex-direction: row !important;
-  flex-wrap: wrap !important;
+  align-items: center !important;
   border-bottom: 0 !important;
 }
 #nav-bar {
   order: 1 !important;
   background-color: transparent !important;
 }
-#titlebar,
-#TabsToolbar {
+#titlebar {
   order: 2 !important;
   flex-grow: 1 !important;
   background-color: transparent !important;
-}
-#PersonalToolbar {
-  order: 3 !important;
-  width: 100% !important;
 }
 
 /* Remove all shadows and round corners */
@@ -28,10 +24,6 @@
 }
 
 /* Auto hide tab bar */
-#main-window:not([customizing]) #navigator-toolbox #TabsToolbar,
-#main-window:not([customizing]) #nav-bar #back-button {
-  visibility: visible !important;
-}
 #main-window:not([customizing]) #navigator-toolbox:focus-within #TabsToolbar,
 #main-window:not([customizing]) #nav-bar:focus-within #back-button {
   visibility: collapse !important;
@@ -44,10 +36,10 @@
 }
 #main-window:not([customizing]) #nav-bar:focus-within {
   width: 100% !important;
-  padding: 0 5px !important;
+  padding: 1mm !important;
 }
 
-/* Remove gaps/close/margin in all tabs */
+/* Remove padding, margins, and close buttons from non-selected/non-pinned tabs */
 .tabbrowser-tab {
   padding: 0 !important;
 }
@@ -62,18 +54,21 @@
 }
 
 /* Remove all these elements */
-.urlbarView,
-.titlebar-buttonbox-container,
-.urlbar-go-button,
-#urlbar-background,
-#toolbar-menubar,
-#identity-icon-label,
-#tracking-protection-icon-container,
-#page-action-buttons > :not(#urlbar-zoom-button),
-#unified-extensions-button,
-#unified-extensions-button > .toolbarbutton-icon,
-#alltabs-button,
-#forward-button,
-#PanelUI-menu-button {
+.urlbarView, /* search popup in the URL bar */
+.titlebar-buttonbox-container, /* close/minimize/maximize buttons container */
+.urlbar-go-button, /* arrow icon in the URL bar (submit button) */
+#PersonalToolbar, /* bookmark toolbar */
+#context-navigation, /* back/forward options in the right-click context menu */
+#context-sep-navigation, /* separator in the back/forward context menu */
+#urlbar-background, /* background/border around the URL bar */
+#toolbar-menubar, /* traditional menu bar (File, Edit, View, etc.) */
+#identity-icon-label, /* security label (like "Secure" or padlock in the URL bar) */
+#tracking-protection-icon-container, /* container for the tracking protection shield icon */
+#page-action-buttons > :not(#urlbar-zoom-button), /* all page action buttons except zoom */
+#unified-extensions-button, /* unified extensions button in the toolbar */
+#unified-extensions-button > .toolbarbutton-icon, /* icon of the unified extensions button */
+#alltabs-button, /* button for showing all open tabs in a dropdown menu */
+#forward-button, /* forward navigation button */
+#PanelUI-menu-button /* main menu button (hamburger menu) */ {
   visibility: collapse !important;
 }
