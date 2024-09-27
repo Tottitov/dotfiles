@@ -8,7 +8,3 @@ headerbar.default-decoration {
   text-shadow: none;
   box-shadow: none;
 }
-
-button:checked {
-  background-color: #665c54;
-}
