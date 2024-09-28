@@ -1,3 +1,7 @@
+#urlbarView .menuitem[cmd="cmd_undo"] ~ .menuseparator {
+  display: none !important; /* Hides the menuseparator following the Undo item */
+}
+
 /* Make interface on a single bar */
 #navigator-toolbox {
   display: flex !important;
@@ -36,7 +40,17 @@
 }
 #main-window:not([customizing]) #nav-bar:focus-within {
   width: 100% !important;
-  padding: 1mm !important;
+}
+
+/* Remove border/separators from search results */
+#urlbar-background {
+  outline: none !important;
+}
+#urlbar-input {
+  margin-inline: 1mm !important;
+}
+.urlbarView-body-inner {
+  border-top: none !important;
 }
 
 /* Remove padding, margins, and close buttons from non-selected/non-pinned tabs */
@@ -54,13 +68,12 @@
 }
 
 /* Remove all these elements */
-.urlbarView, /* search popup in the URL bar */
 .titlebar-buttonbox-container, /* close/minimize/maximize buttons container */
 .urlbar-go-button, /* arrow icon in the URL bar (submit button) */
+#identity-box, /* magnify glass in the URL bar */
 #PersonalToolbar, /* bookmark toolbar */
 #context-navigation, /* back/forward options in the right-click context menu */
 #context-sep-navigation, /* separator in the back/forward context menu */
-#urlbar-background, /* background/border around the URL bar */
 #toolbar-menubar, /* traditional menu bar (File, Edit, View, etc.) */
 #identity-icon-label, /* security label (like "Secure" or padlock in the URL bar) */
 #tracking-protection-icon-container, /* container for the tracking protection shield icon */
@@ -70,5 +83,5 @@
 #alltabs-button, /* button for showing all open tabs in a dropdown menu */
 #forward-button, /* forward navigation button */
 #PanelUI-menu-button /* main menu button (hamburger menu) */ {
-  visibility: collapse !important;
+  display: none !important;
 }

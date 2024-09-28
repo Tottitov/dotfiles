@@ -19,7 +19,7 @@ window#waybar {
 
 #tags button {
   padding: 0px;
-  min-width: 24px;
+  min-width: 22px;
   color: @empty;
   border-radius: 0px;
 }
