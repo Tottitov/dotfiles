@@ -1,7 +1,3 @@
-#urlbarView .menuitem[cmd="cmd_undo"] ~ .menuseparator {
-  display: none !important; /* Hides the menuseparator following the Undo item */
-}
-
 /* Make interface on a single bar */
 #navigator-toolbox {
   display: flex !important;
