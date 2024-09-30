@@ -1,6 +1,7 @@
 #!/bin/sh
 
 toggle() {
+	echo "$choice" | rg -Fq "*" && device=$(echo "$choice" | cut -d ' ' -f 1) || device=$choice
 	notify-send -r 5 "$device" "Attempting to $1"
 	(bluetoothctl "$1" "$mac" >/dev/null 2>&1 &&
 		notify-send -r 5 "$device" "Successfully ${1}ed") ||
@@ -13,18 +14,18 @@ power=$(bluetoothctl show | rg "Powered" | cut -c 11-)
 	exit 1
 }
 
-devices=$(bluetoothctl devices)
+devices=$(bluetoothctl devices | while read -r line; do
+	device=$(echo "$line" | cut -d ' ' -f 2)
+	bluetoothctl info "$device" | rg -q "Connected: yes" && echo "$line *" || echo "$line"
+done)
 
 count=$(echo "$devices" | wc -l)
 if [ "$count" -gt 1 ]; then
-	device=$(
-		echo "$devices" | cut -c 26- | fuzzel -dip "Bluetooth: "
-	) || exit 1
-	mac=$(echo "$devices" | rg "${device}$" | cut -d ' ' -f 2)
+	choice=$(echo "$devices" | cut -c 26- | fuzzel -dip "Bluetooth: ") || exit 1
+	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f 2)
 else
-	device=$(echo "$devices" | cut -d ' ' -f 3)
+	choice=$(echo "$devices" | cut -d ' ' -f 3)
 	mac=$(echo "$devices" | cut -d ' ' -f 2)
 fi
 
-(bluetoothctl devices Connected | rg "$mac" &&
-	toggle disconnect) || toggle connect
+(bluetoothctl devices Connected | rg -q "$mac" && toggle disconnect) || toggle connect
