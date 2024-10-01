@@ -3,6 +3,6 @@ profile undocked {
 }
 
 profile docked {
-    output DP-4 enable
+    output "LG Electronics LG SDQHD 404NTLE8W296" scale 1.5 transform 90
     output eDP-1 disable
 }
