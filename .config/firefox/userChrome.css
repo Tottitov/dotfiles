@@ -1,5 +1,6 @@
 /* Make interface on a single bar */
-#navigator-toolbox {
+#navigator-toolbox,
+.notificationbox-stack {
   display: flex !important;
   height: 7mm !important;
   flex-direction: row !important;
@@ -8,16 +9,16 @@
 }
 #nav-bar {
   order: 1 !important;
-  background-color: transparent !important;
+  background: transparent !important;
 }
 #titlebar {
   order: 2 !important;
   flex-grow: 1 !important;
-  background-color: transparent !important;
 }
 
 /* Remove all shadows and round corners */
 * {
+  border: none !important;
   border-radius: 0 !important;
   text-shadow: none !important;
   box-shadow: none !important;
@@ -43,13 +44,13 @@
   outline: none !important;
 }
 #urlbar-input {
-  margin-inline: 1mm !important;
+  margin-inline: 2mm !important;
 }
 .urlbarView-body-inner {
   border-top: none !important;
 }
 
-/* Remove padding, margins, and close buttons from non-selected/non-pinned tabs */
+/* Remove padding, margins, title change dot, and close buttons from non-selected/non-pinned tabs */
 .tabbrowser-tab {
   padding: 0 !important;
 }
@@ -58,6 +59,9 @@
 }
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-close-button {
   display: none !important;
+}
+.tab-content[pinned][titlechanged]:not([selected]) {
+  background-image: none !important;
 }
 .tab-background {
   margin: 0 !important;
