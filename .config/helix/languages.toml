@@ -10,6 +10,11 @@ formatter = { command = "stylua", args = ["-"] }
 auto-format = true
 
 [[language]]
+name = "python"
+formatter = { command = "black", args = ["-"] }
+auto-format = true
+
+[[language]]
 name = "markdown"
 formatter = { command = 'prettier', args = ["--parser", "markdown"] }
 auto-format = true
