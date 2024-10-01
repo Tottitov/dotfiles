@@ -59,12 +59,14 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift M spawn "volume mute"
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
+
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
+	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
+	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
 	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86AudioNext spawn "mpc -q next & pkill -RTMIN+1 waybar"
-	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
-	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
+
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Period spawn "mpc -q next & pkill -RTMIN+1 waybar"
