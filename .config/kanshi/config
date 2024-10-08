@@ -1,8 +1,8 @@
-profile undocked {
-    output eDP-1 enable scale 1.5 adaptive_sync on
+profile main {
+    output eDP-1 enable scale 1.75 adaptive_sync on
 }
 
-profile docked {
-    output "LG Electronics LG SDQHD 404NTLE8W296" scale 1.5 transform 90
+profile hdmi {
+    output DP-4 scale 1.25
     output eDP-1 disable
 }

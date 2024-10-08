@@ -1,3 +1,0 @@
-#!/bin/sh
-
-[ "$(printf "No\\nYes" | fuzzel -di -l 2 -p "$1")" = "Yes" ] && $2

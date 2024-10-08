@@ -1,0 +1,13 @@
+#!/bin/sh
+
+choice=$(
+	printf "Lock\nReboot\nShutdown\nSuspend\nLogout" | fuzzel -l 5 -w 10 -di
+)
+
+case $choice in
+Lock) lock ;;
+Reboot) sudo reboot ;;
+Shutdown) sudo shutdown -h now ;;
+Suspend) loginctl suspend ;;
+Logout) riverctl exit ;;
+esac

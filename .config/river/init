@@ -17,10 +17,7 @@ riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
-riverctl map normal Super+Shift Q spawn "prompt 'Quit River? ' 'riverctl exit'"
-riverctl map normal Super Backspace spawn "prompt 'Reboot? ' 'sudo reboot'"
-riverctl map normal Super+Shift Backspace spawn "prompt 'Shutdown? ' 'sudo shutdown -h now'"
-riverctl map normal Super+Alt Backspace spawn "prompt 'Lock? ' 'lock'"
+riverctl map normal Super Backspace spawn menusys
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
 
 riverctl map normal Super Return spawn "$TERMINAL"
@@ -57,15 +54,8 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
-	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
-
-	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
-	riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
-	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
-	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
-	riverctl map $mode None XF86AudioNext spawn "mpc -q next & pkill -RTMIN+1 waybar"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10%"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10%-"
 
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -74,6 +64,16 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5% & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5% & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0% & pkill -RTMIN+1 waybar"
+
+	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
+	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
+	riverctl map $mode None XF86AudioMute spawn "volume mute"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10%"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10%-"
+
+	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
+	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
+	riverctl map $mode None XF86AudioNext spawn "mpc -q next & pkill -RTMIN+1 waybar"
 done
 
 riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
@@ -96,7 +96,7 @@ riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
 riverctl rule-add ssd
 riverctl background-color "0x1A1B26"
-riverctl border-color-focused "0x6C6E75"
+riverctl border-color-focused "0x737AA2"
 riverctl border-color-unfocused "0x665C54"
 riverctl border-width 2
 

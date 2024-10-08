@@ -1,6 +1,6 @@
 {
   "height": 25,
-  "modules-left": ["river/tags", "custom/mpd"],
+  "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
@@ -40,7 +40,7 @@
     "format": "",
     "format-connected": "<span color=\"#2ac3de\"></span> {device_alias}",
     "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}% ({device_alias})",
-    "format-device-preference": ["Nothing Ear", "HHKB"],
+    "format-device-preference": ["Nothing-Ear-A", "Google-Home", "HHKB"],
     "tooltip-format": "{num_connections} connected"
   },
   "custom/signal": {
@@ -52,7 +52,7 @@
     "on-click": "$TERMINAL neomutt",
     "signal": 4
   },
-  "custom/mpd": {
+  "custom/player": {
     "exec": "player",
     "signal": 1
   },
