@@ -18,32 +18,34 @@ connect() {
 	fi >/dev/null 2>&1
 }
 
-if [ "$(nmcli radio wifi)" = "disabled" ]; then
+radio=$(nmcli radio wifi)
+if [ "$radio" = "disabled" ]; then
 	notify-send -r 5 -u critical "WiFi is disabled"
 	exit 1
 fi
 
-status=$(nmcli -g DEVICE,TYPE,STATE dev status | rg "^.*:wifi:")
-device=$(echo "$status" | cut -d ':' -f 1)
-state=$(echo "$status" | cut -d ':' -f 3)
-
+state=$(nmcli -g state dev status | rg "^.*:wifi:")
 if [ "$state" = "unavailable" ]; then
-	notify-send -r 5 -u critical "$device is in state: $state"
+	notify-send -r 5 -u critical "WiFi is unavailable"
 	exit 1
 fi
 
-networks=$(nmcli -g active,ssid,security,signal dev wifi)
-if [ -n "$networks" ]; then
-	network=$(echo "$networks" | fuzzel -w 40 -dip "Network: ") || exit 1
-fi
+networks=$(nmcli -g active,ssid,security dev wifi)
+[ -n "$networks" ] && {
+	list=$(
+		echo "$networks" | awk -F ':' '
+			$1 == "yes" { print $2 " *" }
+    	$1 != "yes" { print $2 }
+  	'
+	)
 
-active=$(echo "$network" | cut -d ':' -f 1)
-ssid=$(echo "$network" | cut -d ':' -f 2)
-security=$(echo "$network" | cut -d ':' -f 3)
-
-if [ "$active" = "yes" ]; then
-	nmcli con down id "$ssid" >/dev/null 2>&1
-	notify-send -r 5 "$ssid disconnected"
-else
-	connect "$ssid"
-fi
+	choice=$(echo "$list" | fuzzel -l 5 -w 32 -dip "Network: ") || exit 1
+	if echo "$choice" | rg -Fq '*'; then
+		choice=$(echo "$choice" | cut -d ' ' -f 1)
+		nmcli con down id "$choice" >/dev/null 2>&1
+		notify-send -r 5 "$choice disconnected"
+	else
+		security=$(echo "$networks" | rg "$choice" | cut -d ':' -f 3)
+		connect "$choice"
+	fi
+}

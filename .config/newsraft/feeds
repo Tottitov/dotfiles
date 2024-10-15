@@ -1,4 +1,4 @@
-@ Youtube [720]
+@ Youtube < reload-period 720
 https://www.youtube.com/feeds/videos.xml?channel_id=UC5mPJA4y5G8Z6aNkY6AxgAw "Van Neitstat"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCcXhhVwCT6_WqjkEniejRJQ "Wintergatan"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCiDJtJKMICpb9B1qf7qjEOA "Adam Savage"
@@ -23,6 +23,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCo71RUe6DX4w-Vd47rFLXPg "ty
 https://www.youtube.com/feeds/videos.xml?channel_id=UCy0tKL1T7wFoYcxCe0xjN6Q "Technology Connections"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC5Qbo0AR3CwpmEq751BIy0g "The Deal Guy"
 
-@ Blogs [1440]
+@ Blogs < reload-period 1440
 http://lukesmith.xyz/rss.xml "Luke Smith"
 https://www.archlinux.org/feeds/news/ "Arch Linux"

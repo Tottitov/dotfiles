@@ -20,7 +20,6 @@
   "battery": {
     "bat": "BAT1",
     "adapter": "ACAD",
-    "design-capacity": true,
     "states": {
       "warning": 50,
       "critical": 25
@@ -38,10 +37,13 @@
   },
   "bluetooth": {
     "format": "",
+
+    "format-off": "󰂲 OFF",
     "format-connected": "<span color=\"#2ac3de\"></span> {device_alias}",
     "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}% ({device_alias})",
     "format-device-preference": ["Nothing-Ear-A", "Google-Home", "HHKB"],
-    "tooltip-format": "{num_connections} connected"
+    "tooltip-format": "{num_connections} connected",
+    "on-click": "bttoggle"
   },
   "custom/signal": {
     "exec": "signal",

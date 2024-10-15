@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if bluetoothctl show | rg -q "Powered: yes"; then
+	notify-send -r 3 "Bluetooth" "Powered off"
+	bluetoothctl power off
+else
+	notify-send -r 3 "Bluetooth" "Powered on"
+	bluetoothctl power on
+fi >/dev/null 2>&1

@@ -28,7 +28,9 @@ count=$(echo "$devices" | wc -l)
 }
 
 if [ "$count" -gt 1 ]; then
-	choice=$(echo "$devices" | cut -c 26- | fuzzel -l 5 -w 20 -dip "Bluetooth: ") || exit 1
+	choice=$(
+		echo "$devices" | cut -c 26- | sort | fuzzel -l 5 -w 20 -dip "Bluetooth: "
+	) || exit 1
 	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f 2)
 else
 	choice=$(echo "$devices" | cut -d ' ' -f 3)

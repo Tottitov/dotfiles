@@ -115,7 +115,6 @@ stickyTag=$((1 << 10))
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ stickyTag))
 riverctl rule-add -app-id "mpv" tags $stickyTag
-riverctl rule-add -title "Picture-in-Picture" tags $stickyTag
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))

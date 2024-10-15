@@ -39,10 +39,8 @@ window#waybar {
   color: @focused;
 }
 
-#tags button.urgent {
-  color: @urgent;
-}
-
+#tags button.urgent,
+#bluetooth.off,
 #custom-record {
   color: @urgent;
 }
