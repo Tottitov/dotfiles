@@ -1,85 +1,30 @@
-/* Make interface on a single bar */
-#navigator-toolbox,
-.notificationbox-stack {
-  display: flex !important;
-  height: 7mm !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  border-bottom: 0 !important;
-}
-#nav-bar {
-  order: 1 !important;
-  background: transparent !important;
-}
-#titlebar {
-  order: 2 !important;
-  flex-grow: 1 !important;
-}
-
-/* Remove all shadows and round corners */
-* {
-  border: none !important;
-  border-radius: 0 !important;
-  text-shadow: none !important;
-  box-shadow: none !important;
-}
-
-/* Auto hide tab bar */
-#main-window:not([customizing]) #navigator-toolbox:focus-within #TabsToolbar,
-#main-window:not([customizing]) #nav-bar:focus-within #back-button {
-  visibility: collapse !important;
-}
-
-/* Auto hide URL bar */
-#main-window:not([customizing]) #nav-bar #urlbar-container {
-  width: 0 !important;
-  margin: 0 !important;
-}
-#main-window:not([customizing]) #nav-bar:focus-within {
-  width: 100% !important;
-}
-
-/* Remove border/separators from search results */
-#urlbar-background {
-  outline: none !important;
-}
-#urlbar-input {
-  margin-inline: 2mm !important;
-}
-.urlbarView-body-inner {
-  border-top: none !important;
-}
-
-/* Remove padding, margins, title change dot, and close buttons from non-selected/non-pinned tabs */
-.tabbrowser-tab {
-  padding: 0 !important;
-}
 .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
 }
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-close-button {
   display: none !important;
 }
-.tab-content[pinned][titlechanged]:not([selected]) {
-  background-image: none !important;
+
+#unified-extensions-button {
+  width: 3px;
+  padding-inline: 0 !important;
 }
-.tab-background {
-  margin: 0 !important;
+#unified-extensions-button > .toolbarbutton-icon {
+  width: 0 !important;
 }
 
-/* Remove all these elements */
+* {
+  border: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
 .titlebar-buttonbox-container, /* close/minimize/maximize buttons container */
-.urlbar-go-button, /* arrow icon in the URL bar (submit button) */
-#identity-box, /* magnify glass in the URL bar */
-#PersonalToolbar, /* bookmark toolbar */
 #context-navigation, /* back/forward options in the right-click context menu */
 #context-sep-navigation, /* separator in the back/forward context menu */
-#toolbar-menubar, /* traditional menu bar (File, Edit, View, etc.) */
-#identity-icon-label, /* security label (like "Secure" or padlock in the URL bar) */
-#tracking-protection-icon-container, /* container for the tracking protection shield icon */
+#tracking-protection-icon-container, /* tracking protection shield icon */
 #page-action-buttons > :not(#urlbar-zoom-button), /* all page action buttons except zoom */
-#unified-extensions-button, /* unified extensions button in the toolbar */
-#unified-extensions-button > .toolbarbutton-icon, /* icon of the unified extensions button */
 #alltabs-button, /* button for showing all open tabs in a dropdown menu */
 #forward-button, /* forward navigation button */
 #PanelUI-menu-button /* main menu button (hamburger menu) */ {

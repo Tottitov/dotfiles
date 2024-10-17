@@ -18,7 +18,7 @@ riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
 riverctl map normal Super Backspace spawn menusys
-riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init >/dev/null && notify-send 'River' 'Refreshed'"
+riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
 
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super R spawn "$TERMINAL lf"
@@ -30,7 +30,7 @@ riverctl map normal Super+Shift W spawn menunm
 riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
-riverctl map normal Super+Shift A spawn "$TERMINAL -a 'ncmpcpp' ncmpcpp & notify-send 'Ncmpcpp' 'Opened in scratchpad'"
+riverctl map normal Super+Shift A spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super N spawn "$TERMINAL $EDITOR ${HOME}/notes/"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 riverctl map normal Super C spawn menucalc
@@ -109,12 +109,13 @@ scratchTag=$((1 << 11))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ scratchTag))
-riverctl rule-add -app-id "ncmpcpp" tags $scratchTag
 
 stickyTag=$((1 << 10))
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((((1 << 32) - 1) ^ stickyTag))
 riverctl rule-add -app-id "mpv" tags $stickyTag
+riverctl rule-add -title "Picture-in-Picture" tags $stickyTag
+riverctl rule-add -title "Picture-in-Picture" no-float
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))

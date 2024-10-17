@@ -8,7 +8,7 @@
 
 * {
   font-family: monospace;
-  font-size: 11pt;
+  font-size: 12pt;
   min-height: 0px;
 }
 
@@ -19,7 +19,7 @@ window#waybar {
 
 #tags button {
   padding: 0px;
-  min-width: 22px;
+  min-width: 24px;
   color: @empty;
   border-radius: 0px;
 }
@@ -54,5 +54,5 @@ window#waybar {
 #custom-inbox,
 #custom-record,
 #custom-clock {
-  padding: 0px 8px;
+  padding: 0px 12px;
 }
