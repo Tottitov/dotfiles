@@ -1,6 +1,6 @@
 #!/bin/sh
 
-checkpassword() {
+check() {
 	if nmcli dev wifi con "$2" password "$1"; then
 		notify-send -r 5 "Password Passed" "$2 connected"
 	else
@@ -12,7 +12,7 @@ checkpassword() {
 connect() {
 	if ! nmcli -g name con show | rg -q "$1" && [ -n "$security" ]; then
 		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 1
-		checkpassword "$password" "$1"
+		check "$password" "$1"
 	else
 		nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
 	fi >/dev/null 2>&1
@@ -39,7 +39,7 @@ networks=$(nmcli -g active,ssid,security dev wifi)
   	'
 	)
 
-	choice=$(echo "$list" | fuzzel -l 5 -w 32 -dip "Network: ") || exit 1
+	choice=$(echo "$list" | fuzzel -l 5 -w 20 -dip "Network: ") || exit 1
 	if echo "$choice" | rg -Fq '*'; then
 		choice=$(echo "$choice" | cut -d ' ' -f 1)
 		nmcli con down id "$choice" >/dev/null 2>&1
