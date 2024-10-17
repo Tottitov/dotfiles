@@ -1,16 +1,9 @@
 #!/bin/sh
 
 song=$(mpc current)
-
 [ -z "$song" ] && exit 1
 
 state=$(mpc status | sed -n '2p' | cut -d ' ' -f 1)
-if [ "$state" = "[paused]" ]; then
-	icon="󰏤"
-	color="#f7768e"
-else
-	icon="󰐊"
-	color="#9ece6a"
-fi
+[ "$state" = "[paused]" ] && color="#f7768e" || color="#9ece6a"
 
-echo "<span color=\"${color}\">${icon}</span> $song"
+echo "<span color=\"$color\">$song</span>"
