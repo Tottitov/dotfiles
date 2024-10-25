@@ -1,0 +1,14 @@
+#!/bin/sh
+
+wallpaper="${XDG_DATA_HOME}/bg"
+
+[ -n "$1" ] && {
+	buffer=$(readlink -f "$1")
+	case "$(file --mime-type -b "$buffer")" in
+	image/*) ln -sf "$buffer" "$wallpaper" ;;
+	*) exit 1 ;;
+	esac
+}
+
+pidof -q "swaybg" && killall "swaybg"
+setsid -f swaybg -m fill -i "$XDG_DATA_HOME/bg" >/dev/null 2>&1 &

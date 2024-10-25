@@ -5,12 +5,9 @@
   display: none !important;
 }
 
-#unified-extensions-button {
-  width: 3px;
-  padding-inline: 0 !important;
-}
+#unified-extensions-button,
 #unified-extensions-button > .toolbarbutton-icon {
-  width: 0 !important;
+  display: none !important;
 }
 
 * {

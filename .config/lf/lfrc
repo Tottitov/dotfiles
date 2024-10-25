@@ -7,14 +7,15 @@ set sixel
 set drawbox
 set hidden
 set ignorecase
+set ifs "\n"
 
 cmd open ${{
-    case $(file -Lb --mime-type "$f") in
-    text/*|application/json) $EDITOR "$f" ;;
-    application/pdf) setsid -f zathura "$f" ;;
-    video/*) setsid -f mpv --really-quiet "$f" ;;
-    image/*) setsid -f imv "$f" ;;
-    *) xdg-open "$f" ;;
+    case $(file --mime-type $f -b) in
+        text/*|application/json) $EDITOR $f ;;
+        application/pdf) setsid -f zathura $fx ;;
+        video/*) setsid -f mpv $f --really-quiet ;;
+        image/*) setsid -f swayimg $f ;;
+        *) xdg-open $f ;;
     esac
 }}
 

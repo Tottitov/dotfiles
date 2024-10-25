@@ -1,3 +1,8 @@
 profile default {
     output eDP-1 enable scale 1.75 adaptive_sync on
 }
+
+profile hdmi {
+    output eDP-1 disable
+    output DP-4 enable scale 1.75
+}

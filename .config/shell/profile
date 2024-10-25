@@ -11,6 +11,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
@@ -24,7 +25,9 @@ export MINETEST_USER_PATH="$XDG_DATA_HOME/minetest"
 
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export ELECTRON_OZONE_PLATFORM_HINT="wayland"
+export QT_STYLE_OVERRIDE="Adwaita-HighContrastInverse"
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_ENABLE_HIGHDPI_SCALING=1
 
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 

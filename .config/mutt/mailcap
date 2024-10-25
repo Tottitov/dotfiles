@@ -11,7 +11,7 @@ text/html; html2text -s \
 --unicode-snob \
 --single-line-break %s %{charset}; copiousoutput
 
-image/*; setsid -f imv %s
+image/*; setsid -f swayimg %s
 video/*; setsid -f mpv --no-terminal %s
 audio/*; setsid -f mpv --no-terminal %s
 

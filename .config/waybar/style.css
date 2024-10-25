@@ -8,7 +8,7 @@
 
 * {
   font-family: monospace;
-  font-size: 12pt;
+  font-size: 14pt;
   min-height: 0px;
 }
 
@@ -19,7 +19,7 @@ window#waybar {
 
 #tags button {
   padding: 0px;
-  min-width: 24px;
+  min-width: 18pt;
   color: @empty;
   border-radius: 0px;
 }
@@ -45,6 +45,12 @@ window#waybar {
   color: @urgent;
 }
 
+#battery.warning,
+#battery.critical {
+  color: @foreground;
+  background: transparent;
+}
+
 #tray,
 #bluetooth,
 #battery,
@@ -54,5 +60,5 @@ window#waybar {
 #custom-inbox,
 #custom-record,
 #custom-clock {
-  padding: 0px 12px;
+  padding: 0px 10px;
 }

@@ -18,6 +18,7 @@ alias \
 	ga="git add" \
 	gc="git commit" \
 	gp="git push" \
+	cad="source ~/.local/share/virtual/build123d/bin/activate" \
 	kh="khal calendar today 30d" \
 	up="yay -Syu" \
 	tag="beet import -i ~/media/music/" \

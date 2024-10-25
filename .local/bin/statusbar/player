@@ -3,6 +3,8 @@
 song=$(mpc current)
 [ -z "$song" ] && exit 1
 
+song=$(echo "$song" | sed 's/&/&amp;/g')
+
 state=$(mpc status | sed -n '2p' | cut -d ' ' -f 1)
 [ "$state" = "[paused]" ] && color="#f7768e" || color="#9ece6a"
 
