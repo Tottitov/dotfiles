@@ -1,6 +1,11 @@
 #!/bin/sh
 
-waylock -fork-on-lock \
+gpg-connect-agent \
+	--no-autostart \
+	reloadagent /bye
+
+waylock \
+	-fork-on-lock \
 	-input-color 0xBB9AF7 \
 	-fail-color 0xF7768E \
 	>/dev/null 2>&1

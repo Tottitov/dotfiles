@@ -1,7 +1,9 @@
 #!/bin/sh
 
 emoji=$(
-	cat <"${XDG_DATA_HOME}/unicode" | sort | fuzzel -w 20 -dip "Emoji: "
+	cat <"${XDG_DATA_HOME}/unicode" | sort | fuzzel \
+		--cache "$XDG_CACHE_HOME/unicode" \
+		-w 20 -dip "Emoji: "
 ) || exit 1
 
 echo "$emoji" | cut -d ' ' -f 1 | tr -d '\n' | wl-copy

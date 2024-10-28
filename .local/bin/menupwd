@@ -1,0 +1,16 @@
+#!/bin/sh
+
+while read -r stdin; do
+	case $stdin in
+	GETPIN | getpin)
+		echo "D $(fuzzel -d --prompt-only "Passphrase: " --cache /dev/null --password)"
+		echo "OK"
+		;;
+	BYE | bye)
+		exit 0
+		;;
+	*)
+		echo "ERR"
+		;;
+	esac
+done

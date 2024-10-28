@@ -4,5 +4,5 @@ profile default {
 
 profile hdmi {
     output eDP-1 disable
-    output DP-4 enable scale 1.75
+    output DP-4 enable scale 1
 }

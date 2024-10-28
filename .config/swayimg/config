@@ -1,0 +1,11 @@
+[font]
+size = 32
+
+[info]
+show = no
+
+[viewer]
+antialiasing = yes
+
+[gallery]
+antialiasing = yes
