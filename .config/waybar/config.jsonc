@@ -13,6 +13,7 @@
   ],
   "custom/clock": {
     "exec": "date +'%I:%M'",
+    "tooltip": false,
     "on-click": "month",
     "interval": 60
   },
@@ -37,32 +38,36 @@
   "bluetooth": {
     "format": "",
     "format-off": "󰂲 OFF",
-    "format-connected": "<span color=\"#2ac3de\"></span> {device_alias}",
-    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}% ({device_alias})",
+    "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}%",
     "format-device-preference": ["Nothing-Ear-A"],
-    "tooltip-format": "{num_connections} connected",
+    "tooltip-format": "{device_alias}",
     "on-click": "bttoggle"
   },
   "custom/signal": {
     "exec": "signal",
+    "tooltip": false,
     "interval": 15
   },
   "custom/inbox": {
     "exec": "inbox",
+    "tooltip": false,
     "on-click": "$TERMINAL neomutt",
     "signal": 4
   },
   "custom/player": {
     "exec": "player",
-    "max-length": 50,
+    "tooltip": false,
+    "max-length": 35,
     "signal": 1
   },
   "custom/weather": {
     "exec": "cat $XDG_DATA_HOME/weather",
+    "tooltip": false,
     "signal": 2
   },
   "custom/record": {
     "exec": "record",
+    "tooltip": false,
     "signal": 3
   }
 }

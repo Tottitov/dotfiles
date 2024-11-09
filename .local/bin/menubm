@@ -1,13 +1,18 @@
 #!/bin/sh
 
-menu() { fuzzel -l 10 -w 20 -dip "$1"; }
-
 bookmarks="${XDG_DATA_HOME}/bookmarks"
 
 tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
-tag=$(echo "$tags" | menu "Tag: ") || exit 1
+tag=$(
+	echo "$tags" | fuzzel \
+		--cache "$XDG_CACHE_HOME/tags" \
+		-l 5 -w 15 -dip "Tag: "
+) || exit 1
 
 bookmark=$(
-	rg -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | sort | menu "Bookmark: "
+	rg -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | fuzzel \
+		--cache "$XDG_CACHE_HOME/bookmarks" \
+		-l 10 -w 20 -dip "Bookmark: "
 ) || exit 1
+
 $BROWSER "$(rg -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"

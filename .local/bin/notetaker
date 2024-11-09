@@ -1,0 +1,8 @@
+#!/bin/sh
+
+path="$HOME/docs/notes"
+file="$path/note-$(date +%Y-%m-%d).md"
+
+[ ! -f "$file" ] && echo "# Notes for $(date +%Y-%m-%d)" >"$file"
+
+$EDITOR "$file"

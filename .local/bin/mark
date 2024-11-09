@@ -20,17 +20,15 @@ chooseDate() {
 	reorderedMonths=""
 	i=0
 	for month in $months; do
-		if [ $i -ge $currentMonthIndex ]; then
+		[ $i -ge $currentMonthIndex ] &&
 			reorderedMonths="$reorderedMonths $month"
-		fi
 		i=$((i + 1))
 	done
 
 	i=0
 	for month in $months; do
-		if [ $i -lt $currentMonthIndex ]; then
+		[ $i -lt $currentMonthIndex ] &&
 			reorderedMonths="$reorderedMonths $month"
-		fi
 		i=$((i + 1))
 	done
 

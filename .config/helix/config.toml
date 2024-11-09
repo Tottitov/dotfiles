@@ -4,7 +4,6 @@ theme = "tokyonight"
 line-number = "relative"
 true-color = true
 bufferline = "multiple"
-statusline.left = ["mode", "file-name", "read-only-indicator", "file-modification-indicator"]
 statusline.right = ["version-control", "spacer", "diagnostics", "file-type", "position"]
 cursor-shape.insert = "bar"
 indent-guides.render = true

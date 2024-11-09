@@ -26,7 +26,7 @@ export MINETEST_USER_PATH="$XDG_DATA_HOME/minetest"
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export QT_STYLE_OVERRIDE="Adwaita-HighContrastInverse"
+export QT_STYLE_OVERRIDE="windows"
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_ENABLE_HIGHDPI_SCALING=1
 

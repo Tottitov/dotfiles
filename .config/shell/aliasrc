@@ -1,26 +1,26 @@
 #!/bin/sh
 
-sc() {
-	scripts=$(find ~/.local/bin/ -type f -printf '%f\n' | fzf)
-	[ -n "$scripts" ] && $EDITOR "${HOME}/.local/bin/${scripts}"
-}
-
 alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
+	kh="khal calendar today 30d" \
+	up="yay -Syu" \
+	tag="beet import -i ~/media/music/"
+
+alias \
 	ts="tmux switch -t" \
 	ta="tmux attach -t" \
 	tn="tmux new" \
-	tkss="tmux kill-session -t" \
+	tks="tmux kill-session -t" \
 	tksv="tmux kill-server" \
-	tls="tmux list-sessions" \
+	tls="tmux list-sessions"
+
+alias \
 	gs="git status" \
 	ga="git add" \
 	gc="git commit" \
-	gp="git push" \
+	gp="git push"
+
+alias \
 	cad="source ~/.local/share/virtual/build123d/bin/activate" \
-	kh="khal calendar today 30d" \
-	up="yay -Syu" \
-	tag="beet import -i ~/media/music/" \
-	sf="scanimage --source 'ADF' -b --format=png" \
-	sb="scanimage --format=png --output-file scan.png -p"
+	vcad="python -m ocp_vscode --no_tools"

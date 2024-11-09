@@ -19,7 +19,7 @@ window#waybar {
 
 #tags button {
   padding: 0px;
-  min-width: 18pt;
+  min-width: 20pt;
   color: @empty;
   border-radius: 0px;
 }
@@ -37,6 +37,10 @@ window#waybar {
 
 #tags button.focused {
   color: @focused;
+}
+
+#bluetooth.on {
+  color: @bluetooth;
 }
 
 #tags button.urgent,

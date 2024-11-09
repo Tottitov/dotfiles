@@ -18,6 +18,7 @@ riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
 riverctl map normal Super Backspace spawn menusys
+riverctl map normal Super+Shift Backspace spawn menupp
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
 
 riverctl map normal Super Return spawn "$TERMINAL"
@@ -31,7 +32,7 @@ riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL ncmpcpp"
-riverctl map normal Super N spawn "$TERMINAL $EDITOR ${HOME}/notes/"
+riverctl map normal Super N spawn "$TERMINAL notetaker"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
@@ -93,17 +94,20 @@ riverctl set-cursor-warp on-focus-change
 riverctl focus-follows-cursor always
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
+riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd
 riverctl background-color "0x1A1B26"
 riverctl border-color-focused "0x737AA2"
 riverctl border-color-unfocused "0x665C54"
-riverctl border-width 2
+riverctl border-width 3
 
-riverctl default-layout rivertile
+riverctl default-layout filtile
 riverctl default-attach-mode bottom
-riverctl map normal Super+Alt H send-layout-cmd rivertile "main-count +1"
-riverctl map normal Super+Alt L send-layout-cmd rivertile "main-count -1"
+riverctl map normal Super+Alt H send-layout-cmd filtile "main-count +1"
+riverctl map normal Super+Alt L send-layout-cmd filtile "main-count -1"
+riverctl map -repeat normal Super+Alt J send-layout-cmd filtile "diminish +5"
+riverctl map -repeat normal Super+Alt K send-layout-cmd filtile "diminish -5"
 
 scratchTag=$((1 << 11))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
@@ -124,15 +128,17 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
-gsettings set "org.gnome.desktop.interface" gtk-theme "adw-gtk3-dark"
-gsettings set "org.gnome.desktop.interface" icon-theme "Adwaita"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark-compact"
+gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
+gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
+gsettings set "org.gnome.desktop.interface" cursor-theme "Bibata-Modern-Ice"
 
 dbus-update-activation-environment \
 	SEATD_SOCK \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset swayidle 
+executes="filtile waybar kanshi wlsunset swayidle 
 foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
@@ -140,7 +146,7 @@ for execute in $executes; do
 	case $execute in
 	"foot") $execute -s & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
-	"rivertile") $execute -view-padding 3 -outer-padding 3 & ;;
+	"filtile") $execute view-padding 3, outer-padding 3 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
