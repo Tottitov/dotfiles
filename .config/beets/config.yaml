@@ -4,7 +4,6 @@ threaded: yes
 plugins:
   - scrub
   - embedart
-  - mbsync
 
 import:
   run: yes

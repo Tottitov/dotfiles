@@ -1,8 +1,14 @@
 #!/bin/sh
 
+current=$(powerprofilesctl get)
+
+profiles=$(printf "performance\nbalanced\npower-saver" | sed "s/^$current/& */")
+
 choice=$(
-	printf "performance\nbalanced\npower-saver" | fuzzel \
+	printf "%s" "$profiles" | fuzzel \
 		-l 3 -w 15 -dip "Power: "
 ) || exit 1
 
-powerprofilesctl set "$choice" && notify-send "Power" "$choice"
+choice=$(echo "$choice" | sed 's/ \*$//')
+
+powerprofilesctl set "$choice" && notify-send "Profile" "$choice"

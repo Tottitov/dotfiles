@@ -4,12 +4,12 @@ nmcli -g type,state dev | rg -q "net:con" && exit 1
 
 signal=$(nmcli -g in-use,signal dev wifi | rg '^\*' | cut -d: -f2)
 case $signal in
-[1-9] | 1[0-9] | 20) icon=󰤯 ;;
-2[1-9] | 3[0-9] | 40) icon=󰤟 ;;
-4[1-9] | 5[0-9] | 60) icon=󰤢 ;;
-6[1-9] | 7[0-9] | 80) icon=󰤥 ;;
-8[1-9] | 9[0-9] | 100) icon=󰤨 ;;
-*) icon=󰤭 ;;
+[1-9] | 1[0-9] | 20) icon='󰤯 ' ;;
+2[1-9] | 3[0-9] | 40) icon='󰤟 ' ;;
+4[1-9] | 5[0-9] | 60) icon='󰤢 ' ;;
+6[1-9] | 7[0-9] | 80) icon='󰤥 ' ;;
+8[1-9] | 9[0-9] | 100) icon='󰤨 ' ;;
+*) icon='󰤭 ' ;;
 esac
 
-echo "<span color=\"#2ac3de\">${icon}</span>"
+echo "<span color=\"#2ac3de\">${icon}</span> ${signal}%"

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+path="$HOME/docs/notes"
+
+action() {
+	file=$(search) && "$1" "$file"
+}
+
+search() {
+	find "$path" -type f -not -path "${path}/.git/*" | fzf
+}
+
+new() {
+	title=$(gum input --placeholder "Name your title: ") || exit 1
+	title=$(echo "$title" | tr '[:space:]' '-' | sed 's/-$//')
+
+	file="${path}/${title}-$(date +%Y-%m-%d).md"
+	[ ! -f "$file" ] && echo "# $title" >"$file"
+
+	$EDITOR "$file"
+}
+
+case $1 in
+'n') new ;;
+'v') action glow ;;
+'e') action $EDITOR ;;
+'l') [ -n "$2" ] && rg -l "$2" "$path" ;;
+*) exit 1 ;;
+esac

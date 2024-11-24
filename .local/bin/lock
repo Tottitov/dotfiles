@@ -7,5 +7,4 @@ gpg-connect-agent \
 waylock \
 	-fork-on-lock \
 	-input-color 0xBB9AF7 \
-	-fail-color 0xF7768E \
-	>/dev/null 2>&1
+	-fail-color 0xF7768E >/dev/null 2>&1

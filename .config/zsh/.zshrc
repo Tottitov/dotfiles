@@ -42,6 +42,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(fzf --zsh)"
 
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
