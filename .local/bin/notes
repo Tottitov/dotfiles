@@ -2,12 +2,16 @@
 
 path="$HOME/docs/notes"
 
-action() {
-	file=$(search) && "$1" "$file"
+search() {
+	find "$path" -type f -not -path "${path}/.git/*"
 }
 
-search() {
-	find "$path" -type f -not -path "${path}/.git/*" | fzf
+action() {
+	file=$(search | fzf) && "$1" "$file"
+}
+
+grep() {
+	[ -n "$1" ] && rg -il "$1" "$path" | xargs -I{} basename "{}"
 }
 
 new() {
@@ -20,10 +24,23 @@ new() {
 	$EDITOR "$file"
 }
 
+index() {
+	extract=$(search | rg -oP '\d{4}-\d{2}-\d{2}')
+
+	years=$(echo "$extract" | cut -d '-' -f1 | sort -u)
+	year=$(echo "$years" | gum choose --header "Year: ") || exit 1
+
+	months=$(echo "$extract" | cut -d '-' -f2 | sort -u)
+	month=$(echo "$months" | gum choose --header "Month: ") || exit 1
+
+	find "$path" -type f -name "*${year}-${month}-*.md" -printf '%f\n'
+}
+
 case $1 in
 'n') new ;;
+'i') index ;;
+'g') grep $2 ;;
 'v') action glow ;;
-'e') action $EDITOR ;;
-'l') [ -n "$2" ] && rg -l "$2" "$path" ;;
+'e') action "$EDITOR" ;;
 *) exit 1 ;;
 esac
