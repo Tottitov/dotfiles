@@ -2,20 +2,17 @@
 
 path="$HOME/docs/notes"
 
-search() {
-	find "$path" -type f -not -path "${path}/.git/*"
-}
-
 action() {
-	file=$(search | fzf) && "$1" "$file"
-}
-
-grep() {
-	[ -n "$1" ] && rg -il "$1" "$path" | xargs -I{} basename "{}"
+	file=$(
+		find "$path" \
+			-type f \
+			-not -path "${path}/.git/*" \
+			-printf '%f\n' | fzf
+	) && "$1" "$file"
 }
 
 new() {
-	title=$(gum input --placeholder "Name your title: ") || exit 1
+	title=$(gum input --placeholder "Note") || exit 1
 	title=$(echo "$title" | tr '[:space:]' '-' | sed 's/-$//')
 
 	file="${path}/${title}-$(date +%Y-%m-%d).md"
@@ -24,22 +21,8 @@ new() {
 	$EDITOR "$file"
 }
 
-index() {
-	extract=$(search | rg -oP '\d{4}-\d{2}-\d{2}')
-
-	years=$(echo "$extract" | cut -d '-' -f1 | sort -u)
-	year=$(echo "$years" | gum choose --header "Year: ") || exit 1
-
-	months=$(echo "$extract" | cut -d '-' -f2 | sort -u)
-	month=$(echo "$months" | gum choose --header "Month: ") || exit 1
-
-	find "$path" -type f -name "*${year}-${month}-*.md" -printf '%f\n'
-}
-
 case $1 in
 'n') new ;;
-'i') index ;;
-'g') grep $2 ;;
 'v') action glow ;;
 'e') action "$EDITOR" ;;
 *) exit 1 ;;
