@@ -8,7 +8,7 @@ action() {
 			-type f \
 			-not -path "${path}/.git/*" \
 			-printf '%f\n' | fzf
-	) && "$1" "$file"
+	) && "$1" "${path}/${file}"
 }
 
 new() {
