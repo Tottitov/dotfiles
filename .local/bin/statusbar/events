@@ -1,0 +1,7 @@
+#!/bin/sh
+
+events=$(khal list today 7d)
+
+[ -z "$events" ] && exit 1
+
+notify-send "Events" "$events"

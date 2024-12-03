@@ -15,6 +15,7 @@
     "exec": "date +'%I:%M'",
     "tooltip": false,
     "on-click": "month",
+    "on-click-right": "events",
     "interval": 60
   },
   "battery": {
@@ -27,11 +28,11 @@
     "format": "{icon} {capacity}%",
     "format-charging": "<span color=\"#9ece6a\">󱐋</span> {capacity}%",
     "format-icons": [
-      "<span color=\"#f7768e\"> </span>",
-      "<span color=\"#f7768e\"> </span>",
-      "<span color=\"#e0af68\"> </span>",
-      "<span color=\"#9ece6a\"> </span>",
-      "<span color=\"#9ece6a\"> </span>"
+      "<span color=\"#f7768e\">󰂎</span>",
+      "<span color=\"#f7768e\">󰁻</span>",
+      "<span color=\"#e0af68\">󰁾</span>",
+      "<span color=\"#9ece6a\">󰂀</span>",
+      "<span color=\"#9ece6a\">󰁹</span>"
     ],
     "interval": 30
   },

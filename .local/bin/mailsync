@@ -2,23 +2,23 @@
 
 pidof -q "mbsync" && exit 0
 
-mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" &
+mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" >/dev/null 2>&1 &
 
 while pidof -q "mbsync"; do
-  pkill -RTMIN+4 waybar && sleep 1
+	pkill -RTMIN+4 waybar && sleep 1
 done
 
 lastrun="${XDG_CONFIG_HOME}/mutt/.mailsynclast"
 accounts="${XDG_DATA_HOME}/mail"
 
 for account in "$accounts"/*; do
-  new=$(
-    find "$account"/INBOX/new/* \
-      -type f \
-      -newer "$lastrun" 2>/dev/null | wc -l
-  )
-  [ "$new" -gt 0 ] &&
-    notify-send "MailSync" "$new email/s in $(basename "$account")"
+	new=$(
+		find "$account"/INBOX/new/* \
+			-type f \
+			-newer "$lastrun" 2>/dev/null | wc -l
+	)
+	[ "$new" -gt 0 ] &&
+		notify-send "MailSync" "$new email/s in $(basename "$account")"
 done
 
 pkill -RTMIN+4 waybar

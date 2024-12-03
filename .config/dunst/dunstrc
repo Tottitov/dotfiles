@@ -3,9 +3,9 @@
   width = (0, 350)
   alignment = left
   vertical_alignment = center
-  offset = 6x6
+  offset = 12x12
   padding = 15
-  frame_width = 3
+  frame_width = 2
   frame_color = "#665C54"
   font = monospace 14
   stack_duplicates = true

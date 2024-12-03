@@ -16,6 +16,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -28,4 +29,4 @@ export NPM_TOKEN="$(pass npm_token)"
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-	exec dbus-launch --exit-with-session river >/dev/null 2>&1
+	exec dbus-launch --exit-with-session river -no-xwayland >/dev/null 2>&1

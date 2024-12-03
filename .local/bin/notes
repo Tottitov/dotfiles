@@ -7,8 +7,8 @@ action() {
 		find "$path" \
 			-type f \
 			-not -path "${path}/.git/*" \
-			-printf '%f\n' | fzf
-	) && "$1" "${path}/${file}"
+			-printf '%f\n' | fzf --reverse
+	) && $1 "${path}/${file}"
 }
 
 new() {

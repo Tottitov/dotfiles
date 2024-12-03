@@ -8,14 +8,6 @@ alias \
 	tag="beet import -i ~/media/music/"
 
 alias \
-	ts="tmux switch -t" \
-	ta="tmux attach -t" \
-	tn="tmux new" \
-	tks="tmux kill-session -t" \
-	tksv="tmux kill-server" \
-	tls="tmux list-sessions"
-
-alias \
 	gs="git status" \
 	ga="git add" \
 	gc="git commit" \

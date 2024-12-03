@@ -2,9 +2,9 @@
 
 check() {
 	if nmcli dev wifi con "$2" password "$1"; then
-		notify-send -r 5 "Password Passed" "$2 connected"
+		notify-send -r 5 "Password succeeded for $2"
 	else
-		notify-send -r 5 -u critical "Incorrect password for $2"
+		notify-send -r 5 -u critical "Password failed for $2"
 		nmcli con delete "$2"
 	fi
 }

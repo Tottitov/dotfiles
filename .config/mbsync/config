@@ -1,7 +1,7 @@
 IMAPAccount fastmail
 Host imap.fastmail.com
 Port 993
-User tonylenguyen@fastmail.com
+User me@tonylenguyen.com
 PassCmd "pass neomutt/personal/fastmail"
 AuthMechs LOGIN
 TLSType IMAPS
@@ -11,8 +11,8 @@ IMAPStore fastmail-remote
 Account fastmail
 
 MaildirStore fastmail-local
-Path ~/.local/share/mail/tonylenguyen@fastmail.com/
-Inbox ~/.local/share/mail/tonylenguyen@fastmail.com/INBOX
+Path ~/.local/share/mail/me@tonylenguyen.com/
+Inbox ~/.local/share/mail/me@tonylenguyen.com/INBOX
 Subfolders Verbatim
 
 Channel fastmail

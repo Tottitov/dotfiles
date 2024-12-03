@@ -1,4 +1,4 @@
-source /home/tony/.config/mutt/accounts/tonylenguyen@fastmail.com.muttrc
+source /home/tony/.config/mutt/accounts/me@tonylenguyen.com.muttrc
 
 # Macros
 macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
@@ -61,7 +61,7 @@ bind index d delete-message
 bind index D undelete-message
 
 # Sidebar format
-set sidebar_visible = no
+set sidebar_visible = yes
 set sidebar_folder_indent = yes
 set sidebar_width = 20
 set sidebar_format = '%D %?N?%N/? %?S?%S?'

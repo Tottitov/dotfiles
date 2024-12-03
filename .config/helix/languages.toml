@@ -5,6 +5,23 @@ formatter = { command = "shfmt" }
 auto-format = true
 
 [[language]]
+name = "markdown"
+formatter = { command = 'prettier', args = ["--parser", "markdown"] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server" ]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server" ]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+auto-format = true
+
+[[language]]
 name = "lua"
 formatter = { command = "stylua", args = ["-"] }
 auto-format = true
@@ -12,11 +29,6 @@ auto-format = true
 [[language]]
 name = "python"
 formatter = { command = "black", args = ["-"] }
-auto-format = true
-
-[[language]]
-name = "markdown"
-formatter = { command = 'prettier', args = ["--parser", "markdown"] }
 auto-format = true
 
 [[language]]
@@ -37,16 +49,6 @@ auto-format = true
 
 [[language]]
 name = "javascript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "typescript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "tsx"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 

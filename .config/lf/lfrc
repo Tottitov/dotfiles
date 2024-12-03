@@ -13,7 +13,7 @@ cmd open ${{
     case $(file --mime-type $f -b) in
         text/*|application/json) $EDITOR $f ;;
         application/pdf) setsid -f zathura $fx ;;
-        video/*) setsid -f mpv $f --really-quiet ;;
+        video/*) setsid -f mpv $f --no-terminal ;;
         image/*) setsid -f swayimg $f ;;
         *) xdg-open $f ;;
     esac

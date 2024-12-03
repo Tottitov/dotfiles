@@ -30,7 +30,7 @@ editscreen() {
 
 askscreenshot() {
 	type=$(
-		printf "save\ncopy\nedit" |
+		printf "edit\ncopy\nsave" |
 			fuzzel -di -l 3 -p "Screenshot Action: "
 	) || exit 1
 

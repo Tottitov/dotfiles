@@ -3,9 +3,12 @@ theme = "tokyonight"
 [editor]
 line-number = "relative"
 true-color = true
+rulers = [80]
 bufferline = "multiple"
-statusline.right = ["version-control", "spacer", "diagnostics", "file-type", "position"]
+cursor-shape.normal = "block"
 cursor-shape.insert = "bar"
+cursor-shape.select = "underline"
+statusline.right = ["version-control", "spacer", "diagnostics", "file-type", "position"]
 indent-guides.render = true
 
 [keys.normal]

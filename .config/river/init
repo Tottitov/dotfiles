@@ -31,7 +31,7 @@ riverctl map normal Super+Shift W spawn menunm
 riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
-riverctl map normal Super+Shift A spawn "$TERMINAL ncmpcpp"
+riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super N spawn "$TERMINAL notes n"
 riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
 riverctl map normal Super C spawn menucalc
@@ -97,17 +97,15 @@ riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd
-riverctl background-color "0x1A1B26"
+riverctl background-color "0x301934"
 riverctl border-color-focused "0x737AA2"
 riverctl border-color-unfocused "0x665C54"
-riverctl border-width 3
+riverctl border-width 2
 
-riverctl default-layout filtile
+riverctl default-layout rivertile
 riverctl default-attach-mode bottom
-riverctl map normal Super+Alt H send-layout-cmd filtile "main-count +1"
-riverctl map normal Super+Alt L send-layout-cmd filtile "main-count -1"
-riverctl map -repeat normal Super+Alt J send-layout-cmd filtile "diminish +5"
-riverctl map -repeat normal Super+Alt K send-layout-cmd filtile "diminish -5"
+riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 
 scratchTag=$((1 << 11))
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
@@ -138,15 +136,15 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="filtile waybar kanshi wlsunset swayidle 
+executes="rivertile waybar kanshi wlsunset swayidle 
 foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute -s & ;;
+	"rivertile") $execute -main-ratio 0.55 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
-	"filtile") $execute view-padding 3, outer-padding 3 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
