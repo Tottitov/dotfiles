@@ -31,9 +31,10 @@ riverctl map normal Super+Shift W spawn menunm
 riverctl map normal Super E spawn "$TERMINAL neomutt; pkill -RTMIN+4 waybar"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
+riverctl map normal Super+Shift A spawn "$TERMINAL newsraft"
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super N spawn "$TERMINAL notes n"
-riverctl map normal Super+Shift N spawn "$TERMINAL newsraft"
+riverctl map normal Super+Shift N spawn "$TERMINAL notes v"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super I spawn "$TERMINAL htop"
@@ -55,8 +56,8 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +5%"
-	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 5%-"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10-"
 
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -69,8 +70,8 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +5%"
-	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 5%-"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10-"
 
 	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -83,7 +84,7 @@ riverctl set-repeat 50 200
 touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
 riverctl input $touchpad tap enabled
 riverctl input $touchpad drag disabled
-riverctl input $touchpad pointer-accel 0.30
+riverctl input $touchpad pointer-accel 0.35
 riverctl input $touchpad scroll-factor 1.5
 riverctl input $touchpad accel-profile adaptive
 riverctl input $touchpad natural-scroll enabled
@@ -107,17 +108,16 @@ riverctl default-attach-mode bottom
 riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
 riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 
-scratchTag=$((1 << 11))
+allTag=$(((1 << 32) - 1))
+scratchTag=$((1 << 20))
+stickyTag=$((1 << 31))
+
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
-riverctl spawn-tagmask $((((1 << 32) - 1) ^ scratchTag))
+riverctl spawn-tagmask $((allTag ^ scratchTag))
 
-stickyTag=$((1 << 10))
 riverctl map normal Super S toggle-view-tags $stickyTag
-riverctl spawn-tagmask $((((1 << 32) - 1) ^ stickyTag))
-riverctl rule-add -app-id "mpv" tags $stickyTag
-riverctl rule-add -title "Picture-in-Picture" tags $stickyTag
-riverctl rule-add -title "Picture-in-Picture" no-float
+riverctl spawn-tagmask $((allTag ^ stickyTag))
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))

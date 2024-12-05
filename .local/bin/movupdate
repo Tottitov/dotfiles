@@ -1,0 +1,18 @@
+#!/bin/sh
+
+for file in *.mkv; do
+	[ -e "$file" ] || continue
+
+	basename="${file%.*}"
+	if mkvpropedit "$file" \
+		-e info \
+		-s "title=$basename" \
+		-e track:v1 \
+		-s "name=$basename"; then
+		echo "Updated metadata for: $file"
+		mediainfo --Inform="General;Movie: %Movie%" "$file"
+		mediainfo --Inform="Video;Title: %Title%\n" "$file"
+	else
+		echo "Failed to update metadata for: $file" >&2
+	fi
+done

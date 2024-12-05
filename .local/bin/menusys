@@ -1,7 +1,7 @@
 #!/bin/sh
 
 choice=$(
-	printf "Lock\nReboot\nShutdown\nSuspend\nLogout" | fuzzel -l 5 -w 10 -di
+	printf "Lock\nSuspend\nReboot\nShutdown\nLogout" | fuzzel -l 5 -w 10 -di
 )
 
 case $choice in

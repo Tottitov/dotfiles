@@ -33,7 +33,7 @@
     "peer-port": 51413,
     "peer-port-random-high": 65535,
     "peer-port-random-low": 49152,
-    "peer-port-random-on-start": false,
+    "peer-port-random-on-start": true,
     "peer-socket-tos": "le",
     "pex-enabled": true,
     "port-forwarding-enabled": true,
