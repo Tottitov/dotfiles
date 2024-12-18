@@ -6,7 +6,7 @@ macro index \Cf "<vfolder-from-query>"
 
 # Format options
 set send_charset = "utf-8:iso-8859-1:us-ascii"
-set index_format = "%4Z %{%h %d} %-25.25F %-65.65s"
+set index_format = "%4Z %{%h %d} %-25.25F %-85.85s"
 set status_format = "[ Folder: %f ] [ %m messages%?n? (%n new)? ]"
 set display_filter = "sed -e '/\\[--.* --\\]/d'"
 set mailcap_path = "/home/tony/.config/mutt/mailcap"

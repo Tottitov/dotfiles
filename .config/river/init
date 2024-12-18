@@ -4,10 +4,10 @@ riverctl map normal Super Q close
 riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
-riverctl map normal Super H focus-view left
-riverctl map normal Super J focus-view down
-riverctl map normal Super K focus-view up
-riverctl map normal Super L focus-view right
+riverctl map normal Super H focus-view -skip-floating left
+riverctl map normal Super J focus-view -skip-floating down
+riverctl map normal Super K focus-view -skip-floating up
+riverctl map normal Super L focus-view -skip-floating right
 riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
 riverctl map normal Super+Shift K swap up

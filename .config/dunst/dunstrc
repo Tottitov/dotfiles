@@ -7,7 +7,7 @@
   padding = 15
   frame_width = 2
   frame_color = "#665C54"
-  font = monospace 14
+  font = monospace 12
   stack_duplicates = true
   hide_duplicate_count = true
   icon_position = off
