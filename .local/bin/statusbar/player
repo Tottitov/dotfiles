@@ -1,11 +1,11 @@
 #!/bin/sh
 
-song=$(mpc current)
+song=$(mpc current | sed 's/&/&amp;/g; s/^[^-]* - //')
+
 [ -z "$song" ] && exit 1
 
-song=$(echo "$song" | sed 's/^[^-]* - //')
 state=$(mpc status | rg -o 'paused|playing' | sed 's/^./\U&/')
 
 [ "$state" = "Paused" ] && color="#f7768e" || color="#9ece6a"
 
-echo "<span color=\"$color\">󰎇 $state: $song</span>"
+echo "<span color=\"$color\">󰎇</span> $state - $song"

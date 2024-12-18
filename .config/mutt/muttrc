@@ -67,7 +67,7 @@ set sidebar_width = 20
 set sidebar_format = '%D %?N?%N/? %?S?%S?'
 set sidebar_short_path = yes
 set sidebar_next_new_wrap = yes
-set mail_check_stats
+set mail_check_stats = yes
 
 # Sidebar navigation
 bind index,pager \Ck sidebar-prev

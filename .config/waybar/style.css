@@ -55,14 +55,12 @@ window#waybar {
   background: transparent;
 }
 
-#tray,
-#bluetooth,
+#custom-clock,
 #battery,
-#custom-player,
-#custom-weather,
-#custom-signal,
+#bluetooth,
 #custom-inbox,
+#custom-weather,
 #custom-record,
-#custom-clock {
-  padding: 0px 8px;
+#custom-player {
+  padding: 0px 10px;
 }
