@@ -39,7 +39,7 @@ networks=$(nmcli -g active,ssid,security dev wifi)
   	'
 	)
 
-	choice=$(echo "$list" | fuzzel -l 5 -w 20 -dip "Network: ") || exit 1
+	choice=$(echo "$list" | fuzzel -l 5 -w 20 -di) || exit 1
 	if echo "$choice" | rg -Fq '*'; then
 		choice=$(echo "$choice" | cut -d ' ' -f 1)
 		nmcli con down id "$choice" >/dev/null 2>&1

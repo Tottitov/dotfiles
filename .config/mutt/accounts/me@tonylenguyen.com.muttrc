@@ -18,4 +18,4 @@ set hostname = "fastmail.com"
 
 mailboxes \
 "=INBOX" "=INBOX/Amazon" "=INBOX/Banking" "=INBOX/Career" \
-"=INBOX/Social" "=INBOX/Git" "=Drafts" "=Sent" "=Trash"
+"=INBOX/Social" "=Drafts" "=Sent" "=Trash"

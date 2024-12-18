@@ -1,3 +1,10 @@
+* {
+  border: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
 .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
 }
@@ -13,20 +20,10 @@
   width: 0 !important;
 }
 
-* {
-  border: none !important;
-  text-shadow: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
-
-.titlebar-buttonbox-container, /* close/minimize/maximize buttons container */
 #context-navigation, /* back/forward options in the right-click context menu */
 #context-sep-navigation, /* separator in the back/forward context menu */
 #tracking-protection-icon-container, /* tracking protection shield icon */
 #page-action-buttons > :not(#urlbar-zoom-button), /* all page action buttons except zoom */
-#alltabs-button, /* button for showing all open tabs in a dropdown menu */
-#forward-button, /* forward navigation button */
 #PanelUI-menu-button /* main menu button (hamburger menu) */ {
   display: none !important;
 }

@@ -2,22 +2,18 @@
 
 saveshot() {
 	grim -g "$(slurp -d)" "pic-selected-$(date '+%y%m%d-%H%M-%S').png"
-	notify-send "Screenshot saved"
 }
 
 savescreen() {
 	grim "pic-full-$(date '+%y%m%d-%H%M-%S').png"
-	notify-send "Fullscreen saved"
 }
 
 copyshot() {
 	grim -g "$(slurp -d)" - | wl-copy
-	notify-send "Screenshot copied"
 }
 
 copyscreen() {
 	grim - | wl-copy
-	notify-send "Fullscreen copied"
 }
 
 editshot() {
@@ -29,16 +25,8 @@ editscreen() {
 }
 
 askscreenshot() {
-	type=$(
-		printf "edit\ncopy\nsave" |
-			fuzzel -di -l 3 -p "Screenshot Action: "
-	) || exit 1
-
-	screenshot=$(
-		printf "shot\nscreen" |
-			fuzzel -l 2 -dip "Screenshot: "
-	) || exit 1
-
+	type=$(printf "edit\ncopy\nsave" | fuzzel -di -l 3) || exit 1
+	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -di) || exit 1
 	case ${type}${screenshot} in
 	"saveshot") saveshot ;;
 	"savescreen") savescreen ;;

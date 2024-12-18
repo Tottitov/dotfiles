@@ -1,0 +1,5 @@
+[theme]
+title = ";bold"
+border_type = "plain"
+input_border = "magenta"
+prompt_border = "yellow"

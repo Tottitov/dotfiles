@@ -51,8 +51,7 @@ audio() {
 }
 
 askrecording() {
-	choice=$(printf "video\naudio\nsnippet\nwebcam" |
-		fuzzel -l 4 -dip "Recording: ")
+	choice=$(printf "video\naudio\nsnippet\nwebcam" | fuzzel -l 4 -di)
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;

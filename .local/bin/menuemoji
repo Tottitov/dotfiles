@@ -3,7 +3,7 @@
 emoji=$(
 	cat <"${XDG_DATA_HOME}/unicode" | fuzzel \
 		--cache "$XDG_CACHE_HOME/unicode" \
-		-w 20 -dip "Emoji: "
+		-w 20 -di
 ) || exit 1
 
 echo "$emoji" | cut -d ' ' -f 1 | tr -d '\n' | wl-copy

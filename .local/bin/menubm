@@ -6,13 +6,13 @@ tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
 tag=$(
 	echo "$tags" | fuzzel \
 		--cache "$XDG_CACHE_HOME/tags" \
-		-l 5 -w 15 -dip "Tag: "
+		-l 5 -w 15 -di
 ) || exit 1
 
 bookmark=$(
 	rg -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | fuzzel \
 		--cache "$XDG_CACHE_HOME/bookmarks" \
-		-l 10 -w 20 -dip "Bookmark: "
+		-l 10 -w 20 -di
 ) || exit 1
 
 $BROWSER "$(rg -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"

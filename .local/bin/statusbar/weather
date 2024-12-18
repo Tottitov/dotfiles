@@ -1,7 +1,11 @@
 #!/bin/sh
 
+city=$(
+	curl -fs http://ip-api.com/json | jq -r '.city' | tr ' ' '-'
+) || exit 1
+
 forecast=$(
-	curl -fs --max-time 15 "https://v2.wttr.in/?format=%C:%t"
+	curl -fs --max-time 15 "https://v2.wttr.in/${city}?format=%C:%t"
 ) || exit 1
 
 echo "$forecast" | rg -q "Unknown" && exit 1

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-transmission-remote -tall --remove-and-delete
+credential="tottitov:$(pass localhost:9091)"
+
+transmission-remote -n "$credential" -tall --remove-and-delete

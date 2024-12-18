@@ -2,7 +2,7 @@
 
 pidof -q "mbsync" && exit 0
 
-mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" >/dev/null 2>&1 &
+mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" &
 
 while pidof -q "mbsync"; do
 	pkill -RTMIN+4 waybar && sleep 1
@@ -18,7 +18,7 @@ for account in "$accounts"/*; do
 			-newer "$lastrun" 2>/dev/null | wc -l
 	)
 	[ "$new" -gt 0 ] &&
-		notify-send "MailSync" "$new email/s in $(basename "$account")"
+		notify-send "Synced" "$new email/s in $(basename "$account")"
 done
 
 pkill -RTMIN+4 waybar

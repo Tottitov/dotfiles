@@ -3,3 +3,4 @@ set status-placeholder
 set scrolloff 8
 
 bind m exec setsid -f mpv --no-terminal "%l" &
+bind c exec catt cast "%l" >/dev/null 2>&1 &

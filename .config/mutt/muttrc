@@ -6,7 +6,7 @@ macro index \Cf "<vfolder-from-query>"
 
 # Format options
 set send_charset = "utf-8:iso-8859-1:us-ascii"
-set index_format = "%4Z %{%h %d} %-35.35F %-30.100s"
+set index_format = "%4Z %{%h %d} %-25.25F %-65.65s"
 set status_format = "[ Folder: %f ] [ %m messages%?n? (%n new)? ]"
 set display_filter = "sed -e '/\\[--.* --\\]/d'"
 set mailcap_path = "/home/tony/.config/mutt/mailcap"
@@ -61,7 +61,7 @@ bind index d delete-message
 bind index D undelete-message
 
 # Sidebar format
-set sidebar_visible = no
+set sidebar_visible = yes
 set sidebar_folder_indent = yes
 set sidebar_width = 20
 set sidebar_format = '%D %?N?%N/? %?S?%S?'

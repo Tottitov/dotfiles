@@ -1,4 +1,4 @@
-@define-color background #000000;
+@define-color background #1a1b26;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
 @define-color occupied #c0caf5;
@@ -19,7 +19,7 @@ window#waybar {
 
 #tags button {
   padding: 0px;
-  min-width: 20pt;
+  min-width: 18pt;
   color: @empty;
   border-radius: 0px;
 }

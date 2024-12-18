@@ -3,7 +3,7 @@
 while read -r stdin; do
 	case $stdin in
 	GETPIN | getpin)
-		echo "D $(fuzzel -d --prompt-only "Passphrase: " --cache /dev/null --password)"
+		echo "D $(fuzzel -d --prompt-only "Password: " --cache /dev/null --password)"
 		echo "OK"
 		;;
 	BYE | bye)

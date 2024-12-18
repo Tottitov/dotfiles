@@ -3,7 +3,7 @@
 alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
-	kh="khal calendar today 30d" \
+	kh="khal calendar today 7d" \
 	up="yay -Syu" \
 	tag="beet import -i ~/media/music/"
 
