@@ -1,5 +1,4 @@
 {
-  "height": 24,
   "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [

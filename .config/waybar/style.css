@@ -17,6 +17,10 @@ window#waybar {
   background: @background;
 }
 
+#tags {
+  padding-left: 5px;
+}
+
 #tags button {
   padding: 0px;
   min-width: 16pt;
@@ -39,12 +43,18 @@ window#waybar {
   color: @focused;
 }
 
+#tags button.urgent {
+  color: @urgent;
+}
+
 #bluetooth.on {
   color: @bluetooth;
 }
 
-#tags button.urgent,
-#bluetooth.off,
+#bluetooth.off {
+  color: @urgent;
+}
+
 #custom-record {
   color: @urgent;
 }
@@ -62,5 +72,5 @@ window#waybar {
 #custom-weather,
 #custom-record,
 #custom-player {
-  padding: 0px 10px;
+  padding: 2px 10px;
 }
