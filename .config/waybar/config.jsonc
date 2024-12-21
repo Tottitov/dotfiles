@@ -18,7 +18,7 @@
     "interval": 60
   },
   "battery": {
-    "bat": "BAT1",
+    "bat": "BAT0",
     "adapter": "ACAD",
     "states": {
       "warning": 50,

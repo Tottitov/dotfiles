@@ -4,6 +4,8 @@ riverctl map normal Super Q close
 riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 riverctl map normal Super H focus-view -skip-floating left
 riverctl map normal Super J focus-view -skip-floating down
 riverctl map normal Super K focus-view -skip-floating up
@@ -81,11 +83,11 @@ done
 riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
 riverctl set-repeat 50 200
 
-touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
+touchpad="pointer-1739-0-Synaptics_TM3053-006"
 riverctl input $touchpad tap enabled
 riverctl input $touchpad drag disabled
-riverctl input $touchpad pointer-accel 0.35
-riverctl input $touchpad scroll-factor 1.5
+riverctl input $touchpad pointer-accel 0.1
+riverctl input $touchpad scroll-factor 1.2
 riverctl input $touchpad accel-profile adaptive
 riverctl input $touchpad natural-scroll enabled
 riverctl input $touchpad disable-while-typing enabled
@@ -93,8 +95,6 @@ riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl set-cursor-warp on-focus-change
 riverctl focus-follows-cursor always
-riverctl map-pointer normal Super BTN_LEFT move-view
-riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd

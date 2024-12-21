@@ -23,7 +23,7 @@ window#waybar {
 
 #tags button {
   padding: 0px;
-  min-width: 16pt;
+  min-width: 14pt;
   color: @empty;
   border-radius: 0px;
 }
@@ -72,5 +72,5 @@ window#waybar {
 #custom-weather,
 #custom-record,
 #custom-player {
-  padding: 2px 10px;
+  padding: 2px 8px;
 }
