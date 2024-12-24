@@ -4,11 +4,11 @@ alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
 	kh="khal calendar today 7d" \
-	up="yay -Syu" \
+	up="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist && yay -Syu" \
 	tag="beet import -i ~/media/music/"
 
 alias \
-	gs="git status" \
+	gs="git status | bat -l rs" \
 	ga="git add" \
 	gc="git commit" \
 	gp="git push"

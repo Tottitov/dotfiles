@@ -1,10 +1,13 @@
 #!/bin/sh
 
 toggle() {
-	notify-send -r 5 "$choice" "Attempting to $1"
-	(bluetoothctl "$1" "$mac" >/dev/null 2>&1 &&
-		notify-send -r 5 "$choice" "Successfully ${1}ed") ||
-		notify-send -r 5 -u critical "$choice" "Failed to $1"
+	notify-send -r 5 "$device" "Attempting to $1"
+
+	if bluetoothctl "$1" "$mac"; then
+		notify-send -r 5 "$device" "Successfully ${1}ed"
+	else
+		notify-send -r 5 -u critical "$device" "Failed to $1"
+	fi >/dev/null 2>&1
 }
 
 power=$(bluetoothctl show | rg "Powered" | cut -c 11-)
@@ -29,12 +32,12 @@ count=$(echo "$devices" | wc -l)
 
 if [ "$count" -gt 1 ]; then
 	choice=$(
-		echo "$devices" | cut -c 26- | sort | fuzzel -l 4 -w 20 -di
+		echo "$devices" | cut -c 26- | sort | fuzzel -l 6 -w 20 -di
 	) || exit 1
-	choice=$(echo "$choice" | cut -d ' ' -f 1)
+	device=$(echo "$choice" | cut -d ' ' -f 1)
 	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f 2)
 else
-	choice=$(echo "$devices" | cut -d ' ' -f 3)
+	device=$(echo "$devices" | cut -d ' ' -f 3)
 	mac=$(echo "$devices" | cut -d ' ' -f 2)
 fi
 

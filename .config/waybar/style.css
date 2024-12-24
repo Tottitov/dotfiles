@@ -18,7 +18,7 @@ window#waybar {
 }
 
 #tags {
-  padding-left: 5px;
+  padding-left: 6px;
 }
 
 #tags button {
@@ -62,7 +62,6 @@ window#waybar {
 #battery.warning,
 #battery.critical {
   color: @foreground;
-  background: transparent;
 }
 
 #custom-clock,

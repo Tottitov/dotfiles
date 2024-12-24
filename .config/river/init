@@ -4,6 +4,8 @@ riverctl map normal Super Q close
 riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super+Alt BTN_LEFT resize-view
 riverctl map normal Super H focus-view -skip-floating left
 riverctl map normal Super J focus-view -skip-floating down
 riverctl map normal Super K focus-view -skip-floating up
@@ -39,6 +41,7 @@ riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
+riverctl map normal Super T spawn "$TERMINAL ttyper"
 
 riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
@@ -78,23 +81,25 @@ for mode in normal locked; do
 	riverctl map $mode None XF86AudioNext spawn "mpc -q next & pkill -RTMIN+1 waybar"
 done
 
+riverctl declare-mode passthrough
+riverctl map normal Super Escape enter-mode passthrough
+riverctl map passthrough Super+Alt Escape enter-mode normal
+
 riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
 riverctl set-repeat 50 200
 
-touchpad="pointer-2362-628-PIXA3854:00_093A:0274_Touchpad"
-riverctl input $touchpad tap enabled
-riverctl input $touchpad drag disabled
-riverctl input $touchpad pointer-accel 0.35
-riverctl input $touchpad scroll-factor 1.5
-riverctl input $touchpad accel-profile adaptive
-riverctl input $touchpad natural-scroll enabled
-riverctl input $touchpad disable-while-typing enabled
+touchpad=$(riverctl list-inputs | rg -i "touchpad")
+riverctl input "$touchpad" tap enabled
+riverctl input "$touchpad" drag disabled
+riverctl input "$touchpad" pointer-accel 0.35
+riverctl input "$touchpad" scroll-factor 1.5
+riverctl input "$touchpad" accel-profile adaptive
+riverctl input "$touchpad" natural-scroll enabled
+riverctl input "$touchpad" disable-while-typing enabled
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl set-cursor-warp on-focus-change
 riverctl focus-follows-cursor always
-riverctl map-pointer normal Super BTN_LEFT move-view
-riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd
@@ -120,6 +125,7 @@ riverctl spawn-tagmask $((allTag ^ scratchTag))
 
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((allTag ^ stickyTag))
+riverctl rule-add -app-id "mpv" tags $stickyTag
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))
@@ -145,7 +151,7 @@ for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute -s & ;;
-	"rivertile") $execute -view-padding 3 -outer-padding 3 & ;;
+	"rivertile") $execute -main-count 2 -view-padding 3 -outer-padding 3 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \

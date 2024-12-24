@@ -44,6 +44,7 @@ setopt hist_find_no_dups
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(fzf --zsh --reverse)"
+eval "$(batman --export-env)"
 
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
 source "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
