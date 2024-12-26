@@ -1,24 +1,18 @@
 #!/bin/sh
 
+mono=$(pamixer --list-sinks | rg -i "mono" | awk '{print $1}')
+
 case "$1" in
-high) pamixer -i 5 ;;
-higher) pamixer -i 10 ;;
-low) pamixer -d 5 ;;
-lower) pamixer -d 10 ;;
-mute) pamixer -t ;;
+high) pamixer --sink "$mono" -i 5 ;;
+higher) pamixer --sink "$mono" -i 10 ;;
+low) pamixer --sink "$mono" -d 5 ;;
+lower) pamixer --sink "$mono" -d 10 ;;
+mute) pamixer --sink "$mono" -t ;;
 esac
 
-volume=$(pamixer --get-volume)
+volume=$(pamixer --sink "$mono" --get-volume)
+status=$(pamixer --sink "$mono" --get-mute)
 
-if [ "$(pamixer --get-mute)" != "true" ]; then
-	notify-send \
-		-r 5 \
-		-t 2000 \
-		"VOLUME ${volume}%"
-else
-	notify-send \
-		-r 5 \
-		-t 2000 \
-		-u critical \
-		"MUTE ${volume}%"
-fi
+([ "$status" != "true" ] &&
+	notify-send -r 5 -t 2000 "VOLUME ${volume}%") ||
+	notify-send -r 5 -t 2000 -u critical "MUTE ${volume}%"
