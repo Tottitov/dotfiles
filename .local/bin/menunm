@@ -6,7 +6,7 @@ check() {
 	else
 		notify-send -r 5 -u critical "Password failed for $2"
 		nmcli con delete "$2"
-	fi
+	fi >/dev/null 2>&1
 }
 
 connect() {
@@ -14,7 +14,7 @@ connect() {
 		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 1
 		check "$password" "$1"
 	else
-		nmcli dev wifi con "$1" && notify-send -r 5 "$1 connected"
+		nmcli dev wifi con "$1" && notify-send -r 5 "$1" "Connected"
 	fi >/dev/null 2>&1
 }
 
@@ -26,7 +26,7 @@ fi
 
 state=$(nmcli -g state dev status | rg "^.*:wifi:")
 if [ "$state" = "unavailable" ]; then
-	notify-send -r 5 -u critical "WiFi is unavailable"
+	notify-send -r 5 -u critical "Interface is unavailable"
 	exit 1
 fi
 
@@ -40,13 +40,14 @@ networks=$(nmcli -g active,ssid,security,signal dev wifi)
 	)
 
 	choice=$(echo "$list" | fuzzel -l 5 -w 40 -di) || exit 1
-	ssid=$(echo "$choice" | awk '{print $2}')
+	ssid=$(echo "$choice" | cut -c5-)
 
 	if echo "$choice" | rg -Fq '*'; then
+		ssid=$(echo "$ssid" | sed 's/ \*$//')
 		nmcli con down id "$ssid" >/dev/null 2>&1
-		notify-send -r 5 "$ssid disconnected"
+		notify-send -r 5 "$ssid" "Disconnected"
 	else
-		security=$(echo "$networks" | rg "$choice" | cut -d ':' -f 3)
+		security=$(echo "$networks" | rg "$choice" | cut -d ':' -f3)
 		connect "$ssid"
 	fi
 }

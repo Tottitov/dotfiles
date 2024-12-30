@@ -20,7 +20,6 @@ riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
 
 riverctl map normal Super Backspace spawn menusys
-riverctl map normal Super+Shift Backspace spawn menupp
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
 
 riverctl map normal Super Return spawn "$TERMINAL"
@@ -51,7 +50,7 @@ riverctl map normal Super+Shift Print spawn "menurecord kill"
 
 riverctl map normal None XF86DISPLAY spawn menusc
 riverctl map normal None XF86RFKill spawn airplane
-riverctl map normal None XF86AudioMedia spawn "$TERMINAL -D ${XDG_DATA_HOME}/dotfiles"
+riverctl map normal None XF86AudioMedia spawn null
 
 for mode in normal locked; do
 	riverctl map -repeat $mode Super Equal spawn "volume high"
@@ -92,7 +91,7 @@ touchpad=$(riverctl list-inputs | rg -i "touchpad")
 riverctl input "$touchpad" tap enabled
 riverctl input "$touchpad" drag disabled
 riverctl input "$touchpad" pointer-accel 0.35
-riverctl input "$touchpad" scroll-factor 1.5
+riverctl input "$touchpad" scroll-factor 1.30
 riverctl input "$touchpad" accel-profile adaptive
 riverctl input "$touchpad" natural-scroll enabled
 riverctl input "$touchpad" disable-while-typing enabled
@@ -145,13 +144,13 @@ dbus-update-activation-environment \
 	XDG_CURRENT_DESKTOP=river
 
 executes="rivertile waybar kanshi wlsunset swayidle 
-foot pipewire dunst mpd transmission-daemon"
+foot ghostty pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute -s & ;;
-	"rivertile") $execute -main-count 2 -view-padding 3 -outer-padding 3 & ;;
+	"rivertile") $execute -view-padding 3 -outer-padding 3 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \

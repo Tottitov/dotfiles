@@ -10,7 +10,7 @@ toggle() {
 	fi >/dev/null 2>&1
 }
 
-power=$(bluetoothctl show | rg "Powered" | cut -c 11-)
+power=$(bluetoothctl show | rg "Powered" | cut -c11-)
 [ "$power" = "no" ] && {
 	notify-send -r 5 "Bluetooth is not powered on"
 	exit 1
@@ -32,13 +32,13 @@ count=$(echo "$devices" | wc -l)
 
 if [ "$count" -gt 1 ]; then
 	choice=$(
-		echo "$devices" | cut -c 26- | sort | fuzzel -l 5 -w 20 -di
+		echo "$devices" | cut -c26- | sort | fuzzel -l 5 -w 20 -di
 	) || exit 1
-	device=$(echo "$choice" | cut -d ' ' -f 1)
-	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f 2)
+	device=$(echo "$choice" | cut -d ' ' -f1)
+	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f2)
 else
-	device=$(echo "$devices" | cut -d ' ' -f 3)
-	mac=$(echo "$devices" | cut -d ' ' -f 2)
+	device=$(echo "$devices" | cut -d ' ' -f3)
+	mac=$(echo "$devices" | cut -d ' ' -f2)
 fi
 
 (echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect

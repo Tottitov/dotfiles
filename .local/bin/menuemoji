@@ -6,5 +6,5 @@ emoji=$(
 		-w 20 -di
 ) || exit 1
 
-echo "$emoji" | cut -d ' ' -f 1 | tr -d '\n' | wl-copy
+echo "$emoji" | cut -d ' ' -f1 | tr -d '\n' | wl-copy
 notify-send "Emoji copied to clipboard" "$emoji"

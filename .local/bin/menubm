@@ -2,7 +2,7 @@
 
 bookmarks="${XDG_DATA_HOME}/bookmarks"
 
-tags=$(cut -d ' ' -f 3 "$bookmarks" | sort -u)
+tags=$(cut -d ' ' -f3 "$bookmarks" | sort -u)
 tag=$(
 	echo "$tags" | fuzzel \
 		--cache "$XDG_CACHE_HOME/tags" \
@@ -10,9 +10,9 @@ tag=$(
 ) || exit 1
 
 bookmark=$(
-	rg -w "$tag" "$bookmarks" | cut -d ' ' -f 2 | fuzzel \
+	rg -w "$tag" "$bookmarks" | cut -d ' ' -f2 | fuzzel \
 		--cache "$XDG_CACHE_HOME/bookmarks" \
 		-l 10 -w 20 -di
 ) || exit 1
 
-$BROWSER "$(rg -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f 1)"
+$BROWSER "$(rg -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f1)"

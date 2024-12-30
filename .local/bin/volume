@@ -1,12 +1,16 @@
 #!/bin/sh
 
 mono=$(pamixer --list-sinks | rg -i "mono" | awk '{print $1}')
+stereo=$(pamixer --list-sinks | rg -i "stereo" | awk '{print $1}')
+
+[ "$(pamixer --sink "$stereo")" -ne 100 ] &&
+	pamixer --sink "$stereo" --set-volume 100
 
 case "$1" in
-high) pamixer --sink "$mono" -i 5 ;;
-higher) pamixer --sink "$mono" -i 10 ;;
-low) pamixer --sink "$mono" -d 5 ;;
-lower) pamixer --sink "$mono" -d 10 ;;
+high) pamixer --sink "$mono" -i 1 ;;
+higher) pamixer --sink "$mono" -i 5 ;;
+low) pamixer --sink "$mono" -d 1 ;;
+lower) pamixer --sink "$mono" -d 5 ;;
 mute) pamixer --sink "$mono" -t ;;
 esac
 
