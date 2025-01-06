@@ -40,7 +40,6 @@
     "format-off": "󰂲 OFF",
     "format-connected": "<span color=\"#2ac3de\"></span> {device_alias}",
     "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}%",
-    "format-device-preference": ["Sony-XM4", "AirPods-Pro"],
     "tooltip-format": "{device_alias}",
     "on-click": "bttoggle"
   },

@@ -5,7 +5,8 @@ alias \
 	ls="eza -la --color=auto --group-directories-first" \
 	kh="khal calendar today 7d" \
 	up="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist && yay -Syu" \
-	tag="beet import -i ~/media/music/"
+	tag="beet import -i ~/media/music/" \
+	vw="csvlens"
 
 alias \
 	gs="git status | bat -l rs" \

@@ -1,21 +1,24 @@
 #!/bin/sh
 
-mono=$(pamixer --list-sinks | rg -i "mono" | awk '{print $1}')
-stereo=$(pamixer --list-sinks | rg -i "stereo" | awk '{print $1}')
+sinks=$(pamixer --list-sinks | awk 'NR > 1 {print $1}')
+default=$(pamixer --get-default-sink | awk 'NR > 1 {print $1}')
 
-[ "$(pamixer --sink "$stereo")" -ne 100 ] &&
-	pamixer --sink "$stereo" --set-volume 100
+for sink in $sinks; do
+	volume=$(pamixer --sink "$sink" --get-volume)
+	[ "$volume" -lt 100 ] && [ "$sink" -ne "$default" ] &&
+		pamixer --sink "$sink" --set-volume 100
+done
 
 case "$1" in
-high) pamixer --sink "$mono" -i 1 ;;
-higher) pamixer --sink "$mono" -i 5 ;;
-low) pamixer --sink "$mono" -d 1 ;;
-lower) pamixer --sink "$mono" -d 5 ;;
-mute) pamixer --sink "$mono" -t ;;
+high) pamixer -i 1 ;;
+higher) pamixer -i 5 ;;
+low) pamixer -d 1 ;;
+lower) pamixer -d 5 ;;
+mute) pamixer -t ;;
 esac
 
-volume=$(pamixer --sink "$mono" --get-volume)
-status=$(pamixer --sink "$mono" --get-mute)
+volume=$(pamixer --get-volume)
+status=$(pamixer --get-mute)
 
 ([ "$status" != "true" ] &&
 	notify-send -r 5 -t 2000 "VOLUME ${volume}%") ||

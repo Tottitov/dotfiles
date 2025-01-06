@@ -3,16 +3,13 @@
 toggle() {
 	notify-send -r 5 "$device" "Attempting to $1"
 
-	if bluetoothctl "$1" "$mac"; then
-		notify-send -r 5 "$device" "Successfully ${1}ed"
-	else
+	(bluetoothctl "$1" "$mac" &&
+		notify-send -r 5 "$device" "Successfully ${1}ed") ||
 		notify-send -r 5 -u critical "$device" "Failed to $1"
-	fi >/dev/null 2>&1
 }
 
-power=$(bluetoothctl show | rg "Powered" | cut -c11-)
-[ "$power" = "no" ] && {
-	notify-send -r 5 "Bluetooth is not powered on"
+bluetoothctl show | rg -q "Powered: no" && {
+	echo "Bluetooth not powered on"
 	exit 1
 }
 

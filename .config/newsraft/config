@@ -1,5 +1,6 @@
 set clean-database-on-startup true
 set status-placeholder
+set menu-feed-sorting alphabet-asc
 set scrolloff 8
 
 bind m exec setsid -f mpv --no-terminal "%l" &
