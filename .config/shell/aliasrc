@@ -12,7 +12,8 @@ alias \
 	gs="git status | bat -l rs" \
 	ga="git add" \
 	gc="git commit" \
-	gp="git push"
+	gpull="git push" \
+	gpush="git pull"
 
 alias \
 	cad="source ~/.local/share/virtual/build123d/bin/activate" \

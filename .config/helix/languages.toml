@@ -11,29 +11,20 @@ auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [ "typescript-language-server" ]
+language-servers = [
+  "vscode-eslint-language-server",
+  "typescript-language-server",
+]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "typescript-language-server" ]
+language-servers = [
+  "vscode-eslint-language-server",
+  "typescript-language-server",
+]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "lua"
-formatter = { command = "stylua", args = ["-"] }
-auto-format = true
-
-[[language]]
-name = "python"
-formatter = { command = "black", args = ["-"] }
-auto-format = true
-
-[[language]]
-name = "html"
-formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
 
 [[language]]
@@ -48,11 +39,14 @@ formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
-name = "javascript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-auto-format = true
-
-[[language]]
 name = "yaml"
 formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 auto-format = true
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
+
+[language-server.taplo.config]
+root_dir = [".git", "*.toml"]

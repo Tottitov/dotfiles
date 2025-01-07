@@ -144,7 +144,7 @@ dbus-update-activation-environment \
 	XDG_CURRENT_DESKTOP=river
 
 executes="rivertile waybar kanshi wlsunset swayidle 
-foot ghostty pipewire dunst mpd transmission-daemon"
+foot pipewire dunst mpd transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue

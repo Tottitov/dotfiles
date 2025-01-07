@@ -8,8 +8,16 @@ bufferline = "multiple"
 cursor-shape.normal = "block"
 cursor-shape.insert = "bar"
 cursor-shape.select = "underline"
-statusline.right = ["version-control", "spacer", "diagnostics", "file-type", "position"]
+statusline.right = [
+  "version-control",
+  "spacer",
+  "diagnostics",
+  "file-type",
+  "position",
+]
 indent-guides.render = true
+#end-of-line-diagnostics = "hint"
+#inline-diagnostics.cursor-line = "error"
 
 [keys.normal]
 G = "goto_file_end"
