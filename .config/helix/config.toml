@@ -16,8 +16,8 @@ statusline.right = [
   "position",
 ]
 indent-guides.render = true
-#end-of-line-diagnostics = "hint"
-#inline-diagnostics.cursor-line = "error"
+end-of-line-diagnostics = "hint"
+inline-diagnostics.cursor-line = "error"
 
 [keys.normal]
 G = "goto_file_end"

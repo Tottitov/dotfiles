@@ -1,4 +1,4 @@
-source /home/tony/.config/mutt/accounts/me@tonylenguyen.com.muttrc
+source /home/tony/.config/mutt/accounts/mail@tonylenguyen.com.muttrc
 
 # Macros
 macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
@@ -16,7 +16,6 @@ set sort_aux = reverse-last-date-received
 set sort = threads                      # group related emails together
 set pager_index_lines = 5               # set inbox view max when viewing mail
 unset tilde                             # hide ~ on empty lines or end of a message
-unset markers                           # hide \ for newlines
 unset help                              # hide help bar on top of index
 set delete                              # skip confirm when deleting message
 unset confirmappend                     # skip confirm when appending message

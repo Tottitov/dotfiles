@@ -1,4 +1,4 @@
-set folder = "/home/tony/.local/share/mail/me@tonylenguyen.com/"
+set folder = "/home/tony/.local/share/mail/mail@tonylenguyen.com/"
 set mbox_type = Maildir
 
 set spoolfile = "+INBOX"
@@ -7,7 +7,7 @@ set trash = "+Trash"
 set record = "+Sent"
 
 set realname = "Tony Nguyen"
-set from = "me@tonylenguyen.com"
+set from = "mail@tonylenguyen.com"
 
 set sendmail = "msmtp -a fastmail"
 

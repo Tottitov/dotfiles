@@ -1,5 +1,8 @@
 {
-  "modules-left": ["river/tags", "custom/player"],
+  "modules-left": [
+    "river/tags",
+    "custom/player"
+  ],
   "modules-center": [],
   "modules-right": [
     "custom/record",
@@ -40,6 +43,9 @@
     "format-off": "󰂲 OFF",
     "format-connected": "<span color=\"#2ac3de\"></span> {device_alias}",
     "format-connected-battery": "<span color=\"#2ac3de\"></span> {device_battery_percentage}%",
+    "format-device-preference": [
+      "Sony-XM4"
+    ],
     "tooltip-format": "{device_alias}",
     "on-click": "bttoggle"
   },
@@ -53,7 +59,8 @@
     "exec": "player",
     "tooltip": false,
     "max-length": 50,
-    "signal": 1
+    "signal": 1,
+    "on-click": "mpc toggle"
   },
   "custom/weather": {
     "exec": "cat $XDG_DATA_HOME/weather",

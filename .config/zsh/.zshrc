@@ -15,6 +15,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+chpwd() { osc7-pwd; }
+osc7-pwd() { printf '\e]7;file://%s%s\a' "$HOST" "$PWD"; }
+
 clear-screen() {
 	zle -I
 	print -n '\e[2J\e[4;0H'
@@ -44,8 +47,7 @@ setopt hist_find_no_dups
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(fzf --zsh --reverse)"
-eval "$(batman --export-env)"
 
-source "${XDG_CONFIG_HOME}/shell/aliasrc"
+source "$XDG_CONFIG_HOME/shell/aliasrc"
 source "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"

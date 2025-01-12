@@ -1,8 +1,8 @@
 account fastmail
 host smtp.fastmail.com
 port 465
-from me@tonylenguyen.com
-user me@tonylenguyen.com
+from mail@tonylenguyen.com
+user mail@tonylenguyen.com
 passwordeval "pass neomutt/personal/fastmail"
 auth on
 tls on

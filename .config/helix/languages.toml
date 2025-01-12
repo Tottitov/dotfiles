@@ -1,6 +1,6 @@
 [[language]]
 name = "bash"
-injection-regex = "(shell|bash|zsh|sh)"
+injection-regex = "(shell|bash|sh)"
 formatter = { command = "shfmt" }
 auto-format = true
 
@@ -11,19 +11,13 @@ auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [
-  "vscode-eslint-language-server",
-  "typescript-language-server",
-]
+language-servers = ["vscode-eslint-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [
-  "vscode-eslint-language-server",
-  "typescript-language-server",
-]
+language-servers = ["vscode-eslint-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 

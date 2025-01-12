@@ -1,9 +1,9 @@
 [database]
-path=/home/tony/.local/share/mail/me@tonylenguyen.com/
+path=/home/tony/.local/share/mail/mail@tonylenguyen.com/
 
 [user]
 name=Tony Nguyen
-primary_email=me@tonylenguyen.com
+primary_email=mail@tonylenguyen.com
 
 [new]
 ignore=.mbsyncstate;.uidvalidity

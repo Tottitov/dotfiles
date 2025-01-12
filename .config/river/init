@@ -10,6 +10,8 @@ riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
 riverctl map normal Super K focus-view up
 riverctl map normal Super L focus-view right
+riverctl map normal Super+Control H focus-output left
+riverctl map normal Super+Control L focus-output right
 riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
 riverctl map normal Super+Shift K swap up
@@ -35,7 +37,7 @@ riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL newsraft"
 riverctl map normal Super M spawn "$TERMINAL ncmpcpp"
 riverctl map normal Super N spawn "$TERMINAL notes n"
-riverctl map normal Super+Shift N spawn "$TERMINAL notes v"
+riverctl map normal Super+Shift N spawn "$TERMINAL notes e"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super I spawn "$TERMINAL htop"
@@ -58,8 +60,8 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10"
-	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10-"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +2"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 2-"
 
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -72,8 +74,8 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10"
-	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10-"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +2"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 2-"
 
 	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -102,15 +104,13 @@ riverctl focus-follows-cursor always
 riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd
-riverctl background-color "0x301934"
+riverctl background-color "0x153149"
 riverctl border-color-focused "0x737AA2"
 riverctl border-color-unfocused "0x665C54"
 riverctl border-width 2
 
 riverctl default-layout rivertile
 riverctl default-attach-mode bottom
-riverctl map normal Super+Alt J send-layout-cmd rivertile "main-count +1"
-riverctl map normal Super+Alt K send-layout-cmd rivertile "main-count -1"
 riverctl map normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.1"
 riverctl map normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.1"
 
@@ -124,7 +124,6 @@ riverctl spawn-tagmask $((allTags ^ scratchTag))
 
 riverctl map normal Super S toggle-view-tags $stickyTag
 riverctl spawn-tagmask $((allTags ^ stickyTag))
-riverctl rule-add -app-id "mpv" tags $stickyTag
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))
@@ -132,6 +131,9 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Shift "$i" set-view-tags $tags
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
+
+riverctl rule-add -app-id "firefox" tags 1
+riverctl rule-add -app-id "mpv" tags $stickyTag
 
 gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
 gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark-compact"
@@ -143,14 +145,14 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset swayidle 
-foot pipewire dunst mpd transmission-daemon"
+executes="rivertile waybar kanshi wlsunset mpd
+swayidle foot pipewire dunst transmission-daemon"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute -s & ;;
-	"rivertile") $execute -view-padding 3 -outer-padding 3 & ;;
+	"rivertile") $execute -main-count 2 -view-padding 4 -outer-padding 10 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \

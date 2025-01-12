@@ -1,15 +1,13 @@
 text/plain; $EDITOR %s
 
 text/html; setsid -f $BROWSER %s; nametemplate=%s.html
-text/html; html2text -s \
---escape-all \
+text/html; html2text \
+--body-width=80 \
 --ignore-links \
 --ignore-images \
 --ignore-tables \
 --ignore-emphasis \
---body-width=0 \
---unicode-snob \
---single-line-break %s %{charset}; copiousoutput
+--unicode-snob %s %{charset}; copiousoutput
 
 image/*; setsid -f swayimg %s
 video/*; setsid -f mpv --no-terminal %s
