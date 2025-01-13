@@ -1,0 +1,60 @@
+*.default=true
+
+# 'Send this email?' dialog
+title.fg = yellow
+title.bold = true
+
+# email header
+header.bold = true
+header.fg = red
+
+# warnings
+*error.bold = true
+*error.fg = red
+*error.blink = true
+*warning.fg = yellow
+*warning.blink = true
+*success.fg = green
+
+# statusline
+statusline_*.fg = yellow
+statusline_*.dim = false
+
+# borderline
+border.fg = gray
+
+# folder
+dirlist_*.selected.fg = green
+
+# tab
+tab.fg = gray
+tab.selected.fg = blue
+
+# list
+msglist_*.selected.fg = blue
+msglist_deleted.fg = gray
+msglist_unread.fg = purple
+msglist_unread.bold = false
+msglist_marked.fg = yellow
+msglist_marked.reverse = true
+msglist_flagged.fg = red
+msglist_flagged.bold = true
+
+[viewer]
+header.fg = red
+header.bold = true    
+signature.fg = 3   
+signature.dim = true    
+diff_meta.fg = #ff0000
+diff_meta.bold = true    
+diff_chunk.dim = true    
+diff_add.fg = #00ff00    
+diff_del.fg = #ff0000
+quote_1.fg = 6    
+quote_2.fg = 7
+quote_3.fg = 6    
+quote_4.fg = 7    
+quote_3.dim = true
+quote_4.dim = true
+quote_x.fg = gray
+quote_x.dim = true

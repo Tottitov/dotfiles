@@ -8,7 +8,7 @@ while pidof -q "mbsync"; do
 	pkill -RTMIN+4 waybar && sleep 1
 done
 
-lastrun="${XDG_CONFIG_HOME}/mutt/.mailsynclast"
+lastrun="${XDG_CONFIG_HOME}/aerc/.mailsynclast"
 accounts="${XDG_DATA_HOME}/mail"
 
 for account in "$accounts"/*; do
