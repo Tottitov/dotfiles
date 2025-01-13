@@ -25,15 +25,16 @@ border.fg = gray
 
 # folder
 dirlist_*.selected.fg = green
+dirlist_*.selected.underline = true
 
 # tab
 tab.fg = gray
 tab.selected.fg = blue
 
 # list
-msglist_*.selected.fg = blue
-msglist_deleted.fg = gray
-msglist_unread.fg = purple
+msglist_*.selected.fg = green
+msglist_deleted.fg = red
+msglist_unread.fg = blue
 msglist_unread.bold = false
 msglist_marked.fg = yellow
 msglist_marked.reverse = true
@@ -45,11 +46,11 @@ header.fg = red
 header.bold = true    
 signature.fg = 3   
 signature.dim = true    
-diff_meta.fg = #ff0000
+diff_meta.fg = blue
 diff_meta.bold = true    
 diff_chunk.dim = true    
-diff_add.fg = #00ff00    
-diff_del.fg = #ff0000
+diff_add.fg = green
+diff_del.fg = red
 quote_1.fg = 6    
 quote_2.fg = 7
 quote_3.fg = 6    
