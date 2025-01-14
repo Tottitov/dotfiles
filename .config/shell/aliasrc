@@ -4,7 +4,8 @@ alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
 	kh="khal calendar today 7d" \
-	up="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist && yay -Syu" \
+	up="yay -Syu" \
+	mi="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist" \
 	tag="beet import -i ~/media/music/" \
 	vw="csvlens"
 

@@ -14,5 +14,5 @@ fileext = ".ics"
 [storage fastmail_remote]
 type = "caldav"
 url = "https://caldav.fastmail.com/"
-username = "me@tonylenguyen.com"
+username = "mail@tonylenguyen.com"
 password.fetch = ["command", "pass", "vdirsyncer"]

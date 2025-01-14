@@ -12,21 +12,21 @@ visualizer_color = "red"
 visualizer_look = "+|"
 
 [current]
-current_item_prefix = "$(red)$b"
+current_item_prefix = "$(magenta)$r"
 current_item_suffix = "$/r$(end)$/b"
 current_item_inactive_column_prefix = "$(default)"
 current_item_inactive_column_suffix = "$/r$(end)"
 
 [statusbar]
 progressbar_look = "─╼ "
-progressbar_color = "green"
+progressbar_color = "yellow"
 statusbar_visibility = "no"
 
 [global]
 colors_enabled = "yes"
 main_window_color = "default"
 centered_cursor = "yes"
-external_editor = "nvim"
+external_editor = "$EDITOR"
 startup_screen = "media_library"
 show_duplicate_tags = "no"
 display_volume_level = "no"

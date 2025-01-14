@@ -5,3 +5,10 @@ set scrolloff 8
 
 bind m exec setsid -f mpv --no-terminal "%l" &
 bind c exec catt cast "%l" >/dev/null 2>&1 &
+
+color-list-section-unread magenta default
+color-list-feed-unread magenta default
+color-list-item-unread magenta default
+color-list-feed blue default
+color-list-item blue default
+color-status yellow default bold

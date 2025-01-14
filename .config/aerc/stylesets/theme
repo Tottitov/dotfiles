@@ -32,7 +32,9 @@ tab.fg = gray
 tab.selected.fg = blue
 
 # list
-msglist_*.selected.fg = green
+msglist_*.selected.bg = purple
+msglist_*.selected.fg = black
+msglist_*.selected.bold = false
 msglist_deleted.fg = red
 msglist_unread.fg = blue
 msglist_unread.bold = false
@@ -44,7 +46,7 @@ msglist_flagged.bold = true
 [viewer]
 header.fg = red
 header.bold = true    
-signature.fg = 3   
+signature.fg = blue
 signature.dim = true    
 diff_meta.fg = blue
 diff_meta.bold = true    
