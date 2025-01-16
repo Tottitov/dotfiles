@@ -14,7 +14,7 @@ cmd open ${{
         text/*|application/json) $EDITOR $f ;;
         application/pdf) setsid -f zathura $fx ;;
         video/*) setsid -f mpv $f --no-terminal ;;
-        image/*) setsid -f swayimg $f ;;
+        image/*) setsid -f imv -s full $f ;;
         *) xdg-open $f ;;
     esac
 }}

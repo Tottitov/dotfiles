@@ -1,6 +1,6 @@
 [global]
   follow = keyboard
-  width = (0, 350)
+  width = (0, 500)
   alignment = left
   vertical_alignment = center
   offset = (14, 14)

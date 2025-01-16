@@ -1,5 +1,5 @@
 XDG_DESKTOP_DIR="$HOME"
-XDG_DOCUMENTS_DIR="$HOME/notes"
+XDG_DOCUMENTS_DIR="$HOME/docs"
 XDG_DOWNLOAD_DIR="$HOME/media/downloads"
 XDG_MUSIC_DIR="$HOME/media/music"
 XDG_PICTURES_DIR="$HOME/media/pictures"

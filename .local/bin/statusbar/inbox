@@ -1,6 +1,6 @@
 #!/bin/sh
 
-unread="$(find ~/.local/share/mail/*/INBOX/new -type f | wc -l)"
+unread="$(notmuch count folder:INBOX and tag:unread)"
 
 [ "$unread" -gt 0 ] && {
 	pgrep -x "mbsync" >/dev/null && color="#f7768e" || color="#9ece6a"

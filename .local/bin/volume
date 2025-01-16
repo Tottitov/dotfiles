@@ -1,12 +1,11 @@
 #!/bin/sh
 
-sinks=$(pamixer --list-sinks | awk 'NR > 1 {print $1}')
-default=$(pamixer --get-default-sink | awk 'NR > 1 {print $1}')
+default=$(pamixer --get-default-sink | tail -n1 | cut -d ' ' -f1)
 
+sinks=$(pamixer --list-sinks | awk 'NR > 1 {print $1}' | rg -v "$default")
 for sink in $sinks; do
 	volume=$(pamixer --sink "$sink" --get-volume)
-	[ "$volume" -lt 100 ] && [ "$sink" -ne "$default" ] &&
-		pamixer --sink "$sink" --set-volume 100
+	[ "$volume" -lt 100 ] && pamixer --sink "$sink" --set-volume 100
 done
 
 case "$1" in

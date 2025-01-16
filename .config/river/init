@@ -60,8 +60,8 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +2"
-	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 2-"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +5"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 5-"
 
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -74,8 +74,8 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +2"
-	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 2-"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +5"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 5-"
 
 	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -152,7 +152,7 @@ for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute -s & ;;
-	"rivertile") $execute -main-count 2 -view-padding 4 -outer-padding 10 & ;;
+	"rivertile") $execute -main-ratio 0.55 -view-padding 4 -outer-padding 10 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
