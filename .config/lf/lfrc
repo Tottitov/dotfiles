@@ -25,7 +25,7 @@ map <c-d> delete
 map gc cd ~/.config
 map sc cd ~/.local/bin
 map gd cd ~/documents
-map gl cd ~/downloads
+map gl cd ~/media/downloads
 map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gv cd ~/media/videos

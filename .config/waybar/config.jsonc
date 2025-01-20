@@ -23,6 +23,7 @@
   "battery": {
     "bat": "BAT1",
     "adapter": "ACAD",
+    "tooltip": false,
     "states": {
       "warning": 50,
       "critical": 25

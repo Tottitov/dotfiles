@@ -1,10 +1,5 @@
 profile default {
-    output eDP-1 enable scale 2 adaptive_sync on
-}
-
-profile work {
-    output eDP-1 enable scale 2 adaptive_sync on position 0,0
-    output "AOC 24G1WG3- PIBM9JA000564" enable scale 1 position -1920,0
+    output eDP-1 enable scale 1.75 adaptive_sync on
 }
 
 profile hmdi {

@@ -20,6 +20,7 @@ export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export PULSE_COOKIE="$XDG_CACHE_HOME/pulse/cookie"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 

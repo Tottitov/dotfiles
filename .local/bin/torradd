@@ -1,6 +1,5 @@
 #!/bin/sh
 
-(transmission-remote \
-	-n "tottitov:$(pass localhost:9091)" \
-	-a "$@" >/dev/null && notify-send "Torrent successfully added") ||
-	notify-send "Torrent failed to add"
+(curl -d "$@" "http://127.0.0.1:3030/torrents" &&
+	notify-send "Torrent successfully added") ||
+	notify-send "Torrrent failed to add"

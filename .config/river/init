@@ -40,7 +40,7 @@ riverctl map normal Super N spawn "$TERMINAL notes n"
 riverctl map normal Super+Shift N spawn "$TERMINAL notes e"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
-riverctl map normal Super I spawn "$TERMINAL htop"
+riverctl map normal Super I spawn "$TERMINAL btm"
 riverctl map normal Super+Shift I spawn menubt
 riverctl map normal Super T spawn "$TERMINAL ttyper"
 
@@ -60,8 +60,8 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +5"
-	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 5-"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10-"
 
 	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -74,8 +74,8 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +5"
-	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 5-"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10-"
 
 	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
 	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
@@ -115,8 +115,8 @@ riverctl map normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.1"
 riverctl map normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.1"
 
 allTags=$(((1 << 32) - 1))
-scratchTag=$((1 << 20))
 stickyTag=$((1 << 31))
+scratchTag=$((1 << 30))
 
 riverctl map normal Super 0 toggle-focused-tags $scratchTag
 riverctl map normal Super+Shift 0 set-view-tags $scratchTag
@@ -145,13 +145,14 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="rivertile waybar kanshi wlsunset mpd
-swayidle foot pipewire dunst transmission-daemon"
+executes="rivertile waybar kanshi mpd foot
+wlsunset swayidle rqbit pipewire dunst"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
-	"foot") $execute -s & ;;
+	"foot") $execute --server & ;;
+	"rqbit") $execute server start "$HOME/media/downloads" & ;;
 	"rivertile") $execute -main-ratio 0.55 -view-padding 4 -outer-padding 10 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
