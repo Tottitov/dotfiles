@@ -104,8 +104,8 @@ riverctl focus-follows-cursor always
 riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd
-riverctl background-color "0x153149"
-riverctl border-color-focused "0x737AA2"
+riverctl background-color "0x005582"
+riverctl border-color-focused "0xC53B53"
 riverctl border-color-unfocused "0x665C54"
 riverctl border-width 2
 
@@ -114,26 +114,26 @@ riverctl default-attach-mode bottom
 riverctl map normal Super+Alt H send-layout-cmd rivertile "main-ratio -0.1"
 riverctl map normal Super+Alt L send-layout-cmd rivertile "main-ratio +0.1"
 
-allTags=$(((1 << 32) - 1))
-stickyTag=$((1 << 31))
-scratchTag=$((1 << 30))
+scratch=$((1 << 30))
+riverctl map normal Super 0 toggle-focused-tags $scratch
+riverctl map normal Super+Shift 0 set-view-tags $scratch
 
-riverctl map normal Super 0 toggle-focused-tags $scratchTag
-riverctl map normal Super+Shift 0 set-view-tags $scratchTag
-riverctl spawn-tagmask $((allTags ^ scratchTag))
+sticky=$((1 << 31))
+riverctl map normal Super S toggle-view-tags $sticky
 
-riverctl map normal Super S toggle-view-tags $stickyTag
-riverctl spawn-tagmask $((allTags ^ stickyTag))
+complete=$(((1 << 32) - 1))
+riverctl spawn-tagmask $((complete ^ scratch))
+riverctl spawn-tagmask $((complete ^ sticky))
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))
-	riverctl map normal Super "$i" set-focused-tags $((stickyTag + tags))
+	riverctl map normal Super "$i" set-focused-tags $((sticky + tags))
 	riverctl map normal Super+Shift "$i" set-view-tags $tags
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
 riverctl rule-add -app-id "firefox" tags 1
-riverctl rule-add -app-id "mpv" tags $stickyTag
+riverctl rule-add -app-id "mpv" tags $sticky
 
 gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
 gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark-compact"
@@ -146,14 +146,15 @@ dbus-update-activation-environment \
 	XDG_CURRENT_DESKTOP=river
 
 executes="rivertile waybar kanshi mpd foot
-wlsunset swayidle rqbit pipewire dunst"
+swaybg wlsunset swayidle rqbit pipewire dunst"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
+	"swaybg") wallpaper & ;;
 	"foot") $execute --server & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
-	"rivertile") $execute -main-ratio 0.55 -view-padding 4 -outer-padding 10 & ;;
+	"rivertile") $execute -main-ratio 0.55 -view-padding 3 -outer-padding 3 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \

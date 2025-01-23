@@ -15,8 +15,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-chpwd() { osc7-pwd; }
-osc7-pwd() { printf '\e]7;file://%s%s\a' "$HOST" "$PWD"; }
+chpwd() {
+	printf '\e]7;file://%s%s\a' "$HOST" "$PWD"
+}
 
 clear-screen() {
 	zle -I

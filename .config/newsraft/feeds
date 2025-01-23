@@ -1,4 +1,3 @@
-@ Youtube < reload-period 720
 https://www.youtube.com/feeds/videos.xml?channel_id=UC5mPJA4y5G8Z6aNkY6AxgAw "Van Neitstat"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCcXhhVwCT6_WqjkEniejRJQ "Wintergatan"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCiDJtJKMICpb9B1qf7qjEOA "Adam Savage"
@@ -25,7 +24,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC5Qbo0AR3CwpmEq751BIy0g "Th
 https://www.youtube.com/feeds/videos.xml?channel_id=UCPKNKldggioffXPkSmjs5lQ "Hamzy"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCyfg9nFSHL82SWVWN3YUe2w "Truck House Life"
 
-@ Blogs < reload-period 1440
 http://lukesmith.xyz/rss.xml "Luke Smith"
 https://timharek.no/feed.xml "Tim Harek"
 https://www.archlinux.org/feeds/news/ "Arch Linux"
