@@ -1,5 +1,5 @@
 #!/bin/sh
 
-events=$(khal list today 7d)
+events=$(qcal -wd | sed -r 's/\x1b\[[0-9;]*m//g' | sed 's/^| //')
 
 [ -n "$events" ] && notify-send "Events" "$events"

@@ -1,8 +1,8 @@
 profile default {
-    output eDP-1 enable scale 2 adaptive_sync on
+    output eDP-1 enable scale 2 
 }
 
 profile hmdi {
     output eDP-1 disable
-    output DP-4 enable scale 3
+    output "LG Electronics LG HDR 4K 410NTJJ7M428" enable scale 2
 }

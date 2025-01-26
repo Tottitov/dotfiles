@@ -11,13 +11,13 @@ auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = ["vscode-eslint-language-server"]
+language-servers = ["typescript-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = ["vscode-eslint-language-server"]
+language-servers = ["typescript-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
@@ -35,6 +35,11 @@ auto-format = true
 [[language]]
 name = "yaml"
 formatter = { command = 'prettier', args = ["--parser", "yaml"] }
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = 'prettier', args = ["--parser", "json"] }
 auto-format = true
 
 [[language]]

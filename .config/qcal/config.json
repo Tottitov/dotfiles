@@ -1,0 +1,12 @@
+{
+  "Calendars": [
+    {
+      "Url": "https://caldav.fastmail.com/dav/calendars/user/mail@tonylenguyen.com/",
+      "Username": "mail@tonylenguyen.com",
+      "Password": "",
+      "PasswordCmd": "pass aerc/personal/calendar"
+    }
+  ],
+  "Timezone": "America/Chicago",
+  "DefaultNumDays": 14
+}

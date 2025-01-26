@@ -3,7 +3,7 @@ host smtp.fastmail.com
 port 465
 from mail@tonylenguyen.com
 user mail@tonylenguyen.com
-passwordeval "pass neomutt/personal/fastmail"
+passwordeval "pass aerc/personal/mail"
 auth on
 tls on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt

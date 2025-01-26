@@ -2,7 +2,7 @@ IMAPAccount fastmail
 Host imap.fastmail.com
 Port 993
 User mail@tonylenguyen.com
-PassCmd "pass neomutt/personal/fastmail"
+PassCmd "pass aerc/personal/mail"
 AuthMechs LOGIN
 TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt

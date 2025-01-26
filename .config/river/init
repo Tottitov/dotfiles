@@ -20,7 +20,6 @@ riverctl map normal Control+Shift H snap left
 riverctl map normal Control+Shift J snap down
 riverctl map normal Control+Shift K snap up
 riverctl map normal Control+Shift L snap right
-
 riverctl map normal Super Backspace spawn menusys
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
 
@@ -31,7 +30,7 @@ riverctl map normal Super D spawn fuzzel
 riverctl map normal Super+Shift D spawn menubm
 riverctl map normal Super W spawn "$BROWSER"
 riverctl map normal Super+Shift W spawn menunm
-riverctl map normal Super E spawn "$TERMINAL aerc; pkill -RTMIN+4 waybar"
+riverctl map normal Super E spawn "$TERMINAL aerc"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL newsraft"
