@@ -62,13 +62,13 @@ for mode in normal locked; do
 	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10"
 	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10-"
 
-	riverctl map $mode Super P spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super Comma spawn "mpc -q prev & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super Period spawn "mpc -q next & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super+Alt P spawn "mpc -q clear & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5% & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5% & pkill -RTMIN+1 waybar"
-	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0% & pkill -RTMIN+1 waybar"
+	riverctl map $mode Super P spawn "mpc -q toggle"
+	riverctl map $mode Super Comma spawn "mpc -q prev"
+	riverctl map $mode Super Period spawn "mpc -q next"
+	riverctl map $mode Super+Alt P spawn "mpc -q clear"
+	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
+	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
+	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
 
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
@@ -76,9 +76,9 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10"
 	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10-"
 
-	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle & pkill -RTMIN+1 waybar"
-	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev & pkill -RTMIN+1 waybar"
-	riverctl map $mode None XF86AudioNext spawn "mpc -q next & pkill -RTMIN+1 waybar"
+	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle"
+	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev"
+	riverctl map $mode None XF86AudioNext spawn "mpc -q next"
 done
 
 riverctl declare-mode passthrough

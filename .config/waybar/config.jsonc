@@ -12,10 +12,10 @@
   ],
   "custom/clock": {
     "exec": "date +'%I:%M'",
+    "interval": 30,
     "tooltip": false,
     "on-click": "month",
-    "on-click-right": "events",
-    "interval": 60
+    "on-click-right": "events"
   },
   "battery": {
     "bat": "BAT1",
@@ -54,9 +54,10 @@
   },
   "custom/player": {
     "exec": "player",
+    "exec-if": "pgrep mpd",
+    "interval": 1,
     "tooltip": false,
     "max-length": 50,
-    "signal": 1,
     "on-click": "mpc toggle"
   },
   "custom/weather": {
