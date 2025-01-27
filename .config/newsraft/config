@@ -1,4 +1,6 @@
 set clean-database-on-startup true
+set reload-period 60
+set download-timeout 0
 set status-placeholder
 set menu-feed-sorting alphabet-asc
 set scrolloff 8

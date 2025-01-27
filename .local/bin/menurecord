@@ -62,9 +62,9 @@ askrecording() {
 }
 
 asktoend() {
-	response=$(printf "No\\nYes" |
+	choice=$(printf "Nope\nSure" |
 		fuzzel -l 2 -dip "End recording? ")
-	[ "$response" = "Yes" ] && killrecording || exit 0
+	[ "$choice" = "Sure" ] && killrecording || exit 0
 }
 
 [ "$1" = "kill" ] && killrecording ||
