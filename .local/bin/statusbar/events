@@ -1,5 +1,5 @@
 #!/bin/sh
 
-events=$(qcal -wd | sed -r 's/\x1b\[[0-9;]*m//g' | sed 's/^| //')
+events=$(qcal -wd | ansifilter | sed 's/^| //')
 
 [ -n "$events" ] && notify-send "Events" "$events"

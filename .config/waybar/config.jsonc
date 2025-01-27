@@ -1,8 +1,5 @@
 {
-  "modules-left": [
-    "river/tags",
-    "custom/player"
-  ],
+  "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",

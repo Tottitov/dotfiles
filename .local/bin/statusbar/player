@@ -7,4 +7,4 @@ song=$(mpc current | sed 's/&/&amp;/g')
 state=$(mpc status | rg -o 'paused|playing')
 
 [ "$state" = "paused" ] && color="#f7768e" || color="#9ece6a"
-echo "<span color=\"$color\">󰎇</span> $song"
+echo "<span color=\"$color\">󰲑</span> $song"

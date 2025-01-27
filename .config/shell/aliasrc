@@ -10,12 +10,5 @@ alias \
 	vw="csvlens"
 
 alias \
-	gs="git status | bat -l rs" \
-	ga="git add" \
-	gc="git commit" \
-	gp="git push" \
-	gl="git pull"
-
-alias \
 	cad="source ~/.local/share/virtual/build123d/bin/activate" \
 	vcad="python -m ocp_vscode --no_tools"

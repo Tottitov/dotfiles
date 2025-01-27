@@ -39,7 +39,7 @@ riverctl map normal Super N spawn "$TERMINAL notes n"
 riverctl map normal Super+Shift N spawn "$TERMINAL notes e"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
-riverctl map normal Super I spawn "$TERMINAL btm"
+riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
 riverctl map normal Super T spawn "$TERMINAL ttyper"
 
