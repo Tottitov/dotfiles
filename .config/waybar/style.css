@@ -1,4 +1,4 @@
-@define-color background #1a1b26;
+@define-color background #24283B;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
 @define-color occupied #c0caf5;
@@ -71,5 +71,5 @@ window#waybar {
 #custom-weather,
 #custom-record,
 #custom-player {
-  padding: 1px 10px;
+  padding: 4px 10px;
 }

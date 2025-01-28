@@ -1,12 +1,12 @@
 [global]
   follow = keyboard
-  width = (0, 500)
+  width = (0, 1000)
   alignment = left
   vertical_alignment = center
-  offset = (6, 6)
+  offset = 16
   padding = 15
   frame_width = 2
-  frame_color = "#c53b53"
+  frame_color = "#ff9e64"
   font = monospace 12
   stack_duplicates = true
   hide_duplicate_count = true
@@ -14,13 +14,13 @@
   sort = yes
 
 [urgency_low]
-  background = "#1A1B26"
+  background = "#24283B"
   foreground = "#C0CAF5"
 
 [urgency_normal]
-  background = "#1A1B26"
+  background = "#24283B"
   foreground = "#C0CAF5"
 
 [urgency_critical]
-  background = "#1A1B26"
+  background = "#24283B"
   foreground = "#DB4B4b"

@@ -103,8 +103,8 @@ riverctl focus-follows-cursor always
 riverctl xcursor-theme "Bibata-Modern-Ice"
 
 riverctl rule-add ssd
-riverctl background-color "0x005582"
-riverctl border-color-focused "0xC53B53"
+riverctl background-color "0x34495E"
+riverctl border-color-focused "0xFF9E64"
 riverctl border-color-unfocused "0x665C54"
 riverctl border-width 2
 
@@ -145,15 +145,14 @@ dbus-update-activation-environment \
 	XDG_CURRENT_DESKTOP=river
 
 executes="rivertile waybar kanshi mpd foot
-swaybg wlsunset swayidle rqbit pipewire dunst"
+wlsunset swayidle rqbit pipewire dunst"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
-	"swaybg") wallpaper & ;;
 	"foot") $execute --server & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
-	"rivertile") $execute -main-ratio 0.55 -view-padding 3 -outer-padding 3 & ;;
+	"rivertile") $execute -main-ratio 0.55 -view-padding 8 -outer-padding 8 & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w \
 		timeout 300 "lock" timeout 600 "wlopm --off '*'" \

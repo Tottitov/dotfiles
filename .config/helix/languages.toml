@@ -11,13 +11,13 @@ auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server"]
+language-servers = ["vscode-eslint-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server"]
+language-servers = ["vscode-eslint-language-server"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 

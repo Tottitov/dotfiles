@@ -1,18 +1,23 @@
 #!/bin/sh
 
-bookmarks="${XDG_DATA_HOME}/bookmarks"
+library="${XDG_DATA_HOME}/bookmarks"
 
-tags=$(cut -d ' ' -f3 "$bookmarks" | sort -u)
+tags=$(cut -d ' ' -f3 "$library" | sort -u)
+tagCount=$(echo "$tags" | wc -l)
+
 tag=$(
 	echo "$tags" | fuzzel \
 		--cache "$XDG_CACHE_HOME/tags" \
-		-l 5 -w 15 -di
-) || exit 1
+		-l "$tagCount" -w 15 -di
+) || exit 0
+
+bookmarks=$(rg -w "$tag" "$library" | cut -d ' ' -f2)
+bookmarkCount=$(echo "$bookmarks" | wc -l)
 
 bookmark=$(
-	rg -w "$tag" "$bookmarks" | cut -d ' ' -f2 | fuzzel \
+	echo "$bookmarks" | fuzzel \
 		--cache "$XDG_CACHE_HOME/bookmarks" \
-		-l 10 -w 20 -di
-) || exit 1
+		-l "$bookmarkCount" -w 20 -di
+) || exit 0
 
-$BROWSER "$(rg -w "$bookmark $tag" "$bookmarks" | cut -d ' ' -f1)"
+$BROWSER "$(rg -w "$bookmark $tag" "$library" | cut -d ' ' -f1)"

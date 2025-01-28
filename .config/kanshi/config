@@ -1,8 +1,8 @@
 profile default {
-    output eDP-1 enable scale 2
+    output eDP-1 enable scale 1.5
 }
 
 profile hmdi {
     output eDP-1 disable
-    output "LG Electronics LG HDR 4K 410NTJJ7M428" enable scale 2
+    output "LG Electronics LG HDR 4K 410NTJJ7M428" enable scale 1.5
 }

@@ -21,15 +21,15 @@ devices=$(
 	done
 )
 
-count=$(echo "$devices" | wc -l)
-[ "$count" -eq 0 ] && {
+deviceCount=$(echo "$devices" | wc -l)
+[ "$deviceCount" -eq 0 ] && {
 	notify-send -r 5 "No saved devices found"
 	exit 1
 }
 
-if [ "$count" -gt 1 ]; then
+if [ "$deviceCount" -gt 1 ]; then
 	choice=$(
-		echo "$devices" | cut -c26- | sort | fuzzel -l 5 -w 20 -di
+		echo "$devices" | cut -c26- | sort | fuzzel -l "$deviceCount" -w 20 -di
 	) || exit 1
 	device=$(echo "$choice" | cut -d ' ' -f1)
 	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f2)

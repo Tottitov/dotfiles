@@ -9,8 +9,6 @@ set hidden
 set ignorecase
 set ifs "\n"
 
-cmd wallpaper "$1"
-
 cmd open ${{
     case $(file --mime-type $f -b) in
         text/*|application/json) $EDITOR $f ;;
@@ -31,4 +29,3 @@ map gl cd ~/media/downloads
 map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gv cd ~/media/videos
-map b $wallpaper $f
