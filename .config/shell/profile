@@ -27,6 +27,7 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 export QT_QPA_PLATFORMTHEME="gtk3"
+export QT_WAYLAND_DECORATION="adwaita"
 
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 

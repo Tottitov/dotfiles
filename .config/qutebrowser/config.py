@@ -7,6 +7,7 @@ c.url.searchengines = {
 }
 
 c.fonts.default_size = "14pt"
+c.tabs.position = "left"
 c.tabs.favicons.show = "never"
 c.statusbar.show = "in-mode"
 c.spellcheck.languages = ["en-US"]
@@ -37,5 +38,3 @@ c.content.javascript.log_message.excludes = {
     "userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"], 
     "userscript:_qute_js": ["*TrustedHTML*"]
 }
-
-config.set("content.notifications.enabled", True, "https://teams.microsoft.com")
