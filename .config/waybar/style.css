@@ -8,35 +8,45 @@
 
 * {
   font-family: monospace;
-  font-size: 12pt;
-  min-height: 0px;
+  font-size: 14pt;
 }
 
 window#waybar {
-  color: @foreground;
   background: @background;
+  color: @foreground;
 }
 
 #tags {
-  padding-left: 5px;
+  padding: 0px 8px 0px 14px;
+}
+
+#custom-clock {
+  padding: 0px 20px 0px 14px;
+}
+
+#custom-player,
+#custom-record,
+#custom-weather,
+#custom-inbox,
+#bluetooth,
+#battery {
+  padding: 0px 14px;
 }
 
 #tags button {
-  padding: 0px;
-  min-width: 16pt;
+  padding: 0px 6px;
+  min-width: 0px;
   color: @empty;
   border-radius: 0px;
 }
 
 #tags button:hover {
-  box-shadow: none;
-  text-shadow: none;
-  background: transparent;
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #tags button.occupied {
   color: @occupied;
-  font-weight: bold;
 }
 
 #tags button.focused {
@@ -51,10 +61,7 @@ window#waybar {
   color: @bluetooth;
 }
 
-#bluetooth.off {
-  color: @urgent;
-}
-
+#bluetooth.off,
 #custom-record {
   color: @urgent;
 }
@@ -62,14 +69,4 @@ window#waybar {
 #battery.warning,
 #battery.critical {
   color: @foreground;
-}
-
-#custom-clock,
-#battery,
-#bluetooth,
-#custom-inbox,
-#custom-weather,
-#custom-record,
-#custom-player {
-  padding: 4px 10px;
 }

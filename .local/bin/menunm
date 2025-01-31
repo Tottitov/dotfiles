@@ -35,15 +35,15 @@ networks=$(nmcli -g active,ssid,security,signal dev wifi)
 	list=$(
 		echo "$networks" | awk -F ':' '{
 			signal = sprintf("%3d", $4)
-			print signal " " $2 ($1 == "yes" ? " *" : "")
+			print signal " " $2 ($1 == "yes" ? " " : "")
 		}'
 	)
 
 	choice=$(echo "$list" | fuzzel -l 5 -w 40 -di) || exit 1
 	ssid=$(echo "$choice" | cut -c5-)
 
-	if echo "$choice" | rg -Fq '*'; then
-		ssid=$(echo "$ssid" | sed 's/ \*$//')
+	if echo "$choice" | rg -Fq ''; then
+		ssid=$(echo "$ssid" | sed 's/ \$//')
 		nmcli con down id "$ssid" >/dev/null 2>&1
 		notify-send -r 5 "$ssid" "Disconnected"
 	else

@@ -20,5 +20,5 @@ volume=$(pamixer --get-volume)
 status=$(pamixer --get-mute)
 
 ([ "$status" != "true" ] &&
-	notify-send -r 5 -t 2000 "VOLUME ${volume}%") ||
+	notify-send -r 5 -t 2000 -h int:value:"$volume" "VOLUME ${volume}%") ||
 	notify-send -r 5 -t 2000 -u critical "MUTE ${volume}%"

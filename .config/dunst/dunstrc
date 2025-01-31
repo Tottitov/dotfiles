@@ -3,11 +3,12 @@
   width = (0, 1000)
   alignment = left
   vertical_alignment = center
-  offset = 16
+  offset = 6
   padding = 15
-  frame_width = 2
-  frame_color = "#ff9e64"
-  font = monospace 12
+  highlight = "#FF9E64"
+  progress_bar_frame_width = 0
+  frame_width = 0
+  font = monospace 14
   stack_duplicates = true
   hide_duplicate_count = true
   icon_position = off

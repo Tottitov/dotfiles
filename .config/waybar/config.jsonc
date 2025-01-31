@@ -1,18 +1,16 @@
 {
   "modules-left": ["river/tags", "custom/player"],
-  "modules-center": [],
   "modules-right": [
     "custom/record",
     "custom/weather",
     "custom/inbox",
     "bluetooth",
     "battery",
-    "custom/clock",
-    "tray"
+    "custom/clock"
   ],
   "custom/clock": {
     "exec": "date +'%I:%M'",
-    "interval": 30,
+    "interval": 60,
     "tooltip": false,
     "on-click": "month",
     "on-click-right": "events"
@@ -52,14 +50,6 @@
     "on-click": "$TERMINAL aerc",
     "signal": 4
   },
-  "custom/player": {
-    "exec": "player",
-    "exec-if": "pgrep mpd",
-    "interval": 1,
-    "tooltip": false,
-    "max-length": 50,
-    "on-click": "mpc toggle"
-  },
   "custom/weather": {
     "exec": "cat $XDG_DATA_HOME/weather",
     "tooltip": false,
@@ -69,5 +59,13 @@
     "exec": "record",
     "tooltip": false,
     "signal": 3
+  },
+  "custom/player": {
+    "exec": "player",
+    "exec-if": "pgrep mpd",
+    "interval": 1,
+    "tooltip": false,
+    "max-length": 50,
+    "on-click": "mpc toggle"
   }
 }

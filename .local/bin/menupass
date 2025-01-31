@@ -1,12 +1,13 @@
 #!/bin/sh
 
+prefix="$PASSWORD_STORE_DIR"
+
 passwords=$(
-	find "$PASSWORD_STORE_DIR" \
-		-name "*.*.gpg" \
-		-printf "%f\n" | sed 's/\.gpg$//'
+	find "$prefix" -type f \
+		-name "*.gpg" ! -path "$prefix/.git/*" | sed "s|^$prefix/||;s/\.gpg$//"
 )
 
-password=$(echo "$passwords" | sort | fuzzel -l 20 -w 30 -di) || exit 1
+password=$(echo "$passwords" | sort | fuzzel -l 20 -w 30 -di) || exit 0
 
 pass -c "$password" >/dev/null 2>&1 &&
 	notify-send "Copied $password" "Will clear in 45 seconds..."
