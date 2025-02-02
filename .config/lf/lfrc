@@ -30,5 +30,6 @@ map gd cd ~/docs
 map gl cd ~/media/downloads
 map gm cd ~/media/music
 map gp cd ~/media/pictures
+map gw cd ~/media/pictures/wallpapers
 map gv cd ~/media/videos
 map b $wallpaper $f
