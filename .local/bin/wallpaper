@@ -1,0 +1,14 @@
+#!/bin/sh
+
+location="$XDG_DATA_HOME/bg"
+
+[ -n "$1" ] && {
+	buffer=$(readlink -f "$1")
+	case "$(file --mime-type -b "$buffer")" in
+	image/*) ln -sf "$buffer" "$location" ;;
+	*) exit 1 ;;
+	esac
+}
+
+pidof -q "swaybg" && killall "swaybg"
+setsid -f swaybg -m fill -i "$location" >/dev/null 2>&1

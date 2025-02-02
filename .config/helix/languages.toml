@@ -1,6 +1,5 @@
 [[language]]
 name = "bash"
-injection-regex = "(shell|bash|sh)"
 formatter = { command = "shfmt" }
 auto-format = true
 

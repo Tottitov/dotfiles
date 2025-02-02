@@ -2,7 +2,7 @@
 
 library="${XDG_DATA_HOME}/bookmarks"
 
-tags=$(cut -d ' ' -f3 "$library" | sort -u)
+tags=$(cut -d' ' -f3 "$library" | sort -u)
 tagCount=$(echo "$tags" | wc -l)
 
 tag=$(
@@ -10,8 +10,7 @@ tag=$(
 		--cache "$XDG_CACHE_HOME/tags" \
 		-l "$tagCount" -w 15 -di
 ) || exit 0
-
-bookmarks=$(rg -w "$tag" "$library" | cut -d ' ' -f2)
+bookmarks=$(rg -w "$tag" "$library" | cut -d' ' -f2)
 bookmarkCount=$(echo "$bookmarks" | wc -l)
 
 bookmark=$(
@@ -20,4 +19,4 @@ bookmark=$(
 		-l "$bookmarkCount" -w 20 -di
 ) || exit 0
 
-$BROWSER "$(rg -w "$bookmark $tag" "$library" | cut -d ' ' -f1)"
+$BROWSER "$(rg -w "$bookmark $tag" "$library" | cut -d' ' -f1)"

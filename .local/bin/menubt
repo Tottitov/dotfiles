@@ -13,29 +13,25 @@ bluetoothctl show | rg -q "Powered: no" && {
 	exit 1
 }
 
+devices=$(bluetoothctl devices)
 connected=$(bluetoothctl devices Connected)
 
-devices=$(
-	bluetoothctl devices | while read -r device; do
-		echo "$connected" | rg -q "$device" && echo "$device " || echo "$device"
-	done
-)
-
 deviceCount=$(echo "$devices" | wc -l)
-[ "$deviceCount" -eq 0 ] && {
-	notify-send -r 5 "No saved devices found"
-	exit 1
-}
-
 if [ "$deviceCount" -gt 1 ]; then
 	choice=$(
-		echo "$devices" | cut -c26- | sort | fuzzel -l "$deviceCount" -w 20 -di
+		echo "$devices" | cut -d' ' -f3 | sort |
+			fuzzel \
+				--placeholder="$(echo "$connected" | cut -d' ' -f3)" \
+				-l "$deviceCount" -w 20 -di
 	) || exit 0
-	device=$(echo "$choice" | cut -d ' ' -f1)
-	mac=$(echo "$devices" | rg "${choice}$" | cut -d ' ' -f2)
+	device="$choice"
+	mac=$(echo "$devices" | rg "${choice}$" | cut -d' ' -f2)
+elif [ "$deviceCount" -eq 1 ]; then
+	device=$(echo "$devices" | cut -d' ' -f3)
+	mac=$(echo "$devices" | cut -d' ' -f2)
 else
-	device=$(echo "$devices" | cut -d ' ' -f3)
-	mac=$(echo "$devices" | cut -d ' ' -f2)
+	notify-send "Bluetooth" "No saved devices"
+	exit 1
 fi
 
 (echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect

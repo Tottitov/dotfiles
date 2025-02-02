@@ -4,9 +4,7 @@ export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
 
 export EDITOR="helix"
 export TERMINAL="footclient"
-export BROWSER="qutebrowser"
-
-export NPM_TOKEN="$(pass npm_token)"
+export BROWSER="firefox"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -26,8 +24,7 @@ export PULSE_COOKIE="$XDG_CACHE_HOME/pulse/cookie"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-export QT_QPA_PLATFORMTHEME="gtk3"
-export QT_WAYLAND_DECORATION="adwaita"
+export NPM_TOKEN="$(pass npm_token)"
 
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 

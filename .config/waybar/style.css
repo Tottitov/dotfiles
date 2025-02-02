@@ -1,4 +1,4 @@
-@define-color background #24283B;
+@define-color background #1a1b26;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
 @define-color occupied #c0caf5;
@@ -8,7 +8,7 @@
 
 * {
   font-family: monospace;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 
 window#waybar {
@@ -17,20 +17,21 @@ window#waybar {
 }
 
 #tags {
-  padding: 0px 8px 0px 14px;
+  padding: 0px 6px 0px 12px;
 }
 
 #custom-clock {
-  padding: 0px 20px 0px 14px;
+  padding: 0px 18px 0px 12px;
 }
 
+#window,
 #custom-player,
 #custom-record,
 #custom-weather,
 #custom-inbox,
 #bluetooth,
 #battery {
-  padding: 0px 14px;
+  padding: 0px 12px;
 }
 
 #tags button {
@@ -62,6 +63,7 @@ window#waybar {
 }
 
 #bluetooth.off,
+#bluetooth.disabled,
 #custom-record {
   color: @urgent;
 }

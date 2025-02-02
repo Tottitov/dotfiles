@@ -10,8 +10,9 @@ check() {
 }
 
 connect() {
-	if ! nmcli -g name con show | rg -q "$1" && [ -n "$security" ]; then
-		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 1
+	saved=$(nmcli -g name con show | rg "$1")
+	if [ -z "$saved" ] && [ -n "$security" ]; then
+		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 0
 		check "$password" "$1"
 	else
 		nmcli dev wifi con "$1" && notify-send -r 5 "$1" "Connected"
@@ -31,23 +32,23 @@ if [ "$state" = "unavailable" ]; then
 fi
 
 networks=$(nmcli -g active,ssid,security,signal dev wifi)
+connected=$(echo "$networks" | rg '^yes' | awk -F: '{print $4, $2}')
+
 [ -n "$networks" ] && {
-	list=$(
-		echo "$networks" | awk -F ':' '{
-			signal = sprintf("%3d", $4)
-			print signal " " $2 ($1 == "yes" ? " " : "")
-		}'
-	)
+	list=$(echo "$networks" | awk -F: '{print $4, $2}')
+	choice=$(
+		echo "$list" | fuzzel --placeholder="$connected" -l 5 -w 40 -di
+	) || exit 1
+	ssid=$(echo "$choice" | cut -c4-)
 
-	choice=$(echo "$list" | fuzzel -l 5 -w 40 -di) || exit 1
-	ssid=$(echo "$choice" | cut -c5-)
-
-	if echo "$choice" | rg -Fq ''; then
-		ssid=$(echo "$ssid" | sed 's/ \$//')
+	if [ "$choice" = "$connected" ]; then
 		nmcli con down id "$ssid" >/dev/null 2>&1
 		notify-send -r 5 "$ssid" "Disconnected"
 	else
-		security=$(echo "$networks" | rg "$choice" | cut -d ':' -f3)
+		security=$(
+			echo "$networks" | awk -F: -v ssid="$(echo "$choice" | cut -d' ' -f2)" \
+				'$2 == ssid {print $3}'
+		)
 		connect "$ssid"
 	fi
 }
