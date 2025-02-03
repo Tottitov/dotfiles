@@ -1,0 +1,3 @@
+#!/bin/sh
+
+qcal -wd | ansifilter | sed 's/^| //' > "$XDG_DATA_HOME/events"

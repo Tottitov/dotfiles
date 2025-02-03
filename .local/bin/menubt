@@ -2,36 +2,40 @@
 
 toggle() {
 	notify-send -r 5 "$device" "Attempting to $1"
-
 	(bluetoothctl "$1" "$mac" &&
 		notify-send -r 5 "$device" "Successfully ${1}ed") ||
-		notify-send -r 5 -u critical "$device" "Failed to $1"
+		notify-send -r 5 -u critical "$device" "Failed to $1" >/dev/null 2>&1
 }
 
 bluetoothctl show | rg -q "Powered: no" && {
-	notify-send -r 5 "Bluetooth not powered on"
+	notify-send -r 5 -u critical "Bluetooth" "Disabled"
 	exit 1
 }
 
-devices=$(bluetoothctl devices)
+saved=$(bluetoothctl devices)
 connected=$(bluetoothctl devices Connected)
 
-deviceCount=$(echo "$devices" | wc -l)
-if [ "$deviceCount" -gt 1 ]; then
+devices=$(
+	echo "$saved" | while read -r device; do
+		echo "$connected" | rg -q "$device" && echo "$device *" || echo "$device"
+	done
+)
+
+count=$(echo "$devices" | wc -l)
+
+if [ "$count" -eq 1 ]; then
+	device=$(echo "$saved" | cut -d' ' -f3)
+	mac=$(echo "$saved" | cut -d' ' -f2)
+elif [ "$count" -gt 1 ]; then
 	choice=$(
-		echo "$devices" | cut -d' ' -f3 | sort |
-			fuzzel \
-				--placeholder="$(echo "$connected" | cut -d' ' -f3)" \
-				-l "$deviceCount" -w 20 -di
+		echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 20 -di
 	) || exit 0
-	device="$choice"
-	mac=$(echo "$devices" | rg "${choice}$" | cut -d' ' -f2)
-elif [ "$deviceCount" -eq 1 ]; then
-	device=$(echo "$devices" | cut -d' ' -f3)
-	mac=$(echo "$devices" | cut -d' ' -f2)
+
+	echo "$choice" | rg -q "*" && choice=$(echo "$choice" | cut -d' ' -f1)
+	device=$(echo "$saved" | rg "$choice" | cut -d' ' -f3)
+	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)
+
+	(echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect
 else
 	notify-send "Bluetooth" "No saved devices"
-	exit 1
 fi
-
-(echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect

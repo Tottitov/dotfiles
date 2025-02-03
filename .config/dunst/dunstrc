@@ -17,11 +17,14 @@
 [urgency_low]
   background = "#24283B"
   foreground = "#C0CAF5"
+  timeout = 3
 
 [urgency_normal]
   background = "#24283B"
   foreground = "#C0CAF5"
+  timeout = 5
 
 [urgency_critical]
   background = "#24283B"
   foreground = "#DB4B4b"
+  timeout = 10
