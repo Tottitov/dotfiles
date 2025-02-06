@@ -6,18 +6,28 @@ add() {
 	mpc -q play
 }
 
-artist=$(mpc ls | fuzzel -l 20 -di) || exit 0
+current() {
+	mpc -q status "%status%" = "playing" && mpc -f "%${1}%" current
+}
+
+artist=$(
+	mpc ls | fuzzel --placeholder="$(current albumartist)" -l 20 -di
+) || exit 0
 albums=$(mpc list album artist "$artist")
 albumCount=$(echo "$albums" | wc -l)
 
-if [ "$albumCount" -eq 1 ]; then
-	album="$albums"
+if [ "$albumCount" -gt 1 ]; then
+	album=$(
+		echo "$albums" | fuzzel \
+			--placeholder="$(current album)" -l "$albumCount" -di
+	) || exit 0
 else
-	album=$(echo "$albums" | fuzzel -l "$albumCount" -di) || exit 0
+	album="$albums"
 fi
 
 choice=$(
-	printf "Nope\nSure" | fuzzel -l 2 -w 50 -dip "Add album '$album' to playlist ?"
+	printf "Nope\nSure" | fuzzel \
+		-l 2 -w 40 -dip "Add album '$album' to playlist? "
 ) || exit 0
 
 if [ "$choice" = "Nope" ]; then
@@ -25,7 +35,10 @@ if [ "$choice" = "Nope" ]; then
 		mpc search -f "%track%\t%title%" album "$album" | sort -n -k1,1 | cut -f2-
 	) || exit 0
 	songCount=$(echo "$songs" | wc -l)
-	song=$(echo "$songs" | fuzzel -l "$songCount" -di)
+	song=$(
+		echo "$songs" | fuzzel \
+			--placeholder="$(current title)" -l "$songCount" -w 40 -di
+	) || exit 0
 	add title "$song"
 else
 	add album "$album"

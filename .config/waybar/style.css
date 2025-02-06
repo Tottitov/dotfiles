@@ -30,6 +30,7 @@ window#waybar {
 #custom-weather,
 #custom-inbox,
 #bluetooth,
+#custom-mute,
 #battery {
   padding: 0px 12px;
 }

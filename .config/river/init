@@ -16,10 +16,10 @@ riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
 riverctl map normal Super+Shift K swap up
 riverctl map normal Super+Shift L swap right
-riverctl map normal Control+Alt H snap left
-riverctl map normal Control+Alt J snap down
-riverctl map normal Control+Alt K snap up
-riverctl map normal Control+Alt L snap right
+riverctl map normal Control+Shift H snap left
+riverctl map normal Control+Shift J snap down
+riverctl map normal Control+Shift K snap up
+riverctl map normal Control+Shift L snap right
 riverctl map normal Super Backspace spawn menusys
 riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
 
@@ -42,6 +42,7 @@ riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
 riverctl map normal Super T spawn "$TERMINAL ttyper"
+riverctl map normal Super X spawn "menusys Lock"
 
 riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"

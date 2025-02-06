@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ "$(pamixer --get-mute)" = "true" ] && echo "MUTED"

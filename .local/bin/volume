@@ -13,12 +13,13 @@ high) pamixer -i 1 ;;
 higher) pamixer -i 5 ;;
 low) pamixer -d 1 ;;
 lower) pamixer -d 5 ;;
-mute) pamixer -t ;;
+mute) pamixer -t && pkill -RTMIN+5 waybar ;;
 esac
 
-volume=$(pamixer --get-volume)
 status=$(pamixer --get-mute)
-
-([ "$status" != "true" ] &&
-	notify-send -r 5 -t 2000 -h int:value:"$volume" "VOLUME ${volume}%") ||
-	notify-send -r 5 -t 2000 -u critical "MUTE ${volume}%"
+if [ "$status" = "false" ]; then
+	volume=$(pamixer --get-volume)
+	notify-send -r 5 -t 2000 -h int:value:"$volume" "VOLUME ${volume}%"
+else
+	dunstify -C 5
+fi

@@ -12,13 +12,13 @@ lastrun="${XDG_CONFIG_HOME}/aerc/.mailsynclast"
 accounts="${XDG_DATA_HOME}/mail"
 
 for account in "$accounts"/*; do
-	new=$(
+	count=$(
 		find "$account"/INBOX/new/* \
 			-type f \
 			-newer "$lastrun" 2>/dev/null | wc -l
 	)
-	[ "$new" -gt 0 ] &&
-		notify-send "Synced" "$new email/s in $(basename "$account")"
+	[ "$count" -gt 0 ] &&
+		notify-send "Emails Synced" "$count new email/s in $(basename "$account")"
 done
 
 pkill -RTMIN+4 waybar

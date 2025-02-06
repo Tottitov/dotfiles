@@ -6,6 +6,7 @@
     "custom/weather",
     "custom/inbox",
     "bluetooth",
+    "custom/mute",
     "battery",
     "custom/clock"
   ],
@@ -34,6 +35,12 @@
       "<span color=\"#9ece6a\">󰂀</span>",
       "<span color=\"#9ece6a\">󰁹</span>"
     ]
+  },
+  "custom/mute": {
+    "exec": "mute",
+    "format": "<span color=\"#f7768e\">{}</span>",
+    "tooltip": false,
+    "signal": 5
   },
   "bluetooth": {
     "format": "",

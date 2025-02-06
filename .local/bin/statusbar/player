@@ -2,7 +2,7 @@
 
 status() { mpc status "$1"; }
 
-song=$(mpc -f "%artist%  %title%" current)
+song=$(mpc -f "%artist% - %title%" current | sed 's/&/&amp;/g')
 
 [ -z "$song" ] && exit 1
 
@@ -11,4 +11,4 @@ song=$(mpc -f "%artist%  %title%" current)
 total=$(status %totaltime%)
 current=$(status %currenttime%)
 
-echo "<span color=\"$color\">󰲑</span> $song ($current/$total)"
+echo "<span color=\"$color\"></span> $song ($current/$total)"

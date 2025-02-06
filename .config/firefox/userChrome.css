@@ -21,6 +21,7 @@
 }
 
 .titlebar-buttonbox-container, /* exit button */
+#forward-button, /* remove forward button */
 #context-navigation, /* back/forward options in the right-click context menu */
 #context-sep-navigation, /* separator in the back/forward context menu */
 #tracking-protection-icon-container, /* tracking protection shield icon */
