@@ -1,5 +1,5 @@
 profile main {
-    output eDP-1 enable scale 1.5 adaptive_sync off
+    output eDP-1 enable scale 1.75 adaptive_sync off
 }
 
 profile home {
@@ -10,4 +10,9 @@ profile home {
 profile work {
     output eDP-1 disable
     output "AOC 24G1WG3- PIBM9JA000564" mode 1920x1080@144Hz
+}
+
+profile tv {
+    output eDP-1 disable
+    output DP-4 scale 2
 }

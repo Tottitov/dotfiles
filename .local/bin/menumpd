@@ -1,9 +1,7 @@
 #!/bin/sh
 
-add() {
-	mpc -q clear
-	mpc -q findadd "$@"
-	mpc -q play
+play() {
+	mpc -q clear && mpc -q findadd "$@" && mpc -q play
 }
 
 current() {
@@ -39,7 +37,7 @@ if [ "$choice" = "Nope" ]; then
 		echo "$songs" | fuzzel \
 			--placeholder="$(current title)" -l "$songCount" -w 40 -di
 	) || exit 0
-	add title "$song"
+	play title "$song"
 else
-	add album "$album"
+	play album "$album"
 fi

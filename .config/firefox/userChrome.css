@@ -5,11 +5,29 @@
   border-radius: 0 !important;
 }
 
+:root {
+  --toolbarbutton-border-radius: 0 !important;
+  --tab-border-radius: 0 !important;
+  --tab-block-margin: 0 !important;
+}
+
 .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
+  padding-inline-end: 0 !important;
 }
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-close-button {
   display: none !important;
+}
+.tab-background {
+  margin-left: -4px !important;
+}
+.titlebar-spacer {
+  display: none !important;
+}
+
+#urlbar-background {
+  background-color: var(--lwt-accent-color) !important;
+  outline: none !important;
 }
 
 #unified-extensions-button {
@@ -20,12 +38,14 @@
   width: 0 !important;
 }
 
-.titlebar-buttonbox-container, /* exit button */
-#forward-button, /* remove forward button */
-#context-navigation, /* back/forward options in the right-click context menu */
-#context-sep-navigation, /* separator in the back/forward context menu */
-#tracking-protection-icon-container, /* tracking protection shield icon */
-#page-action-buttons > :not(#urlbar-zoom-button), /* all page action buttons except zoom */
-#PanelUI-menu-button /* main menu button (hamburger menu) */ {
+.urlbarView,
+.titlebar-buttonbox-container,
+#forward-button,
+#back-button,
+#context-navigation,
+#context-sep-navigation,
+#tracking-protection-icon-container,
+#page-action-buttons > :not(#urlbar-zoom-button),
+#PanelUI-menu-button {
   display: none !important;
 }

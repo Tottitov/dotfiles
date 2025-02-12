@@ -1,12 +1,12 @@
 #!/bin/sh
 
-checkcamera() {
+checkCamera() {
 	camera=$(find /dev/video[02468] | tail -n 1)
 	[ -n "$camera" ] && return "$camera" ||
-		notify-send "No camera detected" && askrecording
+		notify-send "No camera detected" && askRecording
 }
 
-killrecording() {
+killRecording() {
 	recpid="$(cat /tmp/recordingpid)"
 	kill -15 "$recpid"
 	rm -f /tmp/recordingpid
@@ -50,22 +50,22 @@ audio() {
 	pkill -RTMIN+3 waybar
 }
 
-askrecording() {
-	choice=$(printf "video\naudio\nsnippet\nwebcam" | fuzzel -l 4 -di)
+askRecording() {
+	choice=$(printf "video\naudio\nsnippet\nwebcam" | fuzzel -l 4 -w 10 -di)
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;
 	snippet) snippet ;;
-	webcam) [ -n "$(checkcamera)" ] && webcam "$(checkcamera)" ;;
-	*) exit 1 ;;
+	webcam) [ -n "$(checkCamera)" ] && webcam "$(checkCamera)" ;;
+	*) exit 0 ;;
 	esac
 }
 
-asktoend() {
+askToEnd() {
 	choice=$(printf "Nope\nSure" |
-		fuzzel -l 2 -dip "End recording? ")
-	[ "$choice" = "Sure" ] && killrecording || exit 0
+		fuzzel -l 2 -w 15 -dip "End recording? ")
+	[ "$choice" = "Sure" ] && killRecording || exit 0
 }
 
-[ "$1" = "kill" ] && killrecording ||
-	([ -f /tmp/recordingpid ] && asktoend) || askrecording
+[ "$1" = "kill" ] && killRecording ||
+	([ -f /tmp/recordingpid ] && askToEnd) || askRecording

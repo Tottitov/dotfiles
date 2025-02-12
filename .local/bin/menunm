@@ -38,7 +38,7 @@ connected=$(echo "$networks" | rg '^yes' | awk -F: '{print $4, $2}')
 	list=$(echo "$networks" | awk -F: '{print $4, $2}')
 	choice=$(
 		echo "$list" | fuzzel --placeholder="$connected" -l 5 -w 40 -di
-	) || exit 1
+	) || exit 0
 	ssid=$(echo "$choice" | cut -c4-)
 
 	if [ "$choice" = "$connected" ]; then
