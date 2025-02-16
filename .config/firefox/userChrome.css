@@ -5,18 +5,18 @@
   border-radius: 0 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #24283b;
-    --secondary: #1a1b26;
-  }
-}
-
 :root {
   --toolbarbutton-border-radius: 0 !important;
   --tab-border-radius: 0 !important;
   --tab-block-margin: 0 !important;
   --attention-dot-color: rgba(0, 0, 0, 0) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([lwtheme]) {
+    --primary: #24283b;
+    --secondary: #1a1b26;
+  }
 }
 
 #TabsToolbar {
@@ -44,18 +44,18 @@ toolbar#nav-bar {
   width: 0 !important;
 }
 
-.urlbarView,
 .titlebar-spacer,
 .titlebar-buttonbox-container,
 .tabbrowser-tab:not([selected]) .tab-close-button,
+.urlbarView,
 #back-button,
 #forward-button,
 #tracking-protection-icon-container,
 #page-action-buttons > :not(#urlbar-zoom-button),
 #urlbar-background,
+#PanelUI-menu-button,
 #statuspanel,
 #context-navigation,
-#context-sep-navigation,
-#PanelUI-menu-button {
+#context-sep-navigation {
   display: none !important;
 }
