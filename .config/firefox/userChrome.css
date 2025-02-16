@@ -11,29 +11,27 @@
   --tab-block-margin: 0 !important;
   --attention-dot-color: rgba(0, 0, 0, 0) !important;
 }
+:root:not([lwtheme]) {
+  --primary: #24283b;
+  --secondary: #1a1b26;
 
-@media (prefers-color-scheme: dark) {
-  :root:not([lwtheme]) {
-    --primary: #24283b;
-    --secondary: #1a1b26;
+  #TabsToolbar {
+    background: var(--secondary) !important;
+  }
+  .tabbrowser-tab:is(:hover, [selected], [multiselected]) .tab-background {
+    background: var(--primary) !important;
+  }
+
+  toolbar#nav-bar {
+    background: var(--primary) !important;
   }
 }
 
-#TabsToolbar {
-  background: var(--secondary) !important;
-}
-.tabbrowser-tab:is(:hover, [selected], [multiselected]) .tab-background {
-  background: var(--primary) !important;
-}
 .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
 }
 .tabbrowser-tab {
   padding-inline: 0 !important;
-}
-
-toolbar#nav-bar {
-  background: var(--primary) !important;
 }
 
 #unified-extensions-button {
