@@ -3,6 +3,7 @@
   text-shadow: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
+  outline: none !important;
 }
 
 :root {
@@ -27,11 +28,11 @@
   }
 }
 
-.tabbrowser-tab:not([pinned]) {
-  margin-inline-start: 0 !important;
-}
 .tabbrowser-tab {
   padding-inline: 0 !important;
+}
+.tabbrowser-tab:not([pinned]) {
+  margin-inline-start: 0 !important;
 }
 
 #unified-extensions-button {
