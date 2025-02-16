@@ -1,26 +1,11 @@
 #!/bin/sh
 
-pidof -q "mbsync" && exit 0
+pidof -q "mbsync" && exit 1
 
 mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" &
 
 while pidof -q "mbsync"; do
-	sleep 1 && pkill -RTMIN+4 waybar
+	pkill -RTMIN+4 waybar
 done
 
-lastrun="${XDG_CONFIG_HOME}/aerc/.mailsynclast"
-accounts="${XDG_DATA_HOME}/mail"
-
-for account in "$accounts"/*; do
-	count=$(
-		find "$account"/INBOX/new/* \
-			-type f \
-			-newer "$lastrun" 2>/dev/null | wc -l
-	)
-	[ "$count" -gt 0 ] &&
-		notify-send "Emails Synced" "$count new email/s in $(basename "$account")"
-done
-
-pkill -RTMIN+4 waybar
 notmuch new --quiet
-touch "$lastrun"

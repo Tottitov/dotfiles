@@ -39,7 +39,6 @@ riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
-riverctl map normal Super T spawn solvespace
 riverctl map normal Super+Shift T spawn "$TERMINAL ttyper"
 riverctl map normal Super X spawn "menusys Lock"
 
@@ -104,7 +103,7 @@ riverctl xcursor-theme "Bibata-Modern-Ice" 24
 
 riverctl rule-add ssd
 riverctl background-color "0x24283B"
-riverctl border-color-focused "0x808080"
+riverctl border-color-focused "0x9ECE6A"
 riverctl border-color-unfocused "0x665C54"
 riverctl border-width 2
 

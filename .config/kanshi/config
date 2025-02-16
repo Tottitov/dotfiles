@@ -4,7 +4,7 @@ profile main {
 
 profile home {
     output eDP-1 disable
-    output "LG Electronics LG HDR 4K 410NTJJ7M428" scale 1.5
+    output "LG Electronics LG HDR 4K 410NTJJ7M428" scale 1.75
 }
 
 profile work {

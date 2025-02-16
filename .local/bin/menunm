@@ -46,8 +46,8 @@ connected=$(echo "$networks" | rg '^yes' | awk -F: '{print $4, $2}')
 		notify-send -r 5 "$ssid" "Disconnected"
 	else
 		security=$(
-			echo "$networks" | awk -F: -v ssid="$(echo "$choice" | cut -d' ' -f2)" \
-				'$2 == ssid {print $3}'
+			echo "$networks" | awk -F: -v \
+				ssid="$(echo "$choice" | cut -d' ' -f2)" '$2 == ssid {print $3}'
 		)
 		connect "$ssid"
 	fi

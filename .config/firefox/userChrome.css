@@ -5,6 +5,13 @@
   border-radius: 0 !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #24283b;
+    --secondary: #1a1b26;
+  }
+}
+
 :root {
   --toolbarbutton-border-radius: 0 !important;
   --tab-border-radius: 0 !important;
@@ -12,14 +19,21 @@
   --attention-dot-color: rgba(0, 0, 0, 0) !important;
 }
 
+#TabsToolbar {
+  background: var(--secondary) !important;
+}
+.tabbrowser-tab:is(:hover, [selected], [multiselected]) .tab-background {
+  background: var(--primary) !important;
+}
+.tabbrowser-tab:not([pinned]) {
+  margin-inline-start: 0 !important;
+}
 .tabbrowser-tab {
-  margin-inline: 0 !important;
   padding-inline: 0 !important;
 }
 
-#urlbar-background {
-  background-color: var(--lwt-accent-color) !important;
-  outline: none !important;
+toolbar#nav-bar {
+  background: var(--primary) !important;
 }
 
 #unified-extensions-button {
@@ -34,12 +48,14 @@
 .titlebar-spacer,
 .titlebar-buttonbox-container,
 .tabbrowser-tab:not([selected]) .tab-close-button,
-#forward-button,
 #back-button,
-#context-navigation,
-#context-sep-navigation,
+#forward-button,
 #tracking-protection-icon-container,
 #page-action-buttons > :not(#urlbar-zoom-button),
+#urlbar-background,
+#statuspanel,
+#context-navigation,
+#context-sep-navigation,
 #PanelUI-menu-button {
   display: none !important;
 }

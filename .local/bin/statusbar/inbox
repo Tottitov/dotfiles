@@ -3,6 +3,6 @@
 unread="$(notmuch count folder:INBOX and tag:unread)"
 
 [ "$unread" -gt 0 ] && {
-	pgrep -x "mbsync" >/dev/null && color="#f7768e" || color="#9ece6a"
+	pidof -q "mbsync" && color="#f7768e" || color="#9ece6a"
 	echo "<span color =\"${color}\"></span> $unread"
 }
