@@ -14,9 +14,9 @@ cmd wallpaper "$1"
 cmd open ${{
     case $(file --mime-type $f -b) in
         text/*|application/json) $EDITOR $f ;;
-        application/pdf) setsid -f zathura $fx ;;
-        video/*) setsid -f mpv $f --no-terminal ;;
-        image/*) setsid -f imv -s full $f ;;
+        application/pdf) zathura $fx ;;
+        video/*) mpv $f --no-terminal ;;
+        image/*) imv -s full $f ;;
         *) xdg-open $f ;;
     esac
 }}

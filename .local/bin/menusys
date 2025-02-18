@@ -7,7 +7,7 @@ askSystem() {
 
 	case $choice in
 	Lock) lock ;;
-	Logout) riverctl exit ;;
+	Logout) hyprctl dispatch exit ;;
 	Reboot) sudo reboot ;;
 	Shutdown) sudo shutdown -h now ;;
 	Suspend) loginctl suspend ;;

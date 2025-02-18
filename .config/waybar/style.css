@@ -2,7 +2,6 @@
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
 @define-color occupied #c0caf5;
-@define-color empty #565f89;
 @define-color urgent #f7768e;
 @define-color bluetooth #2ac3de;
 
@@ -16,7 +15,7 @@ window#waybar {
   color: @foreground;
 }
 
-#tags {
+#workspaces {
   padding: 0px 6px 0px 12px;
 }
 
@@ -24,7 +23,6 @@ window#waybar {
   padding: 0px 18px 0px 12px;
 }
 
-#window,
 #custom-player,
 #custom-record,
 #custom-weather,
@@ -35,27 +33,18 @@ window#waybar {
   padding: 0px 12px;
 }
 
-#tags button {
+#workspaces button {
   padding: 0px 6px;
   min-width: 0px;
-  color: @empty;
   border-radius: 0px;
-}
-
-#tags button:hover {
-  box-shadow: inherit;
-  text-shadow: inherit;
-}
-
-#tags button.occupied {
   color: @occupied;
 }
 
-#tags button.focused {
+#workspaces button.active {
   color: @focused;
 }
 
-#tags button.urgent {
+#workspaces button.urgent {
   color: @urgent;
 }
 
