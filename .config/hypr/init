@@ -1,19 +1,15 @@
 #!/bin/sh
 
-gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
-gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark"
-gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
-
-hyprctl setcursor "Bibata-Modern-Ice" 24
-
 dbus-update-activation-environment \
 	SEATD_SOCK \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=hyprland
 
-executes="waybar foot swaybg wlsunset
-mpd swayidle rqbit pipewire dunst"
+gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark"
+gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
 
+executes="waybar foot swaybg wlsunset mpd swayidle rqbit pipewire dunst"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in

@@ -14,4 +14,4 @@ askSystem() {
 	esac
 }
 
-([ "$1" = "Lock" ] && lock) || askSystem
+([ "$1" = "lock" ] && lock) || askSystem

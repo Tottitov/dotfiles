@@ -200,6 +200,9 @@ user_pref("browser.tabs.hoverPreview.enabled", false);
 user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 
+/** WAYLAND ***/
+user_pref("widget.wayland.fractional-scale.enabled", true);
+
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/

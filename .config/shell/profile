@@ -28,5 +28,5 @@ export NPM_TOKEN="$(pass npm_token)"
 
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -q hyprland &&
 	exec dbus-launch --exit-with-session hyprland >/dev/null 2>&1
