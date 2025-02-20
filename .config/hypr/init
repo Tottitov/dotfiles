@@ -9,7 +9,7 @@ gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
 gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark"
 gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
 
-executes="waybar foot swaybg wlsunset mpd swayidle rqbit pipewire dunst"
+executes="kanshi waybar foot swaybg wlsunset mpd swayidle rqbit pipewire dunst"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
@@ -17,8 +17,7 @@ for execute in $executes; do
 	"foot") $execute --server & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
-	"swayidle") $execute -w \
-		timeout 300 "lock" timeout 600 "wlopm --off '*'" \
+	"swayidle") $execute -w timeout 600 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
 	*) $execute & ;;
 	esac

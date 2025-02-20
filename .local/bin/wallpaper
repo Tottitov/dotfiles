@@ -11,4 +11,4 @@ location="$XDG_DATA_HOME/bg"
 }
 
 pidof -q "swaybg" && killall "swaybg"
-setsid -f swaybg -m fill -i "$location" >/dev/null 2>&1
+setsid -f swaybg -m stretch -i "$location" >/dev/null 2>&1
