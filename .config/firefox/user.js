@@ -5,6 +5,7 @@
 user_pref("content.notify.interval", 100000);
 
 /** GFX ***/
+user_pref("gfx.webrender.compositor.force-enabled", true); 
 user_pref("gfx.canvas.accelerated.cache-items", 4096);
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);

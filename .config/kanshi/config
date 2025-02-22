@@ -4,8 +4,5 @@ profile main {
 
 profile home {
     output eDP-1 disable
-    output "LG Electronics LG HDR 4K 410NTJJ7M428" {
-        mode 3840x2160@60
-        scale 2
-    }
+    output "LG Electronics LG HDR 4K 410NTJJ7M428" mode 3840x2160@60 scale 2
 }

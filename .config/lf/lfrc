@@ -1,7 +1,7 @@
 set previewer ~/.config/lf/preview
 
 set shell dash
-set scrolloff 4
+set scrolloff 8
 set period 1
 set sixel
 set drawbox
@@ -9,16 +9,22 @@ set hidden
 set ignorecase
 set ifs "\n"
 
-cmd wallpaper "$1"
-
 cmd open ${{
     case $(file --mime-type $f -b) in
         text/*|application/json) $EDITOR $f ;;
-        application/pdf) zathura $fx ;;
-        video/*) mpv $f --no-terminal ;;
-        image/*) imv -s full $f ;;
+        application/pdf) zathura $f ;;
+        video/*) mpv $f ;;
+        image/*) imv $f ;;
         *) xdg-open $f ;;
     esac
+}}
+
+cmd extract ${{
+  set -f
+  case $f in
+    *.zip) unzip $f;;
+    *.rar) unrar x $f;;
+  esac
 }}
 
 map u clear
@@ -32,4 +38,3 @@ map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gw cd ~/media/pictures/wallpapers
 map gv cd ~/media/videos
-map b $wallpaper $f
