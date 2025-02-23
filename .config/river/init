@@ -1,0 +1,159 @@
+#!/bin/sh
+
+ riverctl map normal Super Q close
+riverctl map normal Super+Shift Return zoom
+riverctl map normal Super F toggle-fullscreen
+riverctl map normal Super+Shift F toggle-float
+riverctl map normal Super Backspace spawn menusys
+riverctl map normal Super+Shift Backspace spawn menusys
+riverctl map normal Super+Alt Backspace spawn "menusys lock"
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super+Alt BTN_LEFT resize-view
+riverctl map normal Super H focus-view left
+riverctl map normal Super J focus-view down
+riverctl map normal Super K focus-view up
+riverctl map normal Super L focus-view right
+riverctl map normal Super+Shift H swap left
+riverctl map normal Super+Shift J swap down
+riverctl map normal Super+Shift K swap up
+riverctl map normal Super+Shift L swap right
+riverctl map normal Super+Alt H snap left
+riverctl map normal Super+Alt J snap down
+riverctl map normal Super+Alt K snap up
+riverctl map normal Super+Alt L snap right
+riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
+
+riverctl map normal Super Return spawn "$TERMINAL"
+riverctl map normal Super R spawn "$TERMINAL lf"
+riverctl map normal Super+Shift R spawn menupass
+riverctl map normal Super D spawn fuzzel
+riverctl map normal Super+Shift D spawn menubm
+riverctl map normal Super W spawn "$BROWSER"
+riverctl map normal Super+Shift W spawn menunm
+riverctl map normal Super E spawn "$TERMINAL aerc"
+riverctl map normal Super+Shift E spawn menuemoji
+riverctl map normal Super A spawn "$TERMINAL pulsemixer"
+riverctl map normal Super+Shift A spawn "$TERMINAL newsraft"
+riverctl map normal Super M spawn menumpd
+riverctl map normal Super N spawn "$TERMINAL notes n"
+riverctl map normal Super+Shift N spawn "$TERMINAL notes e"
+riverctl map normal Super C spawn menucalc
+riverctl map normal Super+Shift C spawn camtoggle
+riverctl map normal Super I spawn "$TERMINAL htop"
+riverctl map normal Super+Shift I spawn menubt
+riverctl map normal Super+Shift T spawn "$TERMINAL ttyper"
+
+riverctl map normal None Print spawn "menusc copyshot"
+riverctl map normal Shift Print spawn "menusc copyscreen"
+riverctl map normal Control+Shift Print spawn menusc
+riverctl map normal Super Print spawn menurecord
+riverctl map normal Super+Shift Print spawn "menurecord kill"
+
+riverctl map normal None XF86DISPLAY spawn menusc
+riverctl map normal None XF86RFKill spawn airplane
+riverctl map normal None XF86AudioMedia spawn null
+
+for mode in normal locked; do
+	riverctl map -repeat $mode Super Equal spawn "volume high"
+	riverctl map -repeat $mode Super Minus spawn "volume low"
+	riverctl map $mode Super+Shift Equal spawn "volume higher"
+	riverctl map $mode Super+Shift Minus spawn "volume lower"
+	riverctl map $mode Super+Shift M spawn "volume mute"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10-"
+
+	riverctl map $mode Super P spawn "mpc -q toggle"
+	riverctl map $mode Super Comma spawn "mpc -q prev"
+	riverctl map $mode Super Period spawn "mpc -q next"
+	riverctl map $mode Super+Alt P spawn "mpc -q clear"
+	riverctl map $mode Super+Shift Comma spawn "mpc -q seek -5%"
+	riverctl map $mode Super+Shift Period spawn "mpc -q seek +5%"
+	riverctl map $mode Super+Alt Comma spawn "mpc -q seek 0%"
+
+	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
+	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
+	riverctl map $mode None XF86AudioMute spawn "volume mute"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10-"
+
+	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle"
+	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev"
+	riverctl map $mode None XF86AudioNext spawn "mpc -q next"
+done
+
+riverctl declare-mode passthrough
+riverctl map normal Super Escape enter-mode passthrough
+riverctl map passthrough Super+Alt Escape enter-mode normal
+
+riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
+riverctl set-repeat 50 200
+
+touchpad=$(riverctl list-inputs | rg -i "touchpad")
+riverctl input "$touchpad" tap enabled
+riverctl input "$touchpad" drag disabled
+riverctl input "$touchpad" pointer-accel 0.35
+riverctl input "$touchpad" scroll-factor 1.30
+riverctl input "$touchpad" accel-profile adaptive
+riverctl input "$touchpad" natural-scroll enabled
+riverctl input "$touchpad" disable-while-typing enabled
+riverctl hide-cursor timeout 5000
+riverctl hide-cursor when-typing enabled
+riverctl set-cursor-warp on-focus-change
+riverctl focus-follows-cursor always
+riverctl xcursor-theme 'Bibata-Modern-Ice' '24'
+
+riverctl rule-add ssd
+riverctl background-color "0x2E2E2E"
+riverctl border-color-focused "0x9ECE6A"
+riverctl border-color-unfocused "0x665C54"
+riverctl border-width 2
+
+riverctl default-layout bsp-layout
+riverctl default-attach-mode bottom
+
+scratch=$((1 << 30))
+riverctl map normal Super 0 toggle-focused-tags $scratch
+riverctl map normal Super+Shift 0 set-view-tags $scratch
+
+sticky=$((1 << 31))
+riverctl map normal Super S toggle-view-tags $sticky
+
+complete=$(((1 << 32) - 1))
+riverctl spawn-tagmask $((complete ^ scratch))
+riverctl spawn-tagmask $((complete ^ sticky))
+
+for i in $(seq 1 9); do
+	tags=$((1 << (i - 1)))
+	riverctl map normal Super "$i" set-focused-tags $((sticky + tags))
+	riverctl map normal Super+Shift "$i" set-view-tags $tags
+	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
+done
+
+riverctl rule-add -app-id "firefox" tags 1
+riverctl rule-add -app-id "mpv" tags $sticky
+
+gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
+gsettings set "org.gnome.desktop.interface" gtk-theme "Materia-dark"
+gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
+gsettings set "org.gnome.desktop.interface" cursor-theme "Bibata-Modern-Ice"
+
+dbus-update-activation-environment \
+	SEATD_SOCK \
+	WAYLAND_DISPLAY \
+	XDG_CURRENT_DESKTOP=river
+
+executes="river-bsp-layout waybar kanshi
+mpd foot wlsunset swayidle rqbit pipewire mako"
+
+for execute in $executes; do
+	pidof -q "$execute" && continue
+	case $execute in
+	"foot") $execute --server & ;;
+	"river-bsp-layout") $execute -i 5 -o 10 -s 0.55 -H 0.5 & ;;
+	"rqbit") $execute server start "$HOME/media/downloads" & ;;
+	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
+	"swayidle") $execute -w timeout 600 "wlopm --off '*'" \
+		resume "wlopm --on '*'" before-sleep "lock" & ;;
+	*) $execute & ;;
+	esac
+done >/dev/null 2>&1

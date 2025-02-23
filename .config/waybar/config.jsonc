@@ -1,5 +1,10 @@
 {
-  "modules-left": ["hyprland/workspaces", "custom/player"],
+  "margin-top": 10,
+  "margin-right": 10,
+  "margin-bottom": 0,
+  "margin-left": 10,
+  "reload_style_on_change": true,
+  "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
