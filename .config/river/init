@@ -1,27 +1,32 @@
 #!/bin/sh
 
- riverctl map normal Super Q close
+riverctl map normal Super Q close
 riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
 riverctl map normal Super Backspace spawn menusys
 riverctl map normal Super+Shift Backspace spawn menusys
 riverctl map normal Super+Alt Backspace spawn "menusys lock"
+riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
+riverctl map normal Super Space spawn "pkill -USR1 waybar"
+
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Alt BTN_LEFT resize-view
+
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
 riverctl map normal Super K focus-view up
 riverctl map normal Super L focus-view right
+
 riverctl map normal Super+Shift H swap left
 riverctl map normal Super+Shift J swap down
 riverctl map normal Super+Shift K swap up
 riverctl map normal Super+Shift L swap right
+
 riverctl map normal Super+Alt H snap left
 riverctl map normal Super+Alt J snap down
 riverctl map normal Super+Alt K snap up
 riverctl map normal Super+Alt L snap right
-riverctl map normal Super+Alt R spawn "${XDG_CONFIG_HOME}/river/init"
 
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super R spawn "$TERMINAL lf"
@@ -103,7 +108,6 @@ riverctl focus-follows-cursor always
 riverctl xcursor-theme 'Bibata-Modern-Ice' '24'
 
 riverctl rule-add ssd
-riverctl background-color "0x2E2E2E"
 riverctl border-color-focused "0x9ECE6A"
 riverctl border-color-unfocused "0x665C54"
 riverctl border-width 2

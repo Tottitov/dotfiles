@@ -9,11 +9,15 @@
 * {
   font-family: monospace;
   font-size: 12pt;
+  border-radius: 0px;
 }
 
 window#waybar {
   background: @background;
   color: @foreground;
+}
+window#waybar.hidden {
+  background: transparent;
 }
 
 #tags {

@@ -5,7 +5,7 @@ city=$(
 ) || exit 1
 
 forecast=$(
-	curl -fs --max-time 15 "https://v2.wttr.in/${city}?format=%C:%t"
+	curl -fs --max-time 15 "https://v2.wttr.in/${city}?format=%C:%f"
 ) || exit 1
 
 echo "$forecast" | rg -q "Unknown" && exit 1
@@ -13,5 +13,5 @@ echo "$forecast" | rg -q "Unknown" && exit 1
 weather=$(echo "$forecast" | cut -d ':' -f1 | xargs)
 temperature=$(echo "$forecast" | awk -F ':' '{print $NF}')
 
-echo "$temperature <span color=\"#bb9af7\">${weather}</span>" >"${XDG_DATA_HOME}/weather"
+echo "<span color=\"#bb9af7\">${weather}</span> $temperature" >"${XDG_DATA_HOME}/weather"
 pkill -RTMIN+2 waybar
