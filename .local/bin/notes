@@ -23,7 +23,7 @@ new() {
 
 case $1 in
 'n') new ;;
-'v') action glow ;;
+'v') action mdcat ;;
 'e') action "$EDITOR" ;;
 *) exit 1 ;;
 esac

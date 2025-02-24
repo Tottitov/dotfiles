@@ -1,4 +1,5 @@
-set previewer ~/.config/lf/preview
+set previewer ctpv
+set cleaner ctpvclear
 
 set shell dash
 set scrolloff 8
@@ -38,3 +39,4 @@ map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gw cd ~/media/pictures/wallpapers
 map gv cd ~/media/videos
+map gf cd ~/.local/share/dotfiles
