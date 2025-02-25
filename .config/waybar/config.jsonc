@@ -1,11 +1,11 @@
 {
+  "layer": "top",
   "height": 26,
   "reload_style_on_change": true,
   "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
-    "custom/weather",
     "custom/inbox",
     "bluetooth",
     "custom/mute",
@@ -13,7 +13,7 @@
     "custom/clock"
   ],
   "custom/clock": {
-    "exec": "date +'%I:%M'",
+    "exec": "date +'%a %I:%M'",
     "interval": 60,
     "tooltip": false,
     "on-click": "month",
@@ -23,7 +23,7 @@
     "bat": "BAT1",
     "adapter": "ACAD",
     "tooltip": false,
-    "interval": 30,
+    "interval": 60,
     "states": {
       "warning": 50,
       "critical": 25
@@ -60,11 +60,6 @@
     "on-click": "$TERMINAL aerc",
     "signal": 4
   },
-  "custom/weather": {
-    "exec": "cat $XDG_DATA_HOME/weather",
-    "tooltip": false,
-    "signal": 2
-  },
   "custom/record": {
     "exec": "record",
     "tooltip": false,
@@ -73,8 +68,8 @@
   "custom/player": {
     "exec": "player",
     "exec-if": "pgrep mpd",
-    "interval": 1,
     "tooltip": false,
-    "on-click": "mpc toggle"
+    "on-click": "mpc toggle",
+    "signal": 1
   }
 }

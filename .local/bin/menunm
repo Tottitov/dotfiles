@@ -2,9 +2,9 @@
 
 check() {
 	if nmcli dev wifi con "$2" password "$1"; then
-		notify-send -r 5 "Password succeeded for $2"
+		notify-send "Password succeeded for $2"
 	else
-		notify-send -r 5 -u critical "Password failed for $2"
+		notify-send -u critical "Password failed for $2"
 		nmcli con delete "$2"
 	fi >/dev/null 2>&1
 }
@@ -15,19 +15,19 @@ connect() {
 		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 0
 		check "$password" "$1"
 	else
-		nmcli dev wifi con "$1" && notify-send -r 5 "$1" "Connected"
+		nmcli dev wifi con "$1" && notify-send "$1" "Connected"
 	fi >/dev/null 2>&1
 }
 
 radio=$(nmcli radio wifi)
 if [ "$radio" = "disabled" ]; then
-	notify-send -r 5 -u critical "WiFi is disabled"
+	notify-send -u critical "WiFi is disabled"
 	exit 1
 fi
 
 state=$(nmcli -g state dev status | rg "^.*:wifi:")
 if [ "$state" = "unavailable" ]; then
-	notify-send -r 5 -u critical "Interface is unavailable"
+	notify-send -u critical "Interface is unavailable"
 	exit 1
 fi
 
@@ -43,7 +43,7 @@ connected=$(echo "$networks" | rg '^yes' | awk -F: '{print $4, $2}')
 
 	if [ "$choice" = "$connected" ]; then
 		nmcli con down id "$ssid" >/dev/null 2>&1
-		notify-send -r 5 "$ssid" "Disconnected"
+		notify-send "$ssid" "Disconnected"
 	else
 		security=$(
 			echo "$networks" | awk -F: -v \

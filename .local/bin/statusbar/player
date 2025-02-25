@@ -1,14 +1,9 @@
 #!/bin/sh
 
-status() { mpc status "$1"; }
-
-song=$(mpc -f "%artist% - %title%" current | sed 's/&/&amp;/g')
+song=$(mpc -f "%artist% - %title%" current)
 
 [ -z "$song" ] && exit 1
 
-[ "$(status %state%)" = "paused" ] && color="#f7768e" || color="#9ece6a"
+[ "$(mpc status %state%)" = "paused" ] && color="#f7768e" || color="#9ece6a"
 
-total=$(status %totaltime%)
-current=$(status %currenttime%)
-
-echo "<span color=\"$color\"></span> $song ($current/$total)"
+echo "<span color=\"$color\"></span> $song"

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while :; do
+	mpc idle player
+	pkill -RTMIN+1 waybar
+done

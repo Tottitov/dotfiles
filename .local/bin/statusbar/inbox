@@ -1,8 +1,8 @@
 #!/bin/sh
 
-unread="$(notmuch count folder:INBOX and tag:unread)"
+count="$(notmuch count folder:INBOX and tag:unread)"
 
-[ "$unread" -gt 0 ] && {
-	pidof -q "mbsync" && color="#f7768e" || color="#9ece6a"
-	echo "<span color =\"${color}\"></span> $unread"
+[ "$count" -gt 0 ] && {
+	pidof -q "mbsync" && echo "<span color =\"#ff768e\"></span> Syncing..." ||
+		echo "<span color =\"#bb9af7\"></span> $count unread emails"
 }

@@ -21,4 +21,4 @@ mute) pamixer -t && pkill -RTMIN+5 waybar ;;
 esac
 
 volume=$(pamixer --get-volume)
-getMute || notify-send -r 5 -h int:value:"$volume" "VOLUME ${volume}%"
+getMute || notify-send -h int:value:"$volume" "Volume ${volume}%"
