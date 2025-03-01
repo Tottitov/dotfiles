@@ -1,6 +1,3 @@
 #!/bin/sh
 
-while :; do
-	mpc idle player
-	pkill -RTMIN+1 waybar
-done
+mpc idleloop player stored_playlist options | xargs -I{} pkill -RTMIN+1 waybar

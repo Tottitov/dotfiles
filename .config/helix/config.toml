@@ -5,9 +5,13 @@ line-number = "relative"
 true-color = true
 rulers = [80]
 bufferline = "multiple"
+clipboard-provider = "wayland"
 cursor-shape.normal = "block"
 cursor-shape.insert = "bar"
 cursor-shape.select = "underline"
+statusline.mode.normal = "NORMAL"
+statusline.mode.insert = "INSERT"
+statusline.mode.select = "SELECT"
 statusline.right = [
   "version-control",
   "spacer",

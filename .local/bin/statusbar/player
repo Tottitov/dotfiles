@@ -1,6 +1,6 @@
 #!/bin/sh
 
-song=$(mpc -f "%artist% - %title%" current)
+song=$(mpc -f "%artist% - %title%" current | sed 's/&/&amp;/g')
 
 [ -z "$song" ] && exit 1
 

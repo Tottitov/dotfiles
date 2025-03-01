@@ -1,8 +1,8 @@
 layer=overlay
 margin=10
-padding=10
+padding=20
 height=500
-width=210
+width=200
 icons=0
 border-size=0
 default-timeout=10000

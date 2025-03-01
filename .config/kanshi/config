@@ -1,8 +1,22 @@
 profile main {
-    output eDP-1 enable mode 2880x1920@120 scale 2
+    output eDP-1 enable scale 2
 }
 
 profile home {
     output eDP-1 disable
-    output "LG Electronics LG HDR 4K 410NTJJ7M428" mode 3840x2160@60 scale 2
+    output "LG Electronics LG HDR 4K 410NTJJ7M428" scale 2
+}
+
+profile office {
+    output eDP-1 enable position 1920,0 scale 2
+    output "AOC 24G1WG3- PIBM9JA000849" {
+        mode 1920x1080@120
+        position 0,0
+        scale 1
+    }
+}
+
+profile hdmi {
+    output eDP-1 disable
+    output DP-4 scale 2
 }

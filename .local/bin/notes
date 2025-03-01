@@ -4,26 +4,49 @@ path="$HOME/docs/notes"
 
 action() {
 	file=$(
-		find "$path" \
-			-type f \
-			-not -path "${path}/.git/*" \
-			-printf '%f\n' | fzf --reverse
-	) && $1 "$path/$file"
+		find "$path" -type f -not -path "$path/.git/*" -printf '%f\n' | fzf
+	) || exit 1
+
+	[ -n "$file" ] && "$@" "$path/$file"
 }
 
 new() {
 	title=$(gum input --placeholder "Note") || exit 1
 	title=$(echo "$title" | tr '[:space:]' '-' | sed 's/-$//')
 
-	file="${path}/${title}-$(date +%Y-%m-%d).md"
-	[ ! -f "$file" ] && echo "# $title" >"$file"
+	file="$path/${title}-$(date +%Y-%m-%d).md"
+	[ ! -f "$file" ] && printf "# %s\n\n#tags: " "$title" >"$file"
 
 	$EDITOR "$file"
 }
 
+search() {
+	tags=$(rg "^#tags: " "$path" --no-filename | sed 's/#tags: //g' |
+		tr ' ' '\n' | sort -u)
+
+	[ -n "$tags" ] && tag=$(echo "$tags" | gum choose) || exit 1
+
+	rg "#tags:.*\b$tag\b" "$path" | cut -d: -f1 | sort -u |
+		fzf --reverse | xargs -r "$EDITOR"
+}
+
+menu() {
+	choice=$(gum choose "edit" "search" "browse" "new") || exit 1
+
+	case $choice in
+	edit) action "$EDITOR" ;;
+	search) search ;;
+	browse) action glow ;;
+	new) new ;;
+	esac
+}
+
+[ -z "$1" ] && menu
+
 case $1 in
-'n') new ;;
-'v') action mdcat ;;
-'e') action "$EDITOR" ;;
+e) action "$EDITOR" ;;
+s) search ;;
+b) action glow -n ;;
+n) new ;;
 *) exit 1 ;;
 esac

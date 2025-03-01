@@ -10,12 +10,12 @@ set ignorecase
 set ifs "\n"
 
 cmd open ${{
-    case $(file --mime-type $f -b) in
+    case $(file --mime-type "$(readlink -f $f)" -b) in
         text/*|application/json) $EDITOR $f ;;
-        application/pdf) zathura $f ;;
-        video/*) mpv $f ;;
-        image/*) imv $f ;;
-        *) xdg-open $f ;;
+        application/pdf) setsid -f zathura $f ;;
+        video/*) setsid -f mpv $f ;;
+        image/*) setsid -f imv $f ;;
+        *) setsid -f xdg-open $f ;;
     esac
 }}
 

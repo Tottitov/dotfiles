@@ -5,8 +5,7 @@ set status-placeholder
 set menu-feed-sorting alphabet-asc
 set scrolloff 8
 
-bind m exec mpv --no-terminal "%l" &
-bind c exec catt cast "%l" >/dev/null 2>&1 &
+bind m exec setsid -f mpv --no-terminal "%l" &
 
 color-list-section-unread magenta default
 color-list-feed-unread magenta default

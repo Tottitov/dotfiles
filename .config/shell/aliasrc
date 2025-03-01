@@ -1,15 +1,5 @@
 #!/bin/sh
 
-sc() {
-	script=$(fd . "$HOME/.local/bin" --type file | fzf)
-	[ -n "$script" ] && "$EDITOR" "$script"
-}
-
-cf() {
-	config=$(fd -L . "$HOME/.config" --type file | fzf)
-	[ -n "$config" ] && "$EDITOR" "$config"
-}
-
 alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \

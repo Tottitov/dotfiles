@@ -4,7 +4,7 @@ export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
 
 export EDITOR="helix"
 export TERMINAL="footclient"
-export BROWSER="firefox"
+export BROWSER="librewolf"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"

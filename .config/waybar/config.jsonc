@@ -1,5 +1,4 @@
 {
-  "layer": "top",
   "height": 26,
   "reload_style_on_change": true,
   "modules-left": ["river/tags", "custom/player"],
@@ -57,7 +56,7 @@
   "custom/inbox": {
     "exec": "inbox",
     "tooltip": false,
-    "on-click": "$TERMINAL aerc",
+    "on-click": "mailsync",
     "signal": 4
   },
   "custom/record": {
