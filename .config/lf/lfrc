@@ -13,7 +13,7 @@ cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
         text/*|application/json) $EDITOR $f ;;
         application/pdf) setsid -f zathura $f ;;
-        video/*) setsid -f mpv $f ;;
+        video/*) setsid -f mpv --no-terminal $f ;;
         image/*) setsid -f imv $f ;;
         *) setsid -f xdg-open $f ;;
     esac

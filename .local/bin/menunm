@@ -19,19 +19,17 @@ connect() {
 	fi >/dev/null 2>&1
 }
 
-radio=$(nmcli radio wifi)
-if [ "$radio" = "disabled" ]; then
-	notify-send -u critical "WiFi is disabled"
-	exit 1
-fi
-
-state=$(nmcli -g state dev status | rg "^.*:wifi:")
-if [ "$state" = "unavailable" ]; then
-	notify-send -u critical "Interface is unavailable"
-	exit 1
-fi
+nmcli dev con eth0 && {
+	notify-send "Ethernet connected"
+	exit 0
+}
 
 networks=$(nmcli -g active,ssid,security,signal dev wifi)
+[ -z "$networks" ] && {
+	notify-send "Error fetching networks"
+	exit 1
+}
+
 connected=$(echo "$networks" | rg '^yes' | awk -F: '{print $4, $2}')
 
 [ -n "$networks" ] && {

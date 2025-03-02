@@ -18,7 +18,7 @@ Subfolders Verbatim
 Channel fastmail
 Far :fastmail-remote:
 Near :fastmail-local:
-Patterns * INBOX !"Spam" !"Snoozed" !"Archive"
+Patterns * INBOX !"Spam" !"Snoozed" !"Archive" !"Notes"
 Expunge Both
 Create Both
 SyncState *
