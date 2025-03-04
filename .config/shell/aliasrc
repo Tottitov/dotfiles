@@ -1,5 +1,15 @@
 #!/bin/sh
 
+sc() {
+	script=$(fd . "$HOME/.local/bin" --type file | fzf --reverse)
+	[ -n "$script" ] && "$EDITOR" "$script"
+}
+
+cf() {
+	config=$(fd -L . "$HOME/.config" --type file | fzf --reverse)
+	[ -n "$config" ] && "$EDITOR" "$config"
+}
+
 alias \
 	h="helix" \
 	ls="eza -la --color=auto --group-directories-first" \
@@ -12,3 +22,7 @@ alias \
 alias \
 	cad="source ~/.local/share/virtual/build123d/bin/activate" \
 	vcad="python -m ocp_vscode --no_tools"
+
+alias \
+	ne="notes e" \
+	ns="notes s"

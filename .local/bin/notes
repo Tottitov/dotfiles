@@ -2,16 +2,19 @@
 
 path="$HOME/docs/notes"
 
-action() {
+edit() {
 	file=$(
-		find "$path" -type f -not -path "$path/.git/*" -printf '%f\n' | fzf
+		find "$path" \
+			-type f \
+			-not -path "$path/.git/*" \
+			-printf '%f\n' | fzf --reverse
 	) || exit 1
 
-	[ -n "$file" ] && "$@" "$path/$file"
+	[ -n "$file" ] && $EDITOR "$path/$file"
 }
 
 new() {
-	title=$(gum input --placeholder "Note") || exit 1
+	title=$(gum input --placeholder "Note") || exit 0
 	title=$(echo "$title" | tr '[:space:]' '-' | sed 's/-$//')
 
 	file="$path/${title}-$(date +%Y-%m-%d).md"
@@ -21,22 +24,19 @@ new() {
 }
 
 search() {
-	tags=$(rg "^#tags: " "$path" --no-filename | sed 's/#tags: //g' |
-		tr ' ' '\n' | sort -u)
+	tags=$(rg "^#tags: " "$path" --no-filename | sed 's/#tags: //g' | sort -u)
+	[ -n "$tags" ] && tag=$(echo "$tags" | gum choose) || exit 0
 
-	[ -n "$tags" ] && tag=$(echo "$tags" | gum choose) || exit 1
-
-	rg "#tags:.*\b$tag\b" "$path" | cut -d: -f1 | sort -u |
-		fzf --reverse | xargs -r "$EDITOR"
+	rg -l "#tags: $tag" "$path" | sort -u | fzf --reverse | xargs -r glow
 }
 
 menu() {
-	choice=$(gum choose "edit" "search" "browse" "new") || exit 1
-
+	choice=$(
+		gum choose --header="Select an action:" "edit" "search" "browse" "new"
+	) || exit 0
 	case $choice in
-	edit) action "$EDITOR" ;;
+	edit) edit ;;
 	search) search ;;
-	browse) action glow ;;
 	new) new ;;
 	esac
 }
@@ -44,9 +44,8 @@ menu() {
 [ -z "$1" ] && menu
 
 case $1 in
-e) action "$EDITOR" ;;
+e) edit ;;
 s) search ;;
-b) action glow -n ;;
 n) new ;;
 *) exit 1 ;;
 esac

@@ -19,14 +19,9 @@ connect() {
 	fi >/dev/null 2>&1
 }
 
-nmcli dev con eth0 && {
-	notify-send "Ethernet connected"
-	exit 0
-}
-
 networks=$(nmcli -g active,ssid,security,signal dev wifi)
 [ -z "$networks" ] && {
-	notify-send "Error fetching networks"
+	notify-send -u critical "Failed to obtain networks"
 	exit 1
 }
 

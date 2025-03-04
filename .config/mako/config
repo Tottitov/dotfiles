@@ -9,18 +9,19 @@ default-timeout=10000
 ignore-timeout=1
 font=monospace 12
 background-color=#24283B
-progress-color=#5A3E8E
-group-by=body
+progress-color=source #5A3E8E
+group-by=app-name,body
+on-button-left=dismiss-group
 
 [grouped]
 format=<b>%s</b>\n%b
 
 [urgency=low]
-border-color=#665C54
+text-color=#C0CAF5
 
 [urgency=normal]
-border-color=#9ECE6A
+text-color=#C0CAF5
 
 [urgency=high]
-border-color=#DB4B4B
+text-color=#DB4B4B
 default-timeout=0

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 riverctl map normal Super Q close
+riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super+Shift Return zoom
 riverctl map normal Super F toggle-fullscreen
 riverctl map normal Super+Shift F toggle-float
@@ -33,25 +34,23 @@ riverctl map normal Super+Alt J snap down
 riverctl map normal Super+Alt K snap up
 riverctl map normal Super+Alt L snap right
 
-riverctl map normal Super Return spawn "$TERMINAL"
-riverctl map normal Super R spawn "$TERMINAL lf"
-riverctl map normal Super+Shift R spawn menupass
-riverctl map normal Super D spawn fuzzel
-riverctl map normal Super+Shift D spawn menubm
-riverctl map normal Super W spawn "$BROWSER"
-riverctl map normal Super+Shift W spawn menunm
-riverctl map normal Super E spawn "$TERMINAL aerc"
-riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super A spawn "$TERMINAL pulsemixer"
 riverctl map normal Super+Shift A spawn "$TERMINAL newsraft"
-riverctl map normal Super M spawn menumpd
-riverctl map normal Super N spawn "$TERMINAL notes b"
-riverctl map normal Super+Shift N spawn "$TERMINAL notes n"
 riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
+riverctl map normal Super D spawn fuzzel
+riverctl map normal Super+Shift D spawn menubm
+riverctl map normal Super E spawn "$TERMINAL aerc"
+riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super I spawn "$TERMINAL htop"
 riverctl map normal Super+Shift I spawn menubt
-riverctl map normal Super+Shift T spawn "$TERMINAL ttyper"
+riverctl map normal Super M spawn menumpd
+riverctl map normal Super N spawn "$TERMINAL notes n"
+riverctl map normal Super R spawn "$TERMINAL lf"
+riverctl map normal Super+Shift R spawn menupass
+riverctl map normal Super T spawn "$TERMINAL ttyper"
+riverctl map normal Super W spawn "$BROWSER"
+riverctl map normal Super+Shift W spawn menunm
 
 riverctl map normal None Print spawn "menusc copyshot"
 riverctl map normal Shift Print spawn "menusc copyscreen"
