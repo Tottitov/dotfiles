@@ -1,5 +1,5 @@
 profile main {
-    output eDP-1 enable scale 2
+    output eDP-1 enable scale 2 adaptive_sync off
 }
 
 profile home {
@@ -8,11 +8,11 @@ profile home {
 }
 
 profile office {
-    output eDP-1 enable position 1920,0 scale 2
-    output "AOC 24G1WG3- PIBM9JA000849" {
-        mode 1920x1080@120
+    output eDP-1 disable
+    output "Dell Inc. DELL S2721QS 57HWZY3" {
+        mode 3840x2160@60
         position 0,0
-        scale 1
+        scale 2
     }
 }
 

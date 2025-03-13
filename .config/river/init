@@ -112,8 +112,10 @@ riverctl focus-follows-cursor always
 riverctl xcursor-theme 'Bibata-Modern-Ice' '24'
 
 riverctl rule-add ssd
-riverctl border-color-focused "0x9ECE6A"
-riverctl border-color-unfocused "0x665C54"
+riverctl background-color "0x00303B"
+riverctl border-color-focused "0x665C54"
+riverctl border-color-unfocused "0x414868"
+riverctl border-color-urgent "0xC53B53"
 riverctl border-width 2
 
 riverctl default-layout bsp-layout
@@ -150,18 +152,19 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="river-bsp-layout waybar mpd station
-foot kanshi wlsunset swayidle rqbit pipewire mako"
+executes="river-bsp-layout waybar mpd foot
+kanshi wlsunset swayidle rqbit pipewire mpc mako"
 
 for execute in $executes; do
-	pgrep "$execute" && continue
+	pgrep -x "$execute" && continue
 	case $execute in
 	"foot") $execute --server & ;;
 	"river-bsp-layout") $execute -i 5 -o 10 -s 0.55 -H 0.5 & ;;
+	"mpc") $execute idleloop player | xargs -I{} pkill -RTMIN+1 waybar & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w timeout 900 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
-	*) $execute & ;;
+	*) riverctl spawn "$execute" ;;
 	esac
 done >/dev/null 2>&1

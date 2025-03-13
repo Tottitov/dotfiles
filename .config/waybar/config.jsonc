@@ -1,5 +1,4 @@
 {
-  "height": 26,
   "reload_style_on_change": true,
   "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
@@ -15,8 +14,7 @@
     "exec": "date +'%a %I:%M'",
     "interval": 60,
     "tooltip": false,
-    "on-click": "month",
-    "on-click-right": "events"
+    "on-click": "month"
   },
   "battery": {
     "bat": "BAT1",

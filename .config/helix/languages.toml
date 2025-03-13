@@ -27,6 +27,11 @@ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
+name = "python"
+formatter = { command = "ruff", args = ["format", "--line-length", "80", "-"] }
+auto-format = true
+
+[[language]]
 name = "json"
 file-types = ["json", "jsonc"]
 formatter = { command = 'prettier', args = ["--parser", "json"] }

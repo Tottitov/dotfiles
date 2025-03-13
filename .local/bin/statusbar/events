@@ -1,5 +1,0 @@
-#!/bin/sh
-
-events="$(cat "$XDG_DATA_HOME/events")"
-
-[ -n "$events" ] && notify-send "Events" "$events"

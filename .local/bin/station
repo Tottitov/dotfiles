@@ -1,3 +1,0 @@
-#!/bin/sh
-
-mpc idleloop player stored_playlist options | xargs -I{} pkill -RTMIN+1 waybar

@@ -25,7 +25,7 @@ fi
 
 choice=$(
 	printf "Nope\nSure" | fuzzel \
-		-l 2 -w 40 -dip "Add album '$album' to playlist? "
+		-l 2 -w $((${#album} + 25)) -dip "Add album '$album' to playlist? "
 ) || exit 0
 
 if [ "$choice" = "Nope" ]; then

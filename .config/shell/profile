@@ -29,4 +29,4 @@ export NPM_TOKEN="$(pass npm_token)"
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-	exec dbus-launch --exit-with-session river -no-xwayland >/dev/null 2>&1
+	exec dbus-run-session river -no-xwayland >/dev/null 2>&1
