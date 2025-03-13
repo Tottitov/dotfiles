@@ -12,10 +12,12 @@ check() {
 connect() {
 	saved=$(nmcli -g name con show | rg "$1")
 	if [ -z "$saved" ] && [ -n "$security" ]; then
-		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 0
+		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ")
 		check "$password" "$1"
 	else
-		nmcli dev wifi con "$1" && notify-send "$1" "Connected"
+		(nmcli -w 10 dev wifi con "$1" &&
+			notify-send "$1" "Connected") ||
+			notify-send -u critical "$1" "Failed to connect"
 	fi >/dev/null 2>&1
 }
 
