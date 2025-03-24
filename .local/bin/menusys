@@ -8,9 +8,9 @@ askSystem() {
 	case $choice in
 	Lock) lock ;;
 	Logout) riverctl exit ;;
-	Reboot) sudo reboot ;;
-	Shutdown) sudo shutdown -h now ;;
-	Suspend) loginctl suspend ;;
+	Reboot) doas reboot ;;
+	Shutdown) doas poweroff ;;
+	Suspend) doas zzz ;;
 	esac
 }
 

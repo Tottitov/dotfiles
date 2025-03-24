@@ -68,5 +68,8 @@
     "tooltip": false,
     "on-click": "mpc toggle",
     "signal": 1
+  },
+  "river/tags": {
+    "hide-vacant": true
   }
 }

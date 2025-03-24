@@ -152,17 +152,18 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="river-bsp-layout waybar mpd foot
-kanshi wlsunset swayidle rqbit pipewire mpc mako"
+executes="kanshi river-bsp-layout waybar
+foot wlsunset swayidle rqbit mpd mako"
 
 for execute in $executes; do
-	pgrep -x "$execute" && continue
+	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute --server & ;;
 	"river-bsp-layout") $execute -i 5 -o 10 -s 0.55 -H 0.5 & ;;
-	"mpc") $execute idleloop player | xargs -I{} pkill -RTMIN+1 waybar & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
+	"mpd") $execute && mpc -q idleloop player | xargs \
+		-I{} pkill -RTMIN+1 waybar & ;;
 	"swayidle") $execute -w timeout 900 "wlopm --off '*'" \
 		resume "wlopm --on '*'" before-sleep "lock" & ;;
 	*) riverctl spawn "$execute" ;;

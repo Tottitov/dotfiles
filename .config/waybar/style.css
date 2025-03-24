@@ -1,9 +1,8 @@
 @define-color background #1a1b26;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
-@define-color occupied #c0caf5;
-@define-color empty #565f89;
-@define-color urgent #f7768e;
+@define-color occupied #565f89;
+@define-color urgent #ff757f;
 @define-color bluetooth #2ac3de;
 
 * {
@@ -40,29 +39,23 @@ window#waybar.hidden {
 #tags button {
   padding: 0px 6px;
   min-width: 0px;
-  color: @empty;
   border-radius: 0px;
 }
-
 #tags button.occupied {
   color: @occupied;
 }
-
 #tags button.focused {
   color: @focused;
 }
-
-#bluetooth.on {
-  color: @bluetooth;
-}
-
-#bluetooth.off,
-#bluetooth.disabled,
-#custom-record {
+#tags button.urgent {
   color: @urgent;
 }
 
 #battery.warning,
 #battery.critical {
   color: @foreground;
+}
+
+#bluetooth.on {
+  color: @bluetooth;
 }

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-([ -f /tmp/recordingpid ] && echo "󰻂 Rec") || echo ""
+[ -f /tmp/recordingpid ] && echo "<span color=\"#f7768e\">󰻂</span> Rec"

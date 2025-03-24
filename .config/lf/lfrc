@@ -14,17 +14,10 @@ cmd open ${{
         text/*|application/json) $EDITOR $f ;;
         application/pdf) setsid -f zathura $f ;;
         video/*) setsid -f mpv --no-terminal $f ;;
+		audio/*) setsid -f mpv --no-video $f ;;
         image/*) setsid -f imv $f ;;
         *) setsid -f xdg-open $f ;;
     esac
-}}
-
-cmd extract ${{
-  set -f
-  case $f in
-    *.zip) unzip $f;;
-    *.rar) unrar x $f;;
-  esac
 }}
 
 map u clear

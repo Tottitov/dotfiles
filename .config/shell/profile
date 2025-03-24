@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
+export PATH="$HOME/.local/bin:$PATH"
 
 export EDITOR="helix"
 export TERMINAL="footclient"
@@ -10,23 +10,16 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
-export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
-export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export PULSE_COOKIE="$XDG_CACHE_HOME/pulse/cookie"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 export NPM_TOKEN="$(pass npm_token)"
 
-[ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
-
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-	exec dbus-run-session river -no-xwayland >/dev/null 2>&1
+	exec river -no-xwayland >/dev/null 2>&1

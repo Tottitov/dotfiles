@@ -1,16 +1,6 @@
 #!/bin/sh
 
-getMute() {
-	[ "$(pamixer --get-mute)" = "true" ] && return 0 || return 1
-}
-
-defaultSink=$(pamixer --get-default-sink | tail -n1 | cut -d ' ' -f1)
-
-sinks=$(pamixer --list-sinks | awk 'NR > 1 {print $1}' | rg -v "$defaultSink")
-for sink in $sinks; do
-	sinkVolume=$(pamixer --sink "$sink" --get-volume)
-	[ "$sinkVolume" -lt 100 ] && pamixer --sink "$sink" --set-volume 100
-done
+notify() { notify-send -h int:value:"$volume" "Volume ${volume}%"; }
 
 case "$1" in
 high) getMute || pamixer -i 1 ;;
@@ -21,4 +11,6 @@ mute) pamixer -t && pkill -RTMIN+5 waybar ;;
 esac
 
 volume=$(pamixer --get-volume)
-getMute || notify-send -h int:value:"$volume" "Volume ${volume}%"
+mute=$(pamixer --get-mute)
+
+([ "$mute" = "false" ] && notify) || (makoctl dismiss -g)

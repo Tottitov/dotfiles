@@ -31,6 +31,8 @@ elif [ "$count" -gt 1 ]; then
 		echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 20 -di
 	) || exit 0
 
+	echo "$devices" | rg -q "$choice" || exit 1
+
 	echo "$choice" | rg -q "*" && choice=$(echo "$choice" | cut -d' ' -f1)
 	device=$(echo "$saved" | rg "$choice" | cut -d' ' -f3)
 	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)
