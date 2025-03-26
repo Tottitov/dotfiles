@@ -14,9 +14,11 @@ $ stow -vt ~ .
 wifi.backend=iwd
 ```
 
-### Setting up cronjobs
+### Setting up seat & session management
+- Use dinit as init system
+- use turnstile for session management
+- use seatd for seat management
+- use acpi for power management
+- use dbus as bus system/session
 
-```
-*/5 * * * * . $HOME/.zprofile; export DBUS_SESSION_BUS_ADDRESS=$(grep -z ^DBUS_SESSION_BUS_ADDRESS= /proc/$(pgrep -x river)/environ | cut -d= -f2-); $HOME/.local/bin/mailsync
-*/30 * * * * . $HOME/.zprofile; $HOME/.local/bin/statusbar/weather
-```
+That means D-Bus handling in Artix is completely out of box by default. You simply install it, and Dinit will activate it, both for system bus and for user logins, and there is absolutely nothing to do from the user’s side.
