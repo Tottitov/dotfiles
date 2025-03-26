@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
 
 export EDITOR="helix"
 export TERMINAL="footclient"

@@ -68,8 +68,8 @@ for mode in normal locked; do
 	riverctl map $mode Super+Shift Equal spawn "volume higher"
 	riverctl map $mode Super+Shift Minus spawn "volume lower"
 	riverctl map $mode Super+Shift M spawn "volume mute"
-	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +10"
-	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 10-"
+	riverctl map -repeat $mode Alt Equal spawn "brightnessctl -qe s +5"
+	riverctl map -repeat $mode Alt Minus spawn "brightnessctl -qe s 5-"
 
 	riverctl map $mode Super P spawn "mpc -q toggle"
 	riverctl map $mode Super Comma spawn "mpc -q prev"
@@ -82,8 +82,8 @@ for mode in normal locked; do
 	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volume high"
 	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volume low"
 	riverctl map $mode None XF86AudioMute spawn "volume mute"
-	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +10"
-	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 10-"
+	riverctl map -repeat $mode None XF86MonBrightnessUp spawn "brightnessctl -qe s +5"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "brightnessctl -qe s 5-"
 
 	riverctl map $mode None XF86AudioPlay spawn "mpc -q toggle"
 	riverctl map $mode None XF86AudioPrev spawn "mpc -q prev"
@@ -152,8 +152,7 @@ dbus-update-activation-environment \
 	WAYLAND_DISPLAY \
 	XDG_CURRENT_DESKTOP=river
 
-executes="kanshi river-bsp-layout waybar
-foot wlsunset swayidle rqbit mpd mako"
+executes="kanshi river-bsp-layout waybar foot wlsunset swayidle rqbit mpd mako"
 
 for execute in $executes; do
 	pidof -q "$execute" && continue

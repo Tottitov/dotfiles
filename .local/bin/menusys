@@ -9,7 +9,7 @@ askSystem() {
 	Lock) lock ;;
 	Logout) riverctl exit ;;
 	Reboot) doas reboot ;;
-	Shutdown) doas poweroff ;;
+	Shutdown) doas dinitctl shutdown ;;
 	Suspend) doas zzz ;;
 	esac
 }

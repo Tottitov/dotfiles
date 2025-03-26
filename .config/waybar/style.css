@@ -1,7 +1,6 @@
-@define-color background #1a1b26;
+@define-color background #000000;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
-@define-color occupied #565f89;
 @define-color urgent #ff757f;
 @define-color bluetooth #2ac3de;
 
@@ -20,29 +19,25 @@ window#waybar.hidden {
 }
 
 #tags {
-  padding: 0px 6px 0px 12px;
+  padding: 0px 5px;
 }
-
-#custom-clock {
-  padding: 0px 18px 0px 12px;
-}
-
 #custom-player,
 #custom-record,
 #custom-inbox,
 #bluetooth,
 #custom-mute,
-#battery {
-  padding: 0px 12px;
+#battery,
+#custom-clock {
+  padding: 0px 10px;
 }
 
 #tags button {
-  padding: 0px 6px;
+  padding: 0px 5px;
   min-width: 0px;
   border-radius: 0px;
 }
 #tags button.occupied {
-  color: @occupied;
+  color: @foreground;
 }
 #tags button.focused {
   color: @focused;
