@@ -1,13 +1,13 @@
 #!/bin/sh
 
-pidof -q "mbsync" && exit 1
+pidof -q "mbsync" && exit 0
 
 mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" &
 
 for i in 1 2; do
 	pkill -RTMIN+4 waybar
 	case $i in
-	1) wait ;;
+	1) wait && sleep 1 ;;
 	2) notmuch new --quiet ;;
 	esac
 done

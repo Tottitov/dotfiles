@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rg -w connected /sys/class/drm/*/status | rg -qv eDP || zzz

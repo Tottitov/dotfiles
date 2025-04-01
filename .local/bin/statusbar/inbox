@@ -5,5 +5,5 @@ count="$(notmuch count folder:INBOX and tag:unread)"
 [ "$count" -eq 0 ] && exit 0
 
 pidof -q "mbsync" &&
-	echo "<span color =\"#ff768e\"></span> Syncing..." ||
+	echo "<span color =\"#ff768e\"></span> syncing emails..." ||
 	echo "<span color =\"#bb9af7\"></span> $count unread emails"

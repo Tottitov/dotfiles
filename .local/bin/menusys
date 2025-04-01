@@ -10,7 +10,7 @@ askSystem() {
 	Logout) riverctl exit ;;
 	Reboot) doas reboot ;;
 	Shutdown) doas dinitctl shutdown ;;
-	Suspend) doas zzz ;;
+	Suspend) doas loginctl suspend ;;
 	esac
 }
 
