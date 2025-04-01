@@ -1,48 +1,43 @@
 #!/bin/sh
 
-check() {
-	if nmcli -w 5 dev wifi con "$2" password "$1"; then
-		notify-send "Password succeeded for $2"
-	else
-		notify-send -u critical "Password failed for $2"
-		nmcli con delete "$2"
-	fi >/dev/null 2>&1
+scan() {
+	iwctl station wlan0 get-networks
 }
 
 connect() {
-	saved=$(nmcli -g name con show | rg "$1")
-	if [ -z "$saved" ] && [ -n "$security" ]; then
-		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ")
+	security=$(echo "$info" | awk '/Security/ { print $NF }')
+	if ! (iwctl known-networks list | rg -q "$1") && [ -n "$security" ]; then
+		password=$(fuzzel -l 0 -w 50 --password -dip "Password: ") || exit 0
 		check "$password" "$1"
 	else
-		(nmcli -w 5 dev wifi con "$1" &&
+		(iwctl station wlan0 connect "$1" &&
 			notify-send "$1" "Connected") ||
 			notify-send -u critical "$1" "Failed to connect"
 	fi >/dev/null 2>&1
 }
 
-networks=$(nmcli -g active,ssid,security,signal dev wifi)
+check() {
+	(iwctl --passphrase "$1" station wlan0 connect "$2" &&
+		notify-send "Password succeeded for $2") ||
+		notify-send -u critical "Password failed for $2"
+} >/dev/null 2>&1
+
+networks=$(scan | ansifilter | cut -c7- | awk 'NR > 4 && NF { print $1 }')
 [ -z "$networks" ] && {
 	notify-send -u critical "Failed to obtain networks"
 	exit 1
 }
 
-connected=$(echo "$networks" | rg '^yes' | awk -F: '{print $4, $2}')
+info=$(iwctl station wlan0 show)
+connected=$(echo "$info" | awk '/Connected network/ { print $NF }')
 
-[ -n "$networks" ] && {
-	list=$(echo "$networks" | awk -F: '{print $4, $2}')
-	choice=$(
-		echo "$list" | fuzzel --placeholder="$connected" -l 5 -w 40 -di
-	) || exit 0
-	ssid=$(echo "$choice" | cut -c4-)
+choice=$(
+	echo "$networks" | fuzzel --placeholder="$connected" -l 5 -w 40 -di
+) || exit 0
 
-	if [ "$choice" = "$connected" ]; then
-		nmcli con down id "$ssid" >/dev/null 2>&1
-		notify-send "$ssid" "Disconnected"
-	else
-		security=$(
-			echo "$networks" | awk -F: -v ssid="$ssid" '$2 == ssid {print $3}'
-		)
-		connect "$ssid"
-	fi
-}
+if [ "$choice" = "$connected" ]; then
+	iwctl station "wlan0" disconnect
+	notify-send "$choice" "Disconnected"
+else
+	connect "$choice"
+fi
