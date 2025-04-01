@@ -6,14 +6,6 @@ $ cd ~/.local/share/dotfiles
 $ stow -vt ~ .
 ```
 
-### Using iwd as the Wi-Fi backend
-
-/etc/NetworkManager/conf.d/wifi_backend.conf
-```
-[device]
-wifi.backend=iwd
-```
-
 ### Setting up seat & session management
 - Use dinit as init system
 - use turnstile for session management
