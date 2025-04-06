@@ -1,10 +1,11 @@
 #!/bin/sh
 
 toggle() {
-	notify-send "$device" "Attempting to $1"
-	(bluetoothctl "$1" "$mac" &&
-		notify-send "$device" "Successfully ${1}ed") ||
-		notify-send -u critical "$device" "Failed to $1" >/dev/null 2>&1
+	if bluetoothctl "$1" "$mac"; then
+		notify-send "$device" "Successfully ${1}ed"
+	else
+		notify-send -u critical "$device" "Failed to $1"
+	fi >/dev/null 2>&1
 }
 
 bluetoothctl show | rg -q "Powered: no" && {

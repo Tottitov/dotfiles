@@ -19,10 +19,5 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
-export LIBSEAT_BACKEND="seatd"
-export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
-
-export NPM_TOKEN="$(pass npm_token)"
-
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-	exec river -no-xwayland >/dev/null 2>&1
+	exec river >/dev/null 2>&1
