@@ -34,6 +34,7 @@ if [ "$count" -gt 1 ]; then
 	) || exit 0
 
 	echo "$choice" | rg -q "\*" && choice=$(echo "$choice" | cut -d' ' -f1)
+
 	device=$(echo "$saved" | rg "$choice" | cut -d' ' -f3)
 	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)
 
