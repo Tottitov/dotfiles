@@ -17,7 +17,7 @@
     "on-click": "month"
   },
   "battery": {
-    "bat": "BAT1",
+    "bat": "BAT0",
     "adapter": "ACAD",
     "tooltip": false,
     "interval": 60,

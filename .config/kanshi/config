@@ -1,5 +1,9 @@
-profile main {
-    output eDP-1 enable scale 2 adaptive_sync off
+profile framework {
+    output "BOE NE135A1M-NY1" enable scale 2 adaptive_sync off
+}
+
+profile thinkpad {
+    output "eDP-1" enable scale 1
 }
 
 profile home {

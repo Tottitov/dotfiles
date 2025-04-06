@@ -97,7 +97,7 @@ riverctl map passthrough Super+Alt Escape enter-mode normal
 riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
 riverctl set-repeat 50 200
 
-touchpad=$(riverctl list-inputs | rg -i "touchpad")
+touchpad=$(riverctl list-inputs | rg -i "touchpad|synaptics")
 riverctl input "$touchpad" tap enabled
 riverctl input "$touchpad" drag disabled
 riverctl input "$touchpad" pointer-accel 0.35
