@@ -26,19 +26,19 @@ devices=$(
 	done
 )
 
-if [ "$saved" -eq 1 ]; then
-	device=$(echo "$saved" | cut -d' ' -f3)
-	mac=$(echo "$saved" | cut -d' ' -f2)
-elif [ "$saved" -gt 1 ]; then
-	choice=$(
-		echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$saved" -w 20 -di
-	) || exit 0
+count=$(echo "$saved" | wc -l)
 
-	echo "$devices" | rg -q "$choice" || exit 1
+if [ "$count" -gt 1 ]; then
+	choice=$(
+		echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 20 -di
+	) || exit 0
 
 	echo "$choice" | rg -q "\*" && choice=$(echo "$choice" | cut -d' ' -f1)
 	device=$(echo "$saved" | rg "$choice" | cut -d' ' -f3)
 	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)
 
 	(echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect
+else
+	device=$(echo "$saved" | cut -d' ' -f3)
+	mac=$(echo "$saved" | cut -d' ' -f2)
 fi
