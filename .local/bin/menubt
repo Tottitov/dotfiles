@@ -13,6 +13,12 @@ bluetoothctl show | rg -q "Powered: no" && {
 	exit 1
 }
 
+count=$(bluetoothctl devices | wc -l)
+[ "$count" -lt 1 ] && {
+	notify-send -u critical "Bluetooth" "No saved devices"
+	exit 1
+}
+
 saved=$(bluetoothctl devices)
 connected=$(bluetoothctl devices Connected)
 
@@ -21,8 +27,6 @@ devices=$(
 		echo "$connected" | rg -q "$device" && echo "$device *" || echo "$device"
 	done
 )
-
-count=$(echo "$devices" | wc -l)
 
 if [ "$count" -eq 1 ]; then
 	device=$(echo "$saved" | cut -d' ' -f3)
@@ -39,6 +43,4 @@ elif [ "$count" -gt 1 ]; then
 	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)
 
 	(echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect
-else
-	notify-send "Bluetooth" "No saved devices"
 fi
