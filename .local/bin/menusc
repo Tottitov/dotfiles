@@ -1,32 +1,20 @@
 #!/bin/sh
 
-saveshot() {
-	grim -g "$(slurp -d)" "pic-selected-$(date '+%y%m%d-%H%M-%S').png"
-}
+saveshot() { grim -g "$(slurp -d)" "pic-selected-$(date '+%y%m%d-%H%M-%S').png"; }
 
-savescreen() {
-	grim "pic-full-$(date '+%y%m%d-%H%M-%S').png"
-}
+savescreen() { grim "pic-full-$(date '+%y%m%d-%H%M-%S').png"; }
 
-copyshot() {
-	grim -g "$(slurp -d)" - | wl-copy
-}
+copyshot() { grim -g "$(slurp -d)" - | wl-copy; }
 
-copyscreen() {
-	grim - | wl-copy
-}
+copyscreen() { grim - | wl-copy; }
 
-editshot() {
-	grim -g "$(slurp -d)" - | swappy -f -
-}
+editshot() { grim -g "$(slurp -d)" - | swappy -f -; }
 
-editscreen() {
-	grim - | swappy -f -
-}
+editscreen() { grim - | swappy -f -; }
 
 askscreenshot() {
-	type=$(printf "edit\ncopy\nsave" | fuzzel -di -l 3) || exit 1
-	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -di) || exit 1
+	type=$(printf "edit\ncopy\nsave" | fuzzel -di -l 3) || exit 0
+	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -di) || exit 0
 	case ${type}${screenshot} in
 	"saveshot") saveshot ;;
 	"savescreen") savescreen ;;

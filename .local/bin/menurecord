@@ -2,8 +2,7 @@
 
 checkCamera() {
 	camera=$(find /dev/video[02468] | tail -n 1)
-	[ -n "$camera" ] && return "$camera" ||
-		notify-send "No camera detected" && askRecording
+	[ -n "$camera" ] && return "$camera" || notify-send "No camera detected" && askRecording
 }
 
 killRecording() {
@@ -62,10 +61,8 @@ askRecording() {
 }
 
 askToEnd() {
-	choice=$(printf "Nope\nSure" |
-		fuzzel -l 2 -w 15 -dip "End recording? ")
+	choice=$(printf "Nope\nSure" | fuzzel -l 2 -w 15 -dip "End recording? ")
 	[ "$choice" = "Sure" ] && killRecording || exit 0
 }
 
-[ "$1" = "kill" ] && killRecording ||
-	([ -f /tmp/recordingpid ] && askToEnd) || askRecording
+[ "$1" = "kill" ] && killRecording || ([ -f /tmp/recordingpid ] && askToEnd) || askRecording

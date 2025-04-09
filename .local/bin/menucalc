@@ -1,8 +1,8 @@
 #!/bin/sh
 
 answer=$(echo "scale=2; $1" | bc -l)
-
 action=$(printf "Copy\nClear" | fuzzel -l 2 -w 15 -dip "$answer") || exit 0
+
 case $action in
 "Clear") $0 ;;
 "Copy") echo "$answer" | wl-copy ;;
