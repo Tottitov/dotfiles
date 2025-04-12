@@ -3,13 +3,7 @@
 path="$HOME/docs/notes"
 
 edit() {
-	file=$(
-		find "$path" \
-			-type f \
-			-not -path "$path/.git/*" \
-			-printf '%f\n' | fzf --reverse
-	) || exit 1
-
+	file=$(find "$path" -type f -not -path "$path/.git/*" -printf '%f\n' | fzf --reverse) || exit 1
 	[ -n "$file" ] && $EDITOR "$path/$file"
 }
 
@@ -31,9 +25,7 @@ search() {
 }
 
 menu() {
-	choice=$(
-		gum choose --header="Select an action:" "edit" "search" "browse" "new"
-	) || exit 0
+	choice=$(gum choose --header="Select an action:" "edit" "search" "browse" "new") || exit 0
 	case $choice in
 	edit) edit ;;
 	search) search ;;

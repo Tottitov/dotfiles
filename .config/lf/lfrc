@@ -12,11 +12,11 @@ set ifs "\n"
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
         text/*|application/json) $EDITOR $f ;;
-        application/pdf) setsid -f zathura $f ;;
-        video/*) setsid -f mpv --no-terminal $f ;;
-		audio/*) setsid -f mpv --no-video $f ;;
-        image/*) setsid -f imv $f ;;
-        *) setsid -f xdg-open $f ;;
+        application/pdf) zathura $f ;;
+        video/*) mpv --no-terminal $f ;;
+		audio/*) mpv --no-video $f ;;
+        image/*) imv $f ;;
+        *) xdg-open $f ;;
     esac
 }}
 

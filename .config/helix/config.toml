@@ -3,7 +3,7 @@ theme = "tokyonight"
 [editor]
 line-number = "relative"
 true-color = true
-rulers = [80]
+rulers = [120]
 bufferline = "multiple"
 gutters = ["line-numbers", "spacer", "diff"]
 clipboard-provider = "wayland"

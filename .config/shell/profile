@@ -10,6 +10,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -19,5 +20,5 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
-[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-	exec river >/dev/null 2>&1
+[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q hyprland &&
+	exec hyprland >/dev/null 2>&1

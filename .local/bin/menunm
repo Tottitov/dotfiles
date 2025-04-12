@@ -25,7 +25,7 @@ networks=$(iwctl station wlan0 get-networks | ansifilter)
 }
 
 info=$(iwctl station wlan0 show)
-ssids=$(echo "$networks" | cut -c7- | awk 'NR > 4 && NF { print $1 }')
+ssids=$(echo "$networks" | cut -c7- | tail -n +5 | cut -c1-32 | sed 's/ *$//')
 connected=$(echo "$info" | awk '/Connected network/ { print $NF }')
 
 choice=$(echo "$ssids" | fuzzel --placeholder="$connected" -l 5 -w 40 -di) || exit 0

@@ -5,13 +5,11 @@
 user_pref("content.notify.interval", 100000);
 
 /** GFX ***/
-user_pref("gfx.webrender.compositor.force-enabled", false);
-user_pref("gfx.canvas.accelerated.cache-items", 4096);
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);
 
 /** DISK CACHE ***/
-user_pref("browser.cache.disk.enable", true);
+user_pref("browser.cache.disk.enable", false);
 
 /** MEDIA CACHE ***/
 user_pref("media.memory_cache_max_size", 65536);
@@ -38,7 +36,6 @@ user_pref("network.predictor.enable-prefetch", false);
 
 /** EXPERIMENTAL ***/
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
-user_pref("dom.enable_web_task_scheduling", true);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
@@ -47,11 +44,11 @@ user_pref("dom.enable_web_task_scheduling", true);
 user_pref("browser.contentblocking.category", "strict");
 user_pref(
   "urlclassifier.trackingSkipURLs",
-  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"
+  "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com",
 );
 user_pref(
   "urlclassifier.features.socialtracking.skipURLs",
-  "*.instagram.com, *.twitter.com, *.twimg.com"
+  "*.instagram.com, *.twitter.com, *.twimg.com",
 );
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
@@ -163,11 +160,11 @@ user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false
+  false,
 );
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false
+  false,
 );
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
@@ -209,13 +206,6 @@ user_pref("browser.download.open_pdf_attachments_inline", true);
 
 /** TAB BEHAVIOR ***/
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
-user_pref("browser.tabs.hoverPreview.enabled", false);
+user_pref("browser.menu.showViewImageInfo", true);
 user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
-
-/** WAYLAND ***/
-user_pref("widget.wayland.fractional-scale.enabled", true);
-
-/****************************************************************************
- * END: BETTERFOX                                                           *
- ****************************************************************************/

@@ -1,22 +1,13 @@
-profile framework {
-    output "BOE NE135A1M-NY1" enable scale 2 adaptive_sync off
-}
-
-profile thinkpad {
-    output "eDP-1" enable scale 1
+profile main {
+    output "eDP-1" enable
 }
 
 profile home {
     output eDP-1 disable
-    output "LG Electronics LG HDR 4K 410NTJJ7M428" scale 2
+    output "LG Electronics LG HDR 4K 410NTJJ7M428"
 }
 
 profile office {
     output eDP-1 disable
-    output "Dell Inc. DELL S2721QS 57HWZY3" scale 2
-}
-
-profile hdmi {
-    output eDP-1 disable
-    output DP-4 scale 2
+    output "Dell Inc. DELL S2721QS 57HWZY3"
 }
