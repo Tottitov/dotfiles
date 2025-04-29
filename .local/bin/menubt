@@ -26,7 +26,7 @@ devices=$(
 
 count=$(echo "$saved" | wc -l)
 if [ "$count" -gt 1 ]; then
-	choice=$(echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 20 -di) || exit 0
+	choice=$(echo "$devices" | cut -d' ' -f3- | sort | fuzzel -l "$count" -w 30 -di) || exit 0
 	echo "$choice" | rg -q "\*" && choice=$(echo "$choice" | cut -d' ' -f1)
 	device=$(echo "$saved" | rg "$choice" | cut -d' ' -f3)
 	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)

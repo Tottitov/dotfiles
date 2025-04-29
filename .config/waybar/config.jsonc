@@ -1,6 +1,6 @@
 {
   "reload_style_on_change": true,
-  "modules-left": ["hyprland/workspaces", "custom/player"],
+  "modules-left": ["river/tags", "river/mode", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
@@ -14,7 +14,7 @@
     "exec": "date +'%a %I:%M'",
     "interval": 60,
     "tooltip": false,
-    "on-click": "calendar"
+    "on-click": "reminder"
   },
   "battery": {
     "bat": "BAT1",

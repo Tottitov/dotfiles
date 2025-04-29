@@ -5,7 +5,7 @@ set reload-period 60
 set download-timeout 0
 set scrolloff 8
 
-bind m exec mpv --no-terminal "%l" &
+bind m exec setsid -f mpv --no-terminal "%l" &
 
 color-list-section-unread magenta default
 color-list-feed-unread magenta default

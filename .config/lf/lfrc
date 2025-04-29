@@ -12,11 +12,11 @@ set ifs "\n"
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
         text/*|application/json) $EDITOR $f ;;
-        application/pdf) zathura $f ;;
-        video/*) mpv --no-terminal $f ;;
-		audio/*) mpv --no-video $f ;;
-        image/*) imv $f ;;
-        *) xdg-open $f ;;
+        application/pdf) setsid -f zathura $f ;;
+        video/*) setsid -f mpv --no-terminal $f ;;
+		audio/*) setsid -f mpv --no-video $f ;;
+        image/*) setsid -f imv $f ;;
+        *) setsid -f xdg-open $f ;;
     esac
 }}
 
@@ -25,10 +25,11 @@ map <enter> shell
 map <c-d> delete
 map gc cd ~/.config
 map sc cd ~/.local/bin
-map gd cd ~/docs
-map gl cd ~/media/downloads
+map gd cd ~/dev
+map gn cd ~/docs/notes
+map gD cd ~/media/downloads
 map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gw cd ~/media/pictures/wallpapers
 map gv cd ~/media/videos
-map gf cd ~/.local/share/dotfiles
+map gb cd ~/.local/share/dotfiles

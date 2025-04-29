@@ -1,13 +1,10 @@
 * {
-  border: none !important;
   text-shadow: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
 }
 
 :root {
-  --toolbarbutton-border-radius: 0 !important;
-  --tab-border-radius: 0 !important;
   --tab-block-margin: 0 !important;
   --attention-dot-color: rgba(0, 0, 0, 0) !important;
 }

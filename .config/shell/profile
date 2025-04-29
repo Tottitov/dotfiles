@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-export PATH="$PATH:$(find ~/.local/bin/ -type d -printf %p:)"
-
 export EDITOR="helix"
 export TERMINAL="footclient"
 export BROWSER="firefox"
@@ -13,12 +11,17 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPATH="$XDG_DATA_HOME/go"
+export GOBIN="$GOPATH/bin"
+
+export PATH="$GOBIN:$(find ~/.local/bin/ -type d -printf %p:)$PATH"
+
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
-[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q hyprland &&
-	exec hyprland >/dev/null 2>&1
+[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
+	exec river -no-xwayland >/dev/null 2>&1

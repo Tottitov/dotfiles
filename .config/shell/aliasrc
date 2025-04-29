@@ -24,7 +24,3 @@ alias \
 alias \
 	cad="source ~/.local/share/virtual/build123d/bin/activate" \
 	vcad="python -m ocp_vscode --no_tools"
-
-alias \
-	ne="notes e" \
-	ns="notes s"

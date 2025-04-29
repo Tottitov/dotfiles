@@ -13,7 +13,7 @@ editshot() { grim -g "$(slurp -d)" - | swappy -f -; }
 editscreen() { grim - | swappy -f -; }
 
 askscreenshot() {
-	type=$(printf "edit\ncopy\nsave" | fuzzel -di -l 3) || exit 0
+	type=$(printf "edit\ncopy\nsave" | fuzzel -l 3 -di) || exit 0
 	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -di) || exit 0
 	case ${type}${screenshot} in
 	"saveshot") saveshot ;;

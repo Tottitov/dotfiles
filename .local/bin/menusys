@@ -3,7 +3,7 @@
 choice=$(printf "Lock\nLogout\nReboot\nShutdown\nSuspend" | fuzzel -l 5 -w 10 -di)
 case $choice in
 Lock) lock ;;
-Logout) hyprctl dispatch exit ;;
+Logout) riverctl exit ;;
 Reboot) doas reboot ;;
 Shutdown) doas shutdown -h now ;;
 Suspend) doas zzz ;;

@@ -1,2 +1,4 @@
 //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+
 cache=${XDG_CACHE_HOME}/npm
+prefix=${XDG_DATA_HOME}/npm    

@@ -1,13 +1,13 @@
 profile main {
-    output "eDP-1" enable
+    output "eDP-1" enable scale 2 adaptive_sync on
 }
 
 profile home {
     output eDP-1 disable
-    output "LG Electronics LG HDR 4K 410NTJJ7M428"
+    output "LG Electronics LG HDR 4K 410NTJJ7M428" scale 2
 }
 
 profile office {
     output eDP-1 disable
-    output "Dell Inc. DELL S2721QS 57HWZY3"
+    output "Dell Inc. DELL S2721QS 57HWZY3" scale 2
 }

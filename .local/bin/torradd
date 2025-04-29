@@ -2,4 +2,4 @@
 
 (curl -d "$@" "http://127.0.0.1:3030/torrents" &&
 	notify-send "Torrent successfully added") ||
-	notify-send "Torrrent failed to add"
+	notify-send -u critical "Torrent failed to add"
