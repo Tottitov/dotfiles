@@ -1,7 +1,6 @@
 @define-color background #000000;
 @define-color foreground #a9b1d6;
 @define-color focused #bb9af7;
-@define-color urgent #ff757f;
 @define-color bluetooth #2ac3de;
 
 * {
@@ -18,10 +17,9 @@ window#waybar.hidden {
   background: transparent;
 }
 
-#tags {
+#workspaces {
   padding: 0px 6px;
 }
-#mode,
 #custom-player,
 #custom-record,
 #custom-inbox,
@@ -32,19 +30,14 @@ window#waybar.hidden {
   padding: 0px 12px;
 }
 
-#tags button {
+#workspaces button {
   padding: 0px 6px;
   min-width: 0px;
   border-radius: 0px;
-}
-#tags button.occupied {
   color: @foreground;
 }
-#tags button.focused {
+#workspaces button.focused {
   color: @focused;
-}
-#tags button.urgent {
-  color: @urgent;
 }
 
 #battery.warning,

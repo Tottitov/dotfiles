@@ -1,0 +1,149 @@
+spawn-at-startup "init"
+prefer-no-csd
+screenshot-path "~/media/pictures/screenshots/screenshot_%Y-%m-%d %H-%M-%S.png"
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            options "ctrl:nocaps"
+        }
+        repeat-delay 150
+        repeat-rate 50
+    }
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+        accel-speed 0.35
+        accel-profile "adaptive"
+        scroll-method "two-finger"
+        scroll-factor 1.30
+    }
+    warp-mouse-to-focus
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
+    hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
+layout {
+    gaps 12
+    background-color "#073642"
+    always-center-single-column
+    center-focused-column "always"
+    default-column-width { proportion 0.8; }
+    focus-ring { off; }
+    border {
+        width 2
+        active-color "#C3E88D"
+        inactive-color "#414868"
+        urgent-color "#C53B53"
+    }
+}
+
+overview                                                { workspace-shadow { off; }; }
+gestures                                                { hot-corners { off; }; }
+hotkey-overlay                                          { skip-at-startup; }
+
+output "eDP-1"                                          { variable-refresh-rate on-demand=true; }
+window-rule                                             { match app-id="firefox"; open-maximized true; }
+window-rule                                             { match app-id="mpv"; variable-refresh-rate true; }
+                            
+binds {
+    Super+Q                                             { close-window; }
+    Super+Return                                        { spawn "footclient"; }
+    Super+Shift+Return                                  { show-hotkey-overlay; }
+    Super+Escape repeat=false                           { toggle-overview; }
+    Super+Backspace                                     { spawn "menusys"; }
+    Super+Shift+Backspace                               { spawn "lock"; }
+    Super+F                                             { maximize-column; }
+    Super+Shift+F                                       { fullscreen-window; }
+    Super+Space                                         { spawn "sh" "-c" "pkill -USR1 waybar"; }
+
+    Super+H                                             { focus-column-left; }
+    Super+J                                             { focus-workspace-down; }
+    Super+K                                             { focus-workspace-up; }
+    Super+L                                             { focus-column-right; }
+    Super+Shift+H                                       { move-column-left; }
+    Super+Shift+J                                       { move-window-down-or-to-workspace-down; }
+    Super+Shift+K                                       { move-window-up-or-to-workspace-up; }
+    Super+Shift+L                                       { move-column-right; }
+
+    Super+1                                             { focus-workspace 1; }
+    Super+2                                             { focus-workspace 2; }
+    Super+3                                             { focus-workspace 3; }
+    Super+4                                             { focus-workspace 4; }
+    Super+5                                             { focus-workspace 5; }
+    Super+6                                             { focus-workspace 6; }
+    Super+7                                             { focus-workspace 7; }
+    Super+8                                             { focus-workspace 8; }
+    Super+9                                             { focus-workspace 9; }
+
+    Super+Shift+1                                       { move-column-to-workspace 1; }
+    Super+Shift+2                                       { move-column-to-workspace 2; }
+    Super+Shift+3                                       { move-column-to-workspace 3; }
+    Super+Shift+4                                       { move-column-to-workspace 4; }
+    Super+Shift+5                                       { move-column-to-workspace 5; }
+    Super+Shift+6                                       { move-column-to-workspace 6; }
+    Super+Shift+7                                       { move-column-to-workspace 7; }
+    Super+Shift+8                                       { move-column-to-workspace 8; }
+    Super+Shift+9                                       { move-column-to-workspace 9; }
+
+    Super+A                                             { spawn "footclient" "pulsemixer"; }
+    Super+Shift+A                                       { spawn "footclient" "newsraft"; }
+    Super+C                                             { spawn "menucalc"; }
+    Super+Shift+C                                       { spawn "camtoggle"; }
+    Super+D                                             { spawn "fuzzel"; }
+    Super+Shift+D                                       { spawn "menubm"; }
+    Super+E                                             { spawn "footclient" "aerc"; }
+    Super+Shift+E                                       { spawn "menuemoji"; }
+    Super+I                                             { spawn "footclient" "htop"; }
+    Super+Shift+I                                       { spawn "menubt"; }
+    Super+M                                             { spawn "menumpd"; }
+    Super+N                                             { spawn "footclient" "notes" "n"; }
+    Super+R                                             { spawn "footclient" "lf"; }
+    Super+Shift+R                                       { spawn "menupass"; }
+    Super+T                                             { spawn "footclient" "ttyper"; }
+    Super+W                                             { spawn "firefox"; }
+    Super+Shift+W                                       { spawn "menuiwd"; }
+
+    Print                                               { screenshot show-pointer=false; }
+    Shift+Print                                         { screenshot-screen show-pointer=false; }
+    Control+Print                                       { screenshot-window write-to-disk=false; }
+    Control+Shift+Print                                 { screenshot-window; }
+    Super+Print                                         { spawn "menurecord"; }
+    Super+Shift+Print                                   { spawn "menurecord" "kill"; }
+
+    Super+Equal                                         { spawn "volume" "high"; }
+    Super+Minus                                         { spawn "volume" "low"; }
+    Super+Shift+Equal                                   { spawn "volume" "higher"; }
+    Super+Shift+Minus                                   { spawn "volume" "lower"; }
+    Super+Shift+M allow-when-locked=true                { spawn "volume" "mute"; }
+    Super+Alt+Equal                                     { spawn "bright" "up"; }
+    Super+Alt+Minus                                     { spawn "bright" "down"; }
+
+    Super+P                                             { spawn "mpc" "-q" "toggle"; }
+    Super+Comma                                         { spawn "mpc" "-q" "prev"; }
+    Super+Period                                        { spawn "mpc" "-q" "next"; }
+    Super+Alt+P                                         { spawn "mpc" "-q" "clear"; }
+    Super+Shift+Comma                                   { spawn "mpc" "-q" "seek -5%"; }
+    Super+Shift+Period                                  { spawn "mpc" "-q" "seek +5%"; }
+    Super+Alt+Comma                                     { spawn "mpc" "-q" "seek 0%"; }
+
+    XF86AudioRaiseVolume                                { spawn "volume" "high"; }
+    XF86AudioLowerVolume                                { spawn "volume" "low"; }
+    XF86AudioMute allow-when-locked=true                { spawn "volume" "mute"; }
+    XF86MonBrightnessUp                                 { spawn "bright" "up"; }
+    XF86MonBrightnessDown                               { spawn "bright" "down"; }
+    XF86AudioPlay                                       { spawn "mpc" "-q" "toggle"; }
+    XF86AudioPrev                                       { spawn "mpc" "-q" "prev"; }
+    XF86AudioNext                                       { spawn "mpc" "-q" "next"; }
+    XF86Display                                         { spawn "menusc"; }
+    XF86RFKill                                          { spawn "airplane"; }
+    XF86AudioMedia                                      { spawn "null"; }
+}

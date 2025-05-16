@@ -3,12 +3,7 @@
 path="$HOME/docs/notes"
 
 edit() {
-	fd . "$path" -t f --format '{/}' | fzf \
-		--ansi \
-		--reverse \
-		--border=none \
-		--preview-window=border-sharp,wrap \
-		--preview="bat $path/{}" | xargs -r -I{} "$EDITOR" "$path/{}"
+	fd . "$path" -t f --format '{/}' | fzf --reverse | xargs -r -I{} "$EDITOR" "$path/{}"
 }
 
 new() {

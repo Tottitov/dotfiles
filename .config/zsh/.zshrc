@@ -19,13 +19,6 @@ chpwd() {
 	printf '\e]7;file://%s%s\a' "$HOST" "$PWD"
 }
 
-clear-screen() {
-	zle -I
-	print -n '\e[2J\e[4;0H'
-	zle .redisplay
-}
-zle -N clear-screen
-
 zle-keymap-select() {
 	case $KEYMAP in
 	vicmd) echo -ne '\e[1 q' ;;

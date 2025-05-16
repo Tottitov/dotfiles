@@ -1,11 +1,3 @@
 #!/bin/sh
 
-gpg-connect-agent \
-	--no-autostart \
-	reloadagent /bye
-
-waylock \
-	-fork-on-lock \
-	-ignore-empty-password \
-	-input-color 0xBB9AF7 \
-	-fail-color 0xF7768E >/dev/null 2>&1
+gpg-connect-agent --no-autostart reloadagent /bye && swaylock -fue

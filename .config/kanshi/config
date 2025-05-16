@@ -1,5 +1,5 @@
 profile main {
-    output "eDP-1" enable scale 2 adaptive_sync on
+    output "eDP-1" enable scale 2
 }
 
 profile home {

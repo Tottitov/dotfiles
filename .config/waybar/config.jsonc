@@ -1,6 +1,7 @@
 {
+  "layer": "top",
   "reload_style_on_change": true,
-  "modules-left": ["river/tags", "river/mode", "custom/player"],
+  "modules-left": ["niri/workspaces", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
@@ -19,7 +20,6 @@
   "battery": {
     "bat": "BAT1",
     "adapter": "ACAD",
-    "tooltip": false,
     "interval": 60,
     "states": {
       "warning": 50,
@@ -68,8 +68,5 @@
     "tooltip": false,
     "on-click": "mpc toggle",
     "signal": 1
-  },
-  "river/tags": {
-    "hide-vacant": true
   }
 }

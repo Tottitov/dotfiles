@@ -1,0 +1,17 @@
+#!/bin/sh
+
+executes="kanshi waybar foot wlsunset swayidle rqbit mpc mako"
+for execute in $executes; do
+	pidof -q "$execute" && continue
+	case $execute in
+	"foot") $execute --server & ;;
+	"rivertile") $execute -main-ratio 0.55 & ;;
+	"rqbit") $execute server start "$HOME/media/downloads" & ;;
+	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
+	"swayidle") $execute -w \
+		timeout 300 "niri msg action power-off-monitors" \
+		resume "niri msg action power-on-monitors" & ;;
+	"mpc") $execute -q idleloop player | xargs -I{} pkill -RTMIN+1 waybar & ;;
+	*) "$execute" & ;;
+	esac
+done
