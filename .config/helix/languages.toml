@@ -1,5 +1,6 @@
 [[language]]
 name = "bash"
+file-types = ["sh"]
 formatter = { command = "shfmt" }
 auto-format = true
 

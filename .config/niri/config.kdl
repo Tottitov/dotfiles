@@ -1,6 +1,5 @@
 spawn-at-startup "init"
 prefer-no-csd
-screenshot-path "~/media/pictures/screenshots/screenshot_%Y-%m-%d %H-%M-%S.png"
 
 input {
     keyboard {
@@ -8,12 +7,13 @@ input {
             layout "us"
             options "ctrl:nocaps"
         }
-        repeat-delay 150
+        repeat-delay 250
         repeat-rate 50
     }
     touchpad {
         tap
         dwt
+        drag false
         natural-scroll
         accel-speed 0.35
         accel-profile "adaptive"
@@ -36,6 +36,13 @@ layout {
     background-color "#073642"
     always-center-single-column
     center-focused-column "always"
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 0.6
+        proportion 0.8
+    }
+    
     default-column-width { proportion 0.8; }
     focus-ring { off; }
     border {
@@ -55,9 +62,9 @@ window-rule                                             { match app-id="firefox"
 window-rule                                             { match app-id="mpv"; variable-refresh-rate true; }
                             
 binds {
-    Super+Q                                             { close-window; }
-    Super+Return                                        { spawn "footclient"; }
-    Super+Shift+Return                                  { show-hotkey-overlay; }
+    Super+Q repeat=false                                { close-window; }
+    Super+Return                                        { spawn "sh" "-c" "$TERMINAL"; }
+    Super+Shift+Return                                  { switch-preset-column-width; }
     Super+Escape repeat=false                           { toggle-overview; }
     Super+Backspace                                     { spawn "menusys"; }
     Super+Shift+Backspace                               { spawn "lock"; }
@@ -66,13 +73,15 @@ binds {
     Super+Space                                         { spawn "sh" "-c" "pkill -USR1 waybar"; }
 
     Super+H                                             { focus-column-left; }
-    Super+J                                             { focus-workspace-down; }
-    Super+K                                             { focus-workspace-up; }
+    Super+J                                             { focus-window-or-workspace-down; }
+    Super+K                                             { focus-window-or-workspace-up; }
     Super+L                                             { focus-column-right; }
     Super+Shift+H                                       { move-column-left; }
     Super+Shift+J                                       { move-window-down-or-to-workspace-down; }
     Super+Shift+K                                       { move-window-up-or-to-workspace-up; }
     Super+Shift+L                                       { move-column-right; }
+    Super+Shift+BracketLeft                             { consume-or-expel-window-right; }
+    Super+Shift+BracketRight                            { consume-or-expel-window-left; }
 
     Super+1                                             { focus-workspace 1; }
     Super+2                                             { focus-workspace 2; }
@@ -83,7 +92,7 @@ binds {
     Super+7                                             { focus-workspace 7; }
     Super+8                                             { focus-workspace 8; }
     Super+9                                             { focus-workspace 9; }
-
+    
     Super+Shift+1                                       { move-column-to-workspace 1; }
     Super+Shift+2                                       { move-column-to-workspace 2; }
     Super+Shift+3                                       { move-column-to-workspace 3; }
@@ -94,27 +103,26 @@ binds {
     Super+Shift+8                                       { move-column-to-workspace 8; }
     Super+Shift+9                                       { move-column-to-workspace 9; }
 
-    Super+A                                             { spawn "footclient" "pulsemixer"; }
-    Super+Shift+A                                       { spawn "footclient" "newsraft"; }
+    Super+A                                             { spawn "sh" "-c" "$TERMINAL pulsemixer"; }
+    Super+Shift+A                                       { spawn "sh" "-c" "$TERMINAL newsraft"; }
     Super+C                                             { spawn "menucalc"; }
     Super+Shift+C                                       { spawn "camtoggle"; }
     Super+D                                             { spawn "fuzzel"; }
     Super+Shift+D                                       { spawn "menubm"; }
-    Super+E                                             { spawn "footclient" "aerc"; }
+    Super+E                                             { spawn "sh" "-c" "$TERMINAL aerc"; }
     Super+Shift+E                                       { spawn "menuemoji"; }
-    Super+I                                             { spawn "footclient" "htop"; }
+    Super+I                                             { spawn "sh" "-c" "$TERMINAL htop"; }
     Super+Shift+I                                       { spawn "menubt"; }
     Super+M                                             { spawn "menumpd"; }
-    Super+N                                             { spawn "footclient" "notes" "n"; }
-    Super+R                                             { spawn "footclient" "lf"; }
+    Super+N                                             { spawn "sh" "-c" "$TERMINAL notes n"; }
+    Super+R                                             { spawn "sh" "-c" "$TERMINAL lf"; }
     Super+Shift+R                                       { spawn "menupass"; }
-    Super+T                                             { spawn "footclient" "ttyper"; }
-    Super+W                                             { spawn "firefox"; }
+    Super+T                                             { spawn "sh" "-c" "$TERMINAL ttyper"; }
+    Super+W                                             { spawn "sh" "-c" "$BROWSER"; }
     Super+Shift+W                                       { spawn "menuiwd"; }
 
     Print                                               { screenshot show-pointer=false; }
     Shift+Print                                         { screenshot-screen show-pointer=false; }
-    Control+Print                                       { screenshot-window write-to-disk=false; }
     Control+Shift+Print                                 { screenshot-window; }
     Super+Print                                         { spawn "menurecord"; }
     Super+Shift+Print                                   { spawn "menurecord" "kill"; }
@@ -124,8 +132,8 @@ binds {
     Super+Shift+Equal                                   { spawn "volume" "higher"; }
     Super+Shift+Minus                                   { spawn "volume" "lower"; }
     Super+Shift+M allow-when-locked=true                { spawn "volume" "mute"; }
-    Super+Alt+Equal                                     { spawn "bright" "up"; }
-    Super+Alt+Minus                                     { spawn "bright" "down"; }
+    Super+Alt+Equal allow-when-locked=true              { spawn "bright" "up"; }
+    Super+Alt+Minus allow-when-locked=true              { spawn "bright" "down"; }
 
     Super+P                                             { spawn "mpc" "-q" "toggle"; }
     Super+Comma                                         { spawn "mpc" "-q" "prev"; }
@@ -138,8 +146,8 @@ binds {
     XF86AudioRaiseVolume                                { spawn "volume" "high"; }
     XF86AudioLowerVolume                                { spawn "volume" "low"; }
     XF86AudioMute allow-when-locked=true                { spawn "volume" "mute"; }
-    XF86MonBrightnessUp                                 { spawn "bright" "up"; }
-    XF86MonBrightnessDown                               { spawn "bright" "down"; }
+    XF86MonBrightnessUp allow-when-locked=true          { spawn "bright" "up"; }
+    XF86MonBrightnessDown allow-when-locked=true        { spawn "bright" "down"; }
     XF86AudioPlay                                       { spawn "mpc" "-q" "toggle"; }
     XF86AudioPrev                                       { spawn "mpc" "-q" "prev"; }
     XF86AudioNext                                       { spawn "mpc" "-q" "next"; }
