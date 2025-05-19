@@ -37,11 +37,10 @@ layout {
     gaps 20
     background-color "#073642"
     always-center-single-column
-    center-focused-column "always"
+    center-focused-column "on-overflow"
 
     preset-column-widths {
         proportion 0.5
-        proportion 0.6
         proportion 0.8
     }
     
@@ -152,7 +151,7 @@ binds {
     Super+Minus hotkey-overlay-title=null                                  { spawn "volume" "low"; }
     Super+Shift+Equal hotkey-overlay-title=null                            { spawn "volume" "higher"; }
     Super+Shift+Minus hotkey-overlay-title=null                            { spawn "volume" "lower"; }
-    Super+Shift+M allow-when-locked=true   hotkey-overlay-title=null       { spawn "volume" "mute"; }
+    Super+Shift+M allow-when-locked=true hotkey-overlay-title=null         { spawn "volume" "mute"; }
     Super+Alt+Equal allow-when-locked=true hotkey-overlay-title=null       { spawn "bright" "up"; }
     Super+Alt+Minus allow-when-locked=true hotkey-overlay-title=null       { spawn "bright" "down"; }
 
