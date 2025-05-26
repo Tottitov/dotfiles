@@ -21,15 +21,6 @@ video() {
 	pkill -RTMIN+3 waybar
 }
 
-snippet() {
-	wf-recorder \
-		-g "$(slurp)" \
-		-c libx264rgb \
-		-f "$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
-	echo $! >/tmp/recordingpid
-	pkill -RTMIN+3 waybar
-}
-
 webcam() {
 	ffmpeg \
 		-f v4l2 \
@@ -50,11 +41,10 @@ audio() {
 }
 
 askRecording() {
-	choice=$(printf "video\naudio\nsnippet\nwebcam" | fuzzel -l 4 -w 10 -di)
+	choice=$(printf "video\naudio\nwebcam" | fuzzel -l 3 -w 10 -di)
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;
-	snippet) snippet ;;
 	webcam) [ -n "$(checkCamera)" ] && webcam "$(checkCamera)" ;;
 	*) exit 0 ;;
 	esac

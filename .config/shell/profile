@@ -20,9 +20,10 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_TOKEN="$(pass npm_token)"
 
-[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river &&
-	exec niri --session >/dev/null 2>&1
+[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river && exec niri --session >/dev/null 2>&1

@@ -6,8 +6,5 @@ timeout -k 5 15 mbsync -qac "${XDG_CONFIG_HOME}/mbsync/config" &
 
 for i in 1 2; do
 	pkill -RTMIN+4 waybar
-	[ "$i" -eq 1 ] && {
-		wait
-		notmuch new --quiet
-	}
+	[ "$i" -eq 1 ] && wait && notmuch new --quiet
 done

@@ -33,3 +33,4 @@ map gp cd ~/media/pictures
 map gw cd ~/media/pictures/wallpapers
 map gv cd ~/media/videos
 map gb cd ~/.local/share/dotfiles
+map gf $lf -remote "send $id select $(fzf --reverse)"

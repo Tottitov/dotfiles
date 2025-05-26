@@ -9,7 +9,7 @@ input {
             layout "us"
             options "ctrl:nocaps"
         }
-        repeat-delay 150
+        repeat-delay 200
         repeat-rate 30
     }
     touchpad {
@@ -34,7 +34,7 @@ cursor {
 }
 
 layout {
-    gaps 20
+    gaps 15
     background-color "#073642"
     always-center-single-column
     center-focused-column "on-overflow"
@@ -56,6 +56,7 @@ layout {
 
 gestures { hot-corners { off; }; }
 overview { workspace-shadow { off; }; }
+animations { off; }
 
 layer-rule {
     match namespace="^notifications$"

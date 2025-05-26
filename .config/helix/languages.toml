@@ -1,12 +1,27 @@
 [[language]]
 name = "bash"
-file-types = ["sh"]
 formatter = { command = "shfmt" }
 auto-format = true
 
 [[language]]
 name = "markdown"
 formatter = { command = 'prettier', args = ["--parser", "markdown"] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "json"
+file-types = ["json", "jsonc"]
+formatter = { command = 'prettier', args = ["prettier", "--parser", "json"] }
 auto-format = true
 
 [[language]]
@@ -20,41 +35,8 @@ formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
-name = "javascript"
-language-servers = ["typescript-language-server"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "typescript"
-language-servers = ["vscode-eslint-language-server"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "tsx"
-language-servers = ["vscode-eslint-language-server"]
-formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-auto-format = true
-
-[[language]]
-name = "python"
-formatter = { command = "ruff", args = ["format", "--line-length", "80", "-"] }
-auto-format = true
-
-[[language]]
-name = "json"
-file-types = ["json", "jsonc"]
-formatter = { command = 'prettier', args = ["--parser", "json"] }
-auto-format = true
-
-[[language]]
 name = "yaml"
 formatter = { command = 'prettier', args = ["--parser", "yaml"] }
-auto-format = true
-
-[[language]]
-name = "templ"
 auto-format = true
 
 [[language]]
