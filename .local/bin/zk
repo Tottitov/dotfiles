@@ -1,0 +1,49 @@
+#!/bin/sh
+
+path="$HOME/docs/notes"
+
+new() {
+	input=$(gum input --placeholder "Note title") || exit 1
+	timestamp=$(date +%Y%m%d%H%M)
+	title=$(echo "$input" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-' | sed 's/-$//')
+	file="$path/${timestamp}-${title}.md"
+
+	[ ! -f "$file" ] && {
+		printf "# %s\n\n**ID:** %s\n**Tags:** #\n**Sources:** @\n\n## Links\n- [[]]\n" "$input" "$timestamp" >"$file"
+		$EDITOR "$file"
+	}
+}
+
+edit() {
+	fd . "$path" -t f -e md --format '{/}' | fzf --reverse | xargs -r -I{} "$EDITOR" "$path/{}"
+}
+
+tags() {
+	if [ -z "$1" ]; then
+		rg '#[a-z]\w*' "$path" --no-filename -o | sort | uniq | fzf --reverse | xargs -r -I{} zk t {}
+	else
+		rg "$1" "$path" -l | fzf --reverse | xargs -r "$EDITOR"
+	fi
+}
+
+sources() {
+	if [ -z "$1" ]; then
+		rg '@\w+' "$path" --no-filename -o | sort | uniq | fzf --reverse | xargs -r -I{} zk s {}
+	else
+		rg "$1" "$path" -l | fzf --reverse | xargs -r "$EDITOR"
+	fi
+}
+
+search() {
+	query=${1:-$(gum input --placeholder "Search term")} || exit 1
+	rg "$query" "$path" -i -l | fzf --reverse | xargs -r "$EDITOR"
+}
+
+case $1 in
+n) new ;;
+e) edit ;;
+t) tags "$2" ;;
+s) sources "$2" ;;
+sc) search "$2" ;;
+*) exit 1 ;;
+esac
