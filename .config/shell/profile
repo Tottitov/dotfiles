@@ -11,10 +11,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export GOPATH="$XDG_DATA_HOME/go"
-export GOBIN="$GOPATH/bin"
+export NPMBIN="$XDG_DATA_HOME/npm/bin"
+export GOBIN="$XDG_DATA_HOME/go/bin"
 
-export PATH="$GOBIN:$(find ~/.local/bin/ -type d -printf %p:)$PATH"
+export PATH="$GOBIN:$NPMBIN:$(find ~/.local/bin/ -type d -printf %p:)"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"

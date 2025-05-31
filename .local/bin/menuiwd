@@ -24,7 +24,7 @@ networks=$(iwctl station wlan0 get-networks | ansifilter | cut -c7- | tail -n +5
 info=$(iwctl station wlan0 show)
 connected=$(echo "$info" | rg "Connected network" | sed 's/.*Connected network *//')
 
-choice=$(echo "$networks" | fuzzel --placeholder="$connected" -l 5 -w 40 -di) || exit 1
+choice=$(echo "$networks" | fuzzel --placeholder="$connected" -l 5 -w 25 -di) || exit 1
 if [ "$choice" = "$connected" ]; then
 	iwctl station "wlan0" disconnect
 	notify-send "$choice" "Disconnected"

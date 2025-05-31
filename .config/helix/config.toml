@@ -2,29 +2,46 @@ theme = "tokyonight"
 
 [editor]
 line-number = "relative"
-true-color = true
-rulers = [120]
 bufferline = "multiple"
 gutters = ["line-numbers", "spacer", "diff"]
+scrolloff = 8
+color-modes = true
+true-color = true
+undercurl = true
+soft-wrap.enable = true
+rulers = [80, 120]
 clipboard-provider = "wayland"
-cursor-shape.normal = "block"
-cursor-shape.insert = "bar"
-cursor-shape.select = "underline"
-statusline.mode.normal = "NORMAL"
-statusline.mode.insert = "INSERT"
-statusline.mode.select = "SELECT"
-statusline.right = [
-  "version-control",
-  "spacer",
-  "diagnostics",
-  "file-type",
-  "position",
-]
 indent-guides.render = true
 end-of-line-diagnostics = "hint"
-inline-diagnostics.cursor-line = "error"
+inline-diagnostics.cursor-line = "warning"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+left = [
+  "mode",
+  "file-name",
+  "version-control",
+  "spinner",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+right = ["diagnostics", "selections", "position", "file-type"]
+
+[editor.lsp]
+goto-reference-include-declaration = false
+display-inlay-hints = true
+display-progress-messages = true
 
 [keys.normal]
+H = ":buffer-previous"
+L = ":buffer-next"
+X = "select_line_above"
 G = "goto_file_end"
-X = "extend_line_above"
 V = ["extend_line_below", "select_mode"]

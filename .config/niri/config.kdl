@@ -34,7 +34,7 @@ cursor {
 }
 
 layout {
-    gaps 15
+    gaps 12
     background-color "#073642"
     always-center-single-column
     center-focused-column "on-overflow"
@@ -69,6 +69,12 @@ window-rule {
 window-rule {
     match app-id="firefox"
     open-maximized true
+}
+window-rule {
+    match app-id="firefox" title="Enter name of file to save to"
+    open-floating true
+    default-column-width { proportion 0.8; }
+    default-window-height { proportion 0.8; }
 }
 window-rule {
     match app-id="mpv"
@@ -135,7 +141,7 @@ binds {
     Super+I hotkey-overlay-title=null                                      { spawn "sh" "-c" "$TERMINAL htop"; }
     Super+Shift+I hotkey-overlay-title=null                                { spawn "menubt"; }
     Super+M hotkey-overlay-title=null                                      { spawn "menumpd"; }
-    Super+N hotkey-overlay-title=null                                      { spawn "sh" "-c" "$TERMINAL notes n"; }
+    Super+N hotkey-overlay-title=null                                      { spawn "sh" "-c" "$TERMINAL zk n"; }
     Super+R hotkey-overlay-title=null                                      { spawn "sh" "-c" "$TERMINAL lf"; }
     Super+Shift+R hotkey-overlay-title=null                                { spawn "menupass"; }
     Super+T hotkey-overlay-title=null                                      { spawn "sh" "-c" "$TERMINAL ttyper"; }

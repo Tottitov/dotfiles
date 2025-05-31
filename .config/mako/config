@@ -1,6 +1,7 @@
-margin=20
-padding=15
+margin=12
+padding=20
 height=500
+width=210
 icons=0
 border-size=2
 border-color=#414868
