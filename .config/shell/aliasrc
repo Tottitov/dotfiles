@@ -1,12 +1,12 @@
 #!/bin/sh
 
 sc() {
-	script=$(fd . "$HOME/.local/bin" -t f | fzf --reverse)
+	script=$(fd . ~/.local/bin -t l | fzf --reverse)
 	[ -n "$script" ] && "$EDITOR" "$script"
 }
 
 cf() {
-	config=$(fd -L . "$HOME/.config" -t f | fzf --reverse)
+	config=$(fd . ~/.config -t l | fzf --reverse)
 	[ -n "$config" ] && "$EDITOR" "$config"
 }
 

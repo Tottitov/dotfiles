@@ -19,10 +19,13 @@ connect() {
 
 networks=$(iwctl station wlan0 get-networks | ansifilter | cut -c7- | tail -n +5 | cut -c1-32 | sed 's/ *$//')
 
-[ "$networks" = "No networks available" ] && notify-send -u critical "Failed to obtain networks" && exit 1
+[ "$networks" = "No networks available" ] && {
+	notify-send -u critical "Failed to obtain networks"
+	exit 1
+}
 
 info=$(iwctl station wlan0 show)
-connected=$(echo "$info" | rg "Connected network" | sed 's/.*Connected network *//')
+connected=$(echo "$info" | rg "Connected network" | sed 's/.*Connected network *//' | xargs)
 
 choice=$(echo "$networks" | fuzzel --placeholder="$connected" -l 5 -w 25 -di) || exit 1
 if [ "$choice" = "$connected" ]; then

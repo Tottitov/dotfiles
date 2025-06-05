@@ -45,3 +45,7 @@ L = ":buffer-next"
 X = "select_line_above"
 G = "goto_file_end"
 V = ["extend_line_below", "select_mode"]
+
+[keys.insert]
+C-h = ["jump_view_left", "insert_mode"]
+C-l = ["jump_view_right", "insert_mode"]

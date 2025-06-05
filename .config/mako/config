@@ -1,13 +1,12 @@
 margin=12
 padding=20
 height=500
-width=210
-icons=0
-border-size=2
+icons=1
+border-size=0
 border-color=#414868
 font=monospace 12
 default-timeout=5000
-background-color=#1A1B26
+background-color=#000000
 progress-color=over #5A3E8E
 group-by=app-name,body
 on-button-left=dismiss-group

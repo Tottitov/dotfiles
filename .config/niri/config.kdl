@@ -1,4 +1,5 @@
-spawn-at-startup "init"
+spawn-at-startup "nirinit"
+screenshot-path "~/media/pictures/screenshots/screenshot_%Y-%m-%d %H-%M-%S.png"
 prefer-no-csd
 
 output "eDP-1" { variable-refresh-rate on-demand=true; }
@@ -44,7 +45,7 @@ layout {
         proportion 0.8
     }
     
-    default-column-width { proportion 0.8; }
+    default-column-width { proportion 0.5; }
     focus-ring { off; }
     border {
         width 2
@@ -63,15 +64,11 @@ layer-rule {
     block-out-from "screencast"
 }
 window-rule {
-    match is-window-cast-target=true
-    border { inactive-color "#C53B53"; }
-}
-window-rule {
     match app-id="firefox"
     open-maximized true
 }
 window-rule {
-    match app-id="firefox" title="Enter name of file to save to"
+    match app-id="firefox" title="Save as"
     open-floating true
     default-column-width { proportion 0.8; }
     default-window-height { proportion 0.8; }

@@ -1,11 +1,9 @@
 #!/bin/sh
 
-html2text -s -d -b 0 \
+html2text -s -d -b 120 \
 	--ignore-images \
 	--ignore-tables \
 	--ignore-links \
 	--ignore-mailto-links \
 	--ignore-emphasis \
-	--single-line-break \
-	--escape-all \
 	--mark-code | sed 's/^[[:space:]]*//'

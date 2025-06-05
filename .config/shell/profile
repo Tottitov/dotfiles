@@ -10,20 +10,20 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export NPMBIN="$XDG_DATA_HOME/npm/bin"
-export GOBIN="$XDG_DATA_HOME/go/bin"
+export PATH="$PATH:$XDG_DATA_HOME/npm/bin:$(find ~/.local/bin -type d | paste -sd:)"
 
-export PATH="$GOBIN:$NPMBIN:$(find ~/.local/bin/ -type d -printf %p:)"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPATH="$XDG_DATA_HOME/go"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
-export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
+
+export LESS="Rsc"
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NPM_TOKEN="$(pass npm_token)"
 
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river && exec niri --session >/dev/null 2>&1

@@ -13,7 +13,7 @@
   ],
   "custom/clock": {
     "exec": "date +'%a %I:%M'",
-    "interval": 60,
+    "interval": 30,
     "tooltip": false,
     "on-click": "reminder"
   },
