@@ -8,35 +8,58 @@ new() {
 	title=$(echo "$input" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-' | sed 's/-$//')
 	file="$path/${timestamp}-${title}.md"
 
-	[ ! -f "$file" ] && {
-		printf "# %s\n\n**ID:** %s\n**Tags:** #\n**Sources:** @\n\n## Links\n- [[]]\n" "$input" "$timestamp" >"$file"
+	if [ ! -f "$file" ]; then
+		{
+			echo "---"
+			echo "ID: $timestamp"
+			echo "Tags: "
+			echo "Sources: "
+			echo "---"
+			echo ""
+			echo "# $input"
+			echo ""
+			echo "## Links"
+			echo "- []()"
+		} >"$file"
 		$EDITOR "$file"
-	}
+	fi
 }
 
 edit() {
-	fd . "$path" -t f -e md --format '{/}' | fzf --reverse | xargs -r -I{} "$EDITOR" "$path/{}"
+	fd . "$path" -t f -e md --format '{/}' | fzf --reverse | {
+		read -r file && [ -n "$file" ] && "$EDITOR" "$path/$file"
+	}
 }
 
 tags() {
 	if [ -z "$1" ]; then
-		rg '#[a-z]\w*' "$path" --no-filename -o | sort | uniq | fzf --reverse | xargs -r -I{} zk t {}
+		rg '^Tags: (.+)$' "$path" --no-filename -o -r '$1' | sort | uniq | fzf --reverse | {
+			read -r tag && [ -n "$tag" ] && zk t "$tag"
+		}
 	else
-		rg "$1" "$path" -l | fzf --reverse | xargs -r "$EDITOR"
+		rg "$1" "$path" -l | fzf --reverse | {
+			read -r file && [ -n "$file" ] && "$EDITOR" "$file"
+		}
 	fi
 }
 
 sources() {
 	if [ -z "$1" ]; then
-		rg '@\w+' "$path" --no-filename -o | sort | uniq | fzf --reverse | xargs -r -I{} zk s {}
+		rg '^Sources: (.+)$' "$path" --no-filename -o -r '$1' | sort | uniq | fzf --reverse | {
+			read -r source && [ -n "$source" ] && zk s "$source"
+		}
 	else
-		rg "$1" "$path" -l | fzf --reverse | xargs -r "$EDITOR"
+		rg "$1" "$path" -l | fzf --reverse | {
+			read -r file && [ -n "$file" ] && "$EDITOR" "$file"
+		}
 	fi
 }
 
 search() {
 	query=${1:-$(gum input --placeholder "Search term")} || exit 1
-	rg "$query" "$path" -i -l | fzf --reverse | xargs -r "$EDITOR"
+	rg "$query" "$path" -i -l | fzf --reverse | {
+		read -r file && [ -n "$file" ] && "$EDITOR" "$file"
+	}
 }
 
 case $1 in
@@ -44,6 +67,6 @@ n) new ;;
 e) edit ;;
 t) tags "$2" ;;
 s) sources "$2" ;;
-sc) search "$2" ;;
+f) search "$2" ;;
 *) exit 1 ;;
 esac
