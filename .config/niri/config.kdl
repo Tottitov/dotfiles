@@ -57,7 +57,6 @@ layout {
 
 gestures { hot-corners { off; }; }
 overview { workspace-shadow { off; }; }
-animations { off; }
 
 layer-rule {
     match namespace="^notifications$"

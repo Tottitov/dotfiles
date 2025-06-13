@@ -1,6 +1,6 @@
 #!/bin/sh
 
-executes="kanshi waybar foot wlsunset swayidle rqbit mpc mako podman"
+executes="kanshi waybar foot wlsunset swayidle rqbit mpc mako"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in

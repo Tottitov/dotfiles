@@ -1,3 +1,4 @@
 #!/bin/sh
 
-gpg-connect-agent --no-autostart reloadagent /bye && swaylock -fuec "#24283b"
+gpg-connect-agent --no-autostart reloadagent /bye &&
+	swaylock -Ffe --clock --datestr "%a %e.%m.%Y" --timestr "%k:%M"
