@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "reload_style_on_change": true,
-  "modules-left": ["niri/workspaces", "custom/player"],
+  "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [
     "custom/record",
@@ -68,5 +68,8 @@
     "tooltip": false,
     "on-click": "mpc toggle",
     "signal": 1
+  },
+  "river/tags": {
+    "hide-vacant": true
   }
 }

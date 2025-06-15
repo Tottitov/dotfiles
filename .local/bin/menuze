@@ -1,0 +1,14 @@
+#!/bin/sh
+
+sessions=$(zellij ls)
+
+[ -n "$sessions" ] && choice=$(echo "$sessions" | ansifilter | fuzzel -di -w 80) || exit 1
+session=$(echo "$choice" | cut -d' ' -f1)
+
+select="$(printf "attach\ndelete" | fuzzel -di)" || exit 1
+
+if [ "$select" = "delete" ]; then
+	zellij d --force "$session" && notify-send -u critical "Zellij" "Deleted session $session"
+else
+	$TERMINAL zellij a "$session"
+fi

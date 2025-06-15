@@ -12,6 +12,7 @@ cf() {
 
 alias \
 	h="helix" \
+	ze="zellij" \
 	sudo="doas" \
 	ls="eza -la --color=auto --group-directories-first" \
 	kh="khal calendar today 7d" \

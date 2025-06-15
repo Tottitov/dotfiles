@@ -1,0 +1,28 @@
+default_layout "compact"
+theme "tokyo-night-dark"
+
+simplified_ui true
+show_startup_tips false
+pane_frames false
+mouse_mode false
+
+keybinds clear-defaults=true {
+    normal {
+        bind "Alt s" { SwitchToMode "scroll"; } 
+        bind "Alt t" { NewTab; }
+        bind "Alt r" {SwitchToMode "renametab"; TabNameInput 0; }
+        bind "Alt h" { GoToPreviousTab; }
+        bind "Alt l" { GoToNextTab; }
+        bind "Alt x" { CloseTab; }
+        bind "Alt q" { Quit; }
+    }
+    renametab {
+        bind "enter" { SwitchToMode "normal"; }
+        bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
+    }
+    scroll {
+        bind "esc" { SwitchToMode "normal"; }
+        bind "j" { ScrollDown; }
+        bind "k" { ScrollUp; }
+    }
+}

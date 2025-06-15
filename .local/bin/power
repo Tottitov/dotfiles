@@ -1,0 +1,6 @@
+#!/bin/sh
+
+case "$1" in
+button/power) [ "$2" = "PBTN" ] && zzz ;;
+button/lid) [ "$3" = "close" ] && [ "$(cat /sys/class/power_supply/AC*/online)" != "1" ] && zzz ;;
+esac
