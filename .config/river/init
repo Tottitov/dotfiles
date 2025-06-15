@@ -33,6 +33,11 @@ riverctl set-cursor-warp on-focus-change
 riverctl focus-follows-cursor always
 riverctl xcursor-theme 'Bibata-Modern-Ice' '24'
 
+riverctl border-color-focused "0xC3E88D"
+riverctl border-color-unfocused "0x414868"
+riverctl border-color-urgent "0xC53B53"
+riverctl border-width 2
+
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super+Alt BTN_LEFT resize-view
 
@@ -120,11 +125,6 @@ riverctl rule-add ssd
 riverctl rule-add -app-id "mpv" no-tearing
 riverctl rule-add -app-id "firefox" -title "Save as" float
 riverctl rule-add -app-id "firefox" -title "Save as" dimensions 2304 1536
-
-riverctl border-color-focused "0xC3E88D"
-riverctl border-color-unfocused "0x414868"
-riverctl border-color-urgent "0xC53B53"
-riverctl border-width 2
 
 scratch=$((1 << 30))
 riverctl map normal Super 0 toggle-focused-tags $scratch

@@ -1,4 +1,8 @@
 #!/bin/sh
 
-gpg-connect-agent --no-autostart reloadagent /bye &&
-	swaylock -Ffe --clock --datestr "%a %e.%m.%Y" --timestr "%k:%M"
+gpg-connect-agent --no-autostart reloadagent /bye && waylock \
+	-fork-on-lock \
+	-ignore-empty-password \
+	-init-color 0x5a3e8e \
+	-input-color 0x2959aa \
+	-fail-color 0x8c4351
