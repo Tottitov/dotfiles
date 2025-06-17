@@ -23,7 +23,7 @@ riverctl input "$touchpad" click-method clickfinger
 riverctl input "$touchpad" accel-profile adaptive
 riverctl input "$touchpad" tap enabled
 riverctl input "$touchpad" tap-button-map left-right-middle
-riverctl input "$touchpad" drag enabled
+riverctl input "$touchpad" drag disabled
 riverctl input "$touchpad" disable-while-typing enabled
 riverctl input "$touchpad" natural-scroll enabled
 

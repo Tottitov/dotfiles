@@ -13,6 +13,8 @@ keybinds clear-defaults=true {
         bind "Alt r" {SwitchToMode "renametab"; TabNameInput 0; }
         bind "Alt h" { GoToPreviousTab; }
         bind "Alt l" { GoToNextTab; }
+        bind "Alt Shift h" { MoveTab "Left"; }
+        bind "Alt Shift l" { MoveTab "Right"; }
         bind "Alt x" { CloseTab; }
         bind "Alt q" { Quit; }
     }
