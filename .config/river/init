@@ -123,8 +123,6 @@ riverctl map passthrough Super+Alt Escape enter-mode normal
 
 riverctl rule-add ssd
 riverctl rule-add -app-id "mpv" no-tearing
-riverctl rule-add -app-id "firefox" -title "Save as" float
-riverctl rule-add -app-id "firefox" -title "Save as" dimensions 2304 1536
 
 scratch=$((1 << 30))
 riverctl map normal Super 0 toggle-focused-tags $scratch

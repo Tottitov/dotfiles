@@ -1,0 +1,4 @@
+[Default]
+save_dir=$HOME
+save_filename_format=swappy-%Y%m%d-%H%M%S.png
+early_exit=true
