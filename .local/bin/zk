@@ -37,7 +37,7 @@ tags() {
 			read -r tag && [ -n "$tag" ] && zk t "$tag"
 		}
 	else
-		rg "$1" "$path" -l | fzf --reverse | {
+		rg "^Tags:.*$1" "$path" -l | fzf --reverse | {
 			read -r file && [ -n "$file" ] && "$EDITOR" "$file"
 		}
 	fi

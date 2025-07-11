@@ -15,18 +15,19 @@ editscreen() { grim - | swappy -f -; }
 askscreenshot() {
 	type=$(printf "edit\ncopy\nsave" | fuzzel -l 3 -w 10 -di) || exit 0
 	screenshot=$(printf "shot\nscreen" | fuzzel -l 2 -w 10 -di) || exit 0
-	case ${type}${screenshot} in
-	"saveshot") saveshot ;;
-	"savescreen") savescreen ;;
-	"copyshot") copyshot ;;
-	"copyscreen") copyscreen ;;
-	"editshot") editshot ;;
-	"editscreen") editscreen ;;
+
+	case "${type}${screenshot}" in
+	saveshot) saveshot ;;
+	savescreen) savescreen ;;
+	copyshot) copyshot ;;
+	copyscreen) copyscreen ;;
+	editshot) editshot ;;
+	editscreen) editscreen ;;
 	esac
 }
 
 case "$1" in
-"copyshot") copyshot ;;
-"copyscreen") copyscreen ;;
+copyshot) copyshot ;;
+copyscreen) copyscreen ;;
 *) askscreenshot ;;
 esac

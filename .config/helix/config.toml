@@ -36,7 +36,7 @@ right = ["diagnostics", "selections", "position", "file-type"]
 
 [editor.lsp]
 goto-reference-include-declaration = false
-display-inlay-hints = true
+display-inlay-hints = false
 display-progress-messages = true
 
 [keys.normal]

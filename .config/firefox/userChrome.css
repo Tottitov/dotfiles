@@ -11,20 +11,13 @@
   outline: none !important;
 }
 
-#unified-extensions-button {
-  width: 3px;
-  padding-inline: 0 !important;
-}
-#unified-extensions-button > .toolbarbutton-icon {
-  width: 0 !important;
-}
-
 .titlebar-spacer,
 .titlebar-buttonbox-container,
 .tabbrowser-tab:not([selected]) .tab-close-button,
 .urlbarView,
 #back-button,
 #forward-button,
+#urlbar-searchmode-switcher,
 #tracking-protection-icon-container,
 #page-action-buttons > :not(#urlbar-zoom-button),
 #urlbar-background,

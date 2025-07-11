@@ -19,11 +19,11 @@ keybinds clear-defaults=true {
         bind "Alt q" { Quit; }
     }
     renametab {
-        bind "enter" { SwitchToMode "normal"; }
-        bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
+        bind "Enter" { SwitchToMode "normal"; }
+        bind "Esc" { UndoRenameTab; SwitchToMode "normal"; }
     }
     scroll {
-        bind "esc" { SwitchToMode "normal"; }
+        bind "Esc" { SwitchToMode "normal"; }
         bind "j" { ScrollDown; }
         bind "k" { ScrollUp; }
     }
