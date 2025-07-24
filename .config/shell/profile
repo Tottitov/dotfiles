@@ -26,4 +26,6 @@ export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export LESS="RSXcF"
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
+export DATABASE_URL="postgresql://postgres:@localhost:5432/postgres"
+
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river && exec river >/dev/null 2>&1

@@ -149,11 +149,13 @@ gsettings set "org.gnome.desktop.interface" cursor-theme "Bibata-Modern-Ice"
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="kanshi rivertile waybar foot wlsunset swayidle rqbit mpc mako"
+executes="kanshi rivertile waybar foot wlsunset swayidle rqbit mpc mako podman pgweb"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute --server & ;;
+	"podman") $execute system service --time=0 & ;;
+	"pgweb") $execute --bookmarks-dir="$XDG_CONFIG_HOME/pgweb/bookmarks" --sessions & ;;
 	"rivertile") $execute -main-ratio 0.55 & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;

@@ -14,10 +14,11 @@ delete)
 	notify-send -u critical "Zellij" "Deleted session $session"
 	;;
 rename)
-	rename=$(echo "" | fuzzel -l 0 -w 30 -dip "rename: ") || exit 1
+	rename=$(fuzzel -l 0 -w 30 -dip "rename: ") || exit 1
 	zellij --session "$session" ac rename-session "$rename"
 	;;
 attach)
-	$TERMINAL zellij a "$session"
+	$TERMINAL zellij a "$session" &
+	notify-send "Zellij" "Attached session $session"
 	;;
 esac

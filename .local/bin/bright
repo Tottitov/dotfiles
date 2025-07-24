@@ -1,6 +1,6 @@
 #!/bin/sh
 
 case $1 in
-up) brightnessctl -qe s +10 ;;
-down) brightnessctl -qe s 10- ;;
+up) brightnessctl -q s +5% ;;
+down) brightnessctl -q s 5%- ;;
 esac
