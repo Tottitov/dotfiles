@@ -1,7 +1,6 @@
 #!/bin/sh
 
 emojis=$(cat <"${XDG_DATA_HOME}/unicode")
-count=$(echo "$emojis" | wc -l)
-emoji=$(echo "$emojis" | fuzzel --cache "$XDG_CACHE_HOME/unicode" -l "$count" -w 20 -di) || exit 0
+emoji=$(echo "$emojis" | fuzzel --cache "$XDG_CACHE_HOME/unicode" -w 20 -di) || exit 0
 
 echo "$emoji" | cut -d ' ' -f1 | tr -d '\n' | wl-copy && notify-send "Emoji copied to clipboard" "$emoji"

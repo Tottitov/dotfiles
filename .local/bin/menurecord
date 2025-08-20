@@ -41,7 +41,7 @@ audio() {
 }
 
 askRecording() {
-	choice=$(printf "video\naudio\nwebcam" | fuzzel -l 3 -w 10 -di)
+	choice=$(printf "video\naudio\nwebcam" | fuzzel -w 10 -di)
 	case "$choice" in
 	video) video ;;
 	audio) audio ;;
@@ -51,7 +51,7 @@ askRecording() {
 }
 
 askToEnd() {
-	choice=$(printf "Nope\nSure" | fuzzel -l 2 -w 15 -dip "End recording? ")
+	choice=$(printf "Nope\nSure" | fuzzel -w 15 -dip "End recording? ")
 	[ "$choice" = "Sure" ] && killRecording || exit 0
 }
 

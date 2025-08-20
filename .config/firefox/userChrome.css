@@ -4,13 +4,6 @@
   border-radius: 0 !important;
 }
 
-.tabbrowser-tab:not([pinned]) {
-  margin-inline-start: 0 !important;
-}
-#tabbrowser-tabbox {
-  outline: none !important;
-}
-
 .titlebar-spacer,
 .titlebar-buttonbox-container,
 .tabbrowser-tab:not([selected]) .tab-close-button,

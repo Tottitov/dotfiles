@@ -143,18 +143,18 @@ for i in $(seq 1 9); do
 	riverctl map normal Super+Alt "$i" toggle-focused-tags $tags
 done
 
+gsettings set "org.gnome.desktop.interface" color-scheme "prefer-dark"
 gsettings set "org.gnome.desktop.interface" gtk-theme "adw-gtk3-dark"
 gsettings set "org.gnome.desktop.interface" icon-theme "Papirus-Dark"
 gsettings set "org.gnome.desktop.interface" cursor-theme "Bibata-Modern-Ice"
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="kanshi rivertile waybar foot wlsunset swayidle rqbit mpc mako podman pgweb"
+executes="kanshi rivertile waybar foot wlsunset swayidle rqbit mpc mako pgweb"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute --server & ;;
-	"podman") $execute system service --time=0 & ;;
 	"pgweb") $execute --bookmarks-dir="$XDG_CONFIG_HOME/pgweb/bookmarks" --sessions & ;;
 	"rivertile") $execute -main-ratio 0.55 & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;

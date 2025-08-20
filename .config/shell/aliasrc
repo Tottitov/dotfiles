@@ -15,7 +15,6 @@ alias \
 	ze="zellij" \
 	sudo="doas" \
 	ls="eza -la --color=auto --group-directories-first" \
-	kh="khal calendar today 7d" \
 	mi="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist" \
 	up="yay -Syu" \
 	tag="beet import -i ~/media/music/" \

@@ -1,9 +1,8 @@
 #!/bin/sh
 
 sessions=$(zellij ls -ns)
-count=$(echo "$sessions" | wc -l)
 
-[ -n "$sessions" ] && choice=$(echo "$sessions" | fuzzel -l "$count" -w 25 -di) || exit 1
+[ -n "$sessions" ] && choice=$(echo "$sessions" | fuzzel -w 25 -di) || exit 1
 session=$(echo "$choice" | cut -d' ' -f1)
 
 select="$(printf "attach\nrename\ndelete" | fuzzel -l 3 -w 10 -di)" || exit 1

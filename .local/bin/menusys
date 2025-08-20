@@ -1,10 +1,9 @@
 #!/bin/sh
 
-choice=$(printf "Lock\nLogout\nReboot\nShutdown\nSuspend" | fuzzel -l 5 -w 10 -di)
+choice=$(printf "Logout\nReboot\nShutdown\nSuspend" | fuzzel -w 10 -di)
 case $choice in
-Lock) lock ;;
 Logout) riverctl exit ;;
-Reboot) doas reboot ;;
-Shutdown) doas shutdown -h now ;;
-Suspend) doas zzz ;;
+Reboot) loginctl reboot ;;
+Shutdown) loginctl poweroff ;;
+Suspend) loginctl suspend ;;
 esac

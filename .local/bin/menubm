@@ -3,11 +3,9 @@
 library="${XDG_DATA_HOME}/bookmarks"
 
 tags=$(cut -d' ' -f3 "$library" | sort -u)
-count=$(echo "$tags" | wc -l)
-tag=$(echo "$tags" | fuzzel --cache "$XDG_CACHE_HOME/tags" -l "$count" -w 15 -di) || exit 0
+tag=$(echo "$tags" | fuzzel --cache "$XDG_CACHE_HOME/tags" -w 15 -di) || exit 0
 
 bookmarks=$(rg -w "$tag" "$library" | cut -d' ' -f2)
-count=$(echo "$bookmarks" | wc -l)
-bookmark=$(echo "$bookmarks" | fuzzel --cache "$XDG_CACHE_HOME/bookmarks" -l "$count" -w 20 -di) || exit 0
+bookmark=$(echo "$bookmarks" | fuzzel --cache "$XDG_CACHE_HOME/bookmarks" -w 20 -di) || exit 0
 
 $BROWSER "$(rg -w "$bookmark $tag" "$library" | cut -d' ' -f1)"

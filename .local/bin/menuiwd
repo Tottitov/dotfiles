@@ -33,7 +33,7 @@ networks=$(echo "$scan" | ansifilter | cut -c7- | tail -n +5 | cut -c1-32 | sed 
 	exit 1
 }
 
-choice=$(echo "$networks" | fuzzel --placeholder="$connected" -l 5 -w 25 -di) || exit 1
+choice=$(echo "$networks" | fuzzel --placeholder="$connected" -w 25 -di) || exit 1
 if [ "$choice" = "$connected" ]; then
 	iwctl station "wlan0" disconnect && notify-send "$choice" "Disconnected"
 else
