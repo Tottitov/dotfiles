@@ -7,32 +7,28 @@ check() {
 } >/dev/null 2>&1
 
 connect() {
-	security=$(echo "$info" | awk '/Security/ { print $NF }')
-	if ! (iwctl known-networks list | rg -q "$1") && [ -n "$security" ]; then
-		password=$(fuzzel -l 0 -w 50 --password -dip "password: ") || exit 1
+	security=$(iwctl station wlan0 show "$1" | awk '/Security/ { print $NF }')
+	if ! iwctl known-networks list | rg -q "$1" && [ -n "$security" ]; then
+		password=$(echo "" | fuzzel -l 0 -w 50 --password -dip "password: ") || exit 1
 		check "$password" "$1"
 	else
 		(iwctl station wlan0 connect "$1" && notify-send "$1" "Connected") ||
 			notify-send -u critical "$1" "Failed to connect"
-	fi >/dev/null 2>&1
+	fi
 }
 
-iwctl device list | rg -q "on" || {
+iwctl device list | rg -q "off" && {
 	notify-send -u critical "WiFi is not enabled"
 	exit 1
 }
 
-info=$(iwctl station wlan0 show)
-scan=$(iwctl station wlan0 get-networks)
-
-connected=$(echo "$info" | rg "Connected network" | sed 's/.*Connected network *//' | xargs)
-networks=$(echo "$scan" | ansifilter | cut -c7- | tail -n +5 | cut -c1-32 | sed 's/ *$//')
-
+networks=$(iwctl station wlan0 get-networks | ansifilter | cut -c7- | tail -n +5 | cut -c1-32 | sed 's/ *$//')
 [ "$networks" = "No networks available" ] && {
 	notify-send -u critical "No WiFi networks found"
 	exit 1
 }
 
+connected=$(iwctl station wlan0 show | rg "Connected network" | sed 's/.*Connected network *//' | xargs)
 choice=$(echo "$networks" | fuzzel --placeholder="$connected" -w 25 -di) || exit 1
 if [ "$choice" = "$connected" ]; then
 	iwctl station "wlan0" disconnect && notify-send "$choice" "Disconnected"
