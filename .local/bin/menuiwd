@@ -11,7 +11,8 @@ connect() {
 	if ! iwctl known-networks list | rg -q "$1" && [ -n "$security" ]; then
 		password=$(fuzzel -w 50 --password -di --prompt-only="password: ") && check "$password" "$1"
 	else
-		(iwctl station "wlan0" connect "$1" && notify-send "$1" "Connected") ||
+		(iwctl station "wlan0" connect "$1" &&
+			notify-send "$1" "Connected") ||
 			notify-send -u critical "$1" "Failed to connect"
 	fi
 } >/dev/null 2>&1

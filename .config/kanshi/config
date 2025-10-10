@@ -1,5 +1,5 @@
 profile main {
-    output "eDP-1" enable scale 2
+    output "eDP-1" enable scale 2 adaptive_sync on
 }
 
 profile home {
@@ -8,6 +8,6 @@ profile home {
 }
 
 profile office {
-    output eDP-1 disable
-    output "Dell Inc. DELL S2721QS 57HWZY3" scale 2
+    output eDP-1 scale 2 position 1920,0
+    output "Dell Inc. DELL S2721QS 57HWZY3" scale 2 position 0,0
 }

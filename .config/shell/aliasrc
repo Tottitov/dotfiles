@@ -18,7 +18,7 @@ alias \
 	mi="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist" \
 	up="yay -Syu" \
 	tag="beet import -i ~/media/music/" \
-	ev="qcal -wd" \
+	ev="qcal -7" \
 	vw="csvlens"
 
 alias \

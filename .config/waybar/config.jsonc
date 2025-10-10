@@ -13,9 +13,9 @@
   ],
   "custom/clock": {
     "exec": "date +'%a %I:%M'",
-    "interval": 30,
+    "interval": 15,
     "tooltip": false,
-    "on-click": "reminder"
+    "on-click": "month"
   },
   "battery": {
     "bat": "BAT1",

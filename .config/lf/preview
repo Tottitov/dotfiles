@@ -2,5 +2,5 @@
 
 case $(file --mime-type "$(readlink -f "$1")" -b) in
 text/* | */json) bat -p --nonprintable-notation unicode "$1" ;;
-image/*) chafa -f sixel -s "$2x$3" --animate off --polite on "$1" ;;
+image/*) chafa -f sixel -s "$2x$3" --animate off --polite on "$1" && exit 1 ;;
 esac

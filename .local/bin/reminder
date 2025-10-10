@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[[ $(qcal -cron 15 2>/dev/null) ]] && notify-send "Next Appointment:" "\n $(qcal -cron 15)" || true
