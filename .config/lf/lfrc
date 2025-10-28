@@ -22,6 +22,7 @@ cmd open ${{
 
 map u clear
 map <enter> shell
+map b $wallpaper $f
 map <c-d> delete
 map gc cd ~/.config
 map sc cd ~/.local/bin
