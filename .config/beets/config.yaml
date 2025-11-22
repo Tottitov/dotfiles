@@ -4,6 +4,7 @@ threaded: yes
 plugins:
   - scrub
   - embedart
+  - musicbrainz
 
 import:
   run: yes

@@ -1,0 +1,5 @@
+gui:
+  border: "single"
+  showRandomTip: false
+  showBottomLine: false
+  nerdFontsVersion: 3

@@ -150,11 +150,10 @@ gsettings set "org.gnome.desktop.interface" cursor-theme "Bibata-Modern-Ice"
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="kanshi wbg rivertile waybar foot wlsunset swayidle rqbit mpc mako pipewire"
+executes="kanshi rivertile waybar foot wlsunset swayidle rqbit mpc mako pipewire"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
-	"wbg") $execute -s "$XDG_DATA_HOME/bg" & ;;
 	"foot") $execute --server & ;;
 	"rivertile") $execute -main-ratio 0.55 & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;

@@ -1,0 +1,3 @@
+gui:
+  border: "single"
+  showBottomLine: false
