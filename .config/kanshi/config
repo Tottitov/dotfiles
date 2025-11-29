@@ -5,6 +5,7 @@ profile main {
 profile home {
     output eDP-1 disable
     output "LG Electronics LG HDR 4K 410NTJJ7M428" scale 2
+    exec brightnessctl --device='*::kbd_backlight' set 0
 }
 
 profile office {
