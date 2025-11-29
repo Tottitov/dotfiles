@@ -26,5 +26,6 @@ export GOPATH="$XDG_DATA_HOME/go"
 
 export LESS="RSXcF"
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
+export SDL_VIDEO_DRIVER="wayland"
 
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river && exec river >/dev/null 2>&1
