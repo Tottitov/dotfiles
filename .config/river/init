@@ -14,7 +14,7 @@ riverctl map normal Super+Alt R spawn "$XDG_CONFIG_HOME/river/init"
 riverctl map normal Super Space spawn "pkill -USR1 waybar"
 
 riverctl keyboard-layout -options 'caps:ctrl_modifier' 'us'
-riverctl set-repeat 50 200
+riverctl set-repeat 50 150
 
 touchpad=$(riverctl list-inputs | rg "PIXA.*Touchpad")
 riverctl input "$touchpad" pointer-accel 0.35
@@ -33,6 +33,7 @@ riverctl set-cursor-warp on-focus-change
 riverctl focus-follows-cursor always
 riverctl xcursor-theme 'Bibata-Modern-Ice' '24'
 
+riverctl background-color 0x2a2041
 riverctl border-color-focused "0xC3E88D"
 riverctl border-color-unfocused "0x414868"
 riverctl border-color-urgent "0xC53B53"
@@ -123,6 +124,8 @@ riverctl map passthrough Super+Alt Escape enter-mode normal
 
 riverctl rule-add ssd
 riverctl rule-add -app-id "mpv" no-tearing
+riverctl rule-add -app-id "firefox" -title "Enter name*" float
+riverctl rule-add -app-id "firefox" -title "Enter name*" dimensions 600 400
 
 scratch=$((1 << 30))
 riverctl map normal Super 0 toggle-focused-tags $scratch
@@ -133,8 +136,7 @@ riverctl map normal Super S toggle-view-tags $sticky
 riverctl rule-add -app-id "mpv" tags $sticky
 
 complete=$(((1 << 32) - 1))
-riverctl spawn-tagmask $((complete ^ scratch))
-riverctl spawn-tagmask $((complete ^ sticky))
+riverctl spawn-tagmask $((complete ^ scratch ^ sticky))
 
 for i in $(seq 1 9); do
 	tags=$((1 << (i - 1)))
