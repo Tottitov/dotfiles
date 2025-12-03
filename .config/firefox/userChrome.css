@@ -4,6 +4,19 @@
   border-radius: 0 !important;
 }
 
+.tab-group-line {
+  #tabbrowser-tabs[orient="horizontal"] & {
+    tab-group:not([collapsed])
+      > .tabbrowser-tab:last-of-type
+      > .tab-stack
+      > .tab-background
+      > &,
+    tab-group[collapsed]:not([hasmultipletabs]) & {
+      inset-inline-end: 0 !important;
+    }
+  }
+}
+
 .titlebar-spacer,
 .titlebar-buttonbox-container,
 .tabbrowser-tab:not([selected]) .tab-close-button,
