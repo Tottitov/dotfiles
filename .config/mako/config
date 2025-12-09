@@ -23,3 +23,6 @@ text-color=#C0CAF5
 [urgency=high]
 text-color=#DB4B4B
 default-timeout=0
+
+[mode=do-not-disturb]
+invisible=1

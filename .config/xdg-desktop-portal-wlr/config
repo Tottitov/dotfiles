@@ -1,4 +1,5 @@
 [screencast]
-max_fps=60
 chooser_type=simple
 chooser_cmd=slurp -o -f '%o'
+exec_before=makoctl mode -a do-not-disturb
+exec_after=makoctl mode -r do-not-disturb
