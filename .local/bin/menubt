@@ -29,8 +29,9 @@ if [ "$(echo "$saved" | wc -l)" -gt 1 ]; then
 	echo "$choice" | rg -q "\*" && choice=$(echo "$choice" | cut -d' ' -f1)
 	device=$(echo "$saved" | rg "$choice" | cut -d' ' -f3)
 	mac=$(echo "$saved" | rg "$choice" | cut -d' ' -f2)
-	(echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect
 else
 	device=$(echo "$saved" | cut -d' ' -f3)
 	mac=$(echo "$saved" | cut -d' ' -f2)
 fi
+
+(echo "$connected" | rg -q "$mac" && toggle disconnect) || toggle connect
