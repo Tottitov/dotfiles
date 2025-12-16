@@ -6,9 +6,15 @@ check() {
 		notify-send -u critical "Password failed for $2"
 } >/dev/null 2>&1
 
+forget() {
+	(iwctl known-networks "$1" forget &&
+		notify-send "$1" "Forgotten") ||
+		notify-send -u critical "$1" "Failed to forget"
+} >/dev/null 2>&1
+
 connect() {
-	security=$(iwctl station "wlan0" show "$1" | awk '/Security/ { print $NF }')
-	if ! iwctl known-networks list | rg -q "$1" && [ -n "$security" ]; then
+	security=$(iwctl station "wlan0" get-networks | ansifilter | grep -F "$1" | awk '{ print $(NF-1) }')
+	if ! iwctl known-networks list | rg -qF "$1" && [ "$security" != "open" ]; then
 		password=$(fuzzel -w 50 --password -di --prompt-only="password: ") && check "$password" "$1"
 	else
 		(iwctl station "wlan0" connect "$1" &&
@@ -30,8 +36,20 @@ networks=$(iwctl station "wlan0" get-networks | ansifilter | cut -c7- | tail -n 
 
 connected=$(iwctl station "wlan0" show | rg "Connected network" | sed 's/.*Connected network *//' | xargs)
 choice=$(echo "$networks" | fuzzel --placeholder="$connected" -w 30 -di) || exit 1
+is_known=$(iwctl known-networks list | rg -qF "$choice" && echo "yes" || echo "no")
+
 if [ "$choice" = "$connected" ]; then
-	iwctl station "wlan0" disconnect && notify-send "$choice" "Disconnected"
+	action=$(printf "Disconnect\nForget" | fuzzel -w 20 -di) || exit 1
+	case "$action" in
+	Disconnect) iwctl station "wlan0" disconnect && notify-send "$choice" "Disconnected" ;;
+	Forget) forget "$choice" ;;
+	esac
+elif [ "$is_known" = "yes" ]; then
+	action=$(printf "Connect\nForget" | fuzzel -w 20 -di) || exit 1
+	case "$action" in
+	Connect) connect "$choice" ;;
+	Forget) forget "$choice" ;;
+	esac
 else
 	connect "$choice"
 fi
