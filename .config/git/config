@@ -1,3 +1,30 @@
 [user]
 email = 19918239+Tottitov@users.noreply.github.com
 name = Tony Nguyen
+
+[init]
+defaultBranch = main
+
+[push]
+autoSetupRemote = true
+
+[pull]
+rebase = true
+
+[fetch]
+prune = true
+
+[diff]
+algorithm = histogram
+
+[merge]
+conflictStyle = zdiff3
+
+[rerere]
+enabled = true
+
+[core]
+autocrlf = input
+
+[alias]
+lg = log --oneline --graph --all
