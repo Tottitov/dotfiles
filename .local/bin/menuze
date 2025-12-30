@@ -13,7 +13,7 @@ delete)
 	notify-send -u critical "Zellij" "Deleted session $session"
 	;;
 rename)
-	rename=$(fuzzel -l 0 -w 30 -dip "rename: ") || exit 1
+	rename=$(fuzzel -w 30 -di --prompt-only="rename: ") || exit 1
 	zellij --session "$session" ac rename-session "$rename"
 	;;
 attach)
