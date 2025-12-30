@@ -3,7 +3,6 @@ set previewer ~/.config/lf/preview
 set shell dash
 set scrolloff 8
 set period 1
-set sixel
 set drawbox
 set hidden
 set ignorecase
