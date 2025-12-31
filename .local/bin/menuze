@@ -2,12 +2,10 @@
 
 sessions=$(zellij ls -ns)
 
-[ -n "$sessions" ] && choice=$(echo "$sessions" | fuzzel -w 25 -di) || exit 1
-session=$(echo "$choice" | cut -d' ' -f1)
+[ -n "$sessions" ] && session=$(echo "$sessions" | fuzzel -w 25 -di) || exit 1
 
-select="$(printf "attach\nrename\ndelete" | fuzzel -l 3 -w 10 -di)" || exit 1
-
-case "$select" in
+choice="$(printf "attach\nrename\ndelete" | fuzzel -l 3 -w 10 -di)" || exit 1
+case "$choice" in
 delete)
 	zellij d --force "$session"
 	notify-send -u critical "Zellij" "Deleted session $session"
