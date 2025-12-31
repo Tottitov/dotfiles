@@ -32,4 +32,4 @@ map gm cd ~/media/music
 map gp cd ~/media/pictures
 map gv cd ~/media/videos
 map gb cd ~/.local/share/dotfiles
-map gf $lf -remote "send $id select $(fzf --reverse)"
+map gf $lf -remote "send $id select \"$(fzf --reverse)\""
