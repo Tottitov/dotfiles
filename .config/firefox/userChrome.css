@@ -1,9 +1,11 @@
+/* Global style reset - flat UI aesthetic */
 * {
   text-shadow: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
 }
 
+/* Fix tab group indicator line positioning for horizontal tabs */
 .tab-group-line {
   #tabbrowser-tabs[orient="horizontal"] & {
     tab-group:not([collapsed])
@@ -17,19 +19,20 @@
   }
 }
 
-.titlebar-spacer,
-.titlebar-buttonbox-container,
-.tabbrowser-tab:not([selected]) .tab-close-button,
-.urlbarView,
-.urlbar-background,
-#back-button,
-#forward-button,
-#urlbar-searchmode-switcher,
-#tracking-protection-icon-container,
-#page-action-buttons > :not(#urlbar-zoom-button),
-#PanelUI-menu-button,
-#statuspanel,
-#context-navigation,
+/* Hide UI elements for minimal browser */
+.titlebar-spacer,                                    /* Window title padding */
+.titlebar-buttonbox-container,                       /* Window control buttons (min/max/close) */
+.tabbrowser-tab:not([selected]) .tab-close-button,   /* Close button on inactive tabs */
+.urlbarView,                                         /* URL bar dropdown suggestions */
+.urlbar-background,                                  /* URL bar background styling */
+#back-button,                                        /* Navigation back button */
+#forward-button,                                     /* Navigation forward button */
+#urlbar-searchmode-switcher,                         /* Search engine switcher in URL bar */
+#tracking-protection-icon-container,                 /* Shield icon for tracking protection */
+#page-action-buttons > :not(#urlbar-zoom-button),    /* Page action icons except zoom */
+#PanelUI-menu-button,                                /* Hamburger menu button */
+#statuspanel,                                        /* Status bar at bottom (loading URLs) */
+#context-navigation,                                 /* Back/forward/reload/seperator in context menu */
 #context-sep-navigation {
   display: none !important;
 }
