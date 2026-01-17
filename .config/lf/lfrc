@@ -15,6 +15,7 @@ cmd open ${{
         video/*) setsid -f mpv --no-terminal $f ;;
 		audio/*) setsid -f mpv --no-video $f ;;
         image/*) setsid -f imv $f ;;
+        application/zip) unzip $f ;;
         *) setsid -f xdg-open $f ;;
     esac
 }}
