@@ -13,8 +13,8 @@ forget() {
 } >/dev/null 2>&1
 
 connect() {
-	security=$(iwctl station "wlan0" get-networks | ansifilter | grep -F "$1" | awk '{ print $(NF-1) }')
-	if ! iwctl known-networks list | rg -qF "$1" && [ "$security" != "open" ]; then
+	security=$(iwctl station "wlan0" get-networks | ansifilter | rg "${1}\s" | awk '{ print $(NF-1) }')
+	if ! iwctl known-networks list | rg -qF "$1" && [ -n "$security" ] && [ "$security" != "open" ]; then
 		password=$(fuzzel -w 50 --password -di --prompt-only="password: ") && check "$password" "$1"
 	else
 		(iwctl station "wlan0" connect "$1" &&

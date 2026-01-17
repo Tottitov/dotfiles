@@ -2,11 +2,15 @@
 
 play() { mpc -q clear && mpc -q findadd "$@" && mpc -q play; }
 
+shuffle() { mpc -q clear && mpc -q add / && mpc -q shuffle && mpc -q play; }
+
 current() { mpc -q status "%status%" = "playing" && mpc -f "%${1}%" current; }
 
-artist=$(mpc ls | fuzzel --placeholder="$(current albumartist)" -di) || exit 1
-albums=$(mpc list album artist "$artist")
+artist=$(printf "Shuffle All\n%s" "$(mpc ls)" | fuzzel --placeholder="$(current albumartist)" -di) || exit 1
 
+[ "$artist" = "Shuffle All" ] && shuffle && exit 0
+
+albums=$(mpc list album artist "$artist")
 if [ "$(echo "$albums" | wc -l)" -gt 1 ]; then
 	album=$(echo "$albums" | fuzzel --placeholder="$(current album)" -di) || exit 1
 else

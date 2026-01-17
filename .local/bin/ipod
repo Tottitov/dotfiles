@@ -5,4 +5,4 @@ doas rsync \
 	--ignore-existing \
 	--progress \
 	--delete \
-	~/media/music/ /mnt/Music/
+	~/media/music/ /mnt/

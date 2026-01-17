@@ -1,4 +1,5 @@
 https://nhuton.opnsense.com Firewall Server
+https://api.events.adastra.live/docs Swagger_Prod Work
 https://ameico.com/collections Ameico Shopping
 https://dashboard.render.com/ Render Work
 http://localhost:3000 Test Work
@@ -34,7 +35,6 @@ https://www.criterion.com/shop/collection/504-best-sellers Movies Shopping
 https://github.com/Tottitov?tab=repositories Github Favorite
 https://adastra.atlassian.net/wiki/home Confluence Work
 https://adastra.atlassian.net/jira/software/c/projects/ASTRA/boards/1207 Jira_Bugs Work
-https://aais.zendesk.com/agent/filters/32886797200788 Zendesk Work
 https://bitbucket.org/adastradev/ BitBucket Work
 https://online.adp.com/signin/v1/?APPID=WFNPortal&productId=80e309c3-7085-bae1-e053-3505430b5495&returnURL=https://workforcenow.adp.com/&callingAppId=WFN ADP Work
 https://my.15five.com/profile/highlights/ 15Five Work
@@ -52,7 +52,6 @@ https://matillion-dev.astra-dev.com/ Matillion_Test Work
 https://matillion-prod.adastra.live/ Matillion_Prod Work
 https://reports.astra-dev.com/app/main/dashboards/601d99f209d6301184eda643?return_to=%2Fapp%2Fmain ELT_Pipeline Work
 https://adastra.atlassian.net/wiki/spaces/EN/pages/1831796789/Tenant+ID+Name+SIS+lookup+table Tenants Work
-http://api.something.astra-dev.com/ Swagger Work
 https://wea62634.us-east-1.snowflakecomputing.com/console/login#/?returnUrl=internal%2Fworksheet Snowflake Work
 https://teams.microsoft.com/v2/ Teams Work
 https://logs.astra-dev.com/streams/5ce86ca9adbe1d000ea875b3/search Graylog Work
