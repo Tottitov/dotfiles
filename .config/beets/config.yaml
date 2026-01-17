@@ -2,8 +2,6 @@ directory: ~/media/music/
 threaded: yes
 
 plugins:
-  - scrub
-  - embedart
   - musicbrainz
 
 import:
@@ -16,9 +14,3 @@ import:
 
 paths:
   default: $albumartist/$album/$track $title
-
-scrub:
-  auto: yes
-
-embedart:
-  quality: 75
