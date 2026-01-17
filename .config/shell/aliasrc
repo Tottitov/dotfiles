@@ -1,26 +1,24 @@
-#!/bin/sh
+#!/bin/fish
 
-sc() {
-	script=$(fd . ~/.local/bin -t l | fzf --reverse)
-	[ -n "$script" ] && "$EDITOR" "$script"
-}
+function sc
+    set script (fd . ~/.local/bin -t l | fzf --reverse)
+    test -n "$script"; and $EDITOR $script
+end
 
-cf() {
-	config=$(fd . ~/.config -t l | fzf --reverse)
-	[ -n "$config" ] && "$EDITOR" "$config"
-}
+function cf
+    set config (fd . ~/.config -t l | fzf --reverse)
+    test -n "$config"; and $EDITOR $config
+end
 
-alias \
-	h="helix" \
-	ze="zellij" \
-	sudo="doas" \
-	ls="eza -la --color=auto --group-directories-first" \
-	mi="rate-mirrors artix | sudo tee /etc/pacman.d/mirrorlist" \
-	up="yay -Syu" \
-	tag="beet import -i ~/media/music/" \
-	ev="qcal -7" \
-	vw="csvlens"
+alias h helix
+alias ze zellij
+alias sudo doas
+alias ls "eza -la --color=auto --group-directories-first"
+alias mi "rate-mirrors artix | doas tee /etc/pacman.d/mirrorlist"
+alias up "yay -Syu"
+alias tag "beet import -i ~/media/music/"
+alias ev "qcal -7"
+alias vw csvlens
 
-alias \
-	cad="source ~/.local/share/virtual/build123d/bin/activate" \
-	vcad="python -m ocp_vscode --no_tools"
+alias cad "source ~/.local/share/virtual/build123d/bin/activate.fish"
+alias vcad "python -m ocp_vscode --no_tools"
