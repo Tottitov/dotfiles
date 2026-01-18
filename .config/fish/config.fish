@@ -4,7 +4,8 @@ if status is-interactive
     fish_vi_key_bindings
 
     set -g fish_greeting
-    set -g fish_prompt_pwd_dir_length 1a
+    set -g fish_prompt_pwd_dir_length 1
+
     set -g hydro_symbol_prompt 
     set -g hydro_multiline true
 
