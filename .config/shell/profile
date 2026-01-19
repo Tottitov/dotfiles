@@ -1,28 +1,32 @@
-#!/bin/zsh
+#!/bin/fish
 
-export EDITOR="helix"
-export TERMINAL="footclient"
-export BROWSER="firefox"
+set -gx EDITOR helix
+set -gx TERMINAL footclient
+set -gx BROWSER firefox
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -gx XDG_RUNTIME_DIR /run/user/(id -u)
 
-export PATH="$PATH:$XDG_DATA_HOME/npm/bin:$(find ~/.local/bin -type d | paste -sd:)"
+fish_add_path "$XDG_DATA_HOME/npm/bin"
+for dir in (find ~/.local/bin -type d)
+    fish_add_path "$dir"
+end
 
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
+set -gx GNUPGHOME "$XDG_CONFIG_HOME/gnupg"
+set -gx PASSWORD_STORE_DIR "$XDG_DATA_HOME/password-store"
+set -gx NOTMUCH_CONFIG "$XDG_CONFIG_HOME/notmuch/notmuchrc"
 
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export GOPATH="$XDG_DATA_HOME/go"
+set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
+set -gx CLAUDE_CONFIG_DIR "$XDG_CONFIG_HOME/claude"
+set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -gx GOPATH "$XDG_DATA_HOME/go"
 
-export LESS="RSXcF"
-export ELECTRON_OZONE_PLATFORM_HINT="wayland"
+set -gx LESS RSXcF
+set -gx ELECTRON_OZONE_PLATFORM_HINT wayland
 
-[ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && ! pidof -q river && exec river >/dev/null 2>&1
+if test -z "$WAYLAND_DISPLAY"; and test (tty) = /dev/tty1; and not pidof -q river
+    exec river >/dev/null 2>&1
+end

@@ -21,9 +21,6 @@ insert = "bar"
 select = "underline"
 
 [editor.statusline]
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
 left = [
   "mode",
   "file-name",
