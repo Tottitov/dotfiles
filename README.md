@@ -6,10 +6,15 @@ $ cd ~/.local/share/dotfiles
 $ stow -vt ~ .
 ```
 
-### Setting up seat & session management
+Shell: fish
+Terminal: foot
+Editor: helix
+Compositor: wayland
+Window Manager: river
+
+### Setting up session management
 - Use dinit as init system
 - use turnstile for session management
-- use seatd for seat management
 - use dbus as bus system/session
 
 That means D-Bus handling in Artix is completely out of box by default. You simply install it, and Dinit will activate it, both for system bus and for user logins, and there is absolutely nothing to do from the user’s side.
