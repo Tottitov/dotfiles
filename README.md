@@ -6,11 +6,11 @@ $ cd ~/.local/share/dotfiles
 $ stow -vt ~ .
 ```
 
-Shell: fish
-Terminal: foot
-Editor: helix
-Compositor: wayland
-Window Manager: river
+- Shell: fish
+- Terminal: foot
+- Editor: helix
+- Compositor: wayland
+- Window Manager: river
 
 ### Setting up session management
 - Use dinit as init system
