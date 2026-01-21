@@ -3,10 +3,10 @@
 notify() { notify-send -h int:value:"$volume" "Volume ${volume}%"; }
 
 case "$1" in
-high) getMute || pamixer -i 1 ;;
-higher) getMute || pamixer -i 5 ;;
-low) getMute || pamixer -d 1 ;;
-lower) getMute || pamixer -d 5 ;;
+high) pamixer -i 1 ;;
+higher) pamixer -i 5 ;;
+low) pamixer -d 1 ;;
+lower) pamixer -d 5 ;;
 mute) pamixer -t && pkill -RTMIN+5 waybar ;;
 esac
 

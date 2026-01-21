@@ -23,7 +23,9 @@ cmd open ${{
 map u clear
 map <enter> shell
 map b $wallpaper $f
+map x $printf '%s' "$f" | wl-copy
 map <c-d> delete
+
 map gc cd ~/.config
 map sc cd ~/.local/bin
 map gd cd ~/dev
