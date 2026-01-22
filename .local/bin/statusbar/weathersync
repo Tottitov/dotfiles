@@ -1,0 +1,8 @@
+#!/bin/sh
+
+curl -sf --connect-timeout 5 wttr.in/?format=%C+%f >"$XDG_DATA_HOME/weather" &
+
+for i in 1 2; do
+	pkill -RTMIN+2 waybar
+	[ "$i" -eq 1 ] && wait
+done

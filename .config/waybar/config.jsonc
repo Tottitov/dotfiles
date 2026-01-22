@@ -4,6 +4,7 @@
   "modules-left": ["river/tags", "custom/player"],
   "modules-center": [],
   "modules-right": [
+    "custom/weather",
     "custom/record",
     "custom/inbox",
     "bluetooth",
@@ -69,7 +70,13 @@
     "on-click": "mpc toggle",
     "signal": 1
   },
+  "custom/weather": {
+    "exec": "weather",
+    "tooltip": false,
+    "signal": 2
+  },
   "river/tags": {
-    "hide-vacant": true
-  }
+    "hide-vacant": true,
+    "expand": true
+  }  
 }

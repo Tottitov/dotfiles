@@ -1,0 +1,8 @@
+#!/bin/sh
+
+default() {
+	weather=$(cat "$XDG_DATA_HOME/weather")
+	[ -n "$weather" ] && echo "<span color=\"#e0af68\"></span> $weather"
+}
+
+(pidof -q "curl" && echo "<span color =\"#ff768e\"></span> fetching weather...") || default

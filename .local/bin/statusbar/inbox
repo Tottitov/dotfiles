@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if ! pidof -q "mbsync"; then
+default() {
 	count="$(notmuch count folder:INBOX and tag:unread)"
 	[ "$count" -gt 0 ] && echo "<span color =\"#bb9af7\"></span> $count unread email/s"
-else
-	echo "<span color =\"#ff768e\"></span> syncing email/s..."
-fi
+}
+
+(pidof -q "mbsync" && echo "<span color =\"#ff768e\"></span> syncing email/s...") || default

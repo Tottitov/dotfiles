@@ -4,7 +4,7 @@ end
 
 if status is-interactive
     source ~/.config/shell/aliasrc
-    source ~/.config/fish/themes/tokyonight_night.fish
+    source ~/.config/fish/themes/tokyonight.fish
 
     fish_vi_key_bindings
 
