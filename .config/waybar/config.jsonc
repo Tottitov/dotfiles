@@ -6,7 +6,7 @@
   "modules-right": [
     "custom/weather",
     "custom/record",
-    "custom/inbox",
+    "custom/mail",
     "bluetooth",
     "custom/mute",
     "battery",
@@ -52,8 +52,8 @@
     "tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%",
     "tooltip-format": "{device_enumerate}"
   },
-  "custom/inbox": {
-    "exec": "inbox",
+  "custom/mail": {
+    "exec": "mail",
     "tooltip": false,
     "on-click": "mailsync",
     "signal": 4

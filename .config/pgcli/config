@@ -1,0 +1,28 @@
+[main]
+
+prompt = '\d  '
+vi = true
+
+log_level = NONE
+history_file = /dev/null
+less_chatty = true
+
+enable_pager = true
+table_format = simple
+syntax_style = native
+timing = true
+
+expand = false
+auto_expand = true
+row_limit = 1000
+max_field_width = 500
+null_string = 'NULL'
+
+multi_line = true
+multi_line_mode = psql
+
+smart_completion = true
+wider_completion_menu = true
+show_bottom_toolbar = false
+
+destructive_warning = drop, shutdown, delete, truncate, alter, update, unconditional_update

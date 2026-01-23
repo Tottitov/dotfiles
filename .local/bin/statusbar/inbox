@@ -2,7 +2,7 @@
 
 default() {
 	count="$(notmuch count folder:INBOX and tag:unread)"
-	[ "$count" -gt 0 ] && echo "<span color =\"#bb9af7\"></span> $count unread email/s"
+	[ "$count" -gt 0 ] && echo "<span color =\"#bb9af7\"></span> $count unread mail"
 }
 
-(pidof -q "mbsync" && echo "<span color =\"#ff768e\"></span> syncing email/s...") || default
+(pidof -q "mbsync" && echo "<span color =\"#ff768e\"></span> syncing mail") || default
