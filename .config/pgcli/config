@@ -4,7 +4,7 @@ prompt = '\d  '
 vi = true
 
 log_level = NONE
-history_file = /dev/null
+history_file = ~/.cache/pghistory
 less_chatty = true
 
 enable_pager = true

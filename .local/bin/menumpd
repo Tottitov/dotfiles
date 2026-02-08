@@ -11,6 +11,7 @@ artist=$(printf "Shuffle All\n%s" "$(mpc ls)" | fuzzel --placeholder="$(current 
 [ "$artist" = "Shuffle All" ] && shuffle && exit 0
 
 albums=$(mpc list album artist "$artist")
+
 if [ "$(echo "$albums" | wc -l)" -gt 1 ]; then
 	album=$(echo "$albums" | fuzzel --placeholder="$(current album)" -di) || exit 1
 else
@@ -18,6 +19,7 @@ else
 fi
 
 choice=$(printf "Nope\nSure" | fuzzel -w $((${#album} + 25)) -dip "Add album '$album' to playlist? ") || exit 1
+
 if [ "$choice" = "Nope" ]; then
 	songs=$(mpc search -f "%track%\t%title%" album "$album" | sort -n -k1,1 | cut -f2-) || exit 1
 	song=$(echo "$songs" | fuzzel --placeholder="$(current title)" -w 40 -di) || exit 1

@@ -55,8 +55,8 @@ sources() {
 	fi
 }
 
-search() {
-	query=${1:-$(gum input --placeholder "Search term")} || exit 1
+find() {
+	query=${1:-$(gum input --placeholder "Find term")} || exit 1
 	rg "$query" "$path" -i -l | fzf --reverse | {
 		read -r file && [ -n "$file" ] && "$EDITOR" "$file"
 	}
@@ -67,6 +67,6 @@ n) new ;;
 e) edit ;;
 t) tags "$2" ;;
 s) sources "$2" ;;
-f) search "$2" ;;
+f) find "$2" ;;
 *) exit 1 ;;
 esac
