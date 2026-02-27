@@ -2,7 +2,8 @@ set clean-database-on-startup true
 set menu-feed-sorting alphabet-asc
 set status-placeholder
 set reload-period 60
-set download-timeout 0
+set download-timeout 20
+set download-max-host-connections 2
 set scrolloff 8
 
 bind m exec setsid -f mpv --no-terminal "%l" &

@@ -34,8 +34,8 @@ riverctl focus-follows-cursor always
 riverctl xcursor-theme 'Bibata-Modern-Ice' '24'
 
 riverctl background-color 0x2a2041
-riverctl border-color-focused "0xC3E88D"
-riverctl border-color-unfocused "0x414868"
+riverctl border-color-focused "0x414868"
+riverctl border-color-unfocused "0x1A1B26"
 riverctl border-color-urgent "0xC53B53"
 riverctl border-width 2
 
@@ -152,12 +152,12 @@ gsettings set "org.gnome.desktop.interface" cursor-theme "Bibata-Modern-Ice"
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-executes="kanshi rivertile waybar foot wlsunset swayidle rqbit mpc mako pipewire"
+executes="kanshi wallpaper rivertile waybar foot wlsunset swayidle rqbit mpc mako pipewire"
 for execute in $executes; do
 	pidof -q "$execute" && continue
 	case $execute in
 	"foot") $execute --server & ;;
-	"rivertile") $execute -main-ratio 0.55 & ;;
+	"rivertile") $execute -main-ratio 0.6 -view-padding 5 -outer-padding 20 & ;;
 	"rqbit") $execute server start "$HOME/media/downloads" & ;;
 	"wlsunset") $execute -s 21:00 -S 07:00 & ;;
 	"swayidle") $execute -w timeout 300 "wlopm --off '*'" resume "wlopm --on '*'" & ;;

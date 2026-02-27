@@ -1,10 +1,11 @@
 {
   "layer": "top",
   "reload_style_on_change": true,
-  "modules-left": ["river/tags", "custom/player"],
-  "modules-center": [],
+  "modules-left": [
+    "river/tags",
+    "custom/player"
+  ],
   "modules-right": [
-    "custom/weather",
     "custom/record",
     "custom/mail",
     "bluetooth",
@@ -69,11 +70,6 @@
     "tooltip": false,
     "on-click": "mpc toggle",
     "signal": 1
-  },
-  "custom/weather": {
-    "exec": "weather",
-    "tooltip": false,
-    "signal": 2
   },
   "river/tags": {
     "hide-vacant": true,

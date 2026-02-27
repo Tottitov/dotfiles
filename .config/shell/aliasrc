@@ -9,7 +9,7 @@ alias up 'yay -Syu'
 alias tag 'beet import -i ~/media/music/'
 alias vtag 'mnamer -br ~/media/videos/'
 alias ev 'qcal -7'
-alias vw csvlensa
+alias vw csvlens
 
 alias cad 'source ~/.local/share/virtual/build123d/bin/activate.fish'
 alias vcad 'python -m ocp_vscode --no_tools'

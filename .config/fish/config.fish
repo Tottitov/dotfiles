@@ -14,6 +14,8 @@ if status is-interactive
     set -g fish_prompt_pwd_dir_length 100
 
     set -g hydro_symbol_prompt 
+    set -g hydro_symbol_git_ahead 󰁝
+    set -g hydro_symbol_git_behind 󰁅
     set -g hydro_multiline true
 
     set -g hydro_color_pwd blue

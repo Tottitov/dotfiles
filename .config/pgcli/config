@@ -14,7 +14,7 @@ timing = true
 
 expand = false
 auto_expand = true
-row_limit = 1000
+row_limit = 5000
 max_field_width = 500
 null_string = 'NULL'
 

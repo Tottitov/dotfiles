@@ -5,7 +5,7 @@
 @define-color bluetooth #2ac3de;
 
 * {
-  font-family: monospace;
+  font-family: sans-serif;
   font-size: 12pt;
   border-radius: 0px;
 }
@@ -23,7 +23,6 @@ window#waybar.hidden {
 }
 #custom-player,
 #custom-record,
-#custom-weather,
 #custom-mail,
 #bluetooth,
 #custom-mute,
