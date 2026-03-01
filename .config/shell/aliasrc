@@ -14,6 +14,7 @@ alias vw csvlens
 alias cad 'source ~/.local/share/virtual/build123d/bin/activate.fish'
 alias vcad 'python -m ocp_vscode --no_tools'
 
+abbr -s st 'stow -vt ~ .'
 abbr -a gs 'git status'
 abbr -a gp 'git pull'
 abbr -a gc 'git checkout'

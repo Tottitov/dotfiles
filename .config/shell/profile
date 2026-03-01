@@ -23,7 +23,10 @@ set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
 set -gx CLAUDE_CONFIG_DIR "$XDG_CONFIG_HOME/claude"
 set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -gx GOPATH "$XDG_DATA_HOME/go"
-set -gs AWS_PROFILE managed
+
+set -gx AWS_PROFILE managed
+set -gx AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+set -gx AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 
 set -gx LESS RSXcF
 set -gx ELECTRON_OZONE_PLATFORM_HINT wayland

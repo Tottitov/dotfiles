@@ -35,17 +35,17 @@ networks=$(iwctl station "wlan0" get-networks | ansifilter | cut -c7- | tail -n 
 }
 
 connected=$(iwctl station "wlan0" show | rg "Connected network" | sed 's/.*Connected network *//' | xargs)
-choice=$(echo "$networks" | fuzzel --placeholder="$connected" -w 30 -di) || exit 1
+choice=$(echo "$networks" | fuzzel --only-match --placeholder="$connected" -w 30 -di) || exit 1
 is_known=$(iwctl known-networks list | rg -qF "$choice" && echo "yes" || echo "no")
 
 if [ "$choice" = "$connected" ]; then
-	action=$(printf "Disconnect\nForget" | fuzzel -w 20 -di) || exit 1
+	action=$(printf "Disconnect\nForget" | fuzzel --only-match -w 20 -di) || exit 1
 	case "$action" in
 	Disconnect) iwctl station "wlan0" disconnect && notify-send "$choice" "Disconnected" ;;
 	Forget) forget "$choice" ;;
 	esac
 elif [ "$is_known" = "yes" ]; then
-	action=$(printf "Connect\nForget" | fuzzel -w 20 -di) || exit 1
+	action=$(printf "Connect\nForget" | fuzzel --only-match -w 20 -di) || exit 1
 	case "$action" in
 	Connect) connect "$choice" ;;
 	Forget) forget "$choice" ;;

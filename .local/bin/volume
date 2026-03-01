@@ -1,6 +1,6 @@
 #!/bin/sh
 
-notify() { notify-send -h int:value:"$volume" "Volume ${volume}%"; }
+notify() { notify-send -h int:value:"$volume" -h string:x-mako-id:volume "Volume ${volume}%"; }
 
 case "$1" in
 high) pamixer -i 1 ;;

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+media="$HOME/media/videos"
+
+show=$(
+	find "$media" -maxdepth 1 -mindepth 1 -printf '%f\n' | sort | fuzzel --only-match -w 30 -dip "Watch "
+) || exit 1
+
+episode=$(
+	find "$media/$show" -maxdepth 1 -mindepth 1 -printf '%f\n' | sort -V | fuzzel --only-match -w 40 -di
+) || exit 1
+
+mpv "$media/$show/$episode"

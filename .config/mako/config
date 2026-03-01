@@ -8,7 +8,7 @@ font=monospace 12
 default-timeout=5000
 background-color=#000000
 progress-color=over #5A3E8E
-group-by=app-name,body
+group-by=app-name
 on-button-left=dismiss-group
 
 [grouped]
@@ -20,9 +20,9 @@ text-color=#C0CAF5
 [urgency=normal]
 text-color=#C0CAF5
 
-[urgency=high]
+[urgency=critical]
 text-color=#DB4B4B
-default-timeout=0
+default-timeout=30000
 
 [mode=do-not-disturb]
 invisible=1

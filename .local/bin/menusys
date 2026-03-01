@@ -1,6 +1,6 @@
 #!/bin/sh
 
-choice=$(printf "Logout\nReboot\nShutdown\nSuspend" | fuzzel -w 10 -di)
+choice=$(printf "Logout\nReboot\nShutdown\nSuspend" | fuzzel --only-match -w 10 -di)
 case $choice in
 Logout) riverctl exit ;;
 Reboot) loginctl reboot ;;

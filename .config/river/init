@@ -68,6 +68,8 @@ riverctl map normal Super C spawn menucalc
 riverctl map normal Super+Shift C spawn camtoggle
 riverctl map normal Super D spawn fuzzel
 riverctl map normal Super+Shift D spawn menubm
+riverctl map normal Super B spawn menuwatch
+riverctl map normal Super+Shift B spawn addbm
 riverctl map normal Super E spawn "$TERMINAL aerc"
 riverctl map normal Super+Shift E spawn menuemoji
 riverctl map normal Super I spawn "$TERMINAL htop"

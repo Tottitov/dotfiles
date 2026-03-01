@@ -1,7 +1,7 @@
 #!/bin/sh
 
 answer=$(echo "scale=2; $1" | bc -l)
-action=$(printf "Copy\nClear" | fuzzel -w 15 -dip "$answer") || exit 0
+action=$(printf "Copy\nClear" | fuzzel --only-match -w 15 -dip "$answer") || exit 0
 
 case $action in
 "Clear") $0 ;;

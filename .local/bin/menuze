@@ -2,9 +2,9 @@
 
 sessions=$(zellij ls -ns)
 
-[ -n "$sessions" ] && session=$(echo "$sessions" | fuzzel -w 25 -di) || exit 1
+[ -n "$sessions" ] && session=$(echo "$sessions" | fuzzel --only-match -w 25 -di) || exit 1
 
-choice="$(printf "attach\nrename\ndelete" | fuzzel -l 3 -w 10 -di)" || exit 1
+choice="$(printf "attach\nrename\ndelete" | fuzzel --only-match -l 3 -w 10 -di)" || exit 1
 case "$choice" in
 delete)
 	zellij d --force "$session"

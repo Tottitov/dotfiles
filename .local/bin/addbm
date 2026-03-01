@@ -1,0 +1,19 @@
+#!/bin/sh
+
+library="${XDG_DATA_HOME}/bookmarks"
+
+url=$(wl-paste -n) || exit 1
+
+rg -qF "$url" "$library" && {
+	notify-send -u critical "Bookmark exists" "$url"
+	exit 1
+}
+
+name=$(fuzzel -w 25 -di --prompt-only "Name: ") || exit 0
+name=$(echo "$name" | tr ' ' '_')
+
+tags=$(cut -d' ' -f3 "$library" | sort -u)
+tag=$(echo "$tags" | fuzzel --only-match --cache "$XDG_CACHE_HOME/tags" -w 15 -di --prompt "Tag: ") || exit 0
+
+echo "$url $name $tag" >>"$library"
+notify-send "Bookmark added" "$name ($tag)"

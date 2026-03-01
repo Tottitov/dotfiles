@@ -6,23 +6,23 @@ shuffle() { mpc -q clear && mpc -q add / && mpc -q shuffle && mpc -q play; }
 
 current() { mpc -q status "%status%" = "playing" && mpc -f "%${1}%" current; }
 
-artist=$(printf "Shuffle All\n%s" "$(mpc ls)" | fuzzel --placeholder="$(current albumartist)" -di) || exit 1
+artist=$(printf "Shuffle All\n%s" "$(mpc ls)" | fuzzel --only-match --placeholder="$(current albumartist)" -di) || exit 1
 
 [ "$artist" = "Shuffle All" ] && shuffle && exit 0
 
 albums=$(mpc list album artist "$artist")
 
 if [ "$(echo "$albums" | wc -l)" -gt 1 ]; then
-	album=$(echo "$albums" | fuzzel --placeholder="$(current album)" -di) || exit 1
+	album=$(echo "$albums" | fuzzel --only-match --placeholder="$(current album)" -di) || exit 1
 else
 	album="$albums"
 fi
 
-choice=$(printf "Nope\nSure" | fuzzel -w $((${#album} + 25)) -dip "Add album '$album' to playlist? ") || exit 1
+choice=$(printf "Nope\nSure" | fuzzel --only-match -w $((${#album} + 25)) -dip "Add album '$album' to playlist? ") || exit 1
 
 if [ "$choice" = "Nope" ]; then
 	songs=$(mpc search -f "%track%\t%title%" album "$album" | sort -n -k1,1 | cut -f2-) || exit 1
-	song=$(echo "$songs" | fuzzel --placeholder="$(current title)" -w 40 -di) || exit 1
+	song=$(echo "$songs" | fuzzel --only-match --placeholder="$(current title)" -w 40 -di) || exit 1
 	play title "$song"
 else
 	play album "$album"
